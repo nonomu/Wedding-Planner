@@ -17,15 +17,13 @@ class BookAttraction extends Component {
     
 
     render() {
-        let attraction = this.props.attr
+        let attraction = this.props.attraction
 
         return (
             <div>
                 <img className="attr-img" src={attraction.image} />
                 <div className="attr-name">name: {attraction.attr_name}</div>
-
                 <input id="price" type="number" placeholder="Enter Price" onChange={this.handleInputs} />
-
                 <button className="submit-price">Submit</button>
             </div>
         );
