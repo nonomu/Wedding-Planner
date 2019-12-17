@@ -34,7 +34,7 @@ class User {
     }
     @action getUserFavorites = async userId => {
         try {
-            let userFavorites = await axios.get(`${API_URL}/favorites/${userId}`)
+            let userFavorites = await Axios.get(`${API_URL}/favorites/${userId}`)
             this.userInfo._userFavorites = userFavorites.data
         } catch (err) {
             console.log(err)
@@ -43,14 +43,14 @@ class User {
 
     @action bookAttraction = async (userId, attractionId) => {
         try {
-            await axios.post(`${API_URL}/attractions/book`, { userId, attractionId })
+            await Axios.post(`${API_URL}/attractions/book`, { userId, attractionId })
         } catch (err) {
             console.log(err)
         }
     }
     @action getBookedAttractions = async (userId) => {
         try {
-           let bookedAttractions= await axios.get(`${API_URL}/bookedAttractions/${userId}`)
+           let bookedAttractions= await Axios.get(`${API_URL}/bookedAttractions/${userId}`)
            this.userInfo.bookedAttractions=bookedAttractions.data
         } catch (err) {
             console.log(err)
@@ -58,7 +58,7 @@ class User {
     }
     @action addToFavorites = async (userId, attractionId) => {
         try {
-            await axios.post(`${API_URL}/attractions/favorite`, { userId, attractionId })
+            await Axios.post(`${API_URL}/attractions/favorite`, { userId, attractionId })
         } catch (err) {
             console.log(err)
         }
