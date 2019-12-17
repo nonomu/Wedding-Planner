@@ -3,7 +3,7 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
 class User {
-    @observable userInfo = {}
+    @observable userInfo = {id: 1}
     @observable _userFavorites = {
         venue: [],
         dj: [],
@@ -11,9 +11,6 @@ class User {
         misc: []
     }
     @observable closedAttractions = []
-    @computed userInfo() {
-        return this.UserInfo
-    }
 
     @action login = async (email, password) => {
         try {
@@ -41,9 +38,9 @@ class User {
         }
     }
 
-    @action bookAttraction = async (userId, attractionId) => {
+    @action bookAttraction = async (userId, attractionId, price) => {
         try {
-            await Axios.post(`${API_URL}/attractions/book`, { userId, attractionId })
+            await Axios.post(`${API_URL}/attractions/book`, { userId, attractionId, price })
         } catch (err) {
             console.log(err)
         }

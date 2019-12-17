@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
-@inject("attractions","user")
+import { Link } from "react-router-dom";
+
+import BookAttraction from './BookAttraction';
+@inject("attractions", "user")
 
 @observer
 class Attraction extends Component {
 
-    
-    addButton=()=>{
-        this.props.user.addToFavorites(this.props.user.userInfo.id,this.props.attr.category.id)
+
+    addButton = () => {
+        this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
     }
 
-    bookButton=()=>{
-        this.props.user.bookAttraction(this.props.user.userInfo.id, this.props.attr.category.id)
-    }
+
+  
 
     render() {
         let attraction = this.props.attr
-      //  console.log(attraction)
 
 
         return (<div className="attraction-container">
@@ -26,7 +27,9 @@ class Attraction extends Component {
             <div className="attr-vendor">vendor: {attraction.attr_vendor}</div>
             <div className="attr-rating">rating: {attraction.rating}</div>
             <button className="add-btn" onClick={this.addButton}>Add to favortis</button>
-            <button className="book-btn" onClick={this.bookButton}>Book now!</button>
+            <Link to={`/book/${attraction.category}/${attraction.id}`}>  
+            <button className="book-btn" >Book now!</button></Link>
+        
         </div>)
     }
 }
