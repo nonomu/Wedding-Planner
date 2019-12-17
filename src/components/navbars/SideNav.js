@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 class SideNav extends Component {
 render() {
 return <div id="sideNav">
-LINK 1
-LINK 2
+<div>LINK 1</div>
+<div>LINK 2</div>
+<div>LINK 3</div>
 
 </div>
 }
