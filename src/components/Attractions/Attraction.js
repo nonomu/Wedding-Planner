@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
-import { attractions } from '../../stores/Attractions';
 @inject("attractions","user")
 
 @observer
