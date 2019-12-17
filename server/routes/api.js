@@ -34,16 +34,6 @@ router.get('/favorites/:userId', async function (req, res) {
     }
 })
 
-router.get('/attractions/:userId', async function (req, res) {
-    try {
-        let bookedAttractions = db.query(`SELECT`)
-        res.send(bookedAttractions[0])
-    } catch(err) {
-        console.log(err)
-        res.send(err)
-    }
-})
-
 router.get('/bookedAttractions/:userId',async function (req, res) {
     let userId = req.params.userId
     try {
@@ -64,6 +54,16 @@ router.post('/attractions/favorite',async function (req, res) {
     
     try {
         await db.query(`INSERT INTO `)    
+    } catch(err) {
+        console.log(err)
+        res.send(err)
+    }
+})
+
+router.post('/attractions/book',async function (req, res) {
+    let action = req.body
+    try {
+        await db.query(`INSERT INTO booked_attractions VALUES("${action.userId}", "${action.attractionId}", "${action.price}")`)    
     } catch(err) {
         console.log(err)
         res.send(err)
