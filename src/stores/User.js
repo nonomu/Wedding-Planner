@@ -19,7 +19,7 @@ class User {
         }
     }
 
-    @action getUserInfo = async userId => {
+    @action getWeddingDetails = async userId => {
         try {
             let userInfo = await Axios.get(`${API_URL}/wedding-details/${userId}`)
             this.userInfo = userInfo.data
