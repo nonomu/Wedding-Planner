@@ -30,7 +30,8 @@ router.get('/wedding-details/:userId', async (req, res) => {
 
 router.get('/favorites/:userId', async function(req, res) {
 	try {
-		let favorites = await db.query(`SELECT`)
+        let userId = req.params.userId
+        let favorites = await db.query(`SELECT at.* FROM attractions as at, user as u, favorites as f WHERE u.id = "${userId}" AND f.user_id = "${userId}" AND f.attraction_id = at.id`)
 		res.send(favorites[0])
 	} catch (err) {
 		console.log(err)
@@ -42,7 +43,7 @@ router.get('/bookedAttractions/:userId', async function(req, res) {
 	let userId = req.params.userId
 	try {
 		let bookedAttractions = await db.query(
-			`SELECT at.* 
+			`SELECT at.*, ba.price
         FROM attractions as at,user as u,booked_attractions as ba 
         WHERE ba.user_id = "${userId}" AND ba.attraction_id=at.id AND u.id = "${userId}"`
 		)
