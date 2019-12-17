@@ -4,7 +4,7 @@ let API_URL = `http://localhost:4200/api`
 
 class Attractions {
     @observable _attractions = {
-        venue: [{
+        venues: [{
             category: "venue",
             attr_name: "Nof-jerusalem",
             attr_vendor: "Yaniv",
@@ -14,7 +14,8 @@ class Attractions {
             contact_phone: "02-6415999",
             contact_email: "yaniv@gmail.com",
             small_prints: "Lots of bugs :)"
-        }, {
+        },
+         {
                 category: "venue",
                 attr_name: "Nof-jerusalem",
                 attr_vendor: "Yaniv",
@@ -24,7 +25,8 @@ class Attractions {
                 contact_phone: "02-6415999",
                 contact_email: "yaniv@gmail.com",
                 small_prints: "Lots of bugs :)"
-            }],
+            }
+        ],
         dj: [],
         photographer: [],
         misc: []
@@ -39,6 +41,10 @@ class Attractions {
 
     @computed get attractions() {
         return this._attractions
+    }
+
+    @computed get venues() {
+        return this._attractions.venues
     }
 
     @action getAttractionsByCategory = async categoryName => {

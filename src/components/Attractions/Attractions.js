@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import Attraction from './Attraction';
+import { observer, inject } from "mobx-react";
+@inject("attractions")
 
+@observer
 class Attractions extends Component {
-render() {
-return <div>
-    <h1>Attractions Page</h1>
-    this page should print here the route match
-    <div>
-    {this.props.category}
-    </div>
+    render() {
+        let category = this.props.category
+        let attrArr = this.props.attractions._attractions[category]
 
+        return (<div>
 
+            <h1>Attractions Page</h1>
+            this page should print here the route match
+    <div className="small-attr">
+                {attrArr.map(a => <Attraction attr={a} />)}
+            </div>
 
-    <Attraction />
-    <Attraction />
-    </div>
-}
+        </div>)
+    }
 }
 
 
