@@ -11,7 +11,7 @@ class Attractions {
             image: "http://nofyerushalaim.com/wp-content/uploads/pb070021-Custom-resized1.jpg",
             location: "shahrai 2 jerusalem",
             rating: 3, contact_name: "Shaul",
-            contact_phone: 02 - 6415999,
+            contact_phone: "02-6415999",
             contact_email: "yaniv@gmail.com",
             small_prints: "Lots of bugs :)"
         }, {
@@ -21,7 +21,7 @@ class Attractions {
                 image: "http://nofyerushalaim.com/wp-content/uploads/pb070021-Custom-resized1.jpg",
                 location: "shahrai 2 jerusalem",
                 rating: 3, contact_name: "Shaul",
-                contact_phone: 02 - 6415999,
+                contact_phone: "02-6415999",
                 contact_email: "yaniv@gmail.com",
                 small_prints: "Lots of bugs :)"
             }],
