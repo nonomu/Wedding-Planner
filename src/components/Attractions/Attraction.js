@@ -27,8 +27,9 @@ class Attraction extends Component {
             <div className="attr-vendor">vendor: {attraction.attr_vendor}</div>
             <div className="attr-rating">rating: {attraction.rating}</div>
             <button className="add-btn" onClick={this.addButton}>Add to favortis</button>
-            <Link to={`/book/${attraction.category}/${attraction.id}`} attraction={attraction}>  
+            <Link to={`/book/${attraction.category}/${attraction.id}`}>  
             <button className="book-btn" >Book now!</button></Link>
+        
         </div>)
     }
 }

@@ -38,9 +38,9 @@ class User {
         }
     }
 
-    @action bookAttraction = async (userId, attractionId) => {
+    @action bookAttraction = async (userId, attractionId, price) => {
         try {
-            await Axios.post(`${API_URL}/attractions/book`, { userId, attractionId })
+            await Axios.post(`${API_URL}/attractions/book`, { userId, attractionId, price })
         } catch (err) {
             console.log(err)
         }
