@@ -14,11 +14,7 @@ class Attraction extends Component {
     }
 
 
-    bookButton = () => {
-        console.log(this.props.attr)
-        this.props.user.bookAttraction(this.props.user.userInfo.id, this.props.attr.id)
-
-    }
+  
 
     render() {
         let attraction = this.props.attr
@@ -32,7 +28,7 @@ class Attraction extends Component {
             <div className="attr-rating">rating: {attraction.rating}</div>
             <button className="add-btn" onClick={this.addButton}>Add to favortis</button>
             <Link to={`/book/${attraction.category}/${attraction.id}`} attraction={attraction}>  
-            <button className="book-btn" onClick={this.bookButton}>Book now!</button></Link>
+            <button className="book-btn" >Book now!</button></Link>
         </div>)
     }
 }

@@ -14,7 +14,11 @@ class BookAttraction extends Component {
     handleInputs = e => {
     this.setState({ price: e.target.value })
     }
-    
+    bookButton = () => {
+        
+        this.props.user.bookAttraction(this.props.user.userInfo.id, this.props.attraction.id)
+
+    }
 
     render() {
         let attraction = this.props.attraction
@@ -24,7 +28,7 @@ class BookAttraction extends Component {
                 <img className="attr-img" src={attraction.image} />
                 <div className="attr-name">name: {attraction.attr_name}</div>
                 <input id="price" type="number" placeholder="Enter Price" onChange={this.handleInputs} />
-                <button className="submit-price">Submit</button>
+                <button className="submit-price" onClick={this.bookButton}>Submit</button>
             </div>
         );
     }
