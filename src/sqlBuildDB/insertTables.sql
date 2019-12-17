@@ -21,11 +21,11 @@ use weddingplanner;
 --      "Petah-Tikva",
 --      4.5,
 --      "Dudu",
---      0722133329,
+--      "072-2133329",
 --      "venetion@gmail.com",
 --      "hello"
 --      );
 
 
--- INSERT INTO booked_attractions
---  VALUES (1,1,200);
+INSERT INTO booked_attractions
+ VALUES (1,1,200);

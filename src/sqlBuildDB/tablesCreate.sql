@@ -1,5 +1,8 @@
 -- CREATE DATABASE WeddingPlanner;
 use weddingplanner;
+-- DROPPER
+-- DROP TABLE booked_attractions,attractions;
+
 -- CREATE TABLE weddingDetails(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --     groom_name varchar(30),
@@ -28,7 +31,7 @@ use weddingplanner;
 --     location varchar(20),
 --     rating int,
 --     contact_name varchar(20),
---     contact_phone int,
+--     contact_phone varchar(20),
 --     contact_email varchar(40),
 --     small_prints text
 -- );
@@ -36,8 +39,11 @@ use weddingplanner;
 -- CREATE TABLE booked_attractions(
 --     user_id int NOT NULL,
 --     attraction_id int NOT NULL,
---     price int 
+--     price int ,
+--     FOREIGN KEY(user_id) REFERENCES user(id),
+--     FOREIGN KEY(attraction_id) REFERENCES attractions(id)
 -- );
+
 
 
 
