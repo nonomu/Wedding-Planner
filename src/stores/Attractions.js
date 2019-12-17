@@ -72,7 +72,13 @@ class Attractions {
             console.log(err)
         }
     }
-
+    @action getBookedAttractions = async (userId) => {
+        try {
+            await axios.get(`${API_URL}/bookedAttractions/${userId}`)
+        } catch (err) {
+            console.log(err)
+        }
+    }
     @action addToFavorites = async (userId, attractionId) => {
         try {
             await axios.post(`${API_URL}/attractions/favorite`, { userId, attractionId })
