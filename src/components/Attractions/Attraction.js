@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
+import BookAttraction from './BookAttraction';
 @inject("attractions","user")
 
 @observer
@@ -12,12 +13,12 @@ class Attraction extends Component {
 
     bookButton(){
         this.props.bookAttraction(this.props.user.userInfo.id, this.props.attr.category.id)
+         
     }
 
     render() {
         let attraction = this.props.attr
-      //  console.log(attraction)
-
+    
 
         return (<div className="attraction-container">
             <h4>This is ATTRACTION (Ori, work on this with the dummy data)</h4>
