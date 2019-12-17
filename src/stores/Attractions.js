@@ -15,17 +15,17 @@ class Attractions {
             contact_email: "yaniv@gmail.com",
             small_prints: "Lots of bugs :)"
         },
-         {
-                category: "venue",
-                attr_name: "Nof-jerusalem",
-                attr_vendor: "Yaniv",
-                image: "http://nofyerushalaim.com/wp-content/uploads/pb070021-Custom-resized1.jpg",
-                location: "shahrai 2 jerusalem",
-                rating: 3, contact_name: "Shaul",
-                contact_phone: "02-6415999",
-                contact_email: "yaniv@gmail.com",
-                small_prints: "Lots of bugs :)"
-            }
+        {
+            category: "venue",
+            attr_name: "Nof-jerusalem",
+            attr_vendor: "Yaniv",
+            image: "http://nofyerushalaim.com/wp-content/uploads/pb070021-Custom-resized1.jpg",
+            location: "shahrai 2 jerusalem",
+            rating: 3, contact_name: "Shaul",
+            contact_phone: "02-6415999",
+            contact_email: "yaniv@gmail.com",
+            small_prints: "Lots of bugs :)"
+        }
         ],
         dj: [],
         photographer: [],
@@ -51,7 +51,7 @@ class Attractions {
         try {
             let attractions = await axios.get(`${API_URL}/attractions/${categoryName}`)
             this._attractions[categoryName] = attractions.data
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -60,28 +60,28 @@ class Attractions {
         try {
             let userFavorites = await axios.get(`${API_URL}/favorites/${userId}`)
             this._userFavorites = userFavorites.data
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
- 
+
     @action bookAttraction = async (userId, attractionId) => {
         try {
-            await axios.post(`${API_URL}/attractions/book`, {userId, attractionId})
-        } catch(err) {
+            await axios.post(`${API_URL}/attractions/book`, { userId, attractionId })
+        } catch (err) {
             console.log(err)
         }
     }
 
     @action addToFavorites = async (userId, attractionId) => {
-        try{
-            await axios.post(`${API_URL}/attractions/favorite`, {userId, attractionId})
-        } catch(err) {
+        try {
+            await axios.post(`${API_URL}/attractions/favorite`, { userId, attractionId })
+        } catch (err) {
             console.log(err)
         }
     }
 
-    
+
 }
 
 export const attractions = new Attractions()
