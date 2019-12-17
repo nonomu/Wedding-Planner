@@ -46,5 +46,5 @@ use weddingplanner;
 --      "baam@gmail.com",
 --      "best dj ever"
 --      );
-INSERT INTO booked_attractions
- VALUES (1,3,50);
+-- INSERT INTO booked_attractions
+--  VALUES (1,3,50);
