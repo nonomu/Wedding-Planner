@@ -10,8 +10,6 @@ class Attractions {
         misc: []
     }
 
-  
-
     @computed get attractions() {
         return this._attractions
     }
@@ -28,10 +26,6 @@ class Attractions {
             console.log(err)
         }
     }
-
-
-
-
 
 }
 
