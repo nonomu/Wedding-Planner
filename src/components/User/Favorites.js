@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Favorites extends Component {
 render() {
-return 
+return <h1>Favorites</h1>
 }
 }
 
