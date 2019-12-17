@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
-
+import { Link } from "react-router-dom";
 class Navbar extends Component {
 render() {
 return <div id="navbar">
-    CATEGORY 1
-    CATEGORY 2
+    <Link to="/">
+    Home
+</Link>
+<Link to="/profile">
+    Profile
+</Link>
+<Link to="/favorites">
+    Favorites
+</Link>
+
+<Link to="/overview">
+    OverView
+</Link>
+
 </div>
 }
 }
