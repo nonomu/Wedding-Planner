@@ -16,7 +16,7 @@ class Attraction extends Component {
 
     render() {
         let attraction = this.props.attr
-        console.log(attraction)
+      //  console.log(attraction)
 
 
         return (<div className="attraction-container">

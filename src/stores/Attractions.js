@@ -4,7 +4,7 @@ let API_URL = `http://localhost:4200/api`
 
 class Attractions {
     @observable _attractions = {
-        venues: [{
+        venue: [{
             category: "venue",
             attr_name: "Nof-jerusalem",
             attr_vendor: "Yaniv",

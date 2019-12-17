@@ -1,7 +1,8 @@
--- CREATE DATABASE WeddingPlanner;
-use weddingplanner;
--- DROPPER
--- DROP TABLE booked_attractions,attractions;
+-- --CREATE DATABASE WeddingPlanner;
+-- use weddingplanner;
+
+-- -- DROPPER
+-- -- DROP TABLE booked_attractions,attractions;
 
 -- CREATE TABLE weddingDetails(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -14,6 +15,7 @@ use weddingplanner;
 --     wedding_area varchar(20),
 --     music_style varchar(20)
 -- );
+
 -- CREATE TABLE user(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --     email varchar(40),
