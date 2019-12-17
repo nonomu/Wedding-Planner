@@ -24,7 +24,7 @@ class App extends Component {
           <Route exact path="/favorites" render={() => <Favorites />} />
           <Route exact path="/overview" render={() => <Overview />} />
           <Route path="/attractions/:category" render={({match}) => <Attractions category={match.params.category} />} />
-          <Route path="/:category" render={({ match }) => <BookAttraction category={match.params.category} />} />
+          <Route path="/book/:category" render={({ match }) => <BookAttraction category={match.params.category} />} />
         </Router>
       </div>
     );
