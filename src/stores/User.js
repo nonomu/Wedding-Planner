@@ -9,16 +9,16 @@ class User {
     @action login = async (email, password) => {
         try {
             let user = await Axios.post(`${API_URL}/login`, {email, password})
-            this.getUserInfo(user.data.id)
+            this.getWeddingDetails(user.data.id)
         } catch(err) {
             console.log(err)
         }
     }
 
-    @action getUserInfo = async userId => {
+    @action getWeddingDetails = async userId => {
         try {
-            let userInfo = await Axios.get(`${API_URL}/wedding-details/${userId}`)
-            this.userInfo = userInfo.data
+            let weddingDetails = await Axios.get(`${API_URL}/wedding-details/${userId}`)
+            this.userInfo.weddingDetails = weddingDetails.data
         } catch(err) {
             console.log(err)
         }
