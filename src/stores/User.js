@@ -3,9 +3,14 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
 class User {
-    @observable userInfo = []
+    @observable userInfo = {}
+    @observable _userFavorites = {
+        venue: [],
+        dj: [],
+        photographer: [],
+        misc: []
+    }
     @observable closedAttractions = []
-
     @computed userInfo() {
         return this.UserInfo
     }
@@ -27,7 +32,37 @@ class User {
             console.log(err)
         }
     }
+    @action getUserFavorites = async userId => {
+        try {
+            let userFavorites = await axios.get(`${API_URL}/favorites/${userId}`)
+            this.userInfo._userFavorites = userFavorites.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
+    @action bookAttraction = async (userId, attractionId) => {
+        try {
+            await axios.post(`${API_URL}/attractions/book`, { userId, attractionId })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    @action getBookedAttractions = async (userId) => {
+        try {
+           let bookedAttractions= await axios.get(`${API_URL}/bookedAttractions/${userId}`)
+           this.userInfo.bookedAttractions=bookedAttractions.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    @action addToFavorites = async (userId, attractionId) => {
+        try {
+            await axios.post(`${API_URL}/attractions/favorite`, { userId, attractionId })
+        } catch (err) {
+            console.log(err)
+        }
+    }
     @action register = () => {
 
     }
