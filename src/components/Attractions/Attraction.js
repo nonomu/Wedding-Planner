@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
-
+@inject("attractions","user")
 
 @observer
 class Attraction extends Component {
+
+    
+    addButton(){
+        this.props.addToFavorites(this.props.user.userInfo.id,this.props.attr.category.id)
+    }
+
+    bookButton(){
+        this.props.bookAttraction(this.props.user.userInfo.id, this.props.attr.category.id)
+    }
+
     render() {
         let attraction = this.props.attr
         console.log(attraction)
@@ -15,7 +25,8 @@ class Attraction extends Component {
             <div className="attr-name">name: {attraction.attr_name}</div>
             <div className="attr-vendor">vendor: {attraction.attr_vendor}</div>
             <div className="attr-rating">rating: {attraction.rating}</div>
-
+            <button className="add-btn" onClick={this.addButton}>Add to favortis</button>
+            <button className="book-btn" onClick={this.bookButton}>Book now!</button>
         </div>)
     }
 }
