@@ -18,7 +18,7 @@ class App extends Component {
         <Router>
           <Navbar />
           <SideNav />
-          Hello Teamates
+          <h3>GOOD VIBES ONLY ;)</h3>
           <Route exact path="/" render={() => <Home />} />
           <Route exact path="/profile" render={() => <Profile />} />
           <Route exact path="/favorites" render={() => <Favorites />} />
