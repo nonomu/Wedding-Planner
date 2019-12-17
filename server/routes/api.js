@@ -44,7 +44,7 @@ router.get('/attractions/:userId', async function (req, res) {
     }
 })
 
-router.get('/bookedAtractions/:userId',async function (req, res) {
+router.get('/bookedAttractions/:userId',async function (req, res) {
     let userId = req.params.userId
     try {
         let bookedAttractions = await db.query(
