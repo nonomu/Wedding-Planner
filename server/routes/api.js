@@ -11,15 +11,15 @@ router.get('/favorites/:userId', async function (req, res) {
     
 })
 
-router.get('/closedAttractions/:userId', async function (req, res) {
+router.get('/attractions/:userId', async function (req, res) {
     
 })
 
-router.post('/closedAttraction',async function (req, res) {
+router.post('/attractions/book',async function (req, res) {
   
 })
 
-router.post('/favorite',async function (req, res) {
+router.post('/attractions/favorite',async function (req, res) {
   
 })
 
