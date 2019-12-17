@@ -34,15 +34,20 @@ router.get('/attractions/:userId', async function (req, res) {
     }
 })
 
-router.post('/attractions/book',async function (req, res) {
-    let attraction = req.body
-
+router.get('/bookedAtractions/:userId',async function (req, res) {
+    let userId = req.params.userId
     try {
+        let bookedAtractions = await db.query(
+        `SELECT at.* 
+        FROM attractions as at,user as u,booked_attractions as ba 
+        WHERE ba.user_id = "${userId}" AND ba.attraction_id=at.id`)
+        res.send(bookedAtractions[0][0])
     } catch(err) {
         console.log(err)
         res.send(err)
     }
-})
+}
+)
 
 router.post('/attractions/favorite',async function (req, res) {
     let newFavorite = req.body
@@ -74,7 +79,8 @@ router.post('/login',async function (req, res) {
     } catch(err) {
         res.send(err)
     }
-})
+}
+)
 
 
 module.exports = router
