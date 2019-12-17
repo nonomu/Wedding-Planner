@@ -6,7 +6,7 @@ class SideNav extends Component {
     return (
       <div id="sideNav">
         <div>
-          <Link to="/attractions/venues">
+          <Link to="/attractions/venue">
             Venues
           </Link>
         </div>

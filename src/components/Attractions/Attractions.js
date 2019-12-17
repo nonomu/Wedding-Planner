@@ -5,6 +5,11 @@ import { observer, inject } from "mobx-react";
 
 @observer
 class Attractions extends Component {
+    componentDidMount(){
+        this.props.attractions.getAttractionsByCategory(this.props.category)
+        console.log(this.props.attractions._attractions.venue);
+        
+    }
     render() {
         let category = this.props.category
         let attrArr = this.props.attractions._attractions[category]

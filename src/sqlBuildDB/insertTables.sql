@@ -27,5 +27,5 @@ use weddingplanner;
 --      );
 
 
-INSERT INTO booked_attractions
- VALUES (1,1,200);
+-- INSERT INTO booked_attractions
+--  VALUES (1,1,200);
