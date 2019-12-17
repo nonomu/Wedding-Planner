@@ -32,6 +32,7 @@ class Attractions {
 
 
 
+
 }
 
 export const attractions = new Attractions()
