@@ -8,13 +8,13 @@ class Attraction extends Component {
 
     
     addButton=()=>{
-        this.props.user.addToFavorites(this.props.user.userInfo.id,this.props.attr.category.id)
+        this.props.user.addToFavorites(this.props.user.userInfo.id,this.props.attr.id)
     }
 
 
-
     bookButton=()=>{
-        this.props.user.bookAttraction(this.props.user.userInfo.id, this.props.attr.category.id)
+        console.log(this.props.attr)
+        this.props.user.bookAttraction(this.props.user.userInfo.id, this.props.attr.id)
 
     }
 

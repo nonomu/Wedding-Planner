@@ -3,7 +3,7 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
 class User {
-    @observable userInfo = {}
+    @observable userInfo = {id: 1}
     @observable _userFavorites = {
         venue: [],
         dj: [],
@@ -11,9 +11,6 @@ class User {
         misc: []
     }
     @observable closedAttractions = []
-    @computed userInfo() {
-        return this.UserInfo
-    }
 
     @action login = async (email, password) => {
         try {
