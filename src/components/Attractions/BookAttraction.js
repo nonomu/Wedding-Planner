@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
-@inject('attraction','user')
+
+@inject('attraction', 'user')
 
 @observer
 class BookAttraction extends Component {
-
+    constructor() {
+        super();
+        this.state = {
+            price: 0
+        }
+    }
+    handleInputs = e => {
+    this.setState({ price: e.target.value })
+    }
+    
 
     render() {
         let attraction = this.props.attr
@@ -13,7 +23,9 @@ class BookAttraction extends Component {
             <div>
                 <img className="attr-img" src={attraction.image} />
                 <div className="attr-name">name: {attraction.attr_name}</div>
-                <input type="number" className="price" placeholder="Enter Price"/>
+
+                <input id="price" type="number" placeholder="Enter Price" onChange={this.handleInputs} />
+
                 <button className="submit-price">Submit</button>
             </div>
         );
