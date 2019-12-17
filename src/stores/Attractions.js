@@ -10,8 +10,6 @@ class Attractions {
         misc: []
     }
 
-  
-
     @computed get attractions() {
         return this._attractions
     }
@@ -32,9 +30,6 @@ class Attractions {
     @action getAttractionData(category, id) {
         return this._attractions[category].find(a => a.id === parseInt(id))
     }
-
-
-
 
 }
 

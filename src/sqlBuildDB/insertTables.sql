@@ -23,9 +23,26 @@ INSERT INTO attractions
      "yakov",
      "072-2133329",
      "venetion@gmail.com",
-     "hello"
-     );
+     "hello"     );
 
 
-INSERT INTO booked_attractions
- VALUES (1,1,200);
+
+-- INSERT INTO booked_attractions
+--  VALUES (1,1,200);
+-- INSERT INTO favorites
+--  VALUES (1,1);
+
+-- INSERT INTO attractions
+--  VALUES (
+--      NULL,
+--      "dj",
+--      "Noam mualmi DJ",
+--      "nono baam",
+--      "https://www.godrinkla.com/uploads/venues/2f71ef5a385ad94a63b18b1fbb64063d.jpg",
+--      "Tel-Aviv",
+--      5,
+--      "Ronit",
+--      "054-2222329",
+--      "baam@gmail.com",
+--      "best dj ever"
+--      );

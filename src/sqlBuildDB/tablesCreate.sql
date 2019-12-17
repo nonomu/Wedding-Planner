@@ -45,6 +45,12 @@ use weddingplanner;
 --     FOREIGN KEY(user_id) REFERENCES user(id),
 --     FOREIGN KEY(attraction_id) REFERENCES attractions(id)
 -- );
+CREATE TABLE favorites(
+    user_id int NOT NULL,
+    attraction_id int NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(attraction_id) REFERENCES attractions(id) 
+);
 
 
 -- CREATE TABLE favorites(
