@@ -6,12 +6,12 @@ import { observer, inject } from "mobx-react";
 class Attraction extends Component {
 
     
-    addButton(){
-        this.props.addToFavorites(this.props.user.userInfo.id,this.props.attr.category.id)
+    addButton=()=>{
+        this.props.user.addToFavorites(this.props.user.userInfo.id,this.props.attr.category.id)
     }
 
-    bookButton(){
-        this.props.bookAttraction(this.props.user.userInfo.id, this.props.attr.category.id)
+    bookButton=()=>{
+        this.props.user.bookAttraction(this.props.user.userInfo.id, this.props.attr.category.id)
     }
 
     render() {
