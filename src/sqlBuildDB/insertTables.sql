@@ -1,13 +1,13 @@
 use weddingplanner;
 
 -- INSERT INTO weddingDetails
---  VALUES (NULL,"Noam Mualmi",
--- "Sapir Mi",'1995-11-28',500,100000
--- ,120000,"Jerusalem","Pop");
+--  VALUES (NULL,"Ron Braha",
+-- "Shayna",'2019-05-24',70,100000
+-- ,120000,"Tel-Aviv","Rock");
 
 
 -- INSERT INTO user
---  VALUES (NULL,"noammualmi@gmail.com","nono123",
+--  VALUES (NULL,"ronbraha@gmail.com","RNR1",
 --  1);
 
 
@@ -16,16 +16,16 @@ use weddingplanner;
 --      NULL,
 --      "venue",
 --      "Venetion hall",
---      "Noam",
---      "https://www.venetian-israel.co.il/public/Winter2020/images/gallery_7.png",
---      "Petah-Tikva",
+--      "Yakov",
+--      "https://www.godrinkla.com/uploads/venues/2f71ef5a385ad94a63b18b1fbb64063d.jpg",
+--      "Tel-Aviv",
 --      4.5,
---      "Dudu",
+--      "yakov",
 --      "072-2133329",
 --      "venetion@gmail.com",
 --      "hello"
 --      );
 
 
-INSERT INTO booked_attractions
- VALUES (1,1,200);
+-- INSERT INTO booked_attractions
+--  VALUES (1,1,200);

@@ -50,8 +50,8 @@ router.get('/bookedAtractions/:userId',async function (req, res) {
         let bookedAtractions = await db.query(
         `SELECT at.* 
         FROM attractions as at,user as u,booked_attractions as ba 
-        WHERE ba.user_id = "${userId}" AND ba.attraction_id=at.id`)
-        res.send(bookedAtractions[0][0])
+        WHERE ba.user_id = "${userId}" AND ba.attraction_id=at.id AND u.id = "${userId}"`)
+        res.send(bookedAtractions[0])
     } catch(err) {
         console.log(err)
         res.send(err)
