@@ -30,7 +30,7 @@
 }
 
 #sideNav{
-  width: 100px;
+  width: 180px;
   height: 100vh;
   background-color: rgb(255, 166, 32);
   position: absolute;
@@ -44,10 +44,20 @@ input{
   border-radius: 10px;
   margin: 8px 30px;
 }
+
 select{
   height: 30px;
   width:200px;
   border: 1px solid rgb(116, 116, 116);
   border-radius: 10px;
   margin: 8px 30px;
+}
+
+.smallIMG{
+  width: 200px;
+  height: 200px;
+}
+.bookedAttraction{
+  border: 1px solid black;
+  border-radius: 10px;
 }
