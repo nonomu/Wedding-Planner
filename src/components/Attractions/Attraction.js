@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
-@inject("attraction")
+import { attractions } from '../../stores/Attractions';
+@inject("attractions","user")
 
 @observer
 class Attraction extends Component {
