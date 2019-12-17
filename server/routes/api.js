@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const Sequelize = require('sequelize')
-const db = new Sequelize('mysql://root:@localhost/wedding-planner')
+const db = new Sequelize('mysql://root:@localhost/weddingPlanner')
 
 router.get('/attractions/:category', async function (req, res) {
     try {
-        let attractions = await db.query(`SELECT`)
+        let category = req.params.category
+        let attractions = await db.query(`SELECT * FROM attractions WHERE category = "${category}"`)
         res.send(attractions[0])
     } catch(err) {
         console.log(err)
@@ -56,7 +57,8 @@ router.post('/attractions/favorite',async function (req, res) {
 
 router.post('/register',async function (req, res) {
     try {
-        await db.query(`INSERT INTO user`)
+        let user = req.body
+        await db.query(`INSERT INTO user VALUES(null, "${user.email}", "${user.password})`)
     } catch(err) {
         console.log(err)
         res.send(err)
@@ -65,9 +67,11 @@ router.post('/register',async function (req, res) {
 
 router.post('/login',async function (req, res) {
     try {
-        await db.query(`INSERT INTO user`)
+        let user = req.body
+        let result = await db.query(`SELECT * FROM user WHERE email = "${user.email}" AND password = "${user.password}"`)
+        let userId = result[0][0].id
+        res.send({id: userId})
     } catch(err) {
-        console.log(err)
         res.send(err)
     }
 })

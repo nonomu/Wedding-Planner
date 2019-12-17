@@ -73,7 +73,13 @@ class Attractions {
         }
     }
 
-    // @action addToFavorites = async (user)
+    @action addToFavorites = async (userId, attractionId) => {
+        try{
+            await axios.post(`${API_URL}/attractions/favorite`, {userId, attractionId})
+        } catch(err) {
+            console.log(err)
+        }
+    }
 
     
 }
