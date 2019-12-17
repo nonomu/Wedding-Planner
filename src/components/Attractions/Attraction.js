@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Attraction extends Component {
 render() {
-return 
+return <h4>This is ATTRACTION (Ori, work on this with the dummy data)</h4>
 }
 }
 
