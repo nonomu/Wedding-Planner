@@ -11,6 +11,9 @@ import Overview from "./components/User/Overview";
 import Attractions from "./components/Attractions/Attractions";
 import BookAttraction from "./components/Attractions/BookAttraction";
 import AttractionInfo from "./components/Attractions/AttractionInfo";
+import SwipeableTemporaryDrawer from './components/navbars/SwipeableDrawer'
+import { Drawer, List, Paper, ListItem } from "@material-ui/core";
+// import ResponsiveDrawer from './components/navbars/ResponsiveSideNav'
 
 @inject("attractions")
 @observer
@@ -23,12 +26,12 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Navbar />
-          <SideNav />
-          <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/profile" render={() => <Profile />} />
-          <Route exact path="/favorites" render={() => <Favorites />} />
-          <Route exact path="/overview" render={() => <Overview />} />
+        <Navbar/>
+          <SwipeableTemporaryDrawer categories={this.props.attractions.categories}/>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/favorites" component={Favorites} />
+          <Route exact path="/overview" component={Overview} />
           
 
           <Route

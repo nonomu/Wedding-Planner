@@ -3,6 +3,10 @@
 
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
 
 .App-logo {
   height: 40vmin;
