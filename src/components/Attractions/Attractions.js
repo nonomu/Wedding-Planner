@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Attraction from "./Attraction";
 import { observer, inject } from "mobx-react";
-@inject("attractions")
+@inject("attractions", "user")
 @observer
 class Attractions extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class Attractions extends Component {
     let attrArr = this.props.attractions.attractionsByCategory
     return (
       <div>
-        <h1>Attractions Page</h1>
+        <h1>{this.props.category}</h1>
         this page should print here the route match
         <div className="small-attr">
           {attrArr.map(a => (

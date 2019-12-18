@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react'
-import Favorite from './Favorite'
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
+import Favorite from "./Favorite";
+import Attraction from "../Attractions/Attraction";
 @inject("user", "attractions")
+
 
 @observer
 class Favorites extends Component {
-    componentDidMount() {
-        this.props.user.getUserFavorites(this.props.user.userInfo.id)
-    }
+  componentDidMount() {
+    this.props.user.getUserFavorites();
+  }
 
     render() {
         
@@ -24,4 +26,4 @@ class Favorites extends Component {
 }
 
 
-export default Favorites
+export default Favorites;
