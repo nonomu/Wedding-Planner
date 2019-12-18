@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Rating from '@material-ui/lab/Rating';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles({
   card: {
@@ -33,6 +34,7 @@ export default function AttractionCard(props) {
           className={classes.media}
           image={attraction.image}
           title="Contemplative Reptile"
+          component={Link} to={`/attractionInfo/${attraction.id}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
