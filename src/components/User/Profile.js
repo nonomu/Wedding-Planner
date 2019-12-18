@@ -17,7 +17,7 @@ class Profile extends Component {
       estBudget: 0,
       estGifts: 0,
       weddingArea: "",
-      venueRadius: 0
+      musicStyle: 0
     };
   }
 
@@ -36,12 +36,12 @@ class Profile extends Component {
                 ? this.setState({ estGifts: e.target.value })
                 : e.target.id === "weddingArea"
                   ? this.setState({ weddingArea: e.target.value })
-                  : e.target.id === "venueRadius"
-                    ? this.setState({ venueRadius: e.target.value })
+                  : e.target.id === "musicStyle"
+                    ? this.setState({ musicStyle: e.target.value })
                     : console.log("Problema");
   }
-  updateUserProfile = () => {
-    this.props.user.updateUserProfile(this.state)
+  updateUserInfo = () => {
+    this.props.user.updateUserInfo(this.state)
   }
 
   render() {
@@ -71,13 +71,14 @@ class Profile extends Component {
           <TextField id="estGifts" variant="outlined" type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
         </div>
         <div>
+
           <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
 
           <Autocomplete id="autoCompleteField"
             style={{ width: '30%' }}
+
             onPlaceSelected={(city) => {
              let cityName=city.formatted_address
-             console.log(cityName)
               this.setState({ weddingArea: cityName })
             }}
             types={['(cities)']}
@@ -85,7 +86,7 @@ class Profile extends Component {
           />
 
         </div>
-        <Button variant="contained" color="primary" onClick={this.updateUserProfile}>UPDATE PROFILE</Button>
+        <Button variant="contained" color="primary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
       </div>
     );
   }

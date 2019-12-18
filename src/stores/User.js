@@ -7,13 +7,37 @@ class User {
   @observable userInfo = { id: 1 };
   @observable _userFavorites = [];
 
-  @observable bookedAttractions = [];
-  @action login = async (email, password) => {
-    try {
-      let user = await Axios.post(`${API_URL}/login`, { email, password });
-      this.getUserInfo(user.data.id);
-    } catch (err) {
-      console.log(err);
+    @observable userInfo = { id: 1 }
+    @observable _userFavorites = []
+
+    @observable bookedAttractions = []
+    @action login = async (email, password) => {
+        try {
+            let user = await Axios.post(`${API_URL}/login`, { email, password })
+            this.getUserInfo(user.data.id)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    @action updateUserInfo = async(profile)=>
+    {
+        profile.id=this.userInfo.id
+        console.log(profile)
+        try {
+            await Axios.put(`${API_URL}/update/UserInfo`, profile)
+            
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+    @action getWeddingDetails = async userId => {
+        try {
+            let userInfo = await Axios.get(`${API_URL}/wedding-details/${userId}`)
+            this.userInfo = userInfo.data
+        } catch (err) {
+            console.log(err)
+        }
     }
   };
   @action isFavorite(attr_id) {
@@ -80,6 +104,7 @@ class User {
       });
     } catch (err) {
       console.log(err);
+
     }
   };
   @action register = () => {};

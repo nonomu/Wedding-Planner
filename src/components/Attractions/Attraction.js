@@ -24,8 +24,10 @@ class Attraction extends Component {
 
     render() {
         let attraction = this.props.attr
+
         return <AttractionCard title={attraction.attr_name} image={attraction.image} location={attraction.location} rating={attraction.rating} addButton={this.addButton} removeFavorite={this.removeFavorite} isFavorite={this.isFavorite} getUserFavorites={this.getUserFavorites}   />
         
+
     }
 }
 
