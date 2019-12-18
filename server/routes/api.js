@@ -3,11 +3,10 @@ const router = express.Router()
 const Sequelize = require('sequelize')
 const db = new Sequelize('mysql://root:@localhost/weddingPlanner')
 
-router.get('/attractions/:category', async function(req, res) {
+router.get('/attractions/', async function(req, res) {
 	try {
-		let category = req.params.category
 		let attractions = await db.query(
-			`SELECT * FROM attractions WHERE category = "${category}"`
+			`SELECT * FROM attractions`
 		)
 		res.send(attractions[0])
 	} catch (err) {

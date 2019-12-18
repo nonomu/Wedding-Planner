@@ -24,19 +24,14 @@ class BookAttraction extends Component {
         let attractionData = this.props.attractions.getAttractionData(this.props.category, this.props.id)
         this.setState({attractionData})
     }
-    
-
-
 
     render() {
-        let category = this.props.category
-        let id = this.props.id
         let attractionData = this.state.attractionData
         return (
             <div>
             { !attractionData ? null : <div>
-                <img className="attr-img" src={this.state.attractionData.image} />
-                <div className="attr-name">name: {this.state.attractionData.attr_name}</div>
+                <img className="attr-img" src={attractionData.image} alt={attractionData.attr_name} />
+                <div className="attr-name">name: {attractionData.attr_name}</div>
                 <input id="price" type="number" placeholder="Enter Price" onChange={this.handleInput} />
                 <button className="submit-price" onClick={this.bookButton}>Submit</button>
                 </div>}
