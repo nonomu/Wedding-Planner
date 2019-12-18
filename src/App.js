@@ -9,6 +9,7 @@ import Profile from "./components/User/Profile";
 import Favorites from "./components/User/Favorites";
 import Overview from "./components/User/Overview";
 import Attractions from "./components/Attractions/Attractions";
+import BookAttraction from "./components/Attractions/BookAttraction";
 
 
 @observer
@@ -24,10 +25,8 @@ class App extends Component {
           <Route exact path="/profile" render={() => <Profile />} />
           <Route exact path="/favorites" render={() => <Favorites />} />
           <Route exact path="/overview" render={() => <Overview />} />
-          {/* <Route path="/attractions/:category" render={({match}) => <Attractions category={match.params.category} />} /> */}
-          <Route path="/attractions/venue" render={() => <Attractions category="venue" />} />
-          <Route path="/attractions/photographer" render={() => <Attractions category="photographer" />} />
-          <Route path="/attractions/dj" render={() => <Attractions category="dj" />} />
+          <Route exact path="/attractions/:category" render={({match}) => <Attractions category={match.params.category} />} />
+          <Route exact path="/book/:category/:id" render={({match}) => <BookAttraction category={match.params.category} id={match.params.id} />} />
         </Router>
       </div>
     );

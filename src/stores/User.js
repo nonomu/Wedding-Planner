@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action } from 'mobx'
 import Axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
