@@ -28,6 +28,7 @@ class App extends Component {
           <Route path="/attractions/venue" render={() => <Attractions category="venue" />} />
           <Route path="/attractions/photographer" render={() => <Attractions category="photographer" />} />
           <Route path="/attractions/dj" render={() => <Attractions category="dj" />} />
+          
         </Router>
       </div>
     );

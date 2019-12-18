@@ -4,7 +4,7 @@ let API_URL = `http://localhost:4200/api`
 
 class User {
 
-    @observable userInfo = {id: 1}
+    @observable userInfo = {}
     @observable _userFavorites = {
         venue: [],
         dj: [],
