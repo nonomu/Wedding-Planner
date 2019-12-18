@@ -5,6 +5,7 @@ let API_URL = `http://localhost:4200/api`
 class Attractions {
     @observable _attractions = []
     @observable category = ''
+
     @computed get attractions() {
         return this.category ? this.attractionsByCategory
         : this._attractions
@@ -22,16 +23,21 @@ class Attractions {
     @action getAttractions = async () => {
         try {
             let attractions = await axios.get(`${API_URL}/attractions`)
+            // attractions.data.forEach(attr => {
+                
+            // });
             this._attractions = attractions.data
         } catch (err) {
             console.log(err)
         }
     }
-
+    @action changeFavoriteState= () =>{
+        console.log("hello again")
+    }
     @action getAttractionData(category, id) {
         return this._attractions.find(a => a.category === category && a.id === parseInt(id))
     }
-
+g
 }
 
 export const attractions = new Attractions()
