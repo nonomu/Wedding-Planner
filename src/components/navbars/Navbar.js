@@ -1,25 +1,43 @@
-import React, { Component } from 'react';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
-class Navbar extends Component {
-render() {
-return <div id="navbar">
-    <Link to="/">
-    Home
-</Link>
-<Link to="/profile">
-    Profile
-</Link>
-<Link to="/favorites">
-    Favorites
-</Link>
+import SwipeableTemporaryDrawer from "./SwipeableDrawer";
 
-<Link to="/overview">
-    OverView
-</Link>
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1
+  }
+});
 
-</div>
+export default function CenteredTabs() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Paper className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
+        {[
+          { name: "Home", link: "/" },
+          { name: "Profile", link: "/profile" },
+          { name: "Favorites", link: "/favorites" },
+          { name: "Overview", link: "/overview" }
+        ].map(t => (
+          <Tab label={t.name} component={Link} to={t.link} />
+        ))}
+      </Tabs>
+    </Paper>
+  );
 }
-}
-
-
-export default Navbar

@@ -15,6 +15,10 @@ class Attractions {
         this._attractions.filter(a => a.category === this.category) : []
     }
 
+    @computed get categories(){
+        return [...new Set(this._attractions.map(a => a.category))]
+    }
+
     @action getAttractions = async () => {
         try {
             let attractions = await axios.get(`${API_URL}/attractions`)

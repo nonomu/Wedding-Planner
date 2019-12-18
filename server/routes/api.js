@@ -55,7 +55,13 @@ router.get('/bookedAttractions/:userId', async function(req, res) {
 
 router.post('/attractions/favorite', async function(req, res) {
 	try {
-		let favorite = req.body
+        let favorite = req.body
+		let result=await db.query(
+            `SELECT f.* FROM  favorites as f 
+             WHERE f.user_id = "${favorite.userId}"
+             AND f.attraction_id = "${favorite.attractionId}"`
+        )
+        if(result[0].length ==0)
 		await db.query(
 			`INSERT INTO favorites VALUES("${favorite.userId}", "${favorite.attractionId}")`
 		)

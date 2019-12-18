@@ -1,6 +1,8 @@
 .App {
   text-align: center;
+
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -30,11 +32,8 @@
 }
 
 #sideNav{
-  width: 180px;
-  height: 100vh;
-  background-color: rgb(255, 166, 32);
-  position: absolute;
-  left: 0;
+  text-align: start;
+  /* left:0 */
 }
 
 input{

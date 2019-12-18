@@ -51,3 +51,8 @@ use weddingplanner;
 -- VALUES (1,2);
 
 -- drop table booked_attractions,user,attractions;
+--  VALUES (2,4);
+
+SELECT f.* FROM  favorites as f 
+             WHERE f.user_id = 2
+             AND f.attraction_id =  4;
