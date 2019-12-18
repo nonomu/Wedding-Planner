@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 });
 
 export default function AttractionCard(props) {
+  const [count, setCount] = useState(0);
   const classes = useStyles();
   const changeFavoriteState = function() {
     props.changeFavoriteState();
@@ -38,9 +39,10 @@ export default function AttractionCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {attraction.title}
+            {attraction.attr_name}  {attraction.category} 
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
+          {attraction.title}
             {attraction.location}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
@@ -52,12 +54,12 @@ export default function AttractionCard(props) {
         <Button size="small" color="primary">
           Book
         </Button>
-        {1 ? (
-          <Button onClick={changeFavoriteState} size="small" color="primary">
+        {props.bool ? (
+          <Button  onClick={props.removeFavorite} size="small" color="primary">
             remove Favorite
           </Button>
         ) : (
-          <Button onClick={changeFavoriteState} size="small" color="primary">
+          <Button  onClick={props.addToFavorites} size="small" color="primary">
             Add To Favorites
           </Button>
         )}

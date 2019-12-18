@@ -65,6 +65,7 @@ router.post('/attractions/favorite', async function (req, res) {
 		await db.query(
 			`INSERT INTO favorites VALUES("${favorite.userId}", "${favorite.attractionId}")`
 			)
+			res.end()
 	} catch (err) {
 		console.log(err)
 		res.send(err)
