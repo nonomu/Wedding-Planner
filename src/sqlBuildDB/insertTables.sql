@@ -6,9 +6,9 @@ use weddingplanner;
 -- ,120000,"Tel-Aviv","Rock");
 
 
--- INSERT INTO user
---  VALUES (NULL,"ronbraha@gmail.com","RNR1",
---  1);
+INSERT INTO favorites
+ VALUES (1,
+ 1);
 
 
 -- INSERT INTO attractions
@@ -24,14 +24,7 @@ use weddingplanner;
 --      "072-2133329",
 --      "venetion@gmail.com",
 --      "hello"     );
-
-
-
--- INSERT INTO booked_attractions
---  VALUES (1,1,200);
--- INSERT INTO favorites
---  VALUES (1,1);
-
+     
 -- INSERT INTO attractions
 --  VALUES (
 --      NULL,
@@ -46,16 +39,6 @@ use weddingplanner;
 --      "baam@gmail.com",
 --      "best dj ever"
 --      );
-
--- INSERT INTO favorites
--- VALUES (1,2);
-
--- drop table booked_attractions,user,attractions;
---  VALUES (2,4);
-
--- SELECT f.* FROM  favorites as f 
---              WHERE f.user_id = 2
---              AND f.attraction_id =  4;
 
 
 -- INSERT INTO attractions

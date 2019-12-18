@@ -13,7 +13,7 @@ class Overview extends Component {
     return (
       <div >
         {bookedAttractions.map(a => 
-        <div className="bookedAttraction">
+        <div key={a.category} className="bookedAttraction">
   <h2>{a.category}</h2><div>venue name: {a.attr_name} vendor name:{a.attr_vendor}</div><div>vendor contact name: {a.contact_name} vendor Phone: {a.contact_phone}</div><img className="smallIMG" src={a.image} alt={a.attr_name}/> <div>The price is: {a.price}</div></div>
         )}
         <p>add the attractions that the user needs to close :) </p>
