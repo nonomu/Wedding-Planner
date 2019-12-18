@@ -3,32 +3,29 @@ import axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
 class Attractions {
-    @observable _attractions = {
-        venue: [],
-        dj: [],
-        photographer: [],
-        misc: []
-    }
-
+    @observable _attractions = []
+    @observable category = ''
     @computed get attractions() {
-        return this._attractions
+        return this.category ? this.attractionsByCategory
+        : this._attractions
     }
 
-    @computed get venues() {
-        return this._attractions.venues
+    @computed get attractionsByCategory() {
+        return this._attractions.length ? 
+        this._attractions.filter(a => a.category === this.category) : []
     }
 
-    @action getAttractionsByCategory = async categoryName => {
+    @action getAttractions = async () => {
         try {
-            let attractions = await axios.get(`${API_URL}/attractions/${categoryName}`)
-            this._attractions[categoryName] = attractions.data
+            let attractions = await axios.get(`${API_URL}/attractions`)
+            this._attractions = attractions.data
         } catch (err) {
             console.log(err)
         }
     }
 
     @action getAttractionData(category, id) {
-        return this._attractions[category].find(a => a.id === parseInt(id))
+        return this._attractions.find(a => a.category === category && a.id === parseInt(id))
     }
 
 }
