@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 
 
 
+
 @inject('user')
 class Profile extends Component {
   constructor() {
@@ -72,11 +73,14 @@ class Profile extends Component {
           <TextField id="estGifts" variant="outlined" type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
         </div>
         <div>
+
           <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
           <Autocomplete
             style={{ width: '30%' }}
             onPlaceSelected={(city) => {
-              this.setState({ weddingArea: city.address_components[0].long_name })
+             let cityName=city.formatted_address
+             console.log(cityName)
+              this.setState({ weddingArea: cityName })
             }}
             types={['(cities)']}
             componentRestrictions={{ country: "IL" }}

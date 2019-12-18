@@ -29,6 +29,8 @@ class App extends Component {
           <Route exact path="/profile" render={() => <Profile />} />
           <Route exact path="/favorites" render={() => <Favorites />} />
           <Route exact path="/overview" render={() => <Overview />} />
+
+
           <Route
             exact
             path="/attractions/:category"

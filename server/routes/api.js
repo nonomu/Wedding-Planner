@@ -55,7 +55,13 @@ router.get('/bookedAttractions/:userId', async function(req, res) {
 
 router.post('/attractions/favorite', async function(req, res) {
 	try {
-		let favorite = req.body
+        let favorite = req.body
+		let result=await db.query(
+            `SELECT f.* FROM  favorites as f 
+             WHERE f.user_id = "${favorite.userId}"
+             AND f.attraction_id = "${favorite.attractionId}"`
+        )
+        if(result[0].length ==0)
 		await db.query(
 			`INSERT INTO favorites VALUES("${favorite.userId}", "${favorite.attractionId}")`
 		)
@@ -98,6 +104,18 @@ router.post('/login', async function(req, res) {
 		let userId = result[0][0].id
 		res.send({ id: userId })
 	} catch (err) {
+		res.send(err)
+	}
+})
+
+router.delete('/favorite',async function(req,res){
+	try{
+		let favorite =req.body
+		await db.query(
+			`DELETE FROM favorites WHERE user_id = "${favorite.userId}" AND attraction_id = "${favorite.attractionId}"`
+		)
+		res.send(`user ${favorite.userId} attraction ${favorite.attractionId} succesfully removed`)
+	} catch(err) {
 		res.send(err)
 	}
 })
