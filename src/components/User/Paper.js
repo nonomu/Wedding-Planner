@@ -23,7 +23,7 @@ export default function PaperSheet(props) {
           title="Contemplative Reptile"
         />
       <Typography variant="h4" component="h3">
-         Booked {props.attr.category} by {props.attr.attr_name}
+         Your {props.attr.category}: {props.attr.attr_name}
       </Typography>
       <Typography component="p">
         You can contact {props.attr.contact_name}. Phone: {props.attr.contact_phone}, Mail: {props.attr.contact_email}
