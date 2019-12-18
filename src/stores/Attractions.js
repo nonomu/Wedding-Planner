@@ -23,16 +23,13 @@ class Attractions {
     @action getAttractions = async () => {
         try {
             let attractions = await axios.get(`${API_URL}/attractions`)
-            // attractions.data.forEach(attr => {
-                
-            // });
             this._attractions = attractions.data
         } catch (err) {
             console.log(err)
         }
     }
-    @action changeFavoriteState= () =>{
-        console.log("hello again")
+    @action changeFavoriteState = () =>{
+        this._attractions.splice(1,1)
     }
     @action getAttractionData(category, id) {
         return this._attractions.find(a => a.category === category && a.id === parseInt(id))
