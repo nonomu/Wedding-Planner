@@ -19,7 +19,6 @@ const useStyles = makeStyles({
 
 export default function AttractionCard(props) {
   const classes = useStyles();
-const [bool,setBool] = setState(false)
   const addButton = function() {
     props.addButton();
   };
