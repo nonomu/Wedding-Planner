@@ -1,0 +1,9 @@
+.attractions {
+    display: grid;
+    justify-items: center;
+    grid-auto-flow: column;
+}
+
+.attraction-title {
+    text-transform: uppercase;
+}
