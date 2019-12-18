@@ -73,7 +73,7 @@ class Profile extends Component {
         <div>
           <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
 
-          <Autocomplete
+          <Autocomplete id="autoCompleteField"
             style={{ width: '30%' }}
             onPlaceSelected={(city) => {
              let cityName=city.formatted_address
@@ -83,6 +83,7 @@ class Profile extends Component {
             types={['(cities)']}
             componentRestrictions={{ country: "IL" }}
           />
+
         </div>
         <Button variant="contained" color="primary" onClick={this.updateUserProfile}>UPDATE PROFILE</Button>
       </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Attraction from "./Attraction";
 import { observer, inject } from "mobx-react";
-@inject("attractions")
+@inject("attractions", "user")
 @observer
 class Attractions extends Component {
   componentDidMount() {

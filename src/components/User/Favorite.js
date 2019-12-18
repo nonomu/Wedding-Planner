@@ -10,6 +10,7 @@ class Favorite extends Component {
     }
     render() {
         let attraction = this.props.attraction
+        console.log(attraction)
         return (
             <div>
                     <h3>{attraction.attr_name}</h3>
