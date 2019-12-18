@@ -6,9 +6,9 @@ use weddingplanner;
 -- ,120000,"Tel-Aviv","Rock");
 
 
-INSERT INTO favorites
- VALUES (1,
- 1);
+-- INSERT INTO favorites
+--  VALUES (1,
+--  1);
 
 
 -- INSERT INTO attractions
