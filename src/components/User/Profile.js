@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import Autocomplete from 'react-google-autocomplete';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 
 @inject('user')
+
+@observer
 class Profile extends Component {
   constructor() {
     super();
@@ -19,6 +21,20 @@ class Profile extends Component {
       weddingArea: "",
       musicStyle: 0
     };
+  }
+
+  componentDidMount= async ()=>{
+    await this.props.user.getWeddingDetails()
+    let userInfo = this.props.user.userInfo
+    
+    this.setState({groomName: userInfo.groom_name,
+    brideName:userInfo.bride_name,
+    weddingDate:userInfo.wedding_date,
+    estInvitees:userInfo.est_invitees,
+    estBudget: userInfo.est_budget,
+    estGifts: userInfo.est_cash_gifts,
+    weddingArea: userInfo.wedding_area
+  })
   }
 
   handleInputs = e => {
@@ -66,15 +82,15 @@ class Profile extends Component {
           <TextField id="weddingDate" variant="outlined" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
         </div>
         <div>
-          <TextField id="estInvitees" variant="outlined" type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
-          <TextField id="estBudget" variant="outlined" type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
-          <TextField id="estGifts" variant="outlined" type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
+          <TextField id="estInvitees" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
+          <TextField id="estBudget" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
+          <TextField id="estGifts" variant="outlined" value={this.state.estGifts} type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
         </div>
         <div>
 
-          <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
+          {/* <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} /> */}
 
-          <Autocomplete id="autoCompleteField"
+          <Autocomplete value={this.state.weddingArea} id="autoCompleteField"
             style={{ width: '30%' }}
 
             onPlaceSelected={(city) => {
