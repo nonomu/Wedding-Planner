@@ -63,3 +63,13 @@ select{
   border: 1px solid black;
   border-radius: 10px;
 }
+
+/* Yanivs needs to refactor ! */
+#Paper{
+  width:1000px;
+  margin: 50px auto;
+  text-align: center;
+  }
+  #cardMedia{
+    margin: 20px auto;
+  }

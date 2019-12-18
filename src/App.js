@@ -10,6 +10,7 @@ import Favorites from "./components/User/Favorites";
 import Overview from "./components/User/Overview";
 import Attractions from "./components/Attractions/Attractions";
 import BookAttraction from "./components/Attractions/BookAttraction";
+import AttractionInfo from "./components/Attractions/AttractionInfo";
 
 @inject("attractions")
 @observer
@@ -29,7 +30,7 @@ class App extends Component {
           <Route exact path="/profile" render={() => <Profile />} />
           <Route exact path="/favorites" render={() => <Favorites />} />
           <Route exact path="/overview" render={() => <Overview />} />
-
+          
 
           <Route
             exact
@@ -48,6 +49,7 @@ class App extends Component {
               />
             )}
           />
+          <Route exact path="/attractionInfo/:id" render={({ match }) => <AttractionInfo id={match.params.id} />} />
         </Router>
       </div>
     );
