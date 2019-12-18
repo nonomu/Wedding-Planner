@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Drawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -65,13 +65,14 @@ export default function SwipeableTemporaryDrawer(props) {
     <div>
       <Button onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
      
-      <SwipeableDrawer
+      <Drawer
         open={state.left}
+        
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}
       >
         {sideList('left')}
-      </SwipeableDrawer>
+      </Drawer>
     </div>
   );
 }

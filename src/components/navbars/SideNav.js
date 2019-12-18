@@ -11,21 +11,7 @@ class SideNav extends Component {
     return (
       <div id="sideNav">
         <SwipeableTemporaryDrawer categories={this.props.attractions.categories}/>
-        {/* <div>
-          <Link to="/attractions/venue">
-            Venues
-          </Link>
-        </div>
-        <div>
-          <Link to="/attractions/photographer">
-            Photographer
-          </Link>
-        </div>
-        <div>
-          <Link to="/attractions/dj">
-            DJ
-          </Link>
-        </div> */}
+       
       </div>
     );
   }

@@ -5,6 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
 import SwipeableTemporaryDrawer from "./SwipeableDrawer";
+import { AppBar } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -22,9 +23,11 @@ export default function CenteredTabs() {
 
   return (
     <Paper className={classes.root}>
+      <AppBar></AppBar>
       <Tabs
         value={value}
         onChange={handleChange}
+        variant='fullWidth'
         indicatorColor="primary"
         textColor="primary"
         centered
