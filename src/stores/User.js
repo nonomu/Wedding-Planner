@@ -17,7 +17,18 @@ class User {
             console.log(err)
         }
     }
+    @action updateUserInfo = async(profile)=>
+    {
+        profile.id=this.userInfo.id
+        console.log(profile)
+        try {
+            await Axios.put(`${API_URL}/update/UserInfo`, profile)
+            
+        } catch (err) {
+            console.log(err)
+        }
 
+    }
     @action getWeddingDetails = async userId => {
         try {
             let userInfo = await Axios.get(`${API_URL}/wedding-details/${userId}`)
@@ -63,6 +74,7 @@ class User {
     }
     @action addToFavorites = async (userId, attractionId) => {
         try {
+            if(this._userFavorites.find(u => u.id===attractionId)) return
             await Axios.post(`${API_URL}/attractions/favorite`, { userId, attractionId })
         } catch (err) {
             console.log(err)
