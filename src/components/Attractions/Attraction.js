@@ -2,29 +2,32 @@ import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import AttractionCard from './Card';
 
 @inject("attractions", "user")
 
 @observer
 class Attraction extends Component {
+    
 
-
+    removeFavorite = () =>{
+        this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attr.id)
+    }
     addButton = () => {
         this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
+    }
+
+    isFavorite = () =>{
+        console.log(this.props.user.isFavorite(this.props.attr.id))
+        return this.props.user.isFavorite(this.props.attr.id)
     }
 
     render() {
         let attraction = this.props.attr
 
-        return (<div className="attraction-container">
-            <h4>{attraction.attr_name}</h4>
-            <img className="attr-img smallIMG"  src={attraction.image} alt={attraction.attr_name} />
-            <div className="attr-vendor">vendor: {attraction.attr_vendor}</div>
-            <div className="attr-rating">rating: {attraction.rating}</div>
-            <Button color="primary" variant="contained" className="add-btn" onClick={this.addButton}>Add to favorites</Button>
-            <Link to={`/book/${attraction.category}/${attraction.id}`}>  
-            <Button color="primary" variant="contained" className="book-btn" >Book now!</Button></Link>
-        </div>)
+        return <AttractionCard title={attraction.attr_name} image={attraction.image} location={attraction.location} rating={attraction.rating} addButton={this.addButton} removeFavorite={this.removeFavorite} isFavorite={this.isFavorite} getUserFavorites={this.getUserFavorites}   />
+        
+
     }
 }
 

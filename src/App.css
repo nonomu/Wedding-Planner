@@ -31,6 +31,9 @@
   top:0;
 }
 
+#autoCompleteField{
+  color:red;
+}
 #sideNav{
   text-align: start;
   /* left:0 */

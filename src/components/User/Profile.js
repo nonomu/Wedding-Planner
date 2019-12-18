@@ -71,9 +71,12 @@ class Profile extends Component {
           <TextField id="estGifts" variant="outlined" type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
         </div>
         <div>
-          <TextField id="venueRadius" variant="outlined" type="number" placeholder="music_Style" onChange={this.handleInputs} />
-          <Autocomplete
-            style={{ width: '40%' }}
+
+          <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
+
+          <Autocomplete id="autoCompleteField"
+            style={{ width: '30%' }}
+
             onPlaceSelected={(city) => {
              let cityName=city.formatted_address
               this.setState({ weddingArea: cityName })
@@ -81,6 +84,7 @@ class Profile extends Component {
             types={['(cities)']}
             componentRestrictions={{ country: "IL" }}
           />
+
         </div>
         <Button variant="contained" color="primary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
       </div>
