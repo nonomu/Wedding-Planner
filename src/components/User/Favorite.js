@@ -6,8 +6,6 @@ import {observer,inject} from 'mobx-react'
 class Favorite extends Component {
 
     removeFavorite=()=> {
-        console.log(this.props.user.userInfo.id, this.props.attraction.id)
-        console.log(this.props.user)
         this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attraction.id)
     }
     render() {
