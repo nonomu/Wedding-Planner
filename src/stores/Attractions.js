@@ -31,7 +31,9 @@ class Attractions {
             console.log(err)
         }
     }
-
+    @action changeFavoriteState= () =>{
+        console.log("hello again")
+    }
     @action getAttractionData(category, id) {
         return this._attractions.find(a => a.category === category && a.id === parseInt(id))
     }

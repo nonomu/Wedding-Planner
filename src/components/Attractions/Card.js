@@ -19,32 +19,29 @@ const useStyles = makeStyles({
 
 export default function AttractionCard(props) {
   const classes = useStyles();
-  const addButton = function() {
-    props.addButton();
+  const changeFavoriteState = function() {
+    props.changeFavoriteState();
   };
-  const removeFavorite = function() {
-    props.removeFavorite();
-  };
-
-  const isFavorite = props.isFavorite();
+ let attraction=props.attraction
+//  const isFavorite = props.isFavorite();
 
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.image}
+          image={attraction.image}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
+            {attraction.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.location}
+            {attraction.location}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.rating}
+            {attraction.rating}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -52,12 +49,12 @@ export default function AttractionCard(props) {
         <Button size="small" color="primary">
           Book
         </Button>
-        {isFavorite ? (
-          <Button onClick={removeFavorite} size="small" color="primary">
+        {1 ? (
+          <Button onClick={changeFavoriteState} size="small" color="primary">
             remove Favorite
           </Button>
         ) : (
-          <Button onClick={addButton} size="small" color="primary">
+          <Button onClick={changeFavoriteState} size="small" color="primary">
             Add To Favorites
           </Button>
         )}

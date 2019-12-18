@@ -3,6 +3,7 @@ import { observer, inject } from "mobx-react";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import AttractionCard from './Card';
+import { attractions } from '../../stores/Attractions';
 
 @inject("attractions", "user")
 
@@ -21,13 +22,12 @@ class Attraction extends Component {
         console.log(this.props.user.isFavorite(this.props.attr.id))
         return this.props.user.isFavorite(this.props.attr.id)
     }
-
+    changeFavoriteState = ()=>{
+        // this.props.attractions.changeFavoriteState()
+    }
     render() {
         let attraction = this.props.attr
-
-        return <AttractionCard title={attraction.attr_name} image={attraction.image} location={attraction.location} rating={attraction.rating} addButton={this.addButton} removeFavorite={this.removeFavorite} isFavorite={this.isFavorite} getUserFavorites={this.getUserFavorites}   />
-        
-
+        return <AttractionCard attraction={attraction} changeFavoriteState={this.changeFavoriteState}/>
     }
 }
 
