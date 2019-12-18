@@ -1,16 +1,12 @@
 import { observable, action } from 'mobx'
 import Axios from 'axios'
+import { useObserver } from 'mobx-react'
 let API_URL = `http://localhost:4200/api`
 
 class User {
 
-    @observable userInfo = {}
-    @observable _userFavorites = {
-        venue: [],
-        dj: [],
-        photographer: [],
-        misc: []
-    }
+    @observable userInfo = {id:1}
+    @observable _userFavorites = []
 
     @observable bookedAttractions = []
     @action login = async (email, password) => {
@@ -33,7 +29,7 @@ class User {
     @action getUserFavorites = async userId => {
         try {
             let userFavorites = await Axios.get(`${API_URL}/favorites/${userId}`)
-            this.userInfo._userFavorites = userFavorites.data
+            this._userFavorites=userFavorites.data
         } catch (err) {
             console.log(err)
         }

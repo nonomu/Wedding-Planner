@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { inject } from "mobx-react";
-import Autocomplete from 'react-google-autocomplete';
+//import Autocomplete from 'react-google-autocomplete';
 
 
 
@@ -72,14 +72,14 @@ class Profile extends Component {
         </div>
         <div>
           <input id="venueRadius" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
-          <Autocomplete
+          {/* <Autocomplete
             style={{ width: '30%' }}
             onPlaceSelected={(city) => {
               this.setState({ weddingArea: city.address_components[0].long_name })
             }}
             types={['(cities)']}
             componentRestrictions={{ country: "IL" }}
-          />
+          /> */}
         </div>
         <button onClick={this.updateUserProfile}>UPDATE PROFILE</button>
       </div>

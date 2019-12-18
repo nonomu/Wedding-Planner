@@ -47,6 +47,7 @@ use weddingplanner;
 --      "best dj ever"
 --      );
 
--- INSERT INTO booked_attractions
---  VALUES (1,3,50);
+-- INSERT INTO favorites
+-- VALUES (1,2);
 
+-- drop table booked_attractions,user,attractions;
