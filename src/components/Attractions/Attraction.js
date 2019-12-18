@@ -24,7 +24,6 @@ class Attraction extends Component {
             <Button color="primary" variant="contained" className="add-btn" onClick={this.addButton}>Add to favorites</Button>
             <Link to={`/book/${attraction.category}/${attraction.id}`}>  
             <Button color="primary" variant="contained" className="book-btn" >Book now!</Button></Link>
-        
         </div>)
     }
 }

@@ -1,4 +1,4 @@
-use weddingplanner;
+-- use weddingplanner;
 
 
 -- INSERT INTO attractions
