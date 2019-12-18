@@ -14,7 +14,7 @@ class Favorite extends Component {
         return (
             <div>
                     <h3>{attraction.attr_name}</h3>
-                    <img src={attraction.image} />
+                    <img src={attraction.image} alt={attraction.attr_name} />
                     <div>contact: {attraction.contact_name}  {attraction.contact_phone}  {attraction.contact_email}</div>
                     <div>rating: {attraction.rating}</div>
                     <div>{attraction.small_prints}</div>

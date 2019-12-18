@@ -4,7 +4,6 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
-import SwipeableTemporaryDrawer from "./SwipeableDrawer";
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +24,7 @@ export default function CenteredTabs() {
       <Tabs
         value={value}
         onChange={handleChange}
+        variant='fullWidth'
         indicatorColor="primary"
         textColor="primary"
         centered
@@ -35,7 +35,7 @@ export default function CenteredTabs() {
           { name: "Favorites", link: "/favorites" },
           { name: "Overview", link: "/overview" }
         ].map(t => (
-          <Tab label={t.name} component={Link} to={t.link} />
+          <Tab key={t.name} label={t.name} component={Link} to={t.link} />
         ))}
       </Tabs>
     </Paper>

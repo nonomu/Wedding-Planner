@@ -1,7 +1,8 @@
-import { observable, action } from "mobx";
-import Axios from "axios";
-import { useObserver } from "mobx-react";
-let API_URL = `http://localhost:4200/api`;
+
+import { observable, action } from 'mobx'
+import Axios from 'axios'
+let API_URL = `http://localhost:4200/api`
+
 
 class User {
   @observable userInfo = { id: 1 };
@@ -36,6 +37,7 @@ class User {
             console.log(err)
         }
     }
+
   
   @action isFavorite(attr_id) {
     let bool=  this._userFavorites.some(a => a.id === attr_id);
@@ -69,6 +71,7 @@ class User {
     } catch (err) {
       console.log(err);
     }
+
   };
 
   @action bookAttraction = async (userId, attractionId, price) => {
@@ -80,6 +83,7 @@ class User {
       });
     } catch (err) {
       console.log(err);
+
     }
   };
   @action getBookedAttractions = async () => {
