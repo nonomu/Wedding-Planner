@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { inject } from "mobx-react";
 import Autocomplete from 'react-google-autocomplete';
-
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -56,22 +57,22 @@ class Profile extends Component {
         <hr />
         <h3>Personal Details:</h3>
         <div>
-          <input id="groomName" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+          <TextField id="groomName" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
         </div>
         <div>
-          <input id="brideName" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+          <TextField id="brideName" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
         </div>
         <h3>Wedding Details:</h3>
         <div>
-          <input id="weddingDate" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
+          <TextField id="weddingDate" variant="outlined" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
         </div>
         <div>
-          <input id="estInvitees" type="number" placeholder="Invitees" onChange={this.handleInputs} />
-          <input id="estBudget" type="number" placeholder="Budget" onChange={this.handleInputs} />
-          <input id="estGifts" type="number" placeholder="Gifts" onChange={this.handleInputs} />
+          <TextField id="estInvitees" variant="outlined" type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
+          <TextField id="estBudget" variant="outlined" type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
+          <TextField id="estGifts" variant="outlined" type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
         </div>
         <div>
-          <input id="venueRadius" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
+          <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
           <Autocomplete
             style={{ width: '30%' }}
             onPlaceSelected={(city) => {
@@ -81,7 +82,7 @@ class Profile extends Component {
             componentRestrictions={{ country: "IL" }}
           />
         </div>
-        <button onClick={this.updateUserProfile}>UPDATE PROFILE</button>
+        <Button variant="contained" color="primary" onClick={this.updateUserProfile}>UPDATE PROFILE</Button>
       </div>
     );
   }
