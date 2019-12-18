@@ -22,12 +22,16 @@ class Attraction extends Component {
         console.log(this.props.user.isFavorite(this.props.attr.id))
         return this.props.user.isFavorite(this.props.attr.id)
     }
+    bookAttraction=()=>{
+        console.log(this.props.attr)
+        
+    }
     changeFavoriteState = ()=>{
         this.props.attractions.changeFavoriteState()
     }
     render() {
         let attraction = this.props.attr
-        return <AttractionCard attraction={attraction} changeFavoriteState={this.changeFavoriteState}/>
+        return <AttractionCard attraction={attraction} bookAttraction={this.bookAttraction} addButton={this.addButton} removeFavorite={this.removeFavorite} key={attraction.id}/>
     }
 }
 

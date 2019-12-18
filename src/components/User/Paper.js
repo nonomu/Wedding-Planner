@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function PaperSheet(props) {
   const classes = useStyles();
-    console.log(props.attr)
   return (
     <Paper id="Paper"className={classes.root}>
                 <CardMedia id="cardMedia"
@@ -24,7 +23,7 @@ export default function PaperSheet(props) {
           title="Contemplative Reptile"
         />
       <Typography variant="h4" component="h3">
-        You Closed {props.attr.category} With {props.attr.attr_name}
+         Booked {props.attr.category} by {props.attr.attr_name}
       </Typography>
       <Typography component="p">
         You can contact {props.attr.contact_name}. Phone: {props.attr.contact_phone}, Mail: {props.attr.contact_email}

@@ -70,14 +70,15 @@ class User {
 
   @action bookAttraction = async (userId, attractionId, price) => {
     try {
+      console.log(userId,attractionId,price)
       await Axios.post(`${API_URL}/attractions/book`, {
         userId,
         attractionId,
         price
       });
+      console.log("OK")
     } catch (err) {
       console.log(err);
-
     }
   };
   @action getBookedAttractions = async () => {
@@ -86,11 +87,11 @@ class User {
         `${API_URL}/bookedAttractions/${this.userInfo.id}`
       );
       this.bookedAttractions = bookedAttractions.data;
-      console.log(bookedAttractions);
     } catch (err) {
       console.log(err);
     }
   };
+
   @action addToFavorites = async (userId, attractionId) => {
     try {
       await Axios.post(`${API_URL}/attractions/favorite`, {
