@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 
-
-
 @inject('user')
 class Profile extends Component {
   constructor() {
@@ -73,8 +71,8 @@ class Profile extends Component {
           <TextField id="estGifts" variant="outlined" type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
         </div>
         <div>
-
           <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} />
+
           <Autocomplete
             style={{ width: '30%' }}
             onPlaceSelected={(city) => {

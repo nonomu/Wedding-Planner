@@ -12,7 +12,7 @@ class Favorites extends Component {
     render() {
         
         let userFavorites = this.props.user._userFavorites
-        let categories = ["venue", "dj", "photographer", "misc"]
+        let categories = this.props.attractions.categories
     
         return (<div>
             <h1>Favorites</h1>
