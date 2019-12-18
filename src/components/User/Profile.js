@@ -75,7 +75,9 @@ class Profile extends Component {
           <Autocomplete
             style={{ width: '30%' }}
             onPlaceSelected={(city) => {
-              this.setState({ weddingArea: city.address_components[0].long_name })
+             let cityName=city.formatted_address
+             console.log(cityName)
+              this.setState({ weddingArea: cityName })
             }}
             types={['(cities)']}
             componentRestrictions={{ country: "IL" }}
