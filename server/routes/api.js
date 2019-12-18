@@ -108,4 +108,16 @@ router.post('/login', async function(req, res) {
 	}
 })
 
+router.delete('/favorite',async function(req,res){
+	try{
+		let favorite =req.body
+		await db.query(
+			`DELETE FROM favorites WHERE user_id = "${favorite.userId}" AND attraction_id = "${favorite.attractionId}"`
+		)
+		res.send(`user ${favorite.userId} attraction ${favorite.attractionId} succesfully removed`)
+	} catch(err) {
+		res.send(err)
+	}
+})
+
 module.exports = router

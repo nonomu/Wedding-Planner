@@ -48,6 +48,9 @@ use weddingplanner;
 --      );
 
 -- INSERT INTO favorites
+-- VALUES (1,2);
+
+-- drop table booked_attractions,user,attractions;
 --  VALUES (2,4);
 
 SELECT f.* FROM  favorites as f 
