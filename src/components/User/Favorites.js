@@ -16,8 +16,8 @@ class Favorites extends Component {
     
         return (<div>
             <h1>Favorites</h1>
-            {categories.map((c, i) => userFavorites.
-                map(uf => uf.category === c ? <Favorite attraction={uf} key={uf.name} /> : null))
+            {categories.map((c, i) => userFavorites
+                .map(uf => uf.category === c ? <Favorite attraction={uf} key={uf.name} /> : null))
             }
         </div>)
     }

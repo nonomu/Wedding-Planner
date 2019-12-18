@@ -1,6 +1,5 @@
 import { observable, action } from 'mobx'
 import Axios from 'axios'
-import { useObserver } from 'mobx-react'
 let API_URL = `http://localhost:4200/api`
 
 class User {
@@ -36,7 +35,7 @@ class User {
     }
     @action removeFavorite = async (userId, attractionId)=>{
         try{
-            let removalFavorite = await Axios.delete(`${API_URL}/favorite/`, { data: { userId, attractionId }})
+            await Axios.delete(`${API_URL}/favorite/`, { data: { userId, attractionId }})
             let index=this._userFavorites.findIndex(uf => uf.id===attractionId)
             this._userFavorites.splice(index,1)
         }
@@ -56,7 +55,6 @@ class User {
         try {
             let bookedAttractions = await Axios.get(`${API_URL}/bookedAttractions/${this.userInfo.id}`)
             this.bookedAttractions = bookedAttractions.data
-            console.log(bookedAttractions)
         } catch (err) {
             console.log(err)
         }
