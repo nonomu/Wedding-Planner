@@ -23,7 +23,7 @@ class Attraction extends Component {
         return this.props.user.isFavorite(this.props.attr.id)
     }
     changeFavoriteState = ()=>{
-        // this.props.attractions.changeFavoriteState()
+        this.props.attractions.changeFavoriteState()
     }
     render() {
         let attraction = this.props.attr
