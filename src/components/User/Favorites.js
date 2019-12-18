@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import Favorite from "./Favorite";
-import AttractionCard from "../Attractions/Attraction";
+import Attraction from "../Attractions/Attraction";
 @inject("user", "attractions")
 
 
