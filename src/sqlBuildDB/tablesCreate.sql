@@ -2,7 +2,7 @@
 use weddingplanner;
 
 -- -- DROPPER
--- -- DROP TABLE booked_attractions,attractions;
+-- DROP TABLE booked_attractions,favorites,attractions;
 
 -- CREATE TABLE weddingDetails(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,

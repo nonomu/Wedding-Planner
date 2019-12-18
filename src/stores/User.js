@@ -6,11 +6,8 @@ let API_URL = `http://localhost:4200/api`;
 class User {
   @observable userInfo = { id: 1 };
   @observable _userFavorites = [];
+ @observable bookedAttractions = []
 
-    @observable userInfo = { id: 1 }
-    @observable _userFavorites = []
-
-    @observable bookedAttractions = []
     @action login = async (email, password) => {
         try {
             let user = await Axios.post(`${API_URL}/login`, { email, password })
@@ -39,7 +36,7 @@ class User {
             console.log(err)
         }
     }
-  };
+  
   @action isFavorite(attr_id) {
     let bool=  this._userFavorites.some(a => a.id === attr_id);
     console.log(this._userFavorites)
