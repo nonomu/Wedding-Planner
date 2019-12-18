@@ -5,7 +5,7 @@ let API_URL = `http://localhost:4200/api`
 
 class User {
 
-    @observable userInfo = {id:1}
+    @observable userInfo = { id: 1 }
     @observable _userFavorites = []
 
     @observable bookedAttractions = []
@@ -29,10 +29,20 @@ class User {
     @action getUserFavorites = async userId => {
         try {
             let userFavorites = await Axios.get(`${API_URL}/favorites/${userId}`)
-            this._userFavorites=userFavorites.data
+            this._userFavorites = userFavorites.data
         } catch (err) {
             console.log(err)
         }
+    }
+    @action removeFavorite = async (userId, attractionId)=>{
+        try{
+            let removalFavorite = await Axios.delete(`${API_URL}/favorite/`, { data: { userId, attractionId }})
+            let index=this._userFavorites.findIndex(uf => uf.id===attractionId)
+            this._userFavorites.splice(index,1)
+        }
+         catch(err) {
+        console.log(err)
+    }
     }
 
     @action bookAttraction = async (userId, attractionId, price) => {
@@ -44,9 +54,9 @@ class User {
     }
     @action getBookedAttractions = async () => {
         try {
-           let bookedAttractions= await Axios.get(`${API_URL}/bookedAttractions/${this.userInfo.id}`)
-           this.bookedAttractions = bookedAttractions.data
-           console.log(bookedAttractions)
+            let bookedAttractions = await Axios.get(`${API_URL}/bookedAttractions/${this.userInfo.id}`)
+            this.bookedAttractions = bookedAttractions.data
+            console.log(bookedAttractions)
         } catch (err) {
             console.log(err)
         }
