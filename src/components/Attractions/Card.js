@@ -25,9 +25,7 @@ export default function AttractionCard(props) {
     props.changeFavoriteState();
   };
  let attraction=props.attraction
- const bookAttraction = function(){
-   props.bookAttraction()
- }
+
  const addButton = function(){
   props.addButton()
 }
@@ -59,7 +57,7 @@ const removeFavorite = function(){
       </CardActionArea>
       <CardActions>
         <Link to={`/book/${attraction.category}/${attraction.id}`}>
-        <Button size="small" color="primary" onClick={bookAttraction}>
+        <Button size="small" color="primary">
           Book
         </Button>
         </Link>
