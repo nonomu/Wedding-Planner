@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
-import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
 import AttractionCard from './Card';
-import { attractions } from '../../stores/Attractions';
 
 @inject("attractions", "user")
 
@@ -11,18 +8,12 @@ import { attractions } from '../../stores/Attractions';
 class Attraction extends Component {
     removeFavorite = async ()  =>{
       await this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attr.id)
-      console.log("remove")
-
-        // this.setState({bool:true})
     }
     addToFavorites = async () => {
         await this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
-        console.log("add")
-        // this.setState({bool:false})
     }
 
     isFavorite = () =>{
-        console.log(this.props.user.isFavorite(this.props.attr.id))
         return this.props.user.isFavorite(this.props.attr.id)
     }
     componentDidMount(){

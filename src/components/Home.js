@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { textAlign } from '@material-ui/system';
 
 class Home extends Component {
 render() {
