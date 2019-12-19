@@ -1,9 +1,8 @@
-import React, { Component, Children } from 'react'
+import React, { Component } from 'react'
 import './App.css'
 import { observer, inject } from 'mobx-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navbar from './components/navbars/Navbar'
-import SideNav from './components/navbars/SideNav'
 import Home from './components/Home'
 import Profile from './components/User/Profile'
 import Favorites from './components/User/Favorites'
@@ -12,8 +11,8 @@ import Attractions from './components/Attractions/Attractions'
 import BookAttraction from './components/Attractions/BookAttraction'
 import AttractionInfo from './components/Attractions/AttractionInfo'
 import SwipeableTemporaryDrawer from './components/navbars/SwipeableDrawer'
-import { Drawer, List, Paper, ListItem, Dialog, Grid } from '@material-ui/core'
-// import ResponsiveDrawer from './components/navbars/ResponsiveSideNav'
+import { Paper, Dialog, Grid } from '@material-ui/core'
+
 
 @inject('attractions')
 @observer
