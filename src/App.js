@@ -20,7 +20,15 @@ import { Drawer, List, Paper, ListItem, Dialog, Grid } from '@material-ui/core'
 class App extends Component {
 	componentDidMount() {
 		this.props.attractions.getAttractions()
-	}
+  }
+  
+  closeDialog = () => {
+    this.props.attractions.closeDialog()
+  }
+
+  openDialog = () => {
+    this.props.attractions.openDialog()
+  }
 
 	render() {
 		return (
@@ -57,9 +65,10 @@ class App extends Component {
 						path='/attractionInfo/:id'
 						render={({ match }) => (
 							<Grid container justify='center' alignContent='center'>
-								<Dialog open={this.props.attractions.open} fullWidth maxWidth='xl' component={Paper} >
-									<AttractionInfo open={this.props.attractions.open} id={match.params.id} />
-								</Dialog>
+								{this.openDialog()}
+                <Dialog open={this.props.attractions.open} onClose={() => this.closeDialog()} fullWidth maxWidth='xl' component={Paper} >
+                <AttractionInfo id={match.params.id} />
+                </Dialog>
 							</Grid>
 						)}
 					/>
