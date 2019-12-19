@@ -7,7 +7,8 @@ let API_URL = `http://localhost:4200/api`
 class User {
   @observable userInfo = { id: 1 };
   @observable _userFavorites = [];
- @observable bookedAttractions = []
+ @observable bookedAttractions = [];
+
 
     @action login = async (email, password) => {
         try {
@@ -27,12 +28,12 @@ class User {
         } catch (err) {
             console.log(err)
         }
-
     }
-    @action getWeddingDetails = async userId => {
-        try {
-            let userInfo = await Axios.get(`${API_URL}/wedding-details/${userId}`)
-            this.userInfo = userInfo.data
+
+    @action getWeddingDetails = async () => {
+      try {
+            let userInfo = await Axios.get(`${API_URL}/wedding-details/${this.userInfo.id}`)
+            this.userInfo = await userInfo.data
         } catch (err) {
             console.log(err)
         }
@@ -45,14 +46,7 @@ class User {
     console.log(bool)
     return bool
   };
-  @action getWeddingDetails = async userId => {
-    try {
-      let userInfo = await Axios.get(`${API_URL}/wedding-details/${userId}`);
-      this.userInfo = userInfo.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
   @action getUserFavorites = async () => {
     try {
       let userFavorites = await Axios.get(`${API_URL}/favorites/${this.userInfo.id}`);
@@ -87,11 +81,13 @@ class User {
   };
   @action bookAttraction = async (userId, attractionId, price) => {
     try {
+      console.log(userId,attractionId,price)
       await Axios.post(`${API_URL}/attractions/book`, {
         userId,
         attractionId,
         price
       });
+      console.log("OK")
     } catch (err) {
       console.log(err);
       
@@ -103,7 +99,6 @@ class User {
         `${API_URL}/bookedAttractions/${this.userInfo.id}`
       );
       this.bookedAttractions = bookedAttractions.data;
-      console.log(bookedAttractions);
     } catch (err) {
       console.log(err);
     }

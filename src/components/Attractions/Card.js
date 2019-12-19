@@ -26,6 +26,13 @@ export default function AttractionCard(props) {
     props.changeFavoriteState();
   };
  let attraction=props.attraction
+
+//  const addButton = function(){
+//   props.addButton()
+// }
+// const removeFavorite = function(){
+//   props.removeFavorite()
+// }
 //  const isFavorite = props.isFavorite();
 
   return (
@@ -39,7 +46,7 @@ export default function AttractionCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {attraction.attr_name}  {attraction.category} 
+            {attraction.attr_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
           {attraction.title}
@@ -51,9 +58,11 @@ export default function AttractionCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        <Link to={`/book/${attraction.category}/${attraction.id}`}>
         <Button size="small" color="primary">
           Book
         </Button>
+        </Link>
         {props.bool ? (
           <Button  onClick={props.removeFavorite} size="small" color="primary">
             remove Favorite

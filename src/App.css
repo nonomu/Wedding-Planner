@@ -3,6 +3,10 @@
 
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
 
 .App-logo {
   height: 40vmin;
@@ -31,9 +35,7 @@
   top:0;
 }
 
-#autoCompleteField{
-  color:red;
-}
+
 #sideNav{
   text-align: start;
   /* left:0 */

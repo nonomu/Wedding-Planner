@@ -25,9 +25,8 @@ class Attraction extends Component {
         console.log(this.props.user.isFavorite(this.props.attr.id))
         return this.props.user.isFavorite(this.props.attr.id)
     }
-    changeFavoriteState = ()=>{
-        this.props.attractions.changeFavoriteState()
-    }
+
+ 
     render() {
         let favorites=this.props.user._userFavorites
         let bool=favorites.some(f => f.id === this.props.attr.id)
