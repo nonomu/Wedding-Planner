@@ -8,7 +8,6 @@ import './navbars.css'
 class SideNav extends Component {
   render() {
    let userBookedAttractions=this.props.user.bookedAttractions
-   console.log(userBookedAttractions)
     let categories =this.props.attractions.categories
     return (
       <div id="sideNav">

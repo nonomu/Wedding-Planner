@@ -7,7 +7,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from "react-router-dom";
 import MenuIcon from '@material-ui/icons/Menu';
-// import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 const useStyles = makeStyles({
   list: {

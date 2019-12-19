@@ -28,7 +28,6 @@ class Profile extends Component {
   componentDidMount= async ()=>{
     await this.props.user.getWeddingDetails()
     let userInfo = this.props.user.userInfo.weddingData
-    console.log(userInfo)
     
     this.setState({groomName: userInfo.groom_name,
     brideName:userInfo.bride_name,
@@ -96,12 +95,10 @@ class Profile extends Component {
         </div>
         <div>
 
-          {/* <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} /> */}
-
           <Autocomplete value={this.state.weddingArea} id="autoCompleteField"
             style={{ width: '220px', backgroundColor : "rgba( 255,255 ,255,0 )", height: 50, borderRadius: 4, borderColor: 'rgba(0,0,0,0.3)'
           }}
-
+            onChange={this.handleInputs}
             onPlaceSelected={(city) => {
              let cityName=city.formatted_address
               this.setState({ weddingArea: cityName })
