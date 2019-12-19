@@ -1,7 +1,10 @@
 .attractions {
     display: grid;
+    overflow: -moz-hidden-unscrollable;
     justify-items: center;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 100px;
+    margin: 20px 20px 20px 20px;
 }
 
 .attraction-title {
