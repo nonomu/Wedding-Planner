@@ -89,6 +89,7 @@ class User {
         price
       });
       console.log("OK")
+      await this.getBookedAttractions()
     } catch (err) {
       console.log(err);
       

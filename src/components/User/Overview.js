@@ -23,7 +23,9 @@ class Overview extends Component {
         Total spent:{totalPrice} <br></br>
         Remaining Budget:{weddingDetailes.est_budget - totalPrice} <br></br>
       </div>
+      <div id="booked_container">
       {bookedAttractions.map(ba => <Paper attr={ba} />)}
+      </div>
     </div>
   }
 }

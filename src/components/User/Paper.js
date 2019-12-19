@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import { TextField } from '@material-ui/core';
+import './paper.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles(theme => ({
 export default function PaperSheet(props) {
   const classes = useStyles();
   return ( 
+    <div className="bookedAttraction">
     <Paper id="Paper"className={classes.root}>
                 <CardMedia id="cardMedia"
           className={classes.media}
@@ -35,6 +37,6 @@ export default function PaperSheet(props) {
         Please Notice That: {props.attr.small_prints}
       </Typography>
     </Paper>
-
+    </div>
    );
 }
