@@ -26,7 +26,8 @@ class Profile extends Component {
 
   componentDidMount= async ()=>{
     await this.props.user.getWeddingDetails()
-    let userInfo = this.props.user.userInfo
+    let userInfo = this.props.user.userInfo.weddingData
+    console.log(userInfo)
     
     this.setState({groomName: userInfo.groom_name,
     brideName:userInfo.bride_name,
