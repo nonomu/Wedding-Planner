@@ -8,7 +8,7 @@
 #booked_container{
     display: grid;
     width: 100vw;
-    grid-template-rows: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
     align-items: center;
     justify-content: center;
 }
