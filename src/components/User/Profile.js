@@ -108,7 +108,7 @@ class Profile extends Component {
           />
 
         </div>
-        <Button variant="contained" color="info" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
+        <Button variant="contained" color="secondary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
         </div>
       </div>
     );
