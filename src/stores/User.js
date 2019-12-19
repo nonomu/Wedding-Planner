@@ -33,7 +33,8 @@ class User {
     @action getWeddingDetails = async () => {
       try {
             let userInfo = await Axios.get(`${API_URL}/wedding-details/${this.userInfo.id}`)
-            this.userInfo = await userInfo.data
+            this.userInfo.weddingData = userInfo.data
+            console.log(userInfo)
         } catch (err) {
             console.log(err)
         }

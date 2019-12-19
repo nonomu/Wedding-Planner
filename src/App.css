@@ -1,4 +1,6 @@
-
+.App {
+  height: 100vh;
+}
 
 a {
   text-decoration: none;
@@ -7,6 +9,22 @@ a {
 
 .App-logo {
   height: 40vmin;
+}
+
+#background {
+  background-image: url('/background.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center;
+  background-attachment: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+  opacity: 0.3;
 }
 
 .App-header {

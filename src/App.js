@@ -34,6 +34,7 @@ class App extends Component {
 			<div className='App'>
 				<Router>
 					<Navbar />
+					<div id="background"></div>
 					<SwipeableTemporaryDrawer
 						categories={this.props.attractions.categories}
 					/>
