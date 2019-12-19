@@ -7,3 +7,13 @@
 .attraction-title {
     text-transform: uppercase;
 }
+
+.close {
+    justify-self: start;
+}
+
+.attraction-info {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+}
