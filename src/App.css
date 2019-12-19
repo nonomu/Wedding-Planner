@@ -90,3 +90,11 @@ select{
   #cardMedia{
     margin: 20px auto;
   }
+
+
+  #welcomeIMG{
+    text-align: center;
+  }
+  #welcomeTemp{
+    height: 600px;
+  }
