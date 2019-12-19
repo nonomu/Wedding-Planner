@@ -1,10 +1,10 @@
 const express = require('express')
 const app = express()
 const api = require('./server/routes/api')
-// const apigoogle = require("./server/apigoogle")
+const apigoogle = require('./server/apigoogle.js')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*')
@@ -17,7 +17,7 @@ app.use(function(req, res, next) {
 })
 
 app.use('/api', api)
-// app.use('/apigoogle', apigoogle)
+app.use('/apigoogle', apigoogle)
 
 const port = process.env.PORT || 4200
 app.listen(port, function() {

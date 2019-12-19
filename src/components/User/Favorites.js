@@ -21,9 +21,7 @@ class Favorites extends Component {
             <h1 className="attraction-title">Favorites</h1>
             <div className="attractions">
             {categories.map((c, i) => userFavorites
-
                 .map(uf => uf.category === c ? <Attraction attr={uf} key={uf.name} /> : null))
-
             }
         </div>
         </div>
