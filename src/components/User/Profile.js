@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import Autocomplete from 'react-google-autocomplete';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import './profile.css'
 
 
 @inject('user')

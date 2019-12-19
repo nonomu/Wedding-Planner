@@ -42,19 +42,13 @@ export default function SwipeableTemporaryDrawer(props) {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {props.categories.map
-          (c =>
-            {
-            return( 
-              (<Link key={c} to={`/attractions/${c}`}>
-                <ListItem button key={c}>
-                  <ListItemText primary={c} />
-                </ListItem>
-              </Link>)
-            )
-            }
-          )
-        }
+        {props.categories.map(c => (
+          <Link key={c} to={`/attractions/${c}`}>
+          <ListItem button key={c}>
+            <ListItemText primary={c.toUpperCase()} />
+          </ListItem>
+        </Link>
+        ))}
       </List>
     </div>
   );

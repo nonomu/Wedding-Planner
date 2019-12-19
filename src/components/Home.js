@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { textAlign } from '@material-ui/system';
 
 class Home extends Component {
 render() {
-return <h1>Home</h1>
+return <h1 style={{textAlign: "center"}}>Home</h1>
 }
 }
 
