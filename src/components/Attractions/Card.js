@@ -20,18 +20,19 @@ const useStyles = makeStyles({
 });
 
 export default function AttractionCard(props) {
+  const [count, setCount] = useState(0);
   const classes = useStyles();
   const changeFavoriteState = function() {
     props.changeFavoriteState();
   };
  let attraction=props.attraction
 
- const addButton = function(){
-  props.addButton()
-}
-const removeFavorite = function(){
-  props.removeFavorite()
-}
+//  const addButton = function(){
+//   props.addButton()
+// }
+// const removeFavorite = function(){
+//   props.removeFavorite()
+// }
 //  const isFavorite = props.isFavorite();
 
   return (
@@ -48,6 +49,7 @@ const removeFavorite = function(){
             {attraction.attr_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
+          {attraction.title}
             {attraction.location}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
@@ -61,15 +63,15 @@ const removeFavorite = function(){
           Book
         </Button>
         </Link>
-        
-          <Button onClick={removeFavorite} size="small" color="primary">
+        {props.bool ? (
+          <Button  onClick={props.removeFavorite} size="small" color="primary">
             remove Favorite
           </Button>
-    
-          <Button onClick={addButton} size="small" color="primary">
+        ) : (
+          <Button  onClick={props.addToFavorites} size="small" color="primary">
             Add To Favorites
           </Button>
-        
+        )}
       </CardActions>
     </Card>
   );
