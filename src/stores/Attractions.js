@@ -5,10 +5,17 @@ let API_URL = `http://localhost:4200/api`
 class Attractions {
     @observable _attractions = []
     @observable category = ''
-
+    @observable open = false
     @computed get attractions() {
         return this.category ? this.attractionsByCategory
         : this._attractions
+    }
+
+    @action closeDialog = () => {
+        this.open = false 
+    }
+    @action openDialog = () => {
+        this.open = true
     }
 
     @computed get attractionsByCategory() {

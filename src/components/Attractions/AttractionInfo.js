@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
+import CloseIcon from '@material-ui/icons/Close';
+import { Fab } from '@material-ui/core';
+import {Link} from 'react-router-dom'
 @inject('user', 'attractions')
 
 @observer
 class AttractionInfo extends Component {
+    openDialog = () => {
+        this.props.attractions.openDialog()
+    }
+
+    closeDialog = () => {
+        this.props.attractions.closeDialog()
+    }
+    
     render() {
         let a = this.props.attractions._attractions.length ? this.props.attractions._attractions.find(a => a.id === parseInt(this.props.id)) : []
         return (
-            <div>
-
+            <div className="attraction-info">
+                <Fab className="close" component={Link} to={`/attractions/${a.category}`}><CloseIcon /></Fab>
                 <h3>{a.attr_name}</h3>
                 <div>vendor: {a.vendor}</div>
                 <div>({a.category})</div>
