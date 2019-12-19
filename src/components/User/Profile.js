@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import Autocomplete from 'react-google-autocomplete';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import brideAndGroom from './brideAndGroom.png'
 import './profile.css'
 
 
@@ -64,7 +65,10 @@ class Profile extends Component {
   render() {
     return (
       <div id="profile-container">
-
+        <div className="sidePic">
+        <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
+        </div>
+        <div className="sideForm">
         <h1>User Profile</h1>
         <p>
           You need to insert the details about the user and the wedding so we
@@ -72,25 +76,28 @@ class Profile extends Component {
         </p>
         <hr />
         <h3>Personal Details:</h3>
-        <div>
-          <TextField id="groomName" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
-        </div>
-        <div>
-          <TextField id="brideName" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
-        </div>
+        <span>
+          <TextField id="groomName" label="Groom" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+        </span>
+        <span>
+          <TextField id="brideName" label="Bride" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+        </span>
         <h3>Wedding Details:</h3>
         <div>
-          <TextField id="weddingDate" variant="outlined" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
+          <TextField id="weddingDate" label="Wedding Date" variant="outlined" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
         </div>
         <div>
-          <TextField id="estInvitees" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
-          <TextField id="estBudget" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
-          <TextField id="estGifts" variant="outlined" value={this.state.estGifts} type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
+          <br></br>
+          <TextField id="estInvitees" label="Estimated Invitees" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
+          <br></br><br></br>
+          <TextField id="estBudget" label="Estimated Budget" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
+          {/* <TextField id="estGifts" label="" variant="outlined" value={this.state.estGifts} type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} /> */}
         </div>
         <div>
 
           <Autocomplete value={this.state.weddingArea} id="autoCompleteField"
-            style={{ width: '30%' }}
+            style={{ width: '220px', backgroundColor : "rgba( 255,255 ,255,0 )", height: 50, borderRadius: 4, borderColor: 'rgba(0,0,0,0.3)'
+          }}
             onChange={this.handleInputs}
             onPlaceSelected={(city) => {
              let cityName=city.formatted_address
@@ -101,7 +108,8 @@ class Profile extends Component {
           />
 
         </div>
-        <Button variant="contained" color="primary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
+        <Button variant="contained" color="info" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
+        </div>
       </div>
     );
   }
