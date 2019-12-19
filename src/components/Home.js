@@ -3,7 +3,7 @@ import { textAlign } from '@material-ui/system';
 
 class Home extends Component {
 render() {
-return <h1 style={{textAlign: "center"}}>Home</h1>
+return <div id="welcomeIMG"><img id="welcomeTemp" src="/welcomeTemp.png" alt=""/></div>
 }
 }
 

@@ -28,8 +28,6 @@ class Attraction extends Component {
     componentDidMount(){
         this.props.user.getBookedAttractions()
     }
-
- 
     render() {
         let bookedAttractions=this.props.user.bookedAttractions
         let isBooked=bookedAttractions.some(f => f.category === this.props.attr.category)

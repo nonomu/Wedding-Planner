@@ -1,6 +1,15 @@
 -- --CREATE DATABASE WeddingPlanner;
 use weddingPlanner;
 
+-- INSERT INTO weddingDetails
+--  VALUES (NULL,"Ron Braha",
+-- "Shayna",'2019-05-24',70,100000
+-- ,120000,"Tel-Aviv","Rock");
+
+
+-- INSERT INTO favorites
+--  VALUES (1,
+--  1);
 
 -- INSERT INTO weddingDetails
 --  VALUES (NULL,"Ron Braha",
