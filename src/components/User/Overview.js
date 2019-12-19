@@ -8,6 +8,9 @@ class Overview extends Component {
   componentDidMount = () => {
     this.props.user.getBookedAttractions();
   };
+  componentDidUpdate = () => {
+    this.props.user.getBookedAttractions();
+  };
 
   render() {
     let bookedAttractions = this.props.user.bookedAttractions;
