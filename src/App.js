@@ -54,10 +54,15 @@ class App extends Component {
 						exact
 						path='/book/:category/:id'
 						render={({ match }) => (
-							<BookAttraction
+							<Grid container justify='center' alignContent='center'>
+              {this.openDialog()}
+              <Dialog open={this.props.attractions.open} onClose={() => this.closeDialog()} fullWidth maxWidth='xl' component={Paper} > 
+              <BookAttraction
 								category={match.params.category}
 								id={match.params.id}
 							/>
+              </Dialog>
+              </Grid>
 						)}
 					/>
 					<Route
