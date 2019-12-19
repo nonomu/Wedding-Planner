@@ -3,6 +3,7 @@ import { observer, inject } from "mobx-react";
 import CloseIcon from '@material-ui/icons/Close';
 import { Fab } from '@material-ui/core';
 import {Link} from 'react-router-dom'
+import DoneIcon from '@material-ui/icons/Done';
 @inject('attractions', 'user')
 
 @observer
@@ -37,7 +38,7 @@ class BookAttraction extends Component {
                 <img className="attr-img" src={attractionData.image} alt={attractionData.attr_name} />
                 <div className="attr-name">name: {attractionData.attr_name}</div>
                 <input id="price" type="number" placeholder="Enter Price" onChange={this.handleInput} />
-                <button className="submit-price" onClick={this.bookButton}>Submit</button>
+                <Fab className="submit-price" onClick={this.bookButton} component={Link} to="/overview"><DoneIcon /></Fab>
                 </div>}
             </div>
         );

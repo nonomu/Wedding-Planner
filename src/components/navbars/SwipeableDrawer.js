@@ -46,7 +46,7 @@ export default function SwipeableTemporaryDrawer(props) {
         {props.categories.map(c => (
           <Link key={c} to={`/attractions/${c}`}>
           <ListItem button key={c}>
-            <ListItemText primary={c} />
+            <ListItemText primary={c.toUpperCase()} />
           </ListItem>
         </Link>
         ))}
