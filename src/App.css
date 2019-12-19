@@ -93,14 +93,13 @@ select{
 
 
   #welcomeIMG{
-    /* text-align: center; */
     justify-items: center;
     align-items: center;
     display: grid;
     
   }
   #welcomeTemp{
-    /* height: 600px; */
+    display: grid;
     width: 63vw;
     height: auto;
   }
