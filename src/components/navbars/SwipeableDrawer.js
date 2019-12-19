@@ -31,7 +31,6 @@ export default function SwipeableTemporaryDrawer(props) {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [side]: open });
   };
 
@@ -43,26 +42,32 @@ export default function SwipeableTemporaryDrawer(props) {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {props.categories.map(c => (
-          <Link key={c} to={`/attractions/${c}`}>
-          <ListItem button key={c}>
-            <ListItemText primary={c} />
-          </ListItem>
-        </Link>
-        ))}
+        {props.categories.map
+          (c =>
+            {
+            return( 
+              (<Link key={c} to={`/attractions/${c}`}>
+                <ListItem button key={c}>
+                  <ListItemText primary={c} />
+                </ListItem>
+              </Link>)
+            )
+            }
+          )
+        }
       </List>
     </div>
   );
 
 
   return (
-     
+
     <div>
       <Button onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
-     
+
       <Drawer
         open={state.left}
-        
+
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}
       >

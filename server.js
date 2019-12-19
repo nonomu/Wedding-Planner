@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const api = require('./server/routes/api')
-
+const apigoogle = require("./server/apigoogle")
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -17,6 +17,7 @@ app.use(function(req, res, next) {
 })
 
 app.use('/api', api)
+app.use('/apigoogle', apigoogle)
 
 const port = process.env.PORT || 4200
 app.listen(port, function() {
