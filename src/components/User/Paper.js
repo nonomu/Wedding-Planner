@@ -3,8 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
+import './paper.css'
 import PhoneIcon from '@material-ui/icons/Phone';
 import EmailIcon from '@material-ui/icons/Email';
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(2, 1),
@@ -16,6 +18,7 @@ const useStyles = makeStyles(theme => ({
 export default function PaperSheet(props) {
   const classes = useStyles();
   return ( 
+    <div className="bookedAttraction">
     <Paper id="Paper"className={classes.root}>
                 <CardMedia id="cardMedia"
           className={classes.media}
@@ -35,6 +38,6 @@ export default function PaperSheet(props) {
         Please Notice: {props.attr.small_prints}
       </Typography>
     </Paper>
-
+    </div>
    );
 }

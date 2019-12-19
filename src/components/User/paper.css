@@ -1,0 +1,10 @@
+.bookedAttraction{
+    display: grid;
+
+    grid-gap: 30px;
+    margin: 20px 20px 20px 20px;
+}
+#Paper{
+    display: grid;
+    width: fit-content;
+}
