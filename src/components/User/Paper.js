@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
+import { TextField } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,13 +16,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function PaperSheet(props) {
   const classes = useStyles();
-  return (
+  return ( 
     <Paper id="Paper"className={classes.root}>
                 <CardMedia id="cardMedia"
           className={classes.media}
           image={props.attr.image}
           title="Contemplative Reptile"
-        />
+          />
       <Typography variant="h4" component="h3">
          Your {props.attr.category}: {props.attr.attr_name}
       </Typography>
@@ -35,5 +36,6 @@ export default function PaperSheet(props) {
         Please Notice That: {props.attr.small_prints}
       </Typography>
     </Paper>
-  );
+
+   );
 }

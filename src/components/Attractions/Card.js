@@ -62,14 +62,9 @@ export default function AttractionCard(props) {
         <Button size="small" color="primary">
           Book
         </Button>
-<<<<<<< HEAD
-        {1 ? (
-          <Button  onClick={changeFavoriteState} size="small" color="primary">
-=======
         </Link>
         {props.bool ? (
           <Button  onClick={props.removeFavorite} size="small" color="primary">
->>>>>>> 06b972dd1ab631f0315d48e5b590860e0ea5468c
             remove Favorite
           </Button>
         ) : (
