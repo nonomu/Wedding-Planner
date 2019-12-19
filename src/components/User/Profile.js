@@ -27,7 +27,6 @@ class Profile extends Component {
   componentDidMount= async ()=>{
     await this.props.user.getWeddingDetails()
     let userInfo = this.props.user.userInfo.weddingData
-    console.log(userInfo)
     
     this.setState({groomName: userInfo.groom_name,
     brideName:userInfo.bride_name,
@@ -89,8 +88,6 @@ class Profile extends Component {
           <TextField id="estGifts" variant="outlined" value={this.state.estGifts} type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} />
         </div>
         <div>
-
-          {/* <TextField id="venueRadius" variant="outlined" type="number" placeholder="Venue Radius(in KM)" onChange={this.handleInputs} /> */}
 
           <Autocomplete value={this.state.weddingArea} id="autoCompleteField"
             style={{ width: '30%' }}

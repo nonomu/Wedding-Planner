@@ -78,7 +78,6 @@ class User {
   };
   @action bookAttraction = async (userId, attractionId, price) => {
     try {
-      console.log(userId,attractionId,price)
       await Axios.post(`${API_URL}/attractions/book`, {
         userId,
         attractionId,

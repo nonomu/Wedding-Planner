@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import Paper from './Paper'
-import { TextField } from '@material-ui/core';
 import './Overview.css'
 @inject("user")
 @observer
@@ -17,7 +16,6 @@ class Overview extends Component {
   render() {
     let bookedAttractions = this.props.user.bookedAttractions;
     let totalPrice = bookedAttractions.reduce((a,b) => a+b.price,0)
-    let getWeddingDetails = this.props.user.userInfo
     let weddingDetailes = this.props.user.userInfo.weddingData ? this.props.user.userInfo.weddingData:""
     return <div>
       <div className="budget">
