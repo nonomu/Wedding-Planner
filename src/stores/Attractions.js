@@ -5,7 +5,7 @@ let API_URL = `http://localhost:4200/api`
 class Attractions {
     @observable _attractions = []
     @observable category = ''
-
+    @observable open = true
     @computed get attractions() {
         return this.category ? this.attractionsByCategory
         : this._attractions

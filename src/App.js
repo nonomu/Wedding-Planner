@@ -57,8 +57,8 @@ class App extends Component {
 						path='/attractionInfo/:id'
 						render={({ match }) => (
 							<Grid container justify='center' alignContent='center'>
-								<Dialog open={true} fullWidth maxWidth='xl' component={Paper} >
-									<AttractionInfo id={match.params.id} />
+								<Dialog open={this.props.attractions.open} fullWidth maxWidth='xl' component={Paper} >
+									<AttractionInfo open={this.props.attractions.open} id={match.params.id} />
 								</Dialog>
 							</Grid>
 						)}
