@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(2, 1),
   },  media: {
-    height: 140,
-    width:300,
+    height: "30vh",
+    width: "60%"
   }
 }));
 export default function PaperSheet(props) {
