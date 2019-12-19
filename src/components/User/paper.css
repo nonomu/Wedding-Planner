@@ -1,10 +1,15 @@
 .bookedAttraction{
     display: grid;
 
-    grid-gap: 30px;
-    margin: 20px 20px 20px 20px;
+    /* grid-gap: 10px; */
+    /* margin: 5px 5px 5px 5px; */
+    border: none;
+
 }
 #Paper{
     display: grid;
-    width: fit-content;
+    width: 90%;
 }
+/* .cardMedia{
+    width: 20px;
+} */
