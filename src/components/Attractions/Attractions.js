@@ -7,6 +7,7 @@ import './attractions.css'
 class Attractions extends Component {
 	componentDidMount() {
 		this.props.attractions.getAttractions()
+		this.props.user.getUserFavorites()
 		this.props.attractions.category = this.props.category
 	}
 	componentDidUpdate() {
@@ -14,13 +15,14 @@ class Attractions extends Component {
 	}
 
 	render() {
+		let favorites=this.props.user._userFavorites
 		let attrArr = this.props.attractions.attractionsByCategory
 		return (
 			<div>
 				<h1 className="attraction-title">{this.props.category}</h1>
 				<div className='attractions'>
 					{attrArr.map(a => (
-						<Attraction key={a.id} attr={a} />
+						<Attraction name="attractions"favorites={favorites}key={a.id} attr={a} />
 					))}
 				</div>
 			</div>

@@ -60,14 +60,25 @@ class User {
       await Axios.delete(`${API_URL}/favorite/`, {
         data: { userId, attractionId }
       });
-      let index = this._userFavorites.findIndex(uf => uf.id === attractionId);
-      this._userFavorites.splice(index, 1);
+      await this.getUserFavorites()
     } catch (err) {
       console.log(err);
     }
 
   };
 
+  @action addToFavorites = async (userId, attractionId) => {
+    try {
+      await Axios.post(`${API_URL}/attractions/favorite`, {
+        userId,
+        attractionId
+      });
+     await this.getUserFavorites()
+    } catch (err) {
+      console.log(err);
+
+    }
+  };
   @action bookAttraction = async (userId, attractionId, price) => {
     try {
       console.log(userId,attractionId,price)
@@ -79,6 +90,7 @@ class User {
       console.log("OK")
     } catch (err) {
       console.log(err);
+      
     }
   };
   @action getBookedAttractions = async () => {
@@ -89,18 +101,6 @@ class User {
       this.bookedAttractions = bookedAttractions.data;
     } catch (err) {
       console.log(err);
-    }
-  };
-
-  @action addToFavorites = async (userId, attractionId) => {
-    try {
-      await Axios.post(`${API_URL}/attractions/favorite`, {
-        userId,
-        attractionId
-      });
-    } catch (err) {
-      console.log(err);
-
     }
   };
   @action register = () => {};
