@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     width:300,
   }
 }));
-
 export default function PaperSheet(props) {
   const classes = useStyles();
   return ( 

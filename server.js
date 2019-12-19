@@ -17,7 +17,8 @@ app.use(function(req, res, next) {
 })
 
 app.use('/api', api)
-app.use('/apigoogle',apigoogle)
+app.use('/apigoogle', apigoogle)
+
 const port = process.env.PORT || 4200
 app.listen(port, function() {
 	console.log(`Running on port ${port}`)

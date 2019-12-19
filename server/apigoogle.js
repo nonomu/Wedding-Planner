@@ -8,21 +8,18 @@ const apiKey ="AIzaSyAtbzpk-aq32pC5OBoeCmftPWhTNMthKOM"
 
 router.get('/', function (req, res) {
     requestPromise(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=dj+Tel%25Aviv+Israel&fields=name,rating,formatted_phone_number,photos&key=${apiKey}`, function (err, response) {
-
-        let data = JSON.parse(response.body)
-        const relevantData = 
-        data.results.map(a => { 
-            return (
-                {// photo: (a.photos[0].photo_reference) ? (relevantData.push(a.photos[0].photo_reference)):"",
-                name:a.name,
-                rating:a.rating}
-            )
+        let data = JSON.parse(response.body).results
+        // res.send(data.results[0].photos[0].photo_reference)
+        // res.send(data)
+        const relevantData = []
+        data.map(a => { 
+            if(typeof(a.photos) == 'undefined') return
+                relevantData.push(a.photos[0].photo_reference)
+                // name:a.name,
+                // rating:a.rating
         })
-       console.log(relevantData)
+     
         res.send(relevantData)
     })
 })
-
-
-
 module.exports = router

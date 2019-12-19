@@ -6,7 +6,7 @@
 --      NULL,
 --      "venue",
 --      "Seven",
---      "Shula",
+--      "das",
 --      "https://xanadu.mazaltov.walla.co.il/UploadImages/2/1475/737705_C680Cx510.jpg",
 --      "Tel-Aviv",
 --      4,
