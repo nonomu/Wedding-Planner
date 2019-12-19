@@ -1,6 +1,6 @@
 .attractions {
     display: grid;
-    /* justify-items: center; */
+    justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(200px, 3fr));
     grid-gap: 40px;
 }

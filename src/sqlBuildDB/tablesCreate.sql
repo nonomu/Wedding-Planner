@@ -1,8 +1,15 @@
 -- --CREATE DATABASE WeddingPlanner;
 use weddingplanner;
 
--- -- DROPPER
--- DROP TABLE booked_attractions,favorites,attractions;
+-- INSERT INTO weddingDetails
+--  VALUES (NULL,"Ron Braha",
+-- "Shayna",'2019-05-24',70,100000
+-- ,120000,"Tel-Aviv","Rock");
+
+
+-- INSERT INTO favorites
+--  VALUES (1,
+--  1);
 
 -- CREATE TABLE weddingDetails(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -24,6 +31,19 @@ use weddingplanner;
 --     FOREIGN KEY(wedding_details) REFERENCES weddingDetails(id)
 -- );
 
+
+
+
+
+
+
+
+-- NEW DATA YANIV
+
+
+-- DROPPER
+-- DROP TABLE booked_attractions,favorites,attractions;
+
 -- CREATE TABLE attractions(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --     category varchar(20),
@@ -38,21 +58,20 @@ use weddingplanner;
 --     small_prints text
 -- );
 
--- CREATE TABLE booked_attractions(
---     user_id int NOT NULL,
---     attraction_id int NOT NULL,
---     price int ,
---     FOREIGN KEY(user_id) REFERENCES user(id),
---     FOREIGN KEY(attraction_id) REFERENCES attractions(id)
--- );
+CREATE TABLE booked_attractions(
+    user_id int NOT NULL,
+    attraction_id int NOT NULL,
+    price int ,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(attraction_id) REFERENCES attractions(id)
+);
 
--- CREATE TABLE favorites(
---     user_id int NOT NULL,
---     attraction_id int NOT NULL,
---     FOREIGN KEY(user_id) REFERENCES user(id),
---     FOREIGN KEY(attraction_id) REFERENCES attractions(id) 
--- );
-
+CREATE TABLE favorites(
+    user_id int NOT NULL,
+    attraction_id int NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(attraction_id) REFERENCES attractions(id) 
+);
 
 
 
