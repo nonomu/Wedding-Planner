@@ -9,25 +9,29 @@ import { attractions } from '../../stores/Attractions';
 
 @observer
 class Attraction extends Component {
-    
+    removeFavorite = async ()  =>{
+      await this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attr.id)
+      console.log("remove")
 
-    removeFavorite = () =>{
-        this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attr.id)
+        // this.setState({bool:true})
     }
-    addButton = () => {
-        this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
+    addToFavorites = async () => {
+        await this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
+        console.log("add")
+        // this.setState({bool:false})
     }
 
     isFavorite = () =>{
         console.log(this.props.user.isFavorite(this.props.attr.id))
         return this.props.user.isFavorite(this.props.attr.id)
     }
-    changeFavoriteState = ()=>{
-        this.props.attractions.changeFavoriteState()
-    }
+
+ 
     render() {
+        let favorites=this.props.user._userFavorites
+        let bool=favorites.some(f => f.id === this.props.attr.id)
         let attraction = this.props.attr
-        return <AttractionCard attraction={attraction} changeFavoriteState={this.changeFavoriteState}/>
+        return ({attraction}?<AttractionCard bool={bool} attraction={attraction}removeFavorite={this.removeFavorite} addToFavorites={this.addToFavorites} changeFavoriteState={this.changeFavoriteState}/>:"")
     }
 }
 

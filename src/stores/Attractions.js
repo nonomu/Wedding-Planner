@@ -5,10 +5,17 @@ let API_URL = `http://localhost:4200/api`
 class Attractions {
     @observable _attractions = []
     @observable category = ''
-
+    @observable open = false
     @computed get attractions() {
         return this.category ? this.attractionsByCategory
         : this._attractions
+    }
+
+    @action closeDialog = () => {
+        this.open = false 
+    }
+    @action openDialog = () => {
+        this.open = true
     }
 
     @computed get attractionsByCategory() {
@@ -28,9 +35,7 @@ class Attractions {
             console.log(err)
         }
     }
-    @action changeFavoriteState = () =>{
-        this._attractions.splice(1,1)
-    }
+
     @action getAttractionData(category, id) {
         return this._attractions.find(a => a.category === category && a.id === parseInt(id))
     }
