@@ -58,11 +58,12 @@ export default function AttractionCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        {props.isBookedCategory===attraction.category?"":(
         <Link to={`/book/${attraction.category}/${attraction.id}`}>
         <Button size="small" color="primary">
           Book
         </Button>
-        </Link>
+        </Link>)}
         {props.bool ? (
           <Button  onClick={props.removeFavorite} size="small" color="primary">
             remove Favorite
