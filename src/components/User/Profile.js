@@ -91,7 +91,7 @@ class Profile extends Component {
 
           <Autocomplete value={this.state.weddingArea} id="autoCompleteField"
             style={{ width: '30%' }}
-
+            onChange={this.handleInputs}
             onPlaceSelected={(city) => {
              let cityName=city.formatted_address
               this.setState({ weddingArea: cityName })

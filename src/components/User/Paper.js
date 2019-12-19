@@ -3,10 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
-
+import PhoneIcon from '@material-ui/icons/Phone';
+import EmailIcon from '@material-ui/icons/Email';
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(2, 1),
   },  media: {
     height: 140,
     width:300,
@@ -25,13 +26,13 @@ export default function PaperSheet(props) {
          Your {props.attr.category}: {props.attr.attr_name}
       </Typography>
       <Typography component="p">
-        You can contact {props.attr.contact_name}. Phone: {props.attr.contact_phone}, Mail: {props.attr.contact_email}
+      <strong>{props.attr.contact_name}</strong>:  <PhoneIcon /> {props.attr.contact_phone}, <EmailIcon /> {props.attr.contact_email}
       </Typography>
       <Typography component="p">
-        The price is: {props.attr.price}
+        Price: {props.attr.price}₪
       </Typography>
       <Typography component="p">
-        Please Notice That: {props.attr.small_prints}
+        Please Notice: {props.attr.small_prints}
       </Typography>
     </Paper>
 
