@@ -14,9 +14,6 @@ class Overview extends Component {
     this.props.user.getBookedAttractions();
     this.props.user.getWeddingDetails()
   };
-  componentDidUpdate = () => {
-    this.props.user.getBookedAttractions();
-  };
 
   render() {
     let bookedAttractions = this.props.user.bookedAttractions;

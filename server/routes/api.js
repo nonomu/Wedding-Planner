@@ -92,7 +92,6 @@ router.post('/attractions/book', async function (req, res) {
 })
 router.put('/update/UserInfo', async function (req, res) {
 	let userInfo = req.body
-	console.log(userInfo)
 	try {
 		await db.query(
 			`UPDATE weddingdetails
