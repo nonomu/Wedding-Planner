@@ -1,5 +1,5 @@
 -- --CREATE DATABASE WeddingPlanner;
-use weddingPlanner;
+USE weddingplanner;
 
 -- INSERT INTO weddingDetails
 --  VALUES (NULL,"Ron Braha",
@@ -58,17 +58,17 @@ use weddingPlanner;
 --     contact_email varchar(40),
 --     small_prints text
 -- );
--- ​
--- CREATE TABLE booked_attractions(
---     user_id int NOT NULL,
---     attraction_id int NOT NULL,
---     price int ,
---     FOREIGN KEY(user_id) REFERENCES user(id),
---     FOREIGN KEY(attraction_id) REFERENCES attractions(id)
--- );
--- CREATE TABLE favorites(
---     user_id int NOT NULL,
---     attraction_id int NOT NULL,
---     FOREIGN KEY(user_id) REFERENCES user(id),
---     FOREIGN KEY(attraction_id) REFERENCES attractions(id) 
--- );
+CREATE TABLE booked_attractions(
+    user_id int NOT NULL,
+    attraction_id int NOT NULL,
+    price int ,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(attraction_id) REFERENCES attractions(id)
+);
+
+CREATE TABLE favorites(
+    user_id int NOT NULL,
+    attraction_id int NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(attraction_id) REFERENCES attractions(id) 
+);

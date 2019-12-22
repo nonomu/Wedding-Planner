@@ -7,8 +7,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from "react-router-dom";
 import MenuIcon from '@material-ui/icons/Menu';
+import './navbars.css'
 
 const useStyles = makeStyles({
+  root:{
+    
+  },
   list: {
     width: 250,
   },
@@ -24,6 +28,7 @@ export default function SwipeableTemporaryDrawer(props) {
     left: false,
     bottom: false,
     right: false,
+
   });
 
   const toggleDrawer = (side, open) => event => {
@@ -56,7 +61,7 @@ export default function SwipeableTemporaryDrawer(props) {
   return (
 
     <div>
-      <Button onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
+      <Button disableElevation={true} style={{}} className="side-bar-button" onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
 
       <Drawer
         open={state.left}
