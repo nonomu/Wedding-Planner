@@ -1,19 +1,38 @@
 .attractions {
-    display: grid;
-    justify-items: center;
-    grid-auto-flow: column;
+  display: grid;
+  overflow: -moz-hidden-unscrollable;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 100px;
+  margin: 20px 20px 20px 20px;
 }
 
 .attraction-title {
-    text-transform: uppercase;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .close {
-    justify-self: start;
+  justify-self: start;
 }
 
 .attraction-info {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.submit-price {
+    justify-items: bottom;
+}
+
+@media only screen and (max-width: 600px) {
+  .attractions {
     display: grid;
+    overflow: -moz-hidden-unscrollable;
     justify-items: center;
-    text-align: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 100px;
+    margin: 20px 20px 20px 20px;
+  }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Home extends Component {
 render() {
-return <h1>Home</h1>
+return <div id="welcomeIMG"><img id="welcomeTemp" src="/welcomeTemp.png" alt="welcome"/></div>
 }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -15,25 +15,14 @@ const useStyles = makeStyles({
     maxWidth: 345
   },
   media: {
-    height: 140
+    height: 140,
+    width: 300
   }
 });
 
 export default function AttractionCard(props) {
-  const [count, setCount] = useState(0);
   const classes = useStyles();
-  const changeFavoriteState = function() {
-    props.changeFavoriteState();
-  };
  let attraction=props.attraction
-
-//  const addButton = function(){
-//   props.addButton()
-// }
-// const removeFavorite = function(){
-//   props.removeFavorite()
-// }
-//  const isFavorite = props.isFavorite();
 
   return (
     <Card className={classes.card}>
@@ -58,11 +47,12 @@ export default function AttractionCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        {props.isBookedCategory===attraction.category?"":(
         <Link to={`/book/${attraction.category}/${attraction.id}`}>
         <Button size="small" color="primary">
           Book
         </Button>
-        </Link>
+        </Link>)}
         {props.bool ? (
           <Button  onClick={props.removeFavorite} size="small" color="primary">
             remove Favorite

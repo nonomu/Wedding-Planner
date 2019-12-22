@@ -7,7 +7,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from "react-router-dom";
 import MenuIcon from '@material-ui/icons/Menu';
-// import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 const useStyles = makeStyles({
   list: {
@@ -31,7 +30,6 @@ export default function SwipeableTemporaryDrawer(props) {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [side]: open });
   };
 
@@ -46,7 +44,7 @@ export default function SwipeableTemporaryDrawer(props) {
         {props.categories.map(c => (
           <Link key={c} to={`/attractions/${c}`}>
           <ListItem button key={c}>
-            <ListItemText primary={c} />
+            <ListItemText primary={c.toUpperCase()} />
           </ListItem>
         </Link>
         ))}
@@ -56,13 +54,13 @@ export default function SwipeableTemporaryDrawer(props) {
 
 
   return (
-     
+
     <div>
       <Button onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
-     
+
       <Drawer
         open={state.left}
-        
+
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}
       >

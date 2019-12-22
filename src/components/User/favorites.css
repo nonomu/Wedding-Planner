@@ -1,9 +1,11 @@
 .attractions {
     display: grid;
     justify-items: center;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 3fr));
+    grid-gap: 40px;
 }
-
 .attraction-title {
     text-transform: uppercase;
+    text-align: center;
+    
 }

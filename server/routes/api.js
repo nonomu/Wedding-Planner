@@ -83,7 +83,8 @@ router.post('/attractions/book', async function (req, res) {
         if(result[0].length === 0)
 		await db.query(
 			`INSERT INTO booked_attractions VALUES("${action.userId}", "${action.attractionId}", "${action.price}")`
-        )
+		)
+		res.end()
 	} catch (err) {
 		console.log(err)
 		res.send(err)

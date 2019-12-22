@@ -1,0 +1,14 @@
+.budget{
+    display: grid;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+}
+#booked_container{
+    display: grid;
+    width: 100vw;
+    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+    align-items: center;
+    justify-content: center;
+}
