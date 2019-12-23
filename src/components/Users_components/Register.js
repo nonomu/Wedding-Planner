@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import {Link, Redirect } from 'react-router-dom'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./usercomp.css";
 import { inject } from "mobx-react";
+import Home from "../Home";
 
 
 // import DateFnsUtils from "@date-io/date-fns";
@@ -27,20 +29,24 @@ class Register extends Component {
       weddingDate: "2020-01-01",
       weddingBudget: 0,
       estInvitees: 0,
-      weddingArea: ""
+      weddingArea: "",
+      completed: false
     };
   }
 
   handleInputs = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  userRegister=()=>{
-    this.props.user.userRegister(this.state)
+  userRegister=async()=>{
+    try{
+     await this.props.user.userRegister(this.state)
+    }
+    catch(err){
+      console.log(err)
+    }
   }
-  // handleDateChange = date => {
-  //   this.setState({date});
-  // };
   render() {
+    console.log(this.props.user.userLogedIn)
     return (
       <div className="box_bg">
         <div className="user_box">
@@ -158,6 +164,7 @@ class Register extends Component {
             <Button variant="contained" color="primary" onClick={this.userRegister}>
               Register
             </Button>
+            {this.props.user.userLogedIn ? <Redirect to="/" />:null}
           </div>
         </div>
       </div>
