@@ -42,6 +42,7 @@ class App extends Component {
 					<Route exact path='/favorites' component={Favorites} />
 					<Route exact path='/overview' component={Overview} />
 					<Route exact path='/login' component={Login} />
+					<Route exact path='/logout'><Redirect to='/'/></Route>
 					<Route exact path='/register' component={Register} />
 					<Route exact path='/manage_seats' component={ManageSeats} />
 
