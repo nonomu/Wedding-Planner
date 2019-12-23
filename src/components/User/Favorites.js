@@ -22,10 +22,9 @@ class Favorites extends Component {
             <h1 className="attraction-title">Favorites</h1>
             {categories.map((c, i) => {return (
                  (userFavorites.some(u => u.category===c)) ? 
-                  (<div className="favorites"><h2>{c}</h2><div className="favoritesCategory"> 
-                  {userFavorites.map(uf => uf.category === c ? <Attraction category={c} attr={uf} key={uf.name}/>: null)}
+                  (<div key={Math.random()*1000000} className="favorites"><h2>{c}</h2><div className="favoritesCategory"> 
+                  {userFavorites.map(uf => uf.category === c ? <Attraction category={c} attr={uf} key={Math.random()*1000000}/>: null)}
                   </div></div>):null
-             
                 )})
             }
         <ToastContainer position='bottom-left' />

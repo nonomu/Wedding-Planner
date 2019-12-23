@@ -6,24 +6,32 @@ let API_URL = `http://localhost:4200/api`
 
 
 class User {
-  @observable userInfo = { id: 1 };
+  @observable userInfo = { id: sessionStorage.getItem("id") };
   @observable _userFavorites = [];
- @observable bookedAttractions = [];
+  @observable bookedAttractions = [];
+  @observable userLogedIn=false
  
 
   @action userRegister = async (userData) =>{
-    console.log(userData)
-    //you get all the object from the register component.
+    try {
+      let user = await Axios.post(`${API_URL}/register`, {userData})
+      this.userInfo.id=user.data[0]
+      this.userLogedIn=true
+  } catch (err) {
+      console.log(err.message)
+  }
   }
 
     @action userLogin = async (email, password) => {
-      console.log(email)
-      console.log(password)
         try {
             let user = await Axios.post(`${API_URL}/login`, { email, password })
-            this.getUserInfo(user.data.id)
+            this.userInfo.id= user.data.id
+            sessionStorage.setItem("id", user.data.id);
+            sessionStorage.setItem("loggedIn", true);
+            this.userLogedIn=!this.userLogedIn
+            console.log(this.userLogedIn)
         } catch (err) {
-            console.log(err)
+            console.log(err.message)
         }
     }
     @action updateUserInfo = async(profile)=>
@@ -109,7 +117,6 @@ class User {
       console.log(err);
     }
   };
-  @action register = () => {};
 
   @computed get favoritesCategories(){
     return [...new Set(this._userFavorites.map(a => a.category))]

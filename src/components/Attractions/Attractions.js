@@ -10,6 +10,7 @@ class Attractions extends Component {
 		this.props.attractions.getAttractions()
 		this.props.user.getUserFavorites()
 		this.props.attractions.category = this.props.category
+		console.log(this.props.user.userInfo.id)
 	}
 	componentDidUpdate() {
 		this.props.attractions.category = this.props.category
