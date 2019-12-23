@@ -33,7 +33,7 @@ class BookAttraction extends Component {
         return (
             <div>
             { !attractionData ? null : <div className="attraction-info">
-                <Fab className="close" component={Link} to={`/attractions/${attractionData.category}`}><CloseIcon /></Fab>
+                <Fab className="close" component={Link} to={`/vendors/${attractionData.category}`}><CloseIcon /></Fab>
 
 
                 {/* <img className="attr-img" src={attractionData.image} alt={attractionData.attr_name} />
