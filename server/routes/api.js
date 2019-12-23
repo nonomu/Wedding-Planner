@@ -19,7 +19,7 @@ router.get('/wedding-details/:userId', async (req, res) => {
 	try {
 		let userId = req.params.userId
 		let weddingDetails = await db.query(
-			`SELECT wd.* FROM user as u, weddingDetails AS wd WHERE u.id = "${userId}" AND u.wedding_details = wd.id`
+			`SELECT wd.* FROM user as u, weddingDetails AS wd WHERE u.id = "${userId}" AND u.id = wd.user_id`
 		)
 		res.send(weddingDetails[0][0])
 	} catch (err) {
@@ -60,12 +60,12 @@ router.post('/attractions/favorite', async function (req, res) {
 			`SELECT f.* FROM  favorites as f 
              WHERE f.user_id = "${favorite.userId}"
              AND f.attraction_id = "${favorite.attractionId}"`
-        )
-        if(result[0].length === 0)
-		await db.query(
-			`INSERT INTO favorites VALUES("${favorite.userId}", "${favorite.attractionId}")`
+		)
+		if (result[0].length === 0)
+			await db.query(
+				`INSERT INTO favorites VALUES("${favorite.userId}", "${favorite.attractionId}")`
 			)
-			res.end()
+		res.end()
 	} catch (err) {
 		console.log(err)
 		res.send(err)
@@ -75,15 +75,15 @@ router.post('/attractions/favorite', async function (req, res) {
 router.post('/attractions/book', async function (req, res) {
 	let action = req.body
 	try {
-        let result = await db.query(
-            `SELECT ba.* FROM  booked_attractions as ba 
+		let result = await db.query(
+			`SELECT ba.* FROM  booked_attractions as ba 
              WHERE ba.user_id = "${action.userId}"
              AND ba.attraction_id = "${action.attractionId}"`
-        )
-        if(result[0].length === 0)
-		await db.query(
-			`INSERT INTO booked_attractions VALUES("${action.userId}", "${action.attractionId}", "${action.price}")`
 		)
+		if (result[0].length === 0)
+			await db.query(
+				`INSERT INTO booked_attractions VALUES("${action.userId}", "${action.attractionId}", "${action.price}")`
+			)
 		res.end()
 	} catch (err) {
 		console.log(err)
@@ -104,7 +104,7 @@ SET  groom_name = "${userInfo.groomName}",
  est_cash_gifts = "${userInfo.estGifts}", 
  wedding_area = "${userInfo.weddingArea}", 
  music_style = "${userInfo.venueRadius}"
-WHERE id="${userInfo.id}"`
+WHERE user_id="${userInfo.id}"`
 		)
 	} catch (err) {
 		console.log(err)

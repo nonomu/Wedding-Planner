@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    position: "fixed",
+    width:"100vw",
+    zIndex:0
   }
 });
 
@@ -20,7 +23,7 @@ export default function CenteredTabs() {
   };
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} >
       <Tabs
         value={value}
         onChange={handleChange}
