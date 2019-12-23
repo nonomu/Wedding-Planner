@@ -14,6 +14,7 @@ import SwipeableTemporaryDrawer from './components/navbars/SwipeableDrawer'
 import { Paper, Dialog, Grid } from '@material-ui/core'
 import Login from './components/Users_components/Login'
 import Register from './components/Users_components/Register'
+import ManageSeats from './components/ManageSeats/ManageSeats'
 
 
 @inject('attractions')
@@ -46,6 +47,7 @@ class App extends Component {
 					<Route exact path='/overview' component={Overview} />
 					<Route exact path='/login' component={Login} />
 					<Route exact path='/register' component={Register} />
+					<Route exact path='/manage_seats' component={ManageSeats} />
 
 					<Route
 						exact

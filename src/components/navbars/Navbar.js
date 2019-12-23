@@ -36,7 +36,8 @@ export default function CenteredTabs() {
           { name: "Home", link: "/" },
           { name: "Profile", link: "/profile" },
           { name: "Favorites", link: "/favorites" },
-          { name: "Overview", link: "/overview" }
+          { name: "Overview", link: "/overview" },
+          { name: "Manage Seats", link: "/manage_seats" }
         ].map(t => (
           <Tab key={t.name} label={t.name} component={Link} to={t.link} />
         ))}
