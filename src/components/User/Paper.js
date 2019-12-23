@@ -5,7 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from "@material-ui/core/CardMedia";
 import './paper.css'
 import PhoneIcon from '@material-ui/icons/Phone';
-import EmailIcon from '@material-ui/icons/Email';
+import AlternateEmailSharpIcon from '@material-ui/icons/AlternateEmailSharp';
+import PaymentSharpIcon from '@material-ui/icons/PaymentSharp';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,19 +21,24 @@ export default function PaperSheet(props) {
   return ( 
     <div className="bookedAttraction">
     <Paper id="Paper"className={classes.root}>
+    <Typography variant="h4" component="h3">
+         Your {props.attr.category} <br/>
+         <i>{props.attr.attr_name}</i>
+      </Typography>
                 <CardMedia id="cardMedia"
           className={classes.media}
           image={props.attr.image}
-          title="Contemplative Reptile"
+          title={props.attr.attr_name}
           />
-      <Typography variant="h4" component="h3">
-         Your {props.attr.category}: {props.attr.attr_name}
+
+      <Typography component="p">
+      <br/> 
+      <PhoneIcon /> <strong>{props.attr.contact_name}</strong>: 
+      {props.attr.contact_phone}, <br/> 
+      <AlternateEmailSharpIcon /> {props.attr.contact_email}
       </Typography>
       <Typography component="p">
-      <strong>{props.attr.contact_name}</strong>:  <PhoneIcon /> {props.attr.contact_phone}, <EmailIcon /> {props.attr.contact_email}
-      </Typography>
-      <Typography component="p">
-        Price: {props.attr.price}₪
+      <PaymentSharpIcon /> Price: {props.attr.price}₪ 
       </Typography>
       <Typography component="p">
         Please Notice: {props.attr.small_prints}

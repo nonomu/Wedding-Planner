@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import Attraction from "../Attractions/Attraction";
-import {ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import './favorites.css'
 @inject("user", "attractions")
 
@@ -32,8 +32,8 @@ class Favorites extends Component {
         </div>
         
 
-        )
-    }
+    )
+  }
 }
 
 
