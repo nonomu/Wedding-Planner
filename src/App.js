@@ -12,7 +12,9 @@ import AttractionInfo from './components/Attractions/AttractionInfo'
 import { Paper, Dialog, Grid } from '@material-ui/core'
 import Login from './components/Users_components/Login'
 import Register from './components/Users_components/Register'
+import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
+
 
 @inject('attractions')
 @observer
@@ -41,6 +43,7 @@ class App extends Component {
 					<Route exact path='/overview' component={Overview} />
 					<Route exact path='/login' component={Login} />
 					<Route exact path='/register' component={Register} />
+					<Route exact path='/manage_seats' component={ManageSeats} />
 
 					<Route exact path='/vendors' render={() => <Redirect to='/vendors/Venue'/>} />
 					<Route
