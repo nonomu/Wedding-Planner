@@ -39,5 +39,4 @@ class Attraction extends Component {
     }
 }
 
-
 export default Attraction
