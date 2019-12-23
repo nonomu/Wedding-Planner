@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./manage_seats.css";
+import { inject, observer } from 'mobx-react';
 
+
+@inject('manage_seats','user')
+
+@observer
 class AddInvitee extends Component {
     constructor(){
         super()
@@ -22,6 +27,7 @@ class AddInvitee extends Component {
 
     AddInvitee = () => {
         //send invitees to DB
+        this.props.manage_seats.addInvitee(this.state,this.props.user.userInfo.id)
     }
 render() {
     return (

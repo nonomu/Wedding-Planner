@@ -16,11 +16,12 @@ import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
 
 
-@inject('attractions')
+@inject('attractions','manage_seats')
 @observer
 class App extends Component {
 	componentDidMount() {
 		this.props.attractions.getAttractions()
+		this.props.manage_seats.getInvitees()
   }
   
   closeDialog = () => {
