@@ -18,15 +18,20 @@ class Favorites extends Component {
         let categories = this.props.attractions.categories
     
         return (
-        <div>
+        <div className="favorites"> 
             <h1 className="attraction-title">Favorites</h1>
-            <div className="attractions">
-            {categories.map((c, i) => userFavorites
-                .map(uf => uf.category === c ? <Attraction attr={uf} key={uf.name} /> : null))
+            {categories.map((c, i) => {return (
+                 (userFavorites.some(u => u.category===c)) ? 
+                  (<div className="favorites"><h2>{c}</h2><div className="favoritesCategory"> 
+                  {userFavorites.map(uf => uf.category === c ? <Attraction category={c} attr={uf} key={uf.name}/>: null)}
+                  </div></div>):null
+             
+                )})
             }
         </div>
         <ToastContainer position='bottom-left' />
         </div>
+
         )
     }
 }

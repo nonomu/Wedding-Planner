@@ -19,7 +19,7 @@ router.get('/wedding-details/:userId', async (req, res) => {
 	try {
 		let userId = req.params.userId
 		let weddingDetails = await db.query(
-			`SELECT wd.* FROM user as u, weddingDetails AS wd WHERE u.id = "${userId}" AND u.wedding_details = wd.id`
+			`SELECT wd.* FROM user as u, weddingDetails AS wd WHERE u.id = "${userId}" AND u.id = wd.user_id`
 		)
 		res.send(weddingDetails[0][0])
 	} catch (err) {
@@ -92,7 +92,6 @@ router.post('/attractions/book', async function (req, res) {
 })
 router.put('/update/UserInfo', async function (req, res) {
 	let userInfo = req.body
-	console.log(userInfo)
 	try {
 		await db.query(
 			`UPDATE weddingdetails
@@ -105,7 +104,7 @@ SET  groom_name = "${userInfo.groomName}",
  est_cash_gifts = "${userInfo.estGifts}", 
  wedding_area = "${userInfo.weddingArea}", 
  music_style = "${userInfo.venueRadius}"
-WHERE id="${userInfo.id}"`
+WHERE user_id="${userInfo.id}"`
 		)
 		res.send('You updated your info successfully!')
 	} catch (err) {

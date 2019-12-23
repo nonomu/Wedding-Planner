@@ -23,12 +23,19 @@ class Attraction extends Component {
         this.props.user.getBookedAttractions()
     }
     render() {
+
         let bookedAttractions=this.props.user.bookedAttractions
         let isBooked=bookedAttractions.some(f => f.category === this.props.attr.category)
         let favorites=this.props.user._userFavorites
         let bool=favorites.some(f => f.id === this.props.attr.id)
         let attraction = this.props.attr
-        return ({attraction}?<AttractionCard isBookedCategory={isBooked?this.props.attr.category:"null"} bool={bool} attraction={attraction}removeFavorite={this.removeFavorite} addToFavorites={this.addToFavorites} changeFavoriteState={this.changeFavoriteState}/>:"")
+        return (
+            <div>
+            {{attraction}?<AttractionCard isBookedCategory={isBooked?this.props.attr.category:"null"}
+             bool={bool} attraction={attraction}removeFavorite={this.removeFavorite} 
+             addToFavorites={this.addToFavorites} changeFavoriteState={this.changeFavoriteState}/>:""}
+            </div>
+        )
     }
 }
 

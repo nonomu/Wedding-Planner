@@ -1,5 +1,5 @@
 
-import { observable, action } from 'mobx'
+import { observable, action ,computed} from 'mobx'
 import Axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
@@ -102,6 +102,11 @@ class User {
     }
   };
   @action register = () => {};
+
+  @computed get favoritesCategories(){
+    return [...new Set(this._userFavorites.map(a => a.category))]
+}
+
 }
 
 export const user = new User();
