@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import Attraction from "../Attractions/Attraction";
+import {ToastContainer} from 'react-toastify'
 import './favorites.css'
 @inject("user", "attractions")
 
@@ -24,6 +25,7 @@ class Favorites extends Component {
                 .map(uf => uf.category === c ? <Attraction attr={uf} key={uf.name} /> : null))
             }
         </div>
+        <ToastContainer position='bottom-left' />
         </div>
         )
     }
