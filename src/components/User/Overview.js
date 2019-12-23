@@ -19,7 +19,7 @@ class Overview extends Component {
     let bookedAttractions = this.props.user.bookedAttractions;
     let totalPrice = bookedAttractions.reduce((a, b) => a + b.price, 0)
     let weddingDetailes = this.props.user.userInfo.weddingData ? this.props.user.userInfo.weddingData : ""
-    return <div>
+    return <div className='overview-container'>
       <div className="budget">
         <Card style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
           <List>
@@ -50,7 +50,9 @@ class Overview extends Component {
           </List>
         </Card>
       </div>
+      <div className='papers'>
       {bookedAttractions.map(ba => <Paper key={ba.id} attr={ba} />)}
+      </div>
     </div>
   }
 }
