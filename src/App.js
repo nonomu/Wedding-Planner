@@ -30,6 +30,11 @@ class App extends Component {
   openDialog = () => {
     this.props.attractions.openDialog()
   }
+  
+  logout() {
+	sessionStorage.clear()
+	return <Redirect to='/' /> 
+  }
 
 	render() {
 		return (
@@ -42,7 +47,7 @@ class App extends Component {
 					<Route exact path='/favorites' component={Favorites} />
 					<Route exact path='/overview' component={Overview} />
 					<Route exact path='/login' component={Login} />
-					<Route exact path='/logout'><Redirect to='/'/></Route>
+					<Route exact path='/logout' render={this.logout} />
 					<Route exact path='/register' component={Register} />
 					<Route exact path='/manage_seats' component={ManageSeats} />
 
