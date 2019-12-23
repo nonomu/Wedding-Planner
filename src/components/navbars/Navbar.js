@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     flexGrow: 1,
     position: "fixed",
     width:"100vw",
-    zIndex:0
+    zIndex: 1,
   }
 });
 
@@ -34,9 +34,11 @@ export default function CenteredTabs() {
       >
         {[
           { name: "Home", link: "/" },
+          { name: "Vendors", link: "/vendors" },
           { name: "Profile", link: "/profile" },
           { name: "Favorites", link: "/favorites" },
-          { name: "Overview", link: "/overview" }
+          { name: "Overview", link: "/overview" },
+          { name: "Manage Seats", link: "/manage_seats" }
         ].map(t => (
           <Tab key={t.name} label={t.name} component={Link} to={t.link} />
         ))}

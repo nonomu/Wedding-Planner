@@ -39,7 +39,7 @@ class Attractions {
     @action getAttractionData(category, id) {
         return this._attractions.find(a => a.category === category && a.id === parseInt(id))
     }
-g
+
 }
 
 export const attractions = new Attractions()

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
+import {toast as popup} from 'react-toastify'
 import AttractionCard from './Card';
 
 @inject("attractions", "user")
@@ -7,10 +8,12 @@ import AttractionCard from './Card';
 @observer
 class Attraction extends Component {
     removeFavorite = async ()  =>{
-      await this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attr.id)
+      let remove = await this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attr.id)
+      popup.success(remove)
     }
     addToFavorites = async () => {
-        await this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
+        let add = await this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
+        popup.success(add)
     }
 
     isFavorite = () =>{
@@ -35,6 +38,5 @@ class Attraction extends Component {
         )
     }
 }
-
 
 export default Attraction

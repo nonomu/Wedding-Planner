@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Attraction from './Attraction'
 import { observer, inject } from 'mobx-react'
+import { ToastContainer } from 'react-toastify'
 import './attractions.css'
 @inject('attractions', 'user')
 @observer
@@ -9,6 +10,7 @@ class Attractions extends Component {
 		this.props.attractions.getAttractions()
 		this.props.user.getUserFavorites()
 		this.props.attractions.category = this.props.category
+		console.log(this.props.user.userInfo.id)
 	}
 	componentDidUpdate() {
 		this.props.attractions.category = this.props.category
@@ -25,6 +27,7 @@ class Attractions extends Component {
 						<Attraction name="attractions"favorites={favorites}key={a.id} attr={a} />
 					))}
 				</div>
+				<ToastContainer position='bottom-left' />
 			</div>
 		)
 	}

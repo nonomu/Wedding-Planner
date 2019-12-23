@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import brideAndGroom from './brideAndGroom.png'
 import './profile.css'
+import {ToastContainer, toast as popup} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 @inject('user')
 @observer
@@ -39,15 +41,18 @@ class Profile extends Component {
   handleInputs = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
-  updateUserInfo = () => {
-    this.props.user.updateUserInfo(this.state)
+  updateUserInfo = async () => {
+  try {
+    let update = await this.props.user.updateUserInfo(this.state)
+    popup.success(update)
+  }
+    catch(err) {
+      popup.error(err.message)
+    }
   }
   render() {
     return (
       <div id="profile-container">
-        <div className="sidePic">
-          <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
-        </div>
         <div className="sideForm">
           <h1>User Profile</h1>
           <p>
@@ -55,12 +60,14 @@ class Profile extends Component {
             can help you to plan your wedding easily.
         </p>
           <hr />
+          <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
+
           <h3>Personal Details:</h3>
           <span>
-            <TextField name="groomName" label="Groom" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+            <TextField name="brideName" label="Bride" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
           </span>
           <span>
-            <TextField name="brideName" label="Bride" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+            <TextField name="groomName" label="Groom" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
           </span>
           <h3>Wedding Details:</h3>
           <div>
@@ -71,7 +78,6 @@ class Profile extends Component {
             <TextField name="estInvitees" label="Estimated Invitees" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
             <br></br><br></br>
             <TextField name="estBudget" id="estBudget" label="Estimated Budget" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
-            {/* <TextField id="estGifts" label="" variant="outlined" value={this.state.estGifts} type="number" placeholder="Estimated Gifts" onChange={this.handleInputs} /> */}
           </div>
           <div>
             <Autocomplete value={this.state.weddingArea} name="weddingArea" id="autoCompleteField"
@@ -88,6 +94,7 @@ class Profile extends Component {
           </div>
           <Button variant="contained" color="secondary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
         </div>
+        <ToastContainer position='bottom-left' />
       </div>
     );
   }

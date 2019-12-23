@@ -1,31 +1,48 @@
 
 import { observable, action ,computed} from 'mobx'
 import Axios from 'axios'
+import { inject } from "mobx-react";
 let API_URL = `http://localhost:4200/api`
 
 
 class User {
-  @observable userInfo = { id: 1 };
+  @observable userInfo = { id: sessionStorage.getItem("id") };
   @observable _userFavorites = [];
- @observable bookedAttractions = [];
+  @observable bookedAttractions = [];
+  @observable userLogedIn=false
+ 
 
+  @action userRegister = async (userData) =>{
+    try {
+      let user = await Axios.post(`${API_URL}/register`, {userData})
+      this.userInfo.id=user.data[0]
+      this.userLogedIn=true
+  } catch (err) {
+      console.log(err.message)
+  }
+  }
 
-    @action login = async (email, password) => {
+    @action userLogin = async (email, password) => {
         try {
             let user = await Axios.post(`${API_URL}/login`, { email, password })
-            this.getUserInfo(user.data.id)
+            this.userInfo.id= user.data.id
+            sessionStorage.setItem("id", user.data.id);
+            sessionStorage.setItem("loggedIn", true);
+            this.userLogedIn=!this.userLogedIn
+            console.log(this.userLogedIn)
         } catch (err) {
-            console.log(err)
+            console.log(err.message)
         }
     }
     @action updateUserInfo = async(profile)=>
     {
         profile.id=this.userInfo.id
         try {
-            await Axios.put(`${API_URL}/update/UserInfo`, profile)
-            
+            let update = await Axios.put(`${API_URL}/update/UserInfo`, profile)
+            return update.data
         } catch (err) {
-            console.log(err)
+          console.log(err)
+          return err.message
         }
     }
 
@@ -54,10 +71,11 @@ class User {
   };
   @action removeFavorite = async (userId, attractionId) => {
     try {
-      await Axios.delete(`${API_URL}/favorite/`, {
+      let remove = await Axios.delete(`${API_URL}/favorite/`, {
         data: { userId, attractionId }
       });
       await this.getUserFavorites()
+      return remove.data
     } catch (err) {
       console.log(err);
     }
@@ -66,14 +84,14 @@ class User {
 
   @action addToFavorites = async (userId, attractionId) => {
     try {
-      await Axios.post(`${API_URL}/attractions/favorite`, {
+      let add = await Axios.post(`${API_URL}/attractions/favorite`, {
         userId,
         attractionId
       });
-     await this.getUserFavorites()
+     await this.getUserFavorites() 
+     return add.data
     } catch (err) {
-      console.log(err);
-
+      return err
     }
   };
   @action bookAttraction = async (userId, attractionId, price) => {
@@ -99,7 +117,6 @@ class User {
       console.log(err);
     }
   };
-  @action register = () => {};
 
   @computed get favoritesCategories(){
     return [...new Set(this._userFavorites.map(a => a.category))]
