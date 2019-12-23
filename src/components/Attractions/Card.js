@@ -30,7 +30,7 @@ export default function AttractionCard(props) {
         <CardMedia
           className={classes.media}
           image={attraction.image}
-          title="Contemplative Reptile"
+          title={classes.media}
           component={Link} to={`/attractionInfo/${attraction.id}`}
         />
         <CardContent>

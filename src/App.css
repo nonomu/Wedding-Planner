@@ -1,6 +1,7 @@
 .App {
   height: 100vh;
   font-family: 'Raleway', sans-serif;
+  /* display: grid; */
 }
 
 a {
@@ -43,64 +44,67 @@ a {
   color: #09d3ac;
 }
 
-#navbar{
+#navbar {
   width: 100%;
   height: 100px;
   background-color: #d6d6d6;
   position: relative;
-  top:0;
+  top: 0;
 }
 
-
-#sideNav{
+#sideNav {
   text-align: start;
   /* left:0 */
 }
 
-input{
+input {
   height: 30px;
-  width:200px;
+  width: 200px;
   border: 1px solid rgb(116, 116, 116);
   border-radius: 10px;
   margin: 8px 30px;
 }
 
-select{
+select {
   height: 30px;
-  width:200px;
+  width: 200px;
   border: 1px solid rgb(116, 116, 116);
   border-radius: 10px;
   margin: 8px 30px;
 }
 
-.smallIMG{
+.smallIMG {
   width: 200px;
   height: 200px;
 }
-.bookedAttraction{
+
+.bookedAttraction {
   border: 1px solid black;
   border-radius: 10px;
 }
 
 /* Yanivs needs to refactor ! */
-#Paper{
-  width:1000px;
+
+#Paper {
+  width: 1000px;
   margin: 50px auto;
   text-align: center;
-  }
-  #cardMedia{
-    margin: 20px auto;
-  }
+}
 
+#cardMedia {
+  margin: 20px auto;
+}
 
-  #welcomeIMG{
-    justify-items: center;
-    align-items: center;
-    display: grid;
-    
-  }
-  #welcomeTemp{
-    display: grid;
-    width: 63vw;
-    height: auto;
-  }
+#welcomeIMG {
+  justify-items: center;
+  align-items: center;
+  /* grid-area: main */
+}
+
+#welcomeTemp {
+  display: grid;
+  width: 63vw;
+  height: auto;
+  /* grid-area: main */
+}
+

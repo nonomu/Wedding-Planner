@@ -53,9 +53,6 @@ class Profile extends Component {
   render() {
     return (
       <div id="profile-container">
-        <div className="sidePic">
-          <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
-        </div>
         <div className="sideForm">
           <h1>User Profile</h1>
           <p>
@@ -63,12 +60,14 @@ class Profile extends Component {
             can help you to plan your wedding easily.
         </p>
           <hr />
+          <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
+
           <h3>Personal Details:</h3>
           <span>
-            <TextField name="groomName" label="Groom" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+            <TextField name="brideName" label="Bride" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
           </span>
           <span>
-            <TextField name="brideName" label="Bride" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+            <TextField name="groomName" label="Groom" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
           </span>
           <h3>Wedding Details:</h3>
           <div>
