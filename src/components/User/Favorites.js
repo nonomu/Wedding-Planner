@@ -28,9 +28,9 @@ class Favorites extends Component {
              
                 )})
             }
-        </div>
         <ToastContainer position='bottom-left' />
         </div>
+        
 
         )
     }

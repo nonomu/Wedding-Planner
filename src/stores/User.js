@@ -1,6 +1,7 @@
 
 import { observable, action ,computed} from 'mobx'
 import Axios from 'axios'
+import { inject } from "mobx-react";
 let API_URL = `http://localhost:4200/api`
 
 
@@ -8,9 +9,16 @@ class User {
   @observable userInfo = { id: 1 };
   @observable _userFavorites = [];
  @observable bookedAttractions = [];
+ 
 
+  @action userRegister = async (userData) =>{
+    console.log(userData)
+    //you get all the object from the register component.
+  }
 
-    @action login = async (email, password) => {
+    @action userLogin = async (email, password) => {
+      console.log(email)
+      console.log(password)
         try {
             let user = await Axios.post(`${API_URL}/login`, { email, password })
             this.getUserInfo(user.data.id)

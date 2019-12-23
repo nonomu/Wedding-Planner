@@ -12,6 +12,8 @@ import BookAttraction from './components/Attractions/BookAttraction'
 import AttractionInfo from './components/Attractions/AttractionInfo'
 import SwipeableTemporaryDrawer from './components/navbars/SwipeableDrawer'
 import { Paper, Dialog, Grid } from '@material-ui/core'
+import Login from './components/Users_components/Login'
+import Register from './components/Users_components/Register'
 
 
 @inject('attractions')
@@ -42,6 +44,8 @@ class App extends Component {
 					<Route exact path='/profile' component={Profile} />
 					<Route exact path='/favorites' component={Favorites} />
 					<Route exact path='/overview' component={Overview} />
+					<Route exact path='/login' component={Login} />
+					<Route exact path='/register' component={Register} />
 
 					<Route
 						exact
