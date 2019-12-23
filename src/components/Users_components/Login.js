@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./usercomp.css";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
+import {Link, Redirect } from 'react-router-dom'
+
 
 
 @inject('user')
+@observer
 class Login extends Component {
   constructor() {
     super();
@@ -24,6 +27,7 @@ this.setState({[e.target.name]:e.target.value})
   }
 
   render() {
+    // console.log(this.props.user.userLogedIn)
     return (
       <div className="box_bg">
         <div className="user_box">
@@ -51,6 +55,7 @@ this.setState({[e.target.name]:e.target.value})
             <Button variant="contained" color="primary" onClick={this.userLogin}>
               LOGIN
             </Button>
+            {this.props.user.userLogedIn ? <Redirect to="/" />:null}
           </div>
         </div>
       </div>

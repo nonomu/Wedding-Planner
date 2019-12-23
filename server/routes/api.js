@@ -115,13 +115,16 @@ WHERE user_id="${userInfo.id}"`
 
 router.post('/register', async function (req, res) {
 	try {
-		let user = req.body
-		await db.query(
-			`INSERT INTO user VALUES(null, "${user.email}", "${user.password})`
-		)
+		let user = req.body.userData
+		let userCheck= await db.query(`SELECT * FROM  user WHERE email = "${user.email}"`)
+		if(userCheck[0].length>0)
+		throw new Error("User already exist")
+		let newUser= await db.query(`INSERT INTO user VALUES(null,'${user.email}','${user.fPassword}')`)
+		let weddingdetails=await db.query(`INSERT INTO weddingdetails VALUES(null, '${user.gName}','${user.bName}','${user.weddingDate}','${user.estInvitees}','${user.weddingBudget}',null,'${user.weddingArea}',null,'${newUser[0]}')`)
+		res.send(newUser)
 	} catch (err) {
 		console.log(err)
-		res.send(err)
+		res.status(400).json({ message: err.message})
 	}
 })
 
@@ -131,10 +134,12 @@ router.post('/login', async function (req, res) {
 		let result = await db.query(
 			`SELECT * FROM user WHERE email = "${user.email}" AND password = "${user.password}"`
 		)
+		if(result[0].length===0)
+		throw new Error("User/Password isn't correct")
 		let userId = result[0][0].id
 		res.send({ id: userId })
 	} catch (err) {
-		res.send(err)
+		res.status(400).json({ message: err.message})
 	}
 })
 
