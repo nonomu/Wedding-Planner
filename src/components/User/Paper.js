@@ -34,14 +34,14 @@ export default function PaperSheet(props) {
       />
       <div id='detail-box'>
         <div id="col1" >
-          <Typography component="p">
+          <Typography id="col1" component="p">
             <PhoneIcon /> <strong>{props.attr.contact_name}</strong>:
-      {props.attr.contact_phone}, <br />
+      {props.attr.contact_phone},     <br />
             <AlternateEmailSharpIcon /> {props.attr.contact_email}
           </Typography>
         </div>
         <div id="col2">
-          <Typography id="col2" component="p">
+          <Typography component="p">
             <PaymentSharpIcon /> Price: {props.attr.price}₪
       </Typography>
           <Typography component="p">
