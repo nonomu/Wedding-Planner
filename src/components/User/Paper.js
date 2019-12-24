@@ -11,37 +11,44 @@ import PaymentSharpIcon from '@material-ui/icons/PaymentSharp';
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(2, 1),
-  },  media: {
+  }, media: {
     height: "30vh",
     width: "60%"
   }
 }));
 export default function PaperSheet(props) {
   const classes = useStyles();
-  return ( 
-    <Paper className="bookedAttraction"id="Paper"className={classes.root}>
-    <Typography variant="h4" component="h3">
-         Your {props.attr.category} <br/>
-         <i>{props.attr.attr_name}</i>
+  return (
+    <Paper className="bookedAttraction"
+      id="Paper"
+      className={classes.root}
+      style={{ backgroundImage: "rgba(255, 255, 255, 0.3)" }}>
+      <Typography variant="h4" component="h3">
+        Your {props.attr.category} <br />
+        <i>{props.attr.attr_name}</i>
       </Typography>
-                <CardMedia id="cardMedia"
-          className={classes.media}
-          image={props.attr.image}
-          title={props.attr.attr_name}
-          />
-
-      <Typography component="p">
-      <br/> 
-      <PhoneIcon /> <strong>{props.attr.contact_name}</strong>: 
-      {props.attr.contact_phone}, <br/> 
-      <AlternateEmailSharpIcon /> {props.attr.contact_email}
+      <CardMedia id="cardMedia"
+        className={classes.media}
+        image={props.attr.image}
+        title={props.attr.attr_name}
+      />
+      <div id='detail-box'>
+        <div id="col1" >
+          <Typography component="p">
+            <PhoneIcon /> <strong>{props.attr.contact_name}</strong>:
+      {props.attr.contact_phone}, <br />
+            <AlternateEmailSharpIcon /> {props.attr.contact_email}
+          </Typography>
+        </div>
+        <div id="col2">
+          <Typography id="col2" component="p">
+            <PaymentSharpIcon /> Price: {props.attr.price}₪
       </Typography>
-      <Typography component="p">
-      <PaymentSharpIcon /> Price: {props.attr.price}₪ 
-      </Typography>
-      <Typography component="p">
-        Please Notice: {props.attr.small_prints}
-      </Typography>
+          <Typography component="p">
+            Please Notice: {props.attr.small_prints}
+          </Typography>
+        </div>
+      </div>
     </Paper>
-   );
+  );
 }
