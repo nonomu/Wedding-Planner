@@ -64,9 +64,9 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className='App'>
 				<Router>
 					<div id="background"></div>
+					<div className='App'>
 					<Navbar tabs={this.state.loggedin? this.state.loggedTabs : this.state.guestsTabs}/>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/profile' component={Profile} />
@@ -76,7 +76,6 @@ class App extends Component {
 					<Route exact path='/logout' render={this.logout} />
 					<Route exact path='/register' component={Register} />
 					<Route exact path='/manage_seats' component={ManageSeats} />
-
 					<Route exact path='/vendors' render={() => <Redirect to='/vendors/Venue'/>} />
 					<Route
 						exact
@@ -97,7 +96,7 @@ class App extends Component {
 								id={match.params.id}
 							/>
               </Dialog>
-              </Grid>
+                </Grid>
 						)}
 					/>
 					<Route
@@ -112,8 +111,8 @@ class App extends Component {
 							</Grid>
 						)}
 					/>
+				</div>
 				</Router>
-			</div>
 		)
 	}
 }

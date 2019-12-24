@@ -1,14 +1,9 @@
-a {
-    text-decoration: none;
-    color: black;
-}
 
-button {
-    text-align: start;
-}
-/* .side-bar-button{ */
-    /* position: fixed;  */
-    /* z-index: 10000; */
-    /* float: left; */
-    /* size: 2000px; */
-/* } */
+.side-bar-button{
+    position: fixed; 
+    z-index: -1;
+    float: left;
+    size: 2000px;
+ } 
+
+

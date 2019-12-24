@@ -19,6 +19,7 @@ class Favorites extends Component {
     
         return (
         <div className="favorites"> 
+        
             <h1 className="attraction-title">Favorites</h1>
             {categories.map((c, i) => {return (
                  (userFavorites.some(u => u.category===c)) ? 

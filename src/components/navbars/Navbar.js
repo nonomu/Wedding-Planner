@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    position: "fixed",
     width: "100vw",
+    height: "6vh",
     zIndex: 1,
   }
 });

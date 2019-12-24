@@ -25,7 +25,6 @@
 .submit-price {
     justify-items: bottom;
 }
-
 @media only screen and (max-width: 600px) {
   .attractions {
     display: grid;
@@ -36,3 +35,19 @@
     margin: 20px 20px 20px 20px;
   }
 }
+#openMenu{
+  display: inline-block;
+}
+
+.openedGrid{
+  display: grid;
+  grid-template-columns: 1fr 7fr ;
+}
+.closedGrid{
+  display: grid;
+  grid-template-columns: 1fr ;
+}
+ .nono{
+  display: none;
+ }
+

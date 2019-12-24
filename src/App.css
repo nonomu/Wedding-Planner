@@ -1,5 +1,7 @@
 .App {
   height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 10fr;
   font-family: 'Raleway', sans-serif;
   /* display: grid; */
 }
@@ -9,9 +11,6 @@ a {
   color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-}
 
 #background {
   background-image: url('/background.jpg');
@@ -29,20 +28,8 @@ a {
   opacity: 0.3;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #09d3ac;
-}
+
 
 #navbar {
   width: 100%;
