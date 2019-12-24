@@ -23,7 +23,7 @@ class App extends Component {
 	{
 		super()
 		this.state={
-			loggedin: sessionStorage.getItem("id"),
+			loggedin: (sessionStorage.getItem("id")|| null),
 			loggedTabs:[
 				{ name: "Home", link: "/" },
 				{ name: "Vendors", link: "/vendors" },
@@ -40,13 +40,13 @@ class App extends Component {
 			  ]
 		}
 	}
-	async componentDidMount() {
-		await this.props.attractions.getAttractions()
-		await this.props.user.getWeddingDetails()
-		this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
-
-
-
+	 componentDidMount() {
+		 if(this.state.loggedin)
+		 {
+		 this.props.attractions.getAttractions()
+		 this.props.user.getWeddingDetails()
+		 }
+		// this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
   }
   
   closeDialog = () => {

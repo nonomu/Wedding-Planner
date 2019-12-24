@@ -1,7 +1,7 @@
 -- --CREATE DATABASE WeddingPlanner;
 USE weddingplanner;
 -- DROPPER
--- DROP TABLE booked_attractions,favorites,attractions,user,weddingDetails;
+-- DROP TABLE booked_attractions,favorites,attractions,invitee,user,weddingDetails;
 -- DROP TABLE invitee,tables;
 
 -- CREATE TABLE user(
@@ -46,7 +46,7 @@ USE weddingplanner;
 --     num_seats INT
 -- );
 
- INSERT INTO invitee VALUES(null,"Yaniv",2,700,"gFrien",'050-1111111',"yanicv@gmail.com",null,null);
+--  INSERT INTO invitee VALUES(null,"Yaniv",2,700,"gFrien",'050-1111111',"yanicv@gmail.com",null,null);
 -- CREATE TABLE invitee(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --     name varchar(20) NOT NULL,

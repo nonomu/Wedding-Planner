@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import AddInvitee from "./AddInvitee";
 
+
 class ManageSeats extends Component {
+  constructor()
+  {
+    super()
+  }
+  componentDidMount()
+  {
+      
+  }
   render() {
     return (
       <div id="manage_seats">
