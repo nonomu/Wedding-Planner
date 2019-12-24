@@ -25,6 +25,7 @@ class ManageSeats {
     this.getInvitees(weddingDataId)
     //needs to send weddingDATA ID of the user instead of USERID, Where is it ???
   }
+  
 
   @action async getInvitees(weddingDetailsId){ 
     try{
