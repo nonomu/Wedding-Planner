@@ -6,7 +6,7 @@ class ManageSeats {
 @observable invitees = []
 
   @action async addInvitee(inviteeData, weddingDataId) {
-    let invitee = await Axios.post(`${API_URL}/addinvitee`, { inviteeData, weddingDataId })
+    let invitee = await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
     console.log(invitee)
     this.getInvitees()
     //needs to send weddingDATA ID of the user instead of USERID, Where is it ???
@@ -14,10 +14,10 @@ class ManageSeats {
   
   @action async getInvitees(weddingDetailsId){ 
     try{
-      let invitees = await Axios.get(`${API_URL}/getinvitees/${weddingDetailsId}`)
+      let invitees = await Axios.get(`${API_URL}/invitees/${weddingDetailsId}`)
       this.invitees = invitees.data[0]
     }catch(err){
-      console.log("ERR " + err)
+      console.log(err.message)
     }
   }
 }
