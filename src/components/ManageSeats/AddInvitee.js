@@ -20,7 +20,9 @@ class AddInvitee extends Component {
             email:""
         }
     }
-
+    componentDidMount(){
+      this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
+    }
 
     handleInputs = (e) =>{
         this.setState({[e.target.name]:e.target.value})
@@ -80,7 +82,7 @@ render() {
             />
               </span>
           <div>
-          <Button variant="contained" color="primary" onClick={this.AddInvitee}>
+          <Button id='inv-btn' variant="contained" color="primary" onClick={this.AddInvitee}>
               Add Invitee
             </Button>
           </div>
