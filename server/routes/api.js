@@ -170,7 +170,7 @@ router.post('/invitee', async function (req, res) {
 router.get('/invitees/:weddingDetailsId',async function(req,res){
 	try{
 		let weddingDetailsId = req.params.weddingDetailsId
-		let invitees = await db.query(`SELECT * FROM invitee WHERE wedding_id ='${weddingDetailsId}'`)
+		let invitees = await db.query(`SELECT * FROM invitee WHERE wedding_id = ${weddingDetailsId}`)
 		res.send(invitees)
 	} catch(err){
 		res.status(400).json({message:err.message})
