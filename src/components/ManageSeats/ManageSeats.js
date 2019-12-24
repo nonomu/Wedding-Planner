@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import { observer, inject } from 'mobx-react'
 import AddInvitee from "./AddInvitee";
+import InviteesSideBar from "./invitees_side_bar";
 
+@inject('manage_seats')
+
+@observer
 class ManageSeats extends Component {
   render() {
     return (
@@ -10,6 +15,7 @@ class ManageSeats extends Component {
           <br/>
           INVITEES <br/> <br/>
           here the invitees will be displayed, need to decide if it will be a menu or just a box.
+        <InviteesSideBar />
 
         </div>
       </div>
