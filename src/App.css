@@ -1,17 +1,20 @@
 .App {
   height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 10fr;
   font-family: 'Raleway', sans-serif;
+  
   /* display: grid; */
 }
-
+body{
+  overflow: auto;
+  
+}
 a {
   text-decoration: none;
   color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-}
 
 #background {
   background-image: url('/background.jpg');
@@ -20,7 +23,7 @@ a {
   background-repeat: repeat-y;
   background-position: center;
   background-attachment: fixed;
-  top: 0;
+  top: 6vh;
   left: 0;
   bottom: 0;
   right: 0;
@@ -29,20 +32,8 @@ a {
   opacity: 0.3;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #09d3ac;
-}
+
 
 #navbar {
   width: 100%;
@@ -96,15 +87,62 @@ select {
 }
 
 #welcomeIMG {
+  position: relative;
   justify-items: center;
   align-items: center;
   /* grid-area: main */
 }
 
 #welcomeTemp {
-  display: grid;
-  width: 63vw;
-  height: auto;
-  /* grid-area: main */
+  max-width: 100%;
+  max-height: 100vh;
+  margin: auto;
+}
+/* scroll design */
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
 }
 
+/* Track */
+/* ::-webkit-scrollbar-track {
+  position: relative;
+  box-shadow: inset 1px 0 5px #993294;  
+  border-radius: 10px;
+} */
+ 
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+  background: rgb(50, 149, 207); 
+  border-radius: 30px;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #993294; 
+} */
+
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+	border-radius: 10px;
+	background-color: #444444;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #993294; 
+	background-image: -webkit-linear-gradient(90deg,
+											  transparent,
+											  rgba(0, 0, 0, 0.4) 50%,
+											  transparent,
+											  transparent)
+}

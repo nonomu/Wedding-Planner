@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./usercomp.css";
+import {toast as popup} from 'react-toastify'
 import { inject, observer } from "mobx-react";
-import { Redirect } from 'react-router-dom'
-
-
+import { Link } from "react-router-dom";
 
 @inject('user')
 @observer
@@ -22,12 +21,25 @@ class Login extends Component {
 this.setState({[e.target.name]:e.target.value})
   }
 
-  userLogin=()=>{
-    this.props.user.userLogin(this.state.email,this.state.password)
+  invalidInput = user => Object.keys(user).some(i => !user[i])
+
+  handleError = input => {
+		if (this.invalidInput(input)) {
+			throw new Error('All fields are required')
+		}
+	}
+
+  userLogin = async () => {
+    try {
+      this.handleError(this.state)
+      let login = await this.props.user.userLogin(this.state.email,this.state.password)
+      popup.success(login)
+    } catch(err) {
+      popup.error(err.message)
+    }
   }
 
   render() {
-    // console.log(this.props.user.userLogedIn)
     return (
       <div className="box_bg">
         <div className="user_box">
@@ -52,10 +64,11 @@ this.setState({[e.target.name]:e.target.value})
             />
           </div>
           <div>
+          <p>Don't have an account yet? <Link to="/register">Create one here!</Link></p>
             <Button variant="contained" color="primary" onClick={this.userLogin}>
               LOGIN
             </Button>
-            {this.props.user.userLogedIn ? window.location="/" :null}
+            {this.props.user.userLogedIn ? window.location="/" : null}
           </div>
         </div>
       </div>

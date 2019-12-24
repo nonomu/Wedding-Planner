@@ -8,23 +8,22 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    position: "fixed",
     width: "100vw",
-    zIndex: 1,
+    height: "auto",
+    zIndex: 20,
+    position: "fixed",
+    top: 0,
   }
 });
 
 export default function CenteredTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [loggedin, logIn] = React.useState((sessionStorage.getItem("id") ? sessionStorage.getItem("id") : 0))
 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(sessionStorage.getItem("id"))
-  console.log(props.tabs)
   return (
     <Paper className={classes.root} >
       <Tabs

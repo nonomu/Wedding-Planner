@@ -30,7 +30,7 @@ class Attraction extends Component {
         let bool=favorites.some(f => f.id === this.props.attr.id)
         let attraction = this.props.attr
         return (
-            <div>
+            <div className="attraction">
             {{attraction}?<AttractionCard isBookedCategory={isBooked?this.props.attr.category:"null"}
              bool={bool} attraction={attraction}removeFavorite={this.removeFavorite} 
              addToFavorites={this.addToFavorites} changeFavoriteState={this.changeFavoriteState}/>:""}

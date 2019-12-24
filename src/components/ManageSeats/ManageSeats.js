@@ -1,20 +1,15 @@
 import React, { Component } from "react";
+import { observer, inject } from 'mobx-react'
 import AddInvitee from "./AddInvitee";
-import { observer } from "mobx-react";
+import InviteesSideBar from "./invitees_side_bar";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
-
+@inject('manage_seats')
 
 @observer
-
 class ManageSeats extends Component {
-  constructor()
-  {
-    super()
-  }
-  componentDidMount()
-  {
-      
-  }
+
   render() {
     return (
       <div id="manage_seats">
@@ -23,8 +18,13 @@ class ManageSeats extends Component {
           <br/>
           <h2>INVITEES</h2> <br/> <br/>
           here the invitees will be displayed, need to decide if it will be a menu or just a box.
+        <InviteesSideBar />
 
         </div>
+
+        <Fab id="addIcon" color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>
       </div>
     );
   }
