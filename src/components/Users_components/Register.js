@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./usercomp.css";
+import {toast as popup} from 'react-toastify'
 import { inject } from "mobx-react";
-// import Home from "../Home";
-
 
 // import DateFnsUtils from "@date-io/date-fns";
 // import Grid from "@material-ui/core/Grid";
@@ -30,23 +28,32 @@ class Register extends Component {
       weddingBudget: 0,
       estInvitees: 0,
       weddingArea: "",
-      completed: false
     };
   }
 
   handleInputs = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  userRegister=async()=>{
+
+  invalidInput = user => Object.keys(user).some(i => !user[i])
+
+  handleError = input => {
+		if (this.invalidInput(input)) {
+			throw new Error('All fields are required')
+		}
+	}
+
+  userRegister = async () => {
     try{
-     await this.props.user.userRegister(this.state)
+      this.handleError(this.state)
+      let register = await this.props.user.userRegister(this.state)
+     popup.success(register)
     }
     catch(err){
-      console.log(err)
+      popup.error(err.message)
     }
   }
   render() {
-    console.log(this.props.user.userLogedIn)
     return (
       <div className="box_bg">
         <div className="user_box">
@@ -55,7 +62,6 @@ class Register extends Component {
           <div>
             <TextField
               name="email"
-              id="standard_basic"
               label="E-Mail"
               onChange={this.handleInputs}
             />
@@ -63,7 +69,6 @@ class Register extends Component {
           <div>
             <TextField
               name="fPassword"
-              id="standard-password-input"
               label="Password"
               type="password"
               onChange={this.handleInputs}
@@ -73,7 +78,6 @@ class Register extends Component {
             {" "}
             <TextField
               name="vPassword"
-              id="standard-password-input"
               label="Validate Password"
               type="password"
               onChange={this.handleInputs}
@@ -84,7 +88,6 @@ class Register extends Component {
           <div>
             <span id="TextField">
               <TextField
-                id="standard_basic"
                 name="gName"
                 label="Groom Full Name"
                 onChange={this.handleInputs}
@@ -92,7 +95,6 @@ class Register extends Component {
             </span>
             <span id="TextField">
               <TextField
-                id="standard_basic"
                 name="bName"
                 label="Bride Full Name"
                 onChange={this.handleInputs}
@@ -104,7 +106,6 @@ class Register extends Component {
               <TextField
                 type="date"
                 name="weddingDate"
-                id="standard_basic"
                 label="WeddingDate"
                 defaultValue={this.state.weddingDate}
                 onChange={this.handleInputs}
@@ -132,7 +133,6 @@ class Register extends Component {
           <div>
             <span id="TextField">
               <TextField
-                id="standard_number"
                 type="number"
                 name="weddingBudget"
                 label="Wedding Budget"
@@ -141,7 +141,6 @@ class Register extends Component {
             </span>
             <span id="TextField">
               <TextField
-                id="standard_number"
                 type="number"
                 name="estInvitees"
                 label="Estimated Invitees"
@@ -153,7 +152,6 @@ class Register extends Component {
             {/* Noam will make it autocomplete ?  */}
             <span id="TextField">
               <TextField
-                id="standard_basic"
                 name="weddingArea"
                 label="Wedding Area"
                 onChange={this.handleInputs}
@@ -164,7 +162,7 @@ class Register extends Component {
             <Button variant="contained" color="primary" onClick={this.userRegister}>
               Register
             </Button>
-            {this.props.user.userLogedIn ? <Redirect to="/" />:null}
+            {this.props.user.userLogedIn ? window.location="/" : null}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import brideAndGroom from './brideAndGroom.png'
 import './profile.css'
-import {ToastContainer, toast as popup} from 'react-toastify'
+import {toast as popup} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 @inject('user')
@@ -95,7 +95,6 @@ class Profile extends Component {
           </div>
           <Button variant="contained" color="secondary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
         </div>
-        <ToastContainer position='bottom-left' />
       </div>
     );
   }
