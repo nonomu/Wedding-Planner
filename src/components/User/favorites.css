@@ -10,13 +10,14 @@
     
 }
 .attraction-title{
-    margin-top: 30px;
+    margin-top: 70px;
 }
 .favorites{
     display: grid;
     justify-items: center;
     grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-    margin: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
     grid-gap: 25px;
     width: 100vw;
 }
