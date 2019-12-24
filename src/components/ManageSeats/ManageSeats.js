@@ -1,30 +1,15 @@
 import React, { Component } from "react";
 import { observer, inject } from 'mobx-react'
 import AddInvitee from "./AddInvitee";
-<<<<<<< HEAD
 import InviteesSideBar from "./invitees_side_bar";
-=======
-import { observer } from "mobx-react";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-
-
-
-@observer
->>>>>>> d13d24cabb4ba45e11ac150fb44029ca5308be58
 
 @inject('manage_seats')
 
 @observer
 class ManageSeats extends Component {
-  constructor()
-  {
-    super()
-  }
-  componentDidMount()
-  {
-      
-  }
+
   render() {
     return (
       <div id="manage_seats">
