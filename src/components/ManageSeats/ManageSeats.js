@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import AddInvitee from "./AddInvitee";
-import InviteesSideBar from "./invitees_side_bar";
 
 class ManageSeats extends Component {
   render() {

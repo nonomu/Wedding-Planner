@@ -128,6 +128,7 @@ router.post('/register', async function (req, res) {
 	}
 })
 
+
 router.post('/login', async function (req, res) {
 	try {
 		let user = req.body
@@ -152,6 +153,28 @@ router.delete('/favorite', async function (req, res) {
 		res.send(`succesfully removed`)
 	} catch (err) {
 		res.send(err)
+	}
+})
+
+router.post('/addinvitee', async function (req, res) {
+	try {
+		console.log(req.body.inviteeData)
+		let invitee = req.body.inviteeData
+		let newInvitee = await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
+		res.send(newInvitee)
+	} catch (err) {
+		console.log(err)
+		res.status(400).json({ message: err.message})
+	}
+})
+
+router.get('/getinvitees/:weddingDetailsId',async function(req,res){
+	try{
+		let weddingDetailsId = req.params.weddingDetailsId
+		let invitees = await db.query(`SELECT * FROM invitee WHERE wedding_id = ${weddingDetailsId}`)
+		res.send(invitees)
+	} catch(err){
+		res.status(400).json({message:err.message})
 	}
 })
 

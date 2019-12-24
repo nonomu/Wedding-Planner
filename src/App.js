@@ -16,12 +16,15 @@ import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
 
 
-@inject('attractions','manage_seats')
+@inject('attractions','manage_seats','user')
 @observer
 class App extends Component {
-	componentDidMount() {
-		this.props.attractions.getAttractions()
-		this.props.manage_seats.getInvitees()
+	async componentDidMount() {
+		await this.props.attractions.getAttractions()
+		await this.props.user.getWeddingDetails()
+		this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
+
+
   }
   
   closeDialog = () => {

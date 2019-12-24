@@ -21,13 +21,14 @@ class AddInvitee extends Component {
         }
     }
 
+
     handleInputs = (e) =>{
         this.setState({[e.target.name]:e.target.value})
     }
-
+    
     AddInvitee = () => {
         //send invitees to DB
-        this.props.manage_seats.addInvitee(this.state,this.props.user.userInfo.id)
+        this.props.manage_seats.addInvitee(this.state,this.props.user.userInfo.weddingData.id)
     }
 render() {
     return (
