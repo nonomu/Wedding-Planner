@@ -42,6 +42,7 @@ USE weddingplanner;
 
 -- CREATE TABLE tables(
 --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     table_name VARCHAR(40),
 --     table_number INT,
 --     num_seats INT
 -- );
