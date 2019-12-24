@@ -1,6 +1,6 @@
 #manage_seats{
-    /* display: flex; */
-    justify-content: center;
+    display: grid;
+    /* justify-content: center; */
     align-items: center;
     text-align: center;
 }
@@ -9,14 +9,16 @@
     margin: 0 20px;
 }
 
-#insert_invitees p{
+/* #insert_invitees p{
     width: 600px;
-}
+} THIS ROW DOES NOTHING*/
+
 hr{
-    margin-top: 30px;;
+    margin-bottom: 30px;
+    width: 95%;
 }
-#insert_invitees Button{
-margin-top: 40px;
+#insert_invitees{
+margin-top: 45px;
 }
 
 #check{
@@ -24,4 +26,8 @@ margin-top: 40px;
     height: 500px;
     background-color: rebeccapurple;
     align-self: baseline;
+}
+
+#inv-btn{
+    margin: 20px;
 }
