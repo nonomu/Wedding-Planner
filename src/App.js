@@ -9,6 +9,7 @@ import Favorites from './components/User/Favorites'
 import Overview from './components/User/Overview'
 import BookAttraction from './components/Attractions/BookAttraction'
 import AttractionInfo from './components/Attractions/AttractionInfo'
+import {ToastContainer} from 'react-toastify'
 import { Paper, Dialog, Grid } from '@material-ui/core'
 import Login from './components/Users_components/Login'
 import Register from './components/Users_components/Register'
@@ -43,7 +44,6 @@ class App extends Component {
 	async componentDidMount() {
 		await this.props.attractions.getAttractions()
 		await this.props.user.getWeddingDetails()
-		this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
 
 
 
@@ -112,6 +112,7 @@ class App extends Component {
 							</Grid>
 						)}
 					/>
+				<ToastContainer position='bottom-left' />
 				</Router>
 			</div>
 		)
