@@ -14,6 +14,7 @@ import Login from "./components/Users_components/Login";
 import Register from "./components/Users_components/Register";
 import ManageSeats from "./components/ManageSeats/ManageSeats";
 import ClippedDrawer from "./components/Attractions/ClippedDrawer";
+import AddTable from "./components/ManageSeats/AddTable";
 
 @inject("attractions", "manage_seats", "user")
 @observer
@@ -76,6 +77,7 @@ class App extends Component {
           <Route exact path="/logout" render={this.logout} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/manage_seats" component={ManageSeats} />
+		  <Route exact path="/addTable" component={AddTable} />
 
           <Route
             exact

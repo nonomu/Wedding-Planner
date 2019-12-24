@@ -5,6 +5,27 @@
     text-align: center;
 }
 
+.box_bg{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user_box{
+    background-color: #fff;
+    width: 500px;
+    /* height: 300px; */
+    border-radius: 10px;
+    padding: 20px;
+text-align: center;
+}
+
+.user_box Button{
+    margin-top: 30px;
+}
+
 #TextField{
     margin: 0 20px;
 }
@@ -24,4 +45,9 @@ margin-top: 40px;
     height: 500px;
     background-color: rebeccapurple;
     align-self: baseline;
+}
+#addIcon{
+position: absolute;
+right: 40px;
+bottom: 40px;
 }
