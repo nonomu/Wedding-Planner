@@ -60,7 +60,6 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className='App'>
 				<Router>
 					<div id='background'></div>
 					<Navbar
@@ -79,7 +78,6 @@ class App extends Component {
 					<Route exact path='/register' component={Register} />
 					<Route exact path='/manage_seats' component={ManageSeats} />
 					<Route exact path='/addTable' component={AddTable} />
-
 					<Route
 						exact
 						path='/vendors'
@@ -134,7 +132,6 @@ class App extends Component {
 					/>
 					<ToastContainer position='bottom-left' />
 				</Router>
-			</div>
 		)
 	}
 }
