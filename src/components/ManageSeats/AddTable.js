@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { observer, inject } from "mobx-react";
 
+
+@inject('user','manage_seats')
+
+@observer
 class AddTable extends Component {
   constructor() {
     super();
@@ -11,12 +16,18 @@ class AddTable extends Component {
     };
   }
 
+  componentDidMount= async () =>{
+    await this.props.user.getWeddingDetails()
+    this.props.manage_seats.getTables(this.props.user.userInfo.weddingData.id)
+  }
+
   handleInputs = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   addTable = () => {
-    //wil invoke the addtable function from store with the state values.
+    this.props.manage_seats.addTable(this.state,this.props.user.userInfo.weddingData.id)
+    //wil invoke the addtable function from store with the state values. and send the weddingDetailsID from user
   };
 
   render() {

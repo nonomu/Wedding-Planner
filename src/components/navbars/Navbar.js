@@ -23,8 +23,6 @@ export default function CenteredTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(sessionStorage.getItem("id"))
-  console.log(props.tabs)
   return (
     <Paper className={classes.root} >
       <Tabs

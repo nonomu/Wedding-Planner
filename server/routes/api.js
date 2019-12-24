@@ -160,7 +160,7 @@ router.post('/invitee', async function (req, res) {
 		console.log(req.body.inviteeData)
 		let invitee = req.body.inviteeData
 		let newInvitee = await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
-		res.send(newInvitee)
+		res.end()
 	} catch (err) {
 		console.log(err)
 		res.status(400).json({ message: err.message})
@@ -173,6 +173,29 @@ router.get('/invitees/:weddingDetailsId',async function(req,res){
 		let invitees = await db.query(`SELECT * FROM invitee WHERE wedding_id = ${weddingDetailsId}`)
 		res.send(invitees)
 	} catch(err){
+		res.status(400).json({message:err.message})
+	}
+})
+
+router.post('/table', async function (req, res) {
+	try {
+		let tableData = req.body.tableData
+		let tableNumber = req.body.numTables + 1
+		let weddingDetailsId = req.body.weddingDetailsId
+		await db.query(`INSERT INTO tables VALUES(null,'${tableData.tableName}','${tableNumber}','${tableData.numSeats}','${weddingDetailsId}')`)
+		res.end()
+	} catch (err) {
+		console.log(err)
+		res.status(400).json({ message: err.message})
+	}
+})
+
+router.get('/tables/:weddingDetailsId',async function(req,res){
+	try{
+		let weddingDetailsId = req.params.weddingDetailsId
+		let tables = await db.query(`SELECT * FROM tables WHERE wedding_id = ${weddingDetailsId}`)
+		res.send(tables)
+	}catch(err){
 		res.status(400).json({message:err.message})
 	}
 })
