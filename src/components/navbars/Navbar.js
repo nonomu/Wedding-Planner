@@ -9,19 +9,22 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     position: "fixed",
-    width:"100vw",
+    width: "100vw",
     zIndex: 1,
   }
 });
 
-export default function CenteredTabs() {
+export default function CenteredTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [loggedin, logIn] = React.useState((sessionStorage.getItem("id") ? sessionStorage.getItem("id") : 0))
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  console.log(sessionStorage.getItem("id"))
+  console.log(props.tabs)
   return (
     <Paper className={classes.root} >
       <Tabs
@@ -32,14 +35,7 @@ export default function CenteredTabs() {
         textColor="primary"
         centered
       >
-        {[
-          { name: "Home", link: "/" },
-          { name: "Vendors", link: "/vendors" },
-          { name: "Profile", link: "/profile" },
-          { name: "Favorites", link: "/favorites" },
-          { name: "Overview", link: "/overview" },
-          { name: "Manage Seats", link: "/manage_seats" }
-        ].map(t => (
+        {props.tabs.map(t => (
           <Tab key={t.name} label={t.name} component={Link} to={t.link} />
         ))}
       </Tabs>

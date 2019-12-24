@@ -55,7 +55,7 @@ this.setState({[e.target.name]:e.target.value})
             <Button variant="contained" color="primary" onClick={this.userLogin}>
               LOGIN
             </Button>
-            {this.props.user.userLogedIn ? <Redirect to="/" />:null}
+            {this.props.user.userLogedIn ? window.location="/" :null}
           </div>
         </div>
       </div>

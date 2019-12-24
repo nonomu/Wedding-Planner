@@ -19,10 +19,32 @@ import ClippedDrawer from './components/Attractions/ClippedDrawer'
 @inject('attractions','manage_seats','user')
 @observer
 class App extends Component {
+	constructor()
+	{
+		super()
+		this.state={
+			loggedin: sessionStorage.getItem("id"),
+			loggedTabs:[
+				{ name: "Home", link: "/" },
+				{ name: "Vendors", link: "/vendors" },
+				{ name: "Profile", link: "/profile" },
+				{ name: "Favorites", link: "/favorites" },
+				{ name: "Overview", link: "/overview" },
+				{ name: "Manage Seats", link: "/manage_seats" },
+				{ name: "Logout", link: "/logout" },
+			  ],
+			  guestsTabs:[
+				{ name: "Home", link: "/" },
+				{ name: "Login", link: "/login" },
+				{ name: "Register", link: "/register" }
+			  ]
+		}
+	}
 	async componentDidMount() {
 		await this.props.attractions.getAttractions()
 		await this.props.user.getWeddingDetails()
 		this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
+
 
 
   }
@@ -37,7 +59,7 @@ class App extends Component {
   
   logout() {
 	sessionStorage.clear()
-	return <Redirect to='/' /> 
+	return window.location="/" 
   }
 
 	render() {
@@ -45,7 +67,7 @@ class App extends Component {
 			<div className='App'>
 				<Router>
 					<div id="background"></div>
-					<Navbar />
+					<Navbar tabs={this.state.loggedin? this.state.loggedTabs : this.state.guestsTabs}/>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/profile' component={Profile} />
 					<Route exact path='/favorites' component={Favorites} />
