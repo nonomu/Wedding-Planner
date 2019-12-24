@@ -37,7 +37,6 @@ render() {
               <span id="TextField">
             <TextField
               name="name"
-              id="standard_basic"
               label="Invitee\Family Name"
               onChange={this.handleInputs}
             />
@@ -45,16 +44,14 @@ render() {
               <span id="TextField">
             <TextField
               name="num_invitees"
-              id="standard_number"
               type="number"
-              label="How much invitees ?"
+              label="How many guests?"
               onChange={this.handleInputs}
             />
               </span>
               <span id="TextField">
             <TextField
               name="est_gift"
-              id="standard_number"
               type="number"
               label="Estimated gift"
               onChange={this.handleInputs}
@@ -63,7 +60,6 @@ render() {
               <span id="TextField">
             <TextField
               name="relation"
-              id="standard_basic"
               label="Relation"
               onChange={this.handleInputs}
             />
@@ -72,7 +68,6 @@ render() {
               <span id="TextField">
             <TextField
               name="phone"
-              id="standard_basic"
               label="Phone Number"
               onChange={this.handleInputs}
             />
@@ -80,7 +75,6 @@ render() {
               <span id="TextField">
             <TextField
               name="email"
-              id="standard_basic"
               label="E-Mail"
               onChange={this.handleInputs}
             />

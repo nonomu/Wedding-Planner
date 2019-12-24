@@ -110,7 +110,6 @@ WHERE user_id="${userInfo.id}"`
 	} catch (err) {
 		res.send(`there was an error`)
 	}
-	res.send(userInfo)
 })
 
 router.post('/register', async function (req, res) {
@@ -156,7 +155,7 @@ router.delete('/favorite', async function (req, res) {
 	}
 })
 
-router.post('/addinvitee', async function (req, res) {
+router.post('/invitee', async function (req, res) {
 	try {
 		console.log(req.body.inviteeData)
 		let invitee = req.body.inviteeData
@@ -168,7 +167,7 @@ router.post('/addinvitee', async function (req, res) {
 	}
 })
 
-router.get('/getinvitees/:weddingDetailsId',async function(req,res){
+router.get('/invitees/:weddingDetailsId',async function(req,res){
 	try{
 		let weddingDetailsId = req.params.weddingDetailsId
 		let invitees = await db.query(`SELECT * FROM invitee WHERE wedding_id = ${weddingDetailsId}`)
