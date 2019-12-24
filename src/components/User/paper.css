@@ -1,21 +1,23 @@
-.bookedAttraction{
+.bookedAttraction {
     display: grid;
     grid-gap: 10px;
     border: none;
     align-items: left;
     width: 75%;
 }
-#Paper{
+
+#Paper {
     width: 75%;
     margin-left: 5px;
 }
-p{
+
+p {
     text-align-last: left;
 }
 
 @media (max-width: 600px) {
-    #Paper{
+    #Paper {
         width: 75%;
         margin-top: 155px;
     }
-  }
+}
