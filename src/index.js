@@ -5,10 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'mobx-react'
 import {attractions} from './stores/Attractions'
-import {attraction} from './stores/Attraction'
 import {user} from './stores/User'
+import {manage_seats} from './stores/ManageSeats'
 
-const stores = {attractions, attraction, user}
+const stores = {attractions, user,manage_seats}
 
 ReactDOM.render(<Provider {...stores}><App /></Provider>, document.getElementById('root'));
 
