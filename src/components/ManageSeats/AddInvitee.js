@@ -82,7 +82,7 @@ render() {
             />
               </span>
           <div>
-          <Button variant="contained" color="primary" onClick={this.AddInvitee}>
+          <Button id='inv-btn' variant="contained" color="primary" onClick={this.AddInvitee}>
               Add Invitee
             </Button>
           </div>

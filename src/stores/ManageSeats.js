@@ -12,7 +12,7 @@ class ManageSeats {
   @action async addInvitee(inviteeData, weddingDataId) {
     let invitee = await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
     console.log(invitee)
-    this.getInvitees()
+    this.getInvitees(weddingDataId)
     //needs to send weddingDATA ID of the user instead of USERID, Where is it ???
   }
 
@@ -20,6 +20,7 @@ class ManageSeats {
     try{
       let invitees = await Axios.get(`${API_URL}/invitees/${weddingDetailsId}`)
       this.invitees = invitees.data[0]
+      console.log(invitees)
     }catch(err){
       console.log(err.message)
     }
