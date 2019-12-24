@@ -11,18 +11,45 @@
 .attraction-title{
     margin-top: 70px;
 }
-.favorites{
+.favorite{
     display: grid;
-    justify-items: center;
-    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-    margin-left: 25px;
-    margin-right: 25px;
-    grid-gap: 25px;
-    width: 80vw;
+    grid-gap: 20px;
+    margin: 25px;
 }
-.favoritesCategory{
-    width: 100vw;
+.favoritesCategory{  
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
     grid-gap: 30px;
 }
+.attraction-info {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  .attraction-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 4vw;
+  }
+  .MuiCardMedia-root{
+      width: 100%;
+  }
+  .categoryName{
+      font-size: 3vw;
+  }
+  @media only screen and (max-width: 600px) {
+    .categoryName{
+        font-size: 10vw;
+    }
+    .attraction-title {
+        font-size: 15vw;
+      }
+  }
+
+  body{
+    padding-top: 3em;
+  }
+  

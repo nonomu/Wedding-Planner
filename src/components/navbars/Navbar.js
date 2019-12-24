@@ -9,8 +9,10 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     width: "100vw",
-    height: "6vh",
-    zIndex: 1,
+    height: "auto",
+    zIndex: 20,
+    position: "fixed",
+    top: 0,
   }
 });
 
