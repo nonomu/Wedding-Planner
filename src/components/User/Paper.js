@@ -19,8 +19,7 @@ const useStyles = makeStyles(theme => ({
 export default function PaperSheet(props) {
   const classes = useStyles();
   return ( 
-    <div className="bookedAttraction">
-    <Paper id="Paper"className={classes.root}>
+    <Paper className="bookedAttraction"id="Paper"className={classes.root}>
     <Typography variant="h4" component="h3">
          Your {props.attr.category} <br/>
          <i>{props.attr.attr_name}</i>
@@ -44,6 +43,5 @@ export default function PaperSheet(props) {
         Please Notice: {props.attr.small_prints}
       </Typography>
     </Paper>
-    </div>
    );
 }
