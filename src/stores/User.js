@@ -1,7 +1,6 @@
 
 import { observable, action ,computed} from 'mobx'
 import Axios from 'axios'
-import { inject } from "mobx-react";
 let API_URL = `http://localhost:4200/api`
 
 
