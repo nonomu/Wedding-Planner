@@ -7,8 +7,9 @@ class ManageSeats {
   @observable invitees = []
   @observable tables = []
 
-//@computed from the tables length.
-
+@computed get numTables() {
+  return this.tables.length
+}
 
 
   @computed get relations (){
@@ -20,8 +21,7 @@ class ManageSeats {
   }
   
   @action async addInvitee(inviteeData, weddingDataId) {
-    let invitee = await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
-    console.log(invitee)
+    await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
     this.getInvitees(weddingDataId)
     //needs to send weddingDATA ID of the user instead of USERID, Where is it ???
   }
@@ -30,21 +30,23 @@ class ManageSeats {
     try{
       let invitees = await Axios.get(`${API_URL}/invitees/${weddingDetailsId}`)
       this.invitees = invitees.data[0]
-      console.log(invitees)
     }catch(err){
       console.log(err.message)
     }
   }
 
-  @action async addTable(TableName, TableID) {
-
+  @action async addTable(tableData, weddingDetailsId) {
+    await Axios.post(`${API_URL}/table`, { tableData ,weddingDetailsId,numTables:this.numTables })
+    this.getTables(weddingDetailsId)
     //should decide what will be the table number according to the computed length of the tables array.
     // should send the data to the route with POST and there it will insert to DB.
   }
 
   @action async getTables(weddingDetailsId){ 
     try{
-      // Will get the tables from DB and insert to the tables observable.
+      let tables = await Axios.get(`${API_URL}/tables/${weddingDetailsId}`)
+      this.tables = tables.data[0]
+      // Will get the tables from DB(by weddingdetailsID) and insert to the tables observable.
     }catch(err){
       console.log(err.message)
     }

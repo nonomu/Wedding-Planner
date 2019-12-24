@@ -21,10 +21,7 @@ class ManageSeats extends Component {
   {
     super()
   }
-  componentDidMount()
-  {
-      
-  }
+
   render() {
     return (
       <div id="manage_seats">
