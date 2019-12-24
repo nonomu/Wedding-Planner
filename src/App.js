@@ -18,6 +18,7 @@ import ClippedDrawer from "./components/Attractions/ClippedDrawer";
 @inject("attractions", "manage_seats", "user")
 @observer
 class App extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -37,6 +38,7 @@ class App extends Component {
         { name: "Register", link: "/register" }
       ]
     };
+
   }
   componentDidMount() {
     this.props.attractions.getAttractions();

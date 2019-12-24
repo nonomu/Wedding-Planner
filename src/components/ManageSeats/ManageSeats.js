@@ -3,8 +3,18 @@ import AddInvitee from "./AddInvitee";
 import { observer } from "mobx-react";
 
 
+
 @observer
+
 class ManageSeats extends Component {
+  constructor()
+  {
+    super()
+  }
+  componentDidMount()
+  {
+      
+  }
   render() {
     return (
       <div id="manage_seats">
