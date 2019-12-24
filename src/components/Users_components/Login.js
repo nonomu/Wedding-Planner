@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./usercomp.css";
 import { inject, observer } from "mobx-react";
-import {Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 
 
@@ -55,7 +55,7 @@ this.setState({[e.target.name]:e.target.value})
             <Button variant="contained" color="primary" onClick={this.userLogin}>
               LOGIN
             </Button>
-            {this.props.user.userLogedIn ? <Redirect to="/" />:null}
+            {this.props.user.userLogedIn ? window.location="/" :null}
           </div>
         </div>
       </div>

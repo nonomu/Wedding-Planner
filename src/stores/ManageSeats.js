@@ -1,16 +1,24 @@
-import { observable, action } from "mobx";
+import { action, observable } from "mobx";
+import Axios from 'axios'
+let API_URL = `http://localhost:4200/api`
 
 class ManageSeats {
-  // @observable inviteeData
+@observable invitees = []
 
-  @action addInvitee(inviteeData, userId) {
-    console.log(inviteeData);
-    console.log(userId);
-    //make route that adding this data to the invitees table
+  @action async addInvitee(inviteeData, weddingDataId) {
+    let invitee = await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
+    console.log(invitee)
+    this.getInvitees()
+    //needs to send weddingDATA ID of the user instead of USERID, Where is it ???
   }
-  @action getInvitees(){
-      console.log("Should get invitees from DB")
-   // get invitees route from the DB   
+  
+  @action async getInvitees(weddingDetailsId){ 
+    try{
+      let invitees = await Axios.get(`${API_URL}/invitees/${weddingDetailsId}`)
+      this.invitees = invitees.data[0]
+    }catch(err){
+      console.log(err.message)
+    }
   }
 }
 

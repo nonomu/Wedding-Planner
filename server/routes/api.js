@@ -110,7 +110,6 @@ WHERE user_id="${userInfo.id}"`
 	} catch (err) {
 		res.send(`there was an error`)
 	}
-	res.send(userInfo)
 })
 
 router.post('/register', async function (req, res) {
@@ -127,6 +126,7 @@ router.post('/register', async function (req, res) {
 		res.status(400).json({ message: err.message})
 	}
 })
+
 
 router.post('/login', async function (req, res) {
 	try {
@@ -152,6 +152,28 @@ router.delete('/favorite', async function (req, res) {
 		res.send(`succesfully removed`)
 	} catch (err) {
 		res.send(err)
+	}
+})
+
+router.post('/invitee', async function (req, res) {
+	try {
+		console.log(req.body.inviteeData)
+		let invitee = req.body.inviteeData
+		let newInvitee = await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
+		res.send(newInvitee)
+	} catch (err) {
+		console.log(err)
+		res.status(400).json({ message: err.message})
+	}
+})
+
+router.get('/invitees/:weddingDetailsId',async function(req,res){
+	try{
+		let weddingDetailsId = req.params.weddingDetailsId
+		let invitees = await db.query(`SELECT * FROM invitee WHERE wedding_id = ${weddingDetailsId}`)
+		res.send(invitees)
+	} catch(err){
+		res.status(400).json({message:err.message})
 	}
 })
 

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import {Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./usercomp.css";
 import { inject } from "mobx-react";
-import Home from "../Home";
+// import Home from "../Home";
 
 
 // import DateFnsUtils from "@date-io/date-fns";
