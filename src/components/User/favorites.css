@@ -9,11 +9,14 @@
     text-align: center;
 }
 .attraction-title{
-    margin-top: 30px;
+    margin-top: 70px;
 }
 .favorites{
     display: grid;
     justify-items: center;
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+    margin-left: 25px;
+    margin-right: 25px;
     grid-gap: 25px;
     width: 80vw;
 }
@@ -22,5 +25,4 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 30px;
-
 }

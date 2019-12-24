@@ -42,24 +42,26 @@ USE weddingplanner;
 
 -- CREATE TABLE tables(
 --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     table_name VARCHAR(40),
 --     table_number INT,
---     num_seats INT
+--     num_seats INT,
+--     wedding_id INT,
+--     FOREIGN KEY(wedding_id) REFERENCES weddingDetails(id)
 -- );
 
---  INSERT INTO invitee VALUES(null,"Yaniv",2,700,"gFrien",'050-1111111',"yanicv@gmail.com",null,null);
--- CREATE TABLE invitee(
---     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
---     name varchar(20) NOT NULL,
---     num_invitees int,
---     est_gift int,
---     relation varchar(30),
---     phone varchar(30),
---     email varchar(40),
---     wedding_id int,
---     table_id int,
---     FOREIGN KEY(wedding_id) REFERENCES weddingDetails(id), 
---     FOREIGN KEY(table_id) REFERENCES tables(id)  
--- );
+CREATE TABLE invitee(
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(20) NOT NULL,
+    num_invitees int,
+    est_gift int,
+    relation varchar(30),
+    phone varchar(30),
+    email varchar(40),
+    wedding_id int,
+    table_id int,
+    FOREIGN KEY(wedding_id) REFERENCES weddingDetails(id), 
+    FOREIGN KEY(table_id) REFERENCES tables(id)  
+);
 
 -- CREATE TABLE booked_attractions(
 --     user_id int NOT NULL,

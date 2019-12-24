@@ -9,65 +9,66 @@ import Favorites from './components/User/Favorites'
 import Overview from './components/User/Overview'
 import BookAttraction from './components/Attractions/BookAttraction'
 import AttractionInfo from './components/Attractions/AttractionInfo'
+import { ToastContainer } from 'react-toastify'
 import { Paper, Dialog, Grid } from '@material-ui/core'
 import Login from './components/Users_components/Login'
 import Register from './components/Users_components/Register'
 import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
+import AddTable from './components/ManageSeats/AddTable'
 
-
-@inject('attractions','manage_seats','user')
+@inject('attractions', 'manage_seats', 'user')
 @observer
 class App extends Component {
-	constructor()
-	{
+	constructor() {
 		super()
-		this.state={
-			loggedin: (sessionStorage.getItem("id")|| null),
-			loggedTabs:[
-				{ name: "Home", link: "/" },
-				{ name: "Vendors", link: "/vendors" },
-				{ name: "Profile", link: "/profile" },
-				{ name: "Favorites", link: "/favorites" },
-				{ name: "Overview", link: "/overview" },
-				{ name: "Manage Seats", link: "/manage_seats" },
-				{ name: "Logout", link: "/logout" },
-			  ],
-			  guestsTabs:[
-				{ name: "Home", link: "/" },
-				{ name: "Login", link: "/login" },
-				{ name: "Register", link: "/register" }
-			  ]
+		this.state = {
+			loggedin: sessionStorage.getItem('id'),
+			loggedTabs: [
+				{ name: 'Home', link: '/' },
+				{ name: 'Vendors', link: '/vendors' },
+				{ name: 'Profile', link: '/profile' },
+				{ name: 'Favorites', link: '/favorites' },
+				{ name: 'Overview', link: '/overview' },
+				{ name: 'Manage Seats', link: '/manage_seats' },
+				{ name: 'Logout', link: '/logout' }
+			],
+			guestsTabs: [
+				{ name: 'Home', link: '/' },
+				{ name: 'Login', link: '/login' },
+				{ name: 'Register', link: '/register' }
+			]
 		}
 	}
-	 componentDidMount() {
-		 if(this.state.loggedin)
-		 {
-		 this.props.attractions.getAttractions()
-		 this.props.user.getWeddingDetails()
-		 }
-		// this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
-  }
-  
-  closeDialog = () => {
-    this.props.attractions.closeDialog()
-  }
+	componentDidMount() {
+		this.props.attractions.getAttractions()
+		this.props.user.getWeddingDetails()
+	}
 
-  openDialog = () => {
-    this.props.attractions.openDialog()
-  }
-  
-  logout() {
-	sessionStorage.clear()
-	return window.location="/" 
-  }
+	closeDialog = () => {
+		this.props.attractions.closeDialog()
+	}
+
+	openDialog = () => {
+		this.props.attractions.openDialog()
+	}
+
+	logout() {
+		sessionStorage.clear()
+		return (window.location = '/')
+	}
 
 	render() {
 		return (
 				<Router>
-					<div id="background"></div>
-					<div className='App'>
-					<Navbar tabs={this.state.loggedin? this.state.loggedTabs : this.state.guestsTabs}/>
+					<div id='background'></div>
+					<Navbar
+						tabs={
+							this.state.loggedin
+								? this.state.loggedTabs
+								: this.state.guestsTabs
+						}
+					/>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/profile' component={Profile} />
 					<Route exact path='/favorites' component={Favorites} />
@@ -76,12 +77,20 @@ class App extends Component {
 					<Route exact path='/logout' render={this.logout} />
 					<Route exact path='/register' component={Register} />
 					<Route exact path='/manage_seats' component={ManageSeats} />
-					<Route exact path='/vendors' render={() => <Redirect to='/vendors/Venue'/>} />
+					<Route exact path='/addTable' component={AddTable} />
+					<Route
+						exact
+						path='/vendors'
+						render={() => <Redirect to='/vendors/Venue' />}
+					/>
 					<Route
 						exact
 						path='/vendors/:category'
 						render={({ match }) => (
-							<ClippedDrawer category={match.params.category} categories={this.props.attractions.categories} />
+							<ClippedDrawer
+								category={match.params.category}
+								categories={this.props.attractions.categories}
+							/>
 						)}
 					/>
 					<Route
@@ -89,14 +98,19 @@ class App extends Component {
 						path='/book/:category/:id'
 						render={({ match }) => (
 							<Grid container justify='center' alignContent='center'>
-              {this.openDialog()}
-              <Dialog open={this.props.attractions.open} onClose={() => this.closeDialog()} fullWidth maxWidth='xl' component={Paper} > 
-              <BookAttraction
-								category={match.params.category}
-								id={match.params.id}
-							/>
-              </Dialog>
-                </Grid>
+								{this.openDialog()}
+								<Dialog
+									open={this.props.attractions.open}
+									onClose={() => this.closeDialog()}
+									fullWidth
+									maxWidth='xl'
+									component={Paper}>
+									<BookAttraction
+										category={match.params.category}
+										id={match.params.id}
+									/>
+								</Dialog>
+							</Grid>
 						)}
 					/>
 					<Route
@@ -105,13 +119,18 @@ class App extends Component {
 						render={({ match }) => (
 							<Grid container justify='center' alignContent='center'>
 								{this.openDialog()}
-                <Dialog open={this.props.attractions.open} onClose={() => this.closeDialog()} fullWidth maxWidth='xl' component={Paper} >
-                <AttractionInfo id={match.params.id} />
-                </Dialog>
+								<Dialog
+									open={this.props.attractions.open}
+									onClose={() => this.closeDialog()}
+									fullWidth
+									maxWidth='xl'
+									component={Paper}>
+									<AttractionInfo id={match.params.id} />
+								</Dialog>
 							</Grid>
 						)}
 					/>
-				</div>
+					<ToastContainer position='bottom-left' />
 				</Router>
 		)
 	}

@@ -5,12 +5,12 @@ const db = new Sequelize('mysql://root:@localhost/weddingPlanner')
 const requestPromise = require('request-promise')
 const apiKey = process.env.apiKey
 const axios = require('axios')
-//const Places= new GooglePlaces("../node_modules/google-places-web").default; 
+let photoBasicUrl = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
+
 let photosList=[]
 const callback = result => {
     photosList.push(result)
     console.log(result)
-//    photosList.push(result)
   }
 
 const getUri = (photo_reference) => {
@@ -31,18 +31,18 @@ router.get('/', async function (req, res) {
     const relevantData = []
     let requestedData = await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=venue+Jerusalem+Israel&fields=name,rating,formatted_phone_number,photos&key=${apiKey}`)
     let results = requestedData.data.results
-    // console.log(results[0].photos)
     for (r of results) {
         if (typeof (r.photos) == 'undefined') {
-            // console.log("lala")
         }
         else {
+            let photoReference=r.photos[0].photo_reference
+            relevantData.push((photoBasicUrl + photoReference+"&key="+apiKey))
             getUri(r.photos[0].photo_reference)
             
         }
     }
     // console.log(photosList)
    await setTimeout(function(){console.log(photosList) }, 2000);
-    res.end()
+    res.send(relevantData)
 })
 module.exports = router

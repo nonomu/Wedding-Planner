@@ -17,14 +17,11 @@ const useStyles = makeStyles({
 export default function CenteredTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [loggedin, logIn] = React.useState((sessionStorage.getItem("id") ? sessionStorage.getItem("id") : 0))
 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(sessionStorage.getItem("id"))
-  console.log(props.tabs)
   return (
     <Paper className={classes.root} >
       <Tabs
