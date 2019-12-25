@@ -54,35 +54,25 @@ class Profile extends Component {
     
     return (
       <div id="profile-container">
-        <div className="sideForm">
           <h1>User Profile</h1>
-          <div className="upperText">
-            You need to insert the details about the user and the wedding so we
-            can help you to plan your wedding easily.
-        </div>
+          <p className="upperText">
+            Please make sure that the information below is correct and up to date so we
+            would be able to help you plan your wedding easily.
+        </p>
           <hr />
           <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
 
           <h3>Personal Details:</h3>
-          <span>
+            <div className="names">
             <TextField name="brideName" label="Bride" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
-          </span>
-          <span>
             <TextField name="groomName" label="Groom" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
-          </span>
+            </div>
           <h3>Wedding Details:</h3>
-          <div>
+            <div className="details">
             <TextField name="weddingDate" label="Wedding Date" variant="outlined" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
-          </div>
-          <div>
-            <br></br>
             <TextField name="estInvitees" label="Estimated Invitees" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
-            <br></br><br></br>
             <TextField name="estBudget" id="estBudget" label="Estimated Budget" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
-          </div>
-          <div>
-            <Autocomplete value={this.state.weddingArea} name="weddingArea" id="autoCompleteField"
-              style={{ width: '220px', backgroundColor: "rgba( 255,255 ,255,0 )", height: 50, borderRadius: 4, borderColor: 'rgba(0,0,0,0.3)' }}
+            <Autocomplete className="location" value={this.state.weddingArea} name="weddingArea" id="autoCompleteField"
               onChange={this.handleInputs}
               onPlaceSelected={(city) => {
                 let cityName = city.formatted_address
@@ -91,10 +81,10 @@ class Profile extends Component {
               types={['(cities)']}
               componentRestrictions={{ country: "IL" }}
             />
-
+            </div>
+          <div className='update'>
+          <Button variant="contained" className="update" color="secondary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
           </div>
-          <Button variant="contained" color="secondary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
-        </div>
       </div>
     );
   }

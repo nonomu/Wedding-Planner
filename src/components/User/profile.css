@@ -1,18 +1,56 @@
 #profile-container {
-    text-align: center;
-    display: grid;
-    position: relative;
-    margin-top: 25px;
+	text-align: center;
+	display: grid;
+	height: 55vh;
+	justify-items: center;
 }
-.sidePic{
-    display: grid;
+.sidePic {
+	display: grid;
+}
+.upperText {
+	text-align: center;
+}
+#groomAndBride {
+	height: 100px;
+	opacity: 0.5;
+}
 
+.names {
+	display: grid;
+	grid-gap: 10px;
+	grid-auto-flow: column;
 }
-.upperText{
-    text-align: center;
+
+.details {
+	display: grid;
+	grid-gap: 5px;
+	grid-auto-flow: column;
 }
-#groomAndBride{
-    height: 100px;
-     opacity: 0.5;
+
+.update {
+	margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+	.details {
+		grid-auto-flow: row;
+	}
+	#profile-container {
+		height: 40vh;
+		text-align: center;
+		display: grid;
+		height: 55vh;
+		justify-items: center;
+	}
+}
+
+.location {
+	margin: 0;
+	width: 220px;
+	height: 53px;
+	font-size: 16px;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 4px;
+	border-color: rgba(0, 0, 0, 0.3);
 }
 
