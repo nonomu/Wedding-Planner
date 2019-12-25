@@ -82,6 +82,8 @@ select {
 }
 
 #welcomeTemp {
+  max-width: 1000px;
+  width: 80%;
   display: block;
   margin-top: 75px;
   margin-left: auto;
@@ -105,4 +107,8 @@ select {
   border-radius: 10px;
   background-color: #4046a5;
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
+}
+
+@media only screen and (max-width: 768px) {
+  
 }

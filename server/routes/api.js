@@ -5,7 +5,6 @@ const db = new Sequelize('mysql://root:@localhost/weddingPlanner')
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
-
 router.get('/attractions/', async function (req, res) {
 	try {
 		let attractions = await db.query(
@@ -205,7 +204,6 @@ router.put('/invitee/addtotable', async (req, res) => {
 		await db.query(`UPDATE invitee SET table_id = "${tableId}" WHERE id = "${inviteeId}"`)
 		res.send(`Invitee added to table`)
 	} catch(err) {
-		console
 		res.status(400).json({ message: err.message })
 	}
 })
