@@ -77,7 +77,7 @@ class App extends Component {
 					<Route exact path='/logout' render={this.logout} />
 					<Route exact path='/register' component={Register} />
 					<Route exact path='/manage_seats' component={ManageSeats} />
-					<Route exact path='/addTable' component={AddTable} />
+					
 					<Route
 						exact
 						path='/vendors'
@@ -130,6 +130,20 @@ class App extends Component {
 							</Grid>
 						)}
 					/>
+
+					<Route exact path='/addtable' render={() => 
+						<Grid container justify='center' alignContent='center'>
+								{this.openDialog()}
+								<Dialog
+									open={this.props.attractions.open}
+									onClose={() => this.closeDialog()}
+									maxWidth='xl'
+									component={Paper}>
+									<AddTable />
+								</Dialog>
+							</Grid>
+					} />
+
 					<ToastContainer position='bottom-left' />
 				</Router>
 		)

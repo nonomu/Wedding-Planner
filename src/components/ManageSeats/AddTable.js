@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { observer, inject } from "mobx-react";
-
-
+import { Link } from 'react-router-dom'
+import {Fab} from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close';
+import './manage_seats.css'
 @inject('user','manage_seats')
 
 @observer
@@ -34,7 +36,8 @@ class AddTable extends Component {
     return (
       <div className="box_bg">
         <div className="user_box">
-          <h1>ADD Table</h1>
+        <Fab className="close" component={Link} to={'/manage_seats'}><CloseIcon /></Fab>
+          <h1>Add Table</h1>
           <h4>Short Explanation</h4>
           <div>
             <TextField
