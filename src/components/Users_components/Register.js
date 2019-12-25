@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./usercomp.css";
 import {toast as popup} from 'react-toastify'
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 
 // import DateFnsUtils from "@date-io/date-fns";
 // import Grid from "@material-ui/core/Grid";
@@ -15,6 +15,7 @@ import { inject } from "mobx-react";
 // } from "@material-ui/pickers";
 
 @inject('user')
+@observer
 class Register extends Component {
   constructor() {
     super();
