@@ -36,6 +36,11 @@ a {
   top: 0;
 }
 
+.menus {
+  display: grid;
+  grid-auto-flow: row;
+}
+
 #sideNav {
   text-align: start;
   /* left:0 */

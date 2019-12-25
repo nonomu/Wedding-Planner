@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import {Fab} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
 import './manage_seats.css'
+import {toast as popup} from 'react-toastify'
 @inject('user','manage_seats')
 
 @observer
@@ -23,13 +24,25 @@ class AddTable extends Component {
     this.props.manage_seats.getTables(this.props.user.userInfo.weddingData.id)
   }
 
+  invalidInput = user => Object.keys(user).some(i => !user[i])
+
+  handleError = input => {
+		if (this.invalidInput(input)) {
+			throw new Error('All fields are required')
+		}
+	}
+
   handleInputs = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   addTable = () => {
-    this.props.manage_seats.addTable(this.state,this.props.user.userInfo.weddingData.id)
-    //wil invoke the addtable function from store with the state values. and send the weddingDetailsID from user
+    try {
+      this.handleError(this.state)
+      this.props.manage_seats.addTable(this.state,this.props.user.userInfo.weddingData.id)
+    } catch(err) {
+      popup.error(err.message)
+    }
   };
 
   render() {
