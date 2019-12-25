@@ -26,12 +26,12 @@ class App extends Component {
 		this.state = {
 			loggedin: sessionStorage.getItem('id'),
 			loggedTabs: [
-				{ name: 'Home', link: '/' },
+				{ name: <img id="logo" src="/logo3.png" alt="logo"/>, link: '/' },
 				{ name: 'Vendors', link: '/vendors' },
-				{ name: 'Profile', link: '/profile' },
 				{ name: 'Favorites', link: '/favorites' },
 				{ name: 'Overview', link: '/overview' },
 				{ name: 'Manage Seats', link: '/manage_seats' },
+				{ name: 'Profile', link: '/profile' },
 				{ name: 'Logout', link: '/logout' }
 			],
 			guestsTabs: [

@@ -17,7 +17,7 @@ class Favorites extends Component {
         let categories = this.props.attractions.categories
     
         return (
-        <div className="favorites"> 
+          <div className="favorites"> 
             <h1 className="attraction-title">Favorites</h1>
             
             {categories.map((c, i) => {return (
