@@ -51,7 +51,25 @@
 }
 
 .MuiDialog-root {
-  position: fixed!important;
-  width: 50%!important;
-  left: 25%!important;
+  width: 750px!important;
+  height: auto!important;
+  left: 33.3%!important;
+}
+
+.MuiDialog-root .attraction-info-title{
+  font-size:120%;
+  margin: 0;
+}
+
+h3{
+  margin: 0;
+}
+
+h4{
+  margin: 15px
+}
+
+img{
+  justify-self: center;
+  border-radius: 5px;
 }
