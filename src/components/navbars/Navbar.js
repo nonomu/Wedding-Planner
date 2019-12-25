@@ -36,7 +36,7 @@ export default function CenteredTabs(props) {
         textColor="primary"
         centered
       >
-      <Tab key={"menu"} label={"menu"} component={LongMenu}></Tab>  
+      {/* <Tab component={LongMenu}></Tab>   */}
         {props.tabs.map(t => (
           <Tab key={t.name} label={t.name} component={Link} to={t.link} />
           ))}

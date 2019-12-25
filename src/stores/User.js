@@ -11,10 +11,10 @@ class User {
 	@action userRegister = async userData => {
 		try {
 			let user = await Axios.post(`${API_URL}/api/register`, { userData })
-			console.log(user.data[0])
-			this.userInfo.id = user.data[0]
-	 	 sessionStorage.setItem('id', user.data.id)
-	  this.userLogedIn = true
+			let userId=user.data.newUser[0]
+			this.userInfo.id =userId
+	 	    sessionStorage.setItem('id', userId)
+			this.userLogedIn = true
       return user.data.message
 		} catch (err) {
 			throw new Error(err.response.data.message)

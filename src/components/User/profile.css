@@ -1,14 +1,15 @@
 #profile-container {
     text-align: center;
     display: grid;
-    /* grid-template-columns: 1fr 2fr; */
+    position: relative;
+    margin-top: 25px;
 }
 .sidePic{
     display: grid;
 
 }
-.sideForm{
-    /* display: grid; */
+.upperText{
+    text-align: center;
 }
 #groomAndBride{
     height: 100px;
