@@ -29,13 +29,7 @@ export default function PaperSheet(props) {
           Your {props.attr.category} <br />
           <i>{props.attr.attr_name}</i>
         </Typography>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+
         <div id='detail-box'>
           <div id="col1" >
             <Typography id="col1" component="p">
@@ -43,8 +37,7 @@ export default function PaperSheet(props) {
       {props.attr.contact_phone},     <br />
               <AlternateEmailSharpIcon /> {props.attr.contact_email}
             </Typography>
-          </div>
-          <div id="col2">
+      
             <Typography component="p">
               <PaymentSharpIcon /> Price: {props.attr.price}₪
       </Typography>
