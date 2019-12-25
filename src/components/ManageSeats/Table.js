@@ -15,17 +15,18 @@ class Table extends Component {
 		this.props.manage_seats.selectedTableName = this.props.t.table_name
 	}
 	render() {
+		console.log(this.props.manage_seats.invitees)
 		return (
+			<div>
+	<Button
+		onClick={this.selectTable}
+		component={Link}
+		to='/addtotable' >
 			<table className='table'>
 				<thead>
 					<tr>
 						<td>
-							<Button
-								onClick={this.selectTable}
-								component={Link}
-								to='/addtotable'>
-								{this.props.t.table_name} - {this.props.t.num_seats}
-							</Button>
+							<div className="tableName">	{this.props.t.table_name} - {this.props.t.num_seats}</div>
 						</td>
 					</tr>
 				</thead>
@@ -34,11 +35,13 @@ class Table extends Component {
 						.filter(i => i.table_id === this.props.t.id)
 						.map(i => (
 							<tr key={i.name}>
-								<td key={i.name}>{i.name}</td>
+								<td key={i.name} ><span>{i.name}</span>  <span className="numOfinvitees">({i.num_invitees})</span></td>
 							</tr>
 						))}
 				</tbody>
 			</table>
+						</Button>
+		</div>
 		)
 	}
 }

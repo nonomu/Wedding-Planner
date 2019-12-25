@@ -3,7 +3,7 @@
 USE WeddingPlanner;
 -- DROP TABLE tables,booked_attractions,favorites,attractions,invitee,user,weddingDetails;
 -- DROP TABLE weddingDetails,user;
--- DROP TABLE tables,invitee;
+-- DROP TABLE invitee,tables;
 
 -- CREATE TABLE user(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,

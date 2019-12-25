@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import {toast as popup} from 'react-toastify'
+import { Button } from '@material-ui/core';
 
 @inject('manage_seats')
 @observer
@@ -15,12 +16,17 @@ class Invitee extends Component {
         }
     }
     render() {
-       
+        let tableId=this.props.details.table_id
+        let tables=this.props.manage_seats.tables
+        let tableNum= tables.findIndex(t => t.id ===tableId)+1
         return (
-            <div>
-                <span>{this.props.details.name} - {this.props.details.num_invitees}</span>
-                <button onClick={this.addInviteeToTable}>Add to table</button>
-            </div>
+            <tr>
+                <td>
+         {this.props.details.name}
+         </td>
+         <td>{this.props.details.num_invitees}</td> <td>{tableNum}</td> 
+                <td><Button variant="contained" color="primary" onClick={this.addInviteeToTable}>+</Button></td> 
+            </tr>
         );
     }
 }

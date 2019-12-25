@@ -5,6 +5,7 @@ import AddInvitee from "./AddInvitee";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Table from "./Table";
+import './manage_seats.css'
 
 @inject("manage_seats", "user")
 @observer
@@ -18,9 +19,9 @@ class ManageSeats extends Component {
     return (
       <div id="manage_seats">
         <AddInvitee />
-        <div>
-          {this.props.manage_seats.tables.map(t => (
-            <Table key={t.id} t={t} />
+        <div className="tables" >
+          {this.props.manage_seats.tables.map((t,i) => (
+            <Table  key={t.id} t={t} />
           ))}
         </div>
         
