@@ -7,6 +7,7 @@ class ManageSeats {
 	@observable tables = []
 	@observable selectedTable
 	@observable selectedTableName
+	@observable selectedTableNumber
   @observable currentSeats
   @observable selectedTableMaxSeats
 	@observable openSideBar = false

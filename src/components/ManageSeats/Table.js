@@ -11,6 +11,7 @@ class Table extends Component {
 		this.props.manage_seats.selectedTable = this.props.t.id
 		this.props.manage_seats.selectedTableName = this.props.t.table_name
 		this.props.manage_seats.selectedTableMaxSeats = this.props.t.num_seats
+		this.props.manage_seats.selectedTableNumber = this.props.t.table_number
 		this.props.manage_seats.getAvailableSeats()
 		
 	}
