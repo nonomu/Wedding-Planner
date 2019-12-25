@@ -16,6 +16,7 @@ import Register from './components/Users_components/Register'
 import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
 import AddTable from './components/ManageSeats/AddTable'
+import LongMenu from "./components/navbars/Menu"
 
 @inject('attractions', 'manage_seats', 'user')
 @observer
@@ -40,8 +41,8 @@ class App extends Component {
 			]
 		}
 	}
-	componentDidMount() {
-		this.props.attractions.getAttractions()
+	async componentDidMount() {
+		await this.props.attractions.getAttractions()
 		this.props.user.getWeddingDetails()
 	}
 
@@ -62,6 +63,7 @@ class App extends Component {
 		return (
 				<Router>
 					<div id='background'></div>
+					<div>
 					<Navbar
 						tabs={
 							this.state.loggedin
@@ -69,6 +71,7 @@ class App extends Component {
 								: this.state.guestsTabs
 						}
 					/>
+					</div>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/profile' component={Profile} />
 					<Route exact path='/favorites' component={Favorites} />
@@ -77,7 +80,7 @@ class App extends Component {
 					<Route exact path='/logout' render={this.logout} />
 					<Route exact path='/register' component={Register} />
 					<Route exact path='/manage_seats' component={ManageSeats} />
-					<Route exact path='/addTable' component={AddTable} />
+					
 					<Route
 						exact
 						path='/vendors'
@@ -130,6 +133,20 @@ class App extends Component {
 							</Grid>
 						)}
 					/>
+
+					<Route exact path='/addtable' render={() => 
+						<Grid container justify='center' alignContent='center'>
+								{this.openDialog()}
+								<Dialog
+									open={this.props.attractions.open}
+									onClose={() => this.closeDialog()}
+									maxWidth='xl'
+									component={Paper}>
+									<AddTable />
+								</Dialog>
+							</Grid>
+					} />
+
 					<ToastContainer position='bottom-left' />
 				</Router>
 		)
