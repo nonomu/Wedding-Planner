@@ -1,45 +1,27 @@
 #manage_seats{
     display: grid;
-    /* justify-content: center; */
     align-items: center;
     text-align: center;
 }
 
-.box_bg{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.user_box{
-    display: grid;
-    background-color: #fff;
-    width: 500px;
-    /* height: 300px; */
-    border-radius: 10px;
-    padding: 20px;
-text-align: center;
-}
-
-.user_box Button{
+/* .user_box Button{
     margin-top: 30px;
+} */
+.tables{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    justify-content: center;
+    align-content: center;
 }
-
 #TextField{
     margin: 0 20px;
 }
 
-/* #insert_invitees p{
-    width: 600px;
-} THIS ROW DOES NOTHING*/
-
 hr{
-    margin-bottom: 30px;
     width: 95%;
 }
-#insert_invitees{
+ #insert_invitees{
 margin-top: 45px;
 }
 
@@ -48,7 +30,7 @@ margin-top: 45px;
     height: 500px;
     background-color: rebeccapurple;
     align-self: baseline;
-}
+} 
 
 #addIcon{
 position: absolute;
@@ -64,8 +46,28 @@ bottom: 40px;
   }
 
 .table{
-    display: inline-block;
-    margin: 0 30px;
-    border: 1px solid black;    
+    /* display: grid; */
+    margin : 40px auto;
+    border: 1px solid black; 
+    justify-content: start;   
+    text-align: center;
+    min-width: 200px;
+    margin: 0 auto;
+    /* margin-right: 250px; */
+    border-radius: 15px;
+    
 }
-
+.table:hover {
+    background-color: #0675B2;
+  }
+.tableName{
+    font-size:calc(100% + 10px);
+    text-align: center;
+    
+}
+.numOfinvitees{
+    font-size:calc(100% - 4px);
+}
+.listOfInvitees{
+   
+}

@@ -36,6 +36,11 @@ a {
   top: 0;
 }
 
+.menus {
+  display: grid;
+  grid-auto-flow: row;
+}
+
 #sideNav {
   text-align: start;
   /* left:0 */
@@ -103,6 +108,9 @@ select {
 }
 #logo{
   width: 200px;
+}
+#welcomeTemp2{
+  width: 100%;
 }
 
 

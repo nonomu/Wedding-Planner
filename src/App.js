@@ -64,8 +64,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div id='background'></div>
-				{/* <ShowWindowDimensions/>  */}
-				<div>
+				<div className="menus">
 					<Navbar
 						tabs={
 							this.state.loggedin
