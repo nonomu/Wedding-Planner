@@ -1,17 +1,23 @@
 .bookedAttraction {
     display: grid;
     grid-gap: 10px;
-    border: none;
-    align-items: left;
     width: 75%;
 }
 
 #Paper {
+    width: 90%;
+    height: 80%;
+    margin-left: 5px;
+    background-color: rgba(22, 1, 1, 0.0);
+    color: white;
+    box-shadow: none;
+}
+#cardMedia{
     width: 75%;
     margin-left: 5px;
     border-radius: 3%;
-    background-color: rgba(22, 1, 1, 0.8);
-    color: white
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 p {
@@ -21,12 +27,11 @@ p {
 #detail-box {
     display: grid;
     grid-template-columns: 50% 50%;
-    align-items: center;
+    /* align-items: center; */
     text-align: justify;
-}
-
-#col1 {
-    text-align: right;
+    margin-bottom: 100px;
+    bottom: 1px;
+    left: 0;
 }
 
 @media only screen and (max-width: 768px) {
