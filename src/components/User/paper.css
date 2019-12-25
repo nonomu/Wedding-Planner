@@ -1,21 +1,32 @@
-.bookedAttraction{
+.bookedAttraction {
     display: grid;
     grid-gap: 10px;
     border: none;
     align-items: left;
     width: 75%;
 }
-#Paper{
+
+#Paper {
     width: 75%;
     margin-left: 5px;
+    border-radius: 3%;
+    background-color: rgba(22, 1, 1, 0.8);
+    color: white
 }
-p{
+
+p {
     text-align-last: left;
 }
 
-@media (max-width: 600px) {
-    #Paper{
+#detail-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+    #Paper {
         width: 75%;
         margin-top: 155px;
     }
-  }
+}

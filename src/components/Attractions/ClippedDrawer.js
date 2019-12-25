@@ -10,7 +10,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import Attractions from './Attractions';
 import { Link } from 'react-router-dom';
 
-const drawerWidth = 240;
+const drawerWidth = 230;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,6 +23,8 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    top: "auto",
+    marginTop: "1px"
   },
   content: {
     flexGrow: 1,
