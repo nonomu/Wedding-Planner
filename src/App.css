@@ -93,7 +93,7 @@ select {
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
 	border-radius: 10px;
-	background-color: #444444;
+	background-color: #cac1c1;
 }
 
 ::-webkit-scrollbar {
@@ -103,6 +103,6 @@ select {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #993294;
+  background-color: #4046a5;
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
