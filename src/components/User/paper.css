@@ -2,7 +2,6 @@
     display: grid;
     grid-gap: 10px;
     width: 66%;
-    
 }
 
 #Paper {
@@ -13,10 +12,11 @@
     color: white;
     box-shadow: none;
 }
-#cardMedia{
+
+#cardMedia {
     width: 66%;
     margin-left: 6%;
-    border-radius: 5px ;
+    border-radius: 5px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
 }
@@ -33,16 +33,21 @@ p {
     position: relative;
 }
 
-#col1{
+.paper-title {
+    margin: 0;
+}
+
+#col1 {
     top: 0;
     left: 0;
 }
 
-#col2{
+#col2 {
     position: absolute;
     top: 0;
     right: 0;
 }
+
 @media only screen and (max-width: 768px) {
     #Paper {
         width: 75%;
