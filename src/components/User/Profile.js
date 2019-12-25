@@ -57,8 +57,8 @@ class Profile extends Component {
         <div className="sideForm">
           <h1>User Profile</h1>
           <div className="upperText">
-            You need to insert the details about the user and the wedding so we
-            can help you to plan your wedding easily.
+            Please make sure that the information below is correct and up to date so we
+            would be able to help you plan your wedding easily.
         </div>
           <hr />
           <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
