@@ -16,6 +16,7 @@ import Register from './components/Users_components/Register'
 import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
 import AddTable from './components/ManageSeats/AddTable'
+import LongMenu from "./components/navbars/Menu"
 
 @inject('attractions', 'manage_seats', 'user')
 @observer
@@ -62,6 +63,7 @@ class App extends Component {
 		return (
 				<Router>
 					<div id='background'></div>
+					<div>
 					<Navbar
 						tabs={
 							this.state.loggedin
@@ -69,6 +71,7 @@ class App extends Component {
 								: this.state.guestsTabs
 						}
 					/>
+					</div>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/profile' component={Profile} />
 					<Route exact path='/favorites' component={Favorites} />

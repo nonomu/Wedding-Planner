@@ -4,6 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
+import LongMenu from './Menu.js'
+
 
 const useStyles = makeStyles({
   root: {
@@ -34,9 +36,10 @@ export default function CenteredTabs(props) {
         textColor="primary"
         centered
       >
+      <Tab key={"menu"} label={"menu"} component={LongMenu}></Tab>  
         {props.tabs.map(t => (
           <Tab key={t.name} label={t.name} component={Link} to={t.link} />
-        ))}
+          ))}
       </Tabs>
     </Paper>
   );
