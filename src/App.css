@@ -62,11 +62,6 @@ select {
   height: 200px;
 }
 
-.bookedAttraction {
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
 /* Yanivs needs to refactor ! */
 
 #Paper {
@@ -106,6 +101,10 @@ select {
   background-color: #4046a5;
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
+#logo{
+  width: 200px;
+}
+
 
 @media only screen and (max-width: 768px) {
   
