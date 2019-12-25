@@ -57,3 +57,10 @@ bottom: 40px;
 #inv-btn{
     margin: 20px;
 }
+
+.table{
+    display: inline-block;
+    margin: 0 30px;
+    border: 1px solid black;
+    
+}
