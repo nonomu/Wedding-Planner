@@ -13,22 +13,21 @@ class AttractionInfo extends Component {
     closeDialog = () => {
         this.props.attractions.closeDialog()
     }
-    
+
     render() {
         let a = this.props.attractions._attractions.length ? this.props.attractions._attractions.find(a => a.id === parseInt(this.props.id)) : []
         return (
             <div className="attraction-info">
                 <Fab className="close" onClick={this.props.history.goBack}><CloseIcon /></Fab>
                 <div className='attraction-info-title'>
-                <h3>{a.attr_name}</h3>
-                <h4>{a.category}</h4>
+                    <h3>{a.attr_name}</h3>
+                    <h4><i>{a.category}</i></h4>
                 </div>
-                <img src={a.image} alt={a.attr_name} width='550px'/>
+                <img src={a.image} title={a.attr_name} alt={a.attr_name} width='600px' height='400px'/>
                 <div>contact: {a.contact_name}  {a.contact_phone}  {a.contact_email}</div>
                 <div>{a.location}</div>
                 <div>rating: {a.rating}</div>
                 <div>{a.small_prints}</div>
-
             </div>
         )
     }
