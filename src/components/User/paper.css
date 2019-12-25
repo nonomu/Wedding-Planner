@@ -27,7 +27,6 @@ p {
 #detail-box {
     display: grid;
     grid-template-columns: 50% 50%;
-    /* align-items: center; */
     text-align: justify;
     margin-bottom: 100px;
     bottom: 1px;
