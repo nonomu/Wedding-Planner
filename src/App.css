@@ -111,5 +111,5 @@ select {
 }
 
 .moses{
-  max-height: 1px;
+  max-height: 1px!important;
 }
