@@ -165,8 +165,8 @@ router.post('/invitee', async function (req, res) {
 	try {
 		console.log(req.body.inviteeData)
 		let invitee = req.body.inviteeData
-		let newInvitee = await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
-		res.end()
+		await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
+		res.send(`${invitee.name} Succesfully added`)
 	} catch (err) {
 		console.log(err)
 		res.status(400).json({ message: err.message })
@@ -213,7 +213,7 @@ router.put('/invitee/addtotable', async (req, res) => {
 router.get('/tables/availableseats/:tableId', async (req, res) => {
 	try {
 		let tableId = req.params.tableId
-			let seats = await db.query(`SELECT seated, num_seats FROM tables WHERE id = "${tableId}"`)
+			let seats = await db.query(`SELECT seated FROM tables WHERE id = "${tableId}"`)
 			res.send(seats[0][0])
 
 	} catch(err) {

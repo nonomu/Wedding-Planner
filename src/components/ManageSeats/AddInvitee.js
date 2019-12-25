@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./manage_seats.css";
 import { inject, observer } from 'mobx-react';
+import { toast as popup } from 'react-toastify'
 
 
 @inject('manage_seats','user')
@@ -29,10 +30,24 @@ class AddInvitee extends Component {
     handleInputs = (e) =>{
         this.setState({[e.target.name]:e.target.value})
     }
+
+    invalidInput = user => Object.keys(user).some(i => !user[i])
+
+  handleError = input => {
+		if (this.invalidInput(input)) {
+			throw new Error('All fields are required')
+		}
+	}
     
-    AddInvitee = () => {
-        //send invitees to DB
-        this.props.manage_seats.addInvitee(this.state,this.props.user.userInfo.weddingData.id)
+    AddInvitee = async () => {
+      try {
+        this.handleError(this.state)
+        let addInvitee = await this.props.manage_seats.addInvitee(this.state,this.props.user.userInfo.weddingData.id)
+        popup.success(addInvitee)
+      } catch(err) {
+        popup.error(err.message)
+      }
+
     }
 render() {
     return (

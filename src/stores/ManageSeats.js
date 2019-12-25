@@ -24,8 +24,9 @@ class ManageSeats {
 	}
 
 	@action async addInvitee(inviteeData, weddingDataId) {
-		await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
-		this.getInvitees(weddingDataId)
+		let invitee = await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
+    this.getInvitees(weddingDataId)
+    return invitee.data
 		//needs to send weddingDATA ID of the user instead of USERID, Where is it ???
 	}
 
@@ -66,12 +67,12 @@ class ManageSeats {
 	@action getAvailableSeats = async () => {
 		let seats = await Axios.get(`${API_URL}/tables/availableseats/${this.selectedTable}`)
     this.currentSeats = seats.data.seated
-    this.selectedTableMaxSeats = seats.data.num_seats
 	}
 
-	@action addInviteeToTable = async (inviteeId, seats) => {
+	@action addInviteeToTable = async (inviteeId) => {
 		try {
-			let selectedTable = this.selectedTable
+      let selectedTable = this.selectedTable
+      let seats = this.currentSeats
 			let addInviteeToTable = await Axios.put(`${API_URL}/invitee/addtotable`, {
 				inviteeId,
         selectedTable,
