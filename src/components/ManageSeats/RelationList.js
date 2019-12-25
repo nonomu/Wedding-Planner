@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-
 import Invitee from './Invitee';
 
 @inject('manage_seats')

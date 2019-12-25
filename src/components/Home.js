@@ -11,7 +11,7 @@ class Home extends Component {
         
     }
 render() {
-return <div id="welcomeIMG"><img id="welcomeTemp" src="/welcomeTemp.png" alt="welcome"/></div>
+return <div id="welcomeIMG"><img id="welcomeTemp2" src="/welcomeTemp2.png" alt="welcome"/></div>
 }
 }
 
