@@ -4,10 +4,6 @@ const Sequelize = require('sequelize')
 const db = new Sequelize('mysql://root:@localhost/weddingPlanner')
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
-
-
 
 router.get('/attractions/', async function (req, res) {
 	try {
