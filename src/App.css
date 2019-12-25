@@ -104,6 +104,9 @@ select {
 #logo{
   width: 200px;
 }
+#welcomeTemp2{
+  width: 100%;
+}
 
 
 @media only screen and (max-width: 768px) {
