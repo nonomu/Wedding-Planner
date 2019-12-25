@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from 'mobx-react'
+import { Link } from 'react-router-dom'
 import AddInvitee from "./AddInvitee";
 import InviteesSideBar from "./invitees_side_bar";
 import Fab from '@material-ui/core/Fab';
@@ -22,7 +23,7 @@ class ManageSeats extends Component {
 
         </div>
 
-        <Fab id="addIcon" color="primary" aria-label="add">
+        <Fab id="addIcon" color="primary" aria-label="add" component={Link} to="/addtable">
         <AddIcon />
       </Fab>
       </div>

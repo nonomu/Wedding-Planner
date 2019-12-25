@@ -14,6 +14,7 @@
     align-items: center;
 }
 .user_box{
+    display: grid;
     background-color: #fff;
     width: 500px;
     /* height: 300px; */
@@ -57,3 +58,7 @@ bottom: 40px;
 #inv-btn{
     margin: 20px;
 }
+
+.close {
+    justify-self: start;
+  }
