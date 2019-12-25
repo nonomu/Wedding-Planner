@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
 import CloseIcon from '@material-ui/icons/Close';
 import { Fab } from '@material-ui/core';
-import {Link} from 'react-router-dom'
 @inject('user', 'attractions')
 
 @observer
@@ -19,7 +18,7 @@ class AttractionInfo extends Component {
         let a = this.props.attractions._attractions.length ? this.props.attractions._attractions.find(a => a.id === parseInt(this.props.id)) : []
         return (
             <div className="attraction-info">
-                <Fab className="close" component={Link} to={`/vendors/${a.category}`}><CloseIcon /></Fab>
+                <Fab className="close" onClick={this.props.history.goBack}><CloseIcon /></Fab>
                 <h3>{a.attr_name}</h3>
                 <div>vendor: {a.vendor}</div>
                 <div>({a.category})</div>
