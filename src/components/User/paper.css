@@ -1,7 +1,8 @@
 .bookedAttraction {
     display: grid;
     grid-gap: 10px;
-    width: 75%;
+    width: 66%;
+    
 }
 
 #Paper {
@@ -13,20 +14,19 @@
     box-shadow: none;
 }
 #cardMedia{
-    width: 75%;
-    margin-left: 5px;
-    border-radius: 25px ;
+    width: 66%;
+    margin-left: 6%;
+    border-radius: 5px ;
     color: white;
     text-shadow: 2px 2px 4px #000000;
 }
 
 p {
     text-align-last: left;
+    font-size: 15px!important;
 }
 
 #detail-box {
-    /* display: grid; */
-    /* grid-template-columns: 50% 50%; */
     text-align: justify;
     bottom: 1px;
     left: 0;
@@ -34,7 +34,6 @@ p {
 }
 
 #col1{
-    /* position: absolute; */
     top: 0;
     left: 0;
 }
