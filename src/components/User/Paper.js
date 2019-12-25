@@ -34,7 +34,7 @@ export default function PaperSheet(props) {
           <div id="col1" >
             <Typography id="col1" component="p">
               <PhoneIcon /> <strong>{props.attr.contact_name}</strong>:
-      {props.attr.contact_phone},     <br />
+      {props.attr.contact_phone}     <br />
               <AlternateEmailSharpIcon /> {props.attr.contact_email}
             </Typography>
       
