@@ -35,7 +35,7 @@ class App extends Component {
 				{ name: 'Logout', link: '/logout' }
 			],
 			guestsTabs: [
-				{ name: 'Home', link: '/' },
+				{ name: <img id="logo" src="/logo3.png" alt="logo"/>, link: '/' },
 				{ name: 'Login', link: '/login' },
 				{ name: 'Register', link: '/register' }
 			]
