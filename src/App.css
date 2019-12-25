@@ -3,18 +3,16 @@
   display: grid;
   grid-template-rows: 1fr 10fr;
   font-family: 'Raleway', sans-serif;
-  
-  /* display: grid; */
 }
-body{
+
+body {
   overflow: auto;
-  
 }
+
 a {
   text-decoration: none;
   color: black;
 }
-
 
 #background {
   background-image: url('/background.jpg');
@@ -31,9 +29,6 @@ a {
   z-index: -1;
   opacity: 0.3;
 }
-
-
-
 
 #navbar {
   width: 100%;
@@ -86,18 +81,13 @@ select {
   margin: 20px auto;
 }
 
-#welcomeIMG {
-  position: relative;
-  justify-items: center;
-  align-items: center;
-  /* grid-area: main */
+#welcomeTemp {
+  display: block;
+  margin-top: 75px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#welcomeTemp {
-  max-width: 100%;
-  max-height: 100vh;
-  margin: auto;
-}
 /* scroll design */
 ::-webkit-scrollbar-track
 {
@@ -106,19 +96,13 @@ select {
 	background-color: #444444;
 }
 
-::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
 }
 
-::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	background-color: #993294; 
-	background-image: -webkit-linear-gradient(90deg,
-											  transparent,
-											  rgba(0, 0, 0, 0.4) 50%,
-											  transparent,
-											  transparent)
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #993294;
+  background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }

@@ -51,7 +51,7 @@ class Overview extends Component {
         </Card>
       </div>
       <div className='papers'>
-      {bookedAttractions.map(ba => <Paper key={ba.id} attr={ba} />)}
+        {bookedAttractions.map(ba => <Paper key={ba.id} attr={ba} />)}
       </div>
     </div>
   }

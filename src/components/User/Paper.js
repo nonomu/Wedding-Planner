@@ -19,36 +19,42 @@ const useStyles = makeStyles(theme => ({
 export default function PaperSheet(props) {
   const classes = useStyles();
   return (
-    <Paper className="bookedAttraction"
-      id="Paper"
-      className={classes.root}
-      style={{ backgroundImage: "rgba(255, 255, 255, 0.3)" }}>
-      <Typography variant="h4" component="h3">
-        Your {props.attr.category} <br />
-        <i>{props.attr.attr_name}</i>
+    <CardMedia id="cardMedia"
+      className={classes.media}
+      image={props.attr.image}
+      title={props.attr.attr_name}>
+      <Paper className="bookedAttraction"
+        id="Paper"
+        className={classes.root}>
+        <Typography variant="h4" component="h3">
+          Your {props.attr.category} <br />
+          <i>{props.attr.attr_name}</i>
+        </Typography>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id='detail-box'>
+          <div id="col1" >
+            <Typography id="col1" component="p">
+              <PhoneIcon /> <strong>{props.attr.contact_name}</strong>:
+      {props.attr.contact_phone},     <br />
+              <AlternateEmailSharpIcon /> {props.attr.contact_email}
+            </Typography>
+          </div>
+          <div id="col2">
+            <Typography component="p">
+              <PaymentSharpIcon /> Price: {props.attr.price}₪
       </Typography>
-      <CardMedia id="cardMedia"
-        className={classes.media}
-        image={props.attr.image}
-        title={props.attr.attr_name}
-      />
-      <div id='detail-box'>
-        <div id="col1" >
-          <Typography component="p">
-            <PhoneIcon /> <strong>{props.attr.contact_name}</strong>:
-      {props.attr.contact_phone}, <br />
-            <AlternateEmailSharpIcon /> {props.attr.contact_email}
-          </Typography>
+            <Typography component="p">
+              Please Notice: {props.attr.small_prints}
+            </Typography>
+          </div>
         </div>
-        <div id="col2">
-          <Typography id="col2" component="p">
-            <PaymentSharpIcon /> Price: {props.attr.price}₪
-      </Typography>
-          <Typography component="p">
-            Please Notice: {props.attr.small_prints}
-          </Typography>
-        </div>
-      </div>
-    </Paper>
+      </Paper>
+    </CardMedia>
   );
 }
