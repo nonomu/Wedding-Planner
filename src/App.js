@@ -122,7 +122,7 @@ class App extends Component {
 					exact
 					path='/attractionInfo/:id'
 					render={({ match, history }) => (
-						<Grid container justify='center' alignContent='center'>
+						<Grid className='attr-info' container justify='center' alignContent='center'>
 							{this.openDialog()}
 							<Dialog
 								open={this.props.attractions.open}

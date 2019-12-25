@@ -14,7 +14,7 @@ const drawerWidth = 230;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    
+
   },
   drawer: {
     width: drawerWidth,
@@ -38,7 +38,7 @@ export default function ClippedDrawer(props) {
 
   return (
     <div className={classes.root}>
-      
+
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -46,7 +46,7 @@ export default function ClippedDrawer(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.toolbar} />
+        {/* <div className={classes.toolbar} /> */}
         <List>
           {props.categories.map((text, index) => (
             <ListItem button component={Link} to={`/vendors/${text}`} key={text}>
@@ -57,8 +57,9 @@ export default function ClippedDrawer(props) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {props.category? <Attractions category={props.category} /> : null}
+        <div className={classes.toolbar}>
+          {props.category ? <Attractions category={props.category} /> : null}
+        </div>
       </main>
     </div>
   );
