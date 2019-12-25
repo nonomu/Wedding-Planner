@@ -19,10 +19,11 @@ class AttractionInfo extends Component {
         return (
             <div className="attraction-info">
                 <Fab className="close" onClick={this.props.history.goBack}><CloseIcon /></Fab>
+                <div className='attraction-info-title'>
                 <h3>{a.attr_name}</h3>
-                <div>vendor: {a.vendor}</div>
-                <div>({a.category})</div>
-                <img src={a.image} alt={a.attr_name} />
+                <h4>{a.category}</h4>
+                </div>
+                <img src={a.image} alt={a.attr_name} width='550px'/>
                 <div>contact: {a.contact_name}  {a.contact_phone}  {a.contact_email}</div>
                 <div>{a.location}</div>
                 <div>rating: {a.rating}</div>
