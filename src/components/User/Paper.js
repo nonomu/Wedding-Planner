@@ -23,9 +23,8 @@ export default function PaperSheet(props) {
       className={classes.media}
       image={props.attr.image}
       title={props.attr.attr_name}>
-      <Paper className="bookedAttraction"
-        id="Paper"
-        className={classes.root}>
+      <Paper className={`${classes.root} bookedAttraction`}
+        id="Paper">
         <Typography variant="h4" component="h3">
           Your {props.attr.category} <br />
           <i>{props.attr.attr_name}</i>

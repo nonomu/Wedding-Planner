@@ -13,6 +13,7 @@ class User {
 			let user = await Axios.post(`${API_URL}/api/register`, { userData })
 			this.userInfo.id = user.data[0]
       this.userLogedIn = true
+      console.log(user)
       return user.data.message
 		} catch (err) {
 			throw new Error(err.response.data.message)

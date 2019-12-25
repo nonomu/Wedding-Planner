@@ -16,7 +16,8 @@ import Register from './components/Users_components/Register'
 import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
 import AddTable from './components/ManageSeats/AddTable'
-import LongMenu from "./components/navbars/Menu"
+// import LongMenu from "./components/navbars/Menu"
+import InviteesSideBar from './components/ManageSeats/InviteesSideBar'
 
 @inject('attractions', 'manage_seats', 'user')
 @observer
@@ -143,6 +144,19 @@ class App extends Component {
 									maxWidth='xl'
 									component={Paper}>
 									<AddTable />
+								</Dialog>
+							</Grid>
+					} />
+
+					<Route exact path='/addtotable' render={() => 
+						<Grid container justify='center' alignContent='center'>
+								{this.openDialog()}
+								<Dialog
+									open={this.props.attractions.open}
+									onClose={() => this.closeDialog()}
+									maxWidth='xl'
+									component={Paper}>
+									<InviteesSideBar />
 								</Dialog>
 							</Grid>
 					} />

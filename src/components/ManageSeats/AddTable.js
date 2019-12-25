@@ -57,7 +57,7 @@ class AddTable extends Component {
             />
           </div>
           <div>
-            <Button variant="contained" color="primary" onClick={this.addTable}>
+            <Button variant="contained" color="primary" onClick={this.addTable} component={Link} to='/manage_seats'>
               Add Table
             </Button>
           </div>
