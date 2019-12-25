@@ -26,9 +26,10 @@ export default function PaperSheet(props) {
       <Paper className={`${classes.root} bookedAttraction`}
         id="Paper">
         <Typography variant="h4" component="h3">
-          Your {props.attr.category} <br />
+          Your {props.attr.category}</Typography>
+           {/* <br /> */}
           <i>{props.attr.attr_name}</i>
-        </Typography>
+        
 
         <div id='detail-box'>
           <div id="col1" >
@@ -37,7 +38,6 @@ export default function PaperSheet(props) {
       {props.attr.contact_phone}     <br />
               <AlternateEmailSharpIcon /> {props.attr.contact_email}
             </Typography>
-      
             <Typography component="p">
               <PaymentSharpIcon /> Price: {props.attr.price}₪
       </Typography>
