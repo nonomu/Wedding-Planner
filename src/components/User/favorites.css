@@ -19,9 +19,10 @@
 .favoritesCategory{  
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 30px;
+    justify-content: center;
+    justify-items: center;
 }
 .attraction-info {
     display: grid;
