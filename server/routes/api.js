@@ -2,6 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Sequelize = require('sequelize')
 const db = new Sequelize('mysql://root:@localhost/weddingPlanner')
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
+
 
 router.get('/attractions/', async function (req, res) {
 	try {
@@ -115,14 +121,15 @@ WHERE user_id="${userInfo.id}"`
 router.post('/register', async function (req, res) {
 	try {
 		let user = req.body.userData
+		let encryptedPassword = await bcrypt.hash(user.fPassword, saltRounds)
 		let userCheck = await db.query(`SELECT * FROM user WHERE email = "${user.email}"`)
 		if (userCheck[0].length)
 			throw new Error("Oops, This email belongs to another user")
-		let newUser = await db.query(`INSERT INTO user VALUES(null,'${user.email}','${user.fPassword}')`)
+		let newUser = await db.query(`INSERT INTO user VALUES(null,'${user.email}','${encryptedPassword}')`)
 		await db.query(`INSERT INTO weddingdetails VALUES(null, '${user.gName}','${user.bName}','${user.weddingDate}','${user.estInvitees}','${user.weddingBudget}',null,'${user.weddingArea}',null,'${newUser[0]}')`)
-		res.send({newUser, message: 'Congrats! you have succesfully registered.'})
+		res.send({ newUser, message: 'Congrats! you have succesfully registered.' })
 	} catch (err) {
-		res.status(400).json({ message: err.message})
+		res.status(400).json({ message: err.message })
 	}
 })
 
@@ -130,15 +137,20 @@ router.post('/register', async function (req, res) {
 router.post('/login', async function (req, res) {
 	try {
 		let user = req.body
-		let result = await db.query(
-			`SELECT * FROM user WHERE email = "${user.email}" AND password = "${user.password}"`
-		)
-		if(result[0].length===0)
-		throw new Error("User details are incorrect")
-		let userId = result[0][0].id
-		res.send({ id: userId })
+		let result = await db.query(`SELECT * FROM user WHERE email = "${user.email}"`)
+		if (result[0].length === 0)
+			throw new Error("User details are incorrect")
+		let samePass = await bcrypt.compare(user.password, result[0][0].password)
+		console.log(" the pass word is :" + samePass)
+		if (samePass) {
+			let userId = result[0][0].id
+			res.send({ id: userId })
+		}
+		else {
+			throw new Error("User Pass word in not correct")
+		}
 	} catch (err) {
-		res.status(400).json({ message: err.message})
+		res.status(400).json({ message: err.message })
 	}
 })
 
@@ -162,17 +174,17 @@ router.post('/invitee', async function (req, res) {
 		res.end()
 	} catch (err) {
 		console.log(err)
-		res.status(400).json({ message: err.message})
+		res.status(400).json({ message: err.message })
 	}
 })
 
-router.get('/invitees/:weddingDetailsId',async function(req,res){
-	try{
+router.get('/invitees/:weddingDetailsId', async function (req, res) {
+	try {
 		let weddingDetailsId = req.params.weddingDetailsId
 		let invitees = await db.query(`SELECT * FROM invitee WHERE wedding_id = ${weddingDetailsId}`)
 		res.send(invitees)
-	} catch(err){
-		res.status(400).json({message:err.message})
+	} catch (err) {
+		res.status(400).json({ message: err.message })
 	}
 })
 
@@ -185,17 +197,17 @@ router.post('/table', async function (req, res) {
 		res.end()
 	} catch (err) {
 		console.log(err)
-		res.status(400).json({ message: err.message})
+		res.status(400).json({ message: err.message })
 	}
 })
 
-router.get('/tables/:weddingDetailsId',async function(req,res){
-	try{
+router.get('/tables/:weddingDetailsId', async function (req, res) {
+	try {
 		let weddingDetailsId = req.params.weddingDetailsId
 		let tables = await db.query(`SELECT * FROM tables WHERE wedding_id = ${weddingDetailsId}`)
 		res.send(tables)
-	}catch(err){
-		res.status(400).json({message:err.message})
+	} catch (err) {
+		res.status(400).json({ message: err.message })
 	}
 })
 

@@ -1,13 +1,13 @@
 -- --CREATE DATABASE WeddingPlanner;
-USE weddingplanner;
 -- DROPPER
--- DROP TABLE booked_attractions,favorites,attractions,invitee,user,weddingDetails;
--- DROP TABLE invitee,tables;
+USE weddingplanner;
+-- DROP TABLE tables,booked_attractions,favorites,attractions,invitee,user,weddingDetails;
+-- DROP TABLE weddingDetails,user;
 
 -- CREATE TABLE user(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
---     email varchar(40),
---     password varchar(40)
+--     email text,
+--     password text
 -- );
 -- CREATE TABLE weddingDetails(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -49,19 +49,19 @@ USE weddingplanner;
 --     FOREIGN KEY(wedding_id) REFERENCES weddingDetails(id)
 -- );
 
-CREATE TABLE invitee(
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(20) NOT NULL,
-    num_invitees int,
-    est_gift int,
-    relation varchar(30),
-    phone varchar(30),
-    email varchar(40),
-    wedding_id int,
-    table_id int,
-    FOREIGN KEY(wedding_id) REFERENCES weddingDetails(id), 
-    FOREIGN KEY(table_id) REFERENCES tables(id)  
-);
+-- CREATE TABLE invitee(
+--     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     name varchar(20) NOT NULL,
+--     num_invitees int,
+--     est_gift int,
+--     relation varchar(30),
+--     phone varchar(30),
+--     email varchar(40),
+--     wedding_id int,
+--     table_id int,
+--     FOREIGN KEY(wedding_id) REFERENCES weddingDetails(id), 
+--     FOREIGN KEY(table_id) REFERENCES tables(id)  
+-- );
 
 -- CREATE TABLE booked_attractions(
 --     user_id int NOT NULL,
