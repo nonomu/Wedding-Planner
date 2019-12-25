@@ -6,8 +6,4 @@
 [1223/135005.162:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [1223/135307.758:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [1223/135446.051:ERROR:crash_report_database_win.cc(469)] failed to stat report
-[1225/104349.034:ERROR:crash_report_database_win.cc(469)] failed to stat report
-[1225/105349.035:ERROR:crash_report_database_win.cc(469)] failed to stat report
-[1225/105349.036:ERROR:crash_report_database_win.cc(469)] failed to stat report
-[1225/105849.036:ERROR:crash_report_database_win.cc(469)] failed to stat report
-[1225/111349.036:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[1225/112849.041:ERROR:crash_report_database_win.cc(469)] failed to stat report
