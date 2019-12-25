@@ -43,8 +43,7 @@ this.setState({[e.target.name]:e.target.value})
     return (
       <div className="login_box">
         <div className="user_box">
-          <h1>LOGO</h1>
-          <h3>Login</h3>
+          <h1>Login</h1>
           <div>
             <TextField
               name="email"
@@ -64,7 +63,7 @@ this.setState({[e.target.name]:e.target.value})
             />
           </div>
           <div>
-          <p>Don't have an account yet? <Link to="/register"><span id="register_link">Create one here!</span></Link></p>
+          <p className="create-account">Don't have an account yet? <Link to="/register"><span id="register_link">Create one here!</span></Link></p>
             <Button variant="contained" color="primary" onClick={this.userLogin}>
               LOGIN
             </Button>

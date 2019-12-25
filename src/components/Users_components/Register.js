@@ -59,8 +59,7 @@ class Register extends Component {
     return (
       <div className="register">
         <div className="register_box">
-          <h1>LOGO</h1>
-          <h3>Register</h3>
+          <h1>Register</h1>
           <div>
             <TextField
               name="email"
