@@ -62,3 +62,10 @@ bottom: 40px;
 .close {
     justify-self: start;
   }
+
+.table{
+    display: inline-block;
+    margin: 0 30px;
+    border: 1px solid black;    
+}
+

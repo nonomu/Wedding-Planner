@@ -40,8 +40,8 @@ class App extends Component {
 			]
 		}
 	}
-	componentDidMount() {
-		this.props.attractions.getAttractions()
+	async componentDidMount() {
+		await this.props.attractions.getAttractions()
 		this.props.user.getWeddingDetails()
 	}
 

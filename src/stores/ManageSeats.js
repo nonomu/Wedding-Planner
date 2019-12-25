@@ -52,7 +52,10 @@ class ManageSeats {
       console.log(err.message)
     }
   }
-  
+
+  @action async getTableInvitees(tableId){
+    //get invitees for this table id from DB
+  }
 }
 
 export const manage_seats = new ManageSeats();
