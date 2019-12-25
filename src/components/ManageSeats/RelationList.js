@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import Invitee from './invitee'
+import Invitee from './Invitee'
 
 @inject('manage_seats')
 
@@ -16,7 +16,7 @@ class RelationList extends Component {
         return (
             <div>
     <h2>{this.props.relation}</h2>
-    {related.map(i => <Invitee details={i} />)}
+    {related.map(i => <Invitee key={i.id} details={i} />)}
             </div>
         );
     }

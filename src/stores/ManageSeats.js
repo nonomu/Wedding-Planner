@@ -6,6 +6,9 @@ let API_URL = `http://localhost:4200/api`
 class ManageSeats {
   @observable invitees = []
   @observable tables = []
+  @observable selectedTable
+  @observable selectedTableName
+  @observable openSideBar = false
 
 @computed get numTables() {
   return this.tables.length
@@ -56,6 +59,17 @@ class ManageSeats {
   @action async getTableInvitees(tableId){
     //get invitees for this table id from DB
   }
+
+  @action addInviteeToTable = async (inviteeId) => {
+    try {
+      let selectedTable = this.selectedTable
+      let addInviteeToTable = await Axios.put(`${API_URL}/invitee/addtotable`, {inviteeId, selectedTable})
+      return addInviteeToTable.data
+    } catch(err) {
+      throw new Error(err.response.data.message)
+    }
+  }
+
 }
 
 export const manage_seats = new ManageSeats();

@@ -137,13 +137,12 @@ router.post('/login', async function (req, res) {
 		if (result[0].length === 0)
 			throw new Error("User details are incorrect")
 		let samePass = await bcrypt.compare(user.password, result[0][0].password)
-		console.log(" the pass word is :" + samePass)
 		if (samePass) {
 			let userId = result[0][0].id
 			res.send({ id: userId })
 		}
 		else {
-			throw new Error("User Pass word in not correct")
+			throw new Error("Incorrect password")
 		}
 	} catch (err) {
 		res.status(400).json({ message: err.message })
@@ -193,6 +192,18 @@ router.post('/table', async function (req, res) {
 		res.end()
 	} catch (err) {
 		console.log(err)
+		res.status(400).json({ message: err.message })
+	}
+})
+
+router.put('/invitee/addtotable', async (req, res) => {
+	try{
+		let inviteeId = req.body.inviteeId
+		let tableId = req.body.selectedTable
+		console.log(inviteeId, tableId)
+		await db.query(`UPDATE invitee SET table_id = "${tableId}" WHERE id = "${inviteeId}"`)
+		res.send(`Invitee added to table`)
+	} catch(err) {
 		res.status(400).json({ message: err.message })
 	}
 })
