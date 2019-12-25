@@ -25,14 +25,25 @@ p {
 }
 
 #detail-box {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    /* display: grid; */
+    /* grid-template-columns: 50% 50%; */
     text-align: justify;
-    margin-bottom: 100px;
     bottom: 1px;
+    left: 0;
+    position: relative;
+}
+
+#col1{
+    /* position: absolute; */
+    top: 0;
     left: 0;
 }
 
+#col2{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 @media only screen and (max-width: 768px) {
     #Paper {
         width: 75%;
