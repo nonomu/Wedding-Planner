@@ -10,9 +10,13 @@
 .attraction-title {
   text-transform: uppercase;
   text-align: center;
-  font-size: 3vw;
-}
+ margin-top: 0 auto;
+ margin-bottom: 60px;
 
+}
+.makeStyles-toolbar-343{
+  display: none;
+}
 .close {
   justify-self: start;
 }

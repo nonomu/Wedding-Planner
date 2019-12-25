@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import "./usercomp.css";
 import {toast as popup} from 'react-toastify'
 import { inject, observer } from "mobx-react";
+import Autocomplete from 'react-google-autocomplete';
+import "./register.css";
 
 // import DateFnsUtils from "@date-io/date-fns";
 // import Grid from "@material-ui/core/Grid";
@@ -56,8 +57,8 @@ class Register extends Component {
   }
   render() {
     return (
-      <div className="box_bg">
-        <div className="user_box">
+      <div className="register">
+        <div className="register_box">
           <h1>LOGO</h1>
           <h3>Register</h3>
           <div>
@@ -152,15 +153,20 @@ class Register extends Component {
           <div>
             {/* Noam will make it autocomplete ?  */}
             <span id="TextField">
-              <TextField
-                name="weddingArea"
-                label="Wedding Area"
-                onChange={this.handleInputs}
-              />
+            <Autocomplete value={this.state.weddingArea} label="Wedding Area" name="weddingArea" id="autoCompleteField"
+              style={{ width: '220px',marginTop:'15px', backgroundColor: "rgba( 255,255 ,255,0 )", height: 40, borderRadius: 20, borderColor: 'rgba(0,0,0,0.3)' }}
+              onChange={this.handleInputs}
+              onPlaceSelected={(city) => {
+                let cityName = city.formatted_address
+                this.setState({ weddingArea: cityName })
+              }}
+              types={['(cities)']}
+              componentRestrictions={{ country: "IL" }}
+            />
             </span>
           </div>
           <div>
-            <Button variant="contained" color="primary" onClick={this.userRegister}>
+            <Button  style={{marginTop:'5px'}} variant="contained" color="primary" onClick={this.userRegister}>
               Register
             </Button>
             {this.props.user.userLogedIn ? window.location="/" : null}

@@ -15,6 +15,7 @@ const drawerWidth = 230;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    
   },
   drawer: {
     width: drawerWidth,

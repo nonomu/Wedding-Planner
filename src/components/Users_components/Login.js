@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import "./usercomp.css";
 import {toast as popup} from 'react-toastify'
 import { inject, observer } from "mobx-react";
 import { Link } from "react-router-dom";
+import './login.css'
 
 @inject('user')
 @observer
@@ -41,7 +41,7 @@ this.setState({[e.target.name]:e.target.value})
 
   render() {
     return (
-      <div className="box_bg">
+      <div className="login_box">
         <div className="user_box">
           <h1>LOGO</h1>
           <h3>Login</h3>
@@ -64,7 +64,7 @@ this.setState({[e.target.name]:e.target.value})
             />
           </div>
           <div>
-          <p>Don't have an account yet? <Link to="/register">Create one here!</Link></p>
+          <p>Don't have an account yet? <Link to="/register"><span id="register_link">Create one here!</span></Link></p>
             <Button variant="contained" color="primary" onClick={this.userLogin}>
               LOGIN
             </Button>
