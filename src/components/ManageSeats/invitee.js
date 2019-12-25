@@ -8,7 +8,14 @@ class Invitee extends Component {
 
     addInviteeToTable = async () => {
         try {
-            let addToTable = await this.props.manage_seats.addInviteeToTable(this.props.details.id)
+            let currentSeats = this.props.manage_seats.currentSeats
+            let updatedSeats = currentSeats + this.props.details.num_invitees
+            let maxSeats = this.props.manage_seats.selectedTableMaxSeats
+            console.log(currentSeats, updatedSeats, maxSeats)
+            if (updatedSeats > maxSeats) {
+                throw new Error(`You have reached the maximum amount of seats at this table`)
+            }
+            let addToTable = await this.props.manage_seats.addInviteeToTable(this.props.details.id, updatedSeats)
             popup.success(addToTable)
         } catch(err) {
             popup.error(err.message)

@@ -6,13 +6,12 @@ import { Button } from '@material-ui/core'
 @inject('manage_seats')
 @observer
 class Table extends Component {
-	getTableInvitees = () => {
-		// this.props.t.id
-	}
 
 	selectTable = () => {
 		this.props.manage_seats.selectedTable = this.props.t.id
 		this.props.manage_seats.selectedTableName = this.props.t.table_name
+		this.props.manage_seats.getAvailableSeats()
+		
 	}
 	render() {
 		return (
