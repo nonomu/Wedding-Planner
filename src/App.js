@@ -16,8 +16,8 @@ import Register from './components/Users_components/Register'
 import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
 import AddTable from './components/ManageSeats/AddTable'
-// import LongMenu from "./components/navbars/Menu"
 import InviteesSideBar from './components/ManageSeats/InviteesSideBar'
+import ShowWindowDimensions from './components/Users_components/screenSize'
 
 @inject('attractions', 'manage_seats', 'user')
 @observer
@@ -61,9 +61,11 @@ class App extends Component {
 	}
 
 	render() {
+		let categoriesForSideBar=this.props.attractions.categories
 		return (
 			<Router>
 				<div id='background'></div>
+				{/* <ShowWindowDimensions/>  */}
 				<div>
 					<Navbar
 						tabs={
@@ -93,7 +95,7 @@ class App extends Component {
 					render={({ match }) => (
 						<ClippedDrawer
 							category={match.params.category}
-							categories={this.props.attractions.categories}
+							categories={categoriesForSideBar}
 						/>
 					)}
 				/>
