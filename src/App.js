@@ -17,7 +17,6 @@ import ManageSeats from './components/ManageSeats/ManageSeats'
 import ClippedDrawer from './components/Attractions/ClippedDrawer'
 import AddTable from './components/ManageSeats/AddTable'
 import InviteesSideBar from './components/ManageSeats/InviteesSideBar'
-import ShowWindowDimensions from './components/Users_components/screenSize'
 
 @inject('attractions', 'manage_seats', 'user')
 @observer
@@ -102,7 +101,7 @@ class App extends Component {
 				<Route
 					exact
 					path='/book/:category/:id'
-					render={({ match }) => (
+					render={({ match, history }) => (
 						<Grid container justify='center' alignContent='center'>
 							{this.openDialog()}
 							<Dialog
@@ -114,6 +113,7 @@ class App extends Component {
 								<BookAttraction
 									category={match.params.category}
 									id={match.params.id}
+									history={history}
 								/>
 							</Dialog>
 						</Grid>
@@ -122,7 +122,7 @@ class App extends Component {
 				<Route
 					exact
 					path='/attractionInfo/:id'
-					render={({ match }) => (
+					render={({ match, history }) => (
 						<Grid container justify='center' alignContent='center'>
 							{this.openDialog()}
 							<Dialog
@@ -131,7 +131,7 @@ class App extends Component {
 								fullWidth
 								maxWidth='xl'
 								component={Paper}>
-								<AttractionInfo id={match.params.id} />
+								<AttractionInfo id={match.params.id} history={history} />
 							</Dialog>
 						</Grid>
 					)}

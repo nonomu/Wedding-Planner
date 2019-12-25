@@ -3,6 +3,7 @@
 USE WeddingPlanner;
 -- DROP TABLE tables,booked_attractions,favorites,attractions,invitee,user,weddingDetails;
 -- DROP TABLE weddingDetails,user;
+-- DROP TABLE tables,invitee;
 
 -- CREATE TABLE user(
 --     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -45,6 +46,7 @@ USE WeddingPlanner;
 --     table_name VARCHAR(40),
 --     table_number INT,
 --     num_seats INT,
+--     seated INT,
 --     wedding_id INT,
 --     FOREIGN KEY(wedding_id) REFERENCES weddingDetails(id)
 -- );

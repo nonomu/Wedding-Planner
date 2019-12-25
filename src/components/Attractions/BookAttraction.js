@@ -33,11 +33,7 @@ class BookAttraction extends Component {
         return (
             <div>
             { !attractionData ? null : <div className="attraction-info">
-                <Fab className="close" component={Link} to={`/vendors/${attractionData.category}`}><CloseIcon /></Fab>
-
-
-                {/* <img className="attr-img" src={attractionData.image} alt={attractionData.attr_name} />
-                <div className="attr-name">name: {attractionData.attr_name}</div> */}
+                <Fab className="close" onClick={this.props.history.goBack}><CloseIcon /></Fab>
 
                 <h2>Wohooooo Congrats !!</h2>
                 <img src="https://www.vippng.com/png/detail/5-50383_emojis-transparent-png-party-emoji-png.png" style={{width:"250px"}} alt="happyEmoji"/>
