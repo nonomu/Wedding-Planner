@@ -188,7 +188,7 @@ router.post('/table', async function (req, res) {
 		let tableData = req.body.tableData
 		let tableNumber = req.body.numTables + 1
 		let weddingDetailsId = req.body.weddingDetailsId
-		await db.query(`INSERT INTO tables VALUES(null,'${tableData.tableName}','${tableNumber}','${tableData.numSeats}','${weddingDetailsId}')`)
+		await db.query(`INSERT INTO tables VALUES(null,'${tableData.tableName}','${tableNumber}','${tableData.numSeats}',0,'${weddingDetailsId}')`)
 		res.end()
 	} catch (err) {
 		console.log(err)
