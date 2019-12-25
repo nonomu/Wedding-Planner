@@ -200,8 +200,10 @@ router.put('/invitee/addtotable', async (req, res) => {
 	try{
 		let inviteeId = req.body.inviteeId
 		let tableId = req.body.selectedTable
-		console.log(inviteeId, tableId)
+		let table = db.query(`SELECT num_seats, seated FROM tables WHERE tables.id = "${tableId}"`)
+		
 		await db.query(`UPDATE invitee SET table_id = "${tableId}" WHERE id = "${inviteeId}"`)
+		await db.query(`UPDATE tables SET `)
 		res.send(`Invitee added to table`)
 	} catch(err) {
 		res.status(400).json({ message: err.message })
