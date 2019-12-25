@@ -7,7 +7,7 @@
 }
 
 .budget {
-    padding-top: 50px;
+    padding-top: 55px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     grid-area: 'budget';
@@ -16,6 +16,7 @@
 
 .papers {
     grid-area: main;
+    padding-top: 5px;
 }
 
 @media only screen and (max-width: 768px) {
