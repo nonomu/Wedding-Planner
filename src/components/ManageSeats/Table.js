@@ -7,18 +7,22 @@ import { Button } from '@material-ui/core'
 @observer
 
 class Table extends Component {
-
+	constructor()
+	{
+		super()
+		this.state={
+			render:false
+		}
+	}
 	selectTable = () => {
-		// this.props.manage_seats.selectedTable = this.props.t.id
-		// this.props.manage_seats.selectedTableName = this.props.t.table_name
-		// this.props.manage_seats.selectedTableMaxSeats = this.props.t.num_seats
-		// this.props.manage_seats.selectedTableNumber = this.props.t.table_number
-		// this.props.manage_seats.getAvailableSeats()
+		this.props.manage_seats.selectedTable = this.props.t.id
+		this.props.manage_seats.selectedTableName = this.props.t.table_name
+		this.props.manage_seats.selectedTableMaxSeats = this.props.t.num_seats
+		this.props.manage_seats.selectedTableNumber = this.props.t.table_number
+		this.props.manage_seats.getAvailableSeats()
 	}
 	render() {
-		//  this.props.manage_seats.tables
-		console.log(this.props)
-		let invitees=this.props.manage_seats.invitees
+		 let invitees=this.props.manage_seats.invitees
 		return (
 			<div>
 	<Button
