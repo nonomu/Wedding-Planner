@@ -13,7 +13,6 @@ class RelationList extends Component {
     return this.props.manage_seats.getRelatedInvitees(this.props.relation)
     }    
     render() {
-        
         let related = this.getRelatedInvitees()
         return (
             <div>

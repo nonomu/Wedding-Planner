@@ -18,7 +18,7 @@ USE WeddingPlanner;
 --     est_invitees varchar(20),
 --     est_budget int,
 --     est_cash_gifts int,
---     wedding_area varchar(20),
+--     wedding_area text,
 --     music_style varchar(20),
 --     user_id int,
 --     FOREIGN KEY(user_id) REFERENCES user(id)

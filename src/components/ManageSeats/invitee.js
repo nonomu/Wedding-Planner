@@ -18,13 +18,24 @@ class Invitee extends Component {
         try {
           let currenTableId=parseInt(this.props.currenTableId)
             let currenTable= this.props.manage_seats.tables.find( t => t.id === currenTableId)
-            console.log(currenTable)
             if(this.props.details.num_invitees + currenTable.seated > currenTable.num_seats)
             throw new Error(`You have reached the maximum amount of seats for this table`)
             let addToTable = await this.props.manage_seats.addInviteeToTable(this.props.details,currenTable )
             this.setState({render:!this.state.render})
             popup.success(addToTable)
         } catch(err) {
+            popup.error(err.message)
+        }
+    }
+    removeInviteeFromTable =async ()=>{
+        try{
+            let currenTableId=parseInt(this.props.currenTableId)
+            let currenTable= this.props.manage_seats.tables.find( t => t.id === currenTableId)
+            let invitee=this.props.details
+            let removeToTable=await this.props.manage_seats.removeInviteeFromTable(invitee,currenTable)
+            popup.success(removeToTable)
+        }
+        catch(err) {
             popup.error(err.message)
         }
     }
@@ -41,7 +52,7 @@ class Invitee extends Component {
          {this.props.details.name}
          </td>
          <td>{this.props.details.num_invitees}</td> <td>{tableNum}</td> 
-                <td>{userTableIdNew!=tablePopId?<Icon  onClick={this.addInviteeToTable} style={{ color: "green" }}>add_circle</Icon>:<Icon  style={{ color: "red" }}>remove_circle</Icon>}</td> 
+                <td>{userTableIdNew!=tablePopId?<Icon  onClick={this.addInviteeToTable} style={{ color: "green" }}>add_circle</Icon>:<Icon onClick={this.removeInviteeFromTable} style={{ color: "red" }}>remove_circle</Icon>}</td> 
             </tr>
         );
     }
