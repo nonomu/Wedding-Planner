@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import {toast as popup} from 'react-toastify'
-import { Button } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 @inject('manage_seats')
@@ -52,7 +51,7 @@ class Invitee extends Component {
          {this.props.details.name}
          </td>
          <td>{this.props.details.num_invitees}</td> <td>{tableNum}</td> 
-                <td>{userTableIdNew!=tablePopId?<Icon  onClick={this.addInviteeToTable} style={{ color: "green" }}>add_circle</Icon>:<Icon onClick={this.removeInviteeFromTable} style={{ color: "red" }}>remove_circle</Icon>}</td> 
+                <td>{userTableIdNew!==tablePopId?<Icon  onClick={this.addInviteeToTable} style={{ color: "green" }}>add_circle</Icon>:<Icon onClick={this.removeInviteeFromTable} style={{ color: "red" }}>remove_circle</Icon>}</td> 
             </tr>
         );
     }
