@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import Invitee from './Invitee';
+import Invitee from './invitee';
 import { Table } from '@material-ui/core';
 import './manage_seats.css'
 

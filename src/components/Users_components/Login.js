@@ -51,7 +51,7 @@ class Login extends Component {
 						<TextField
 							name='email'
 							id='standard_basic'
-							label='E-Mail'
+							label='Email'
 							onChange={this.handleInputs}
 						/>
 					</div>
