@@ -63,7 +63,7 @@ class Register extends Component {
           <div>
             <TextField
               name="email"
-              label="E-Mail"
+              label="Email"
               onChange={this.handleInputs}
             />
           </div>
@@ -119,7 +119,7 @@ class Register extends Component {
               <TextField
                 type="number"
                 name="weddingBudget"
-                label="Wedding Budget"
+                label="Wedding Budget(₪)"
                 onChange={this.handleInputs}
               />
             </span>
