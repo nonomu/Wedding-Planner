@@ -67,7 +67,7 @@ router.post('/attractions/favorite', async function (req, res) {
 			await db.query(
 				`INSERT INTO favorites VALUES("${favorite.userId}", "${favorite.attractionId}")`
 			)
-		res.send('succesfully added')
+		res.send('succesfully added to favorites')
 	} catch (err) {
 		console.log(err)
 		res.send(err)
@@ -108,7 +108,7 @@ SET  groom_name = "${userInfo.groomName}",
  music_style = "${userInfo.venueRadius}"
 WHERE user_id="${userInfo.id}"`
 		)
-		res.send('You updated your info successfully!')
+		res.send('Your info has been successfully updated!')
 	} catch (err) {
 		res.send(`there was an error`)
 	}
@@ -155,7 +155,7 @@ router.delete('/favorite', async function (req, res) {
 		await db.query(
 			`DELETE FROM favorites WHERE user_id = "${favorite.userId}" AND attraction_id = "${favorite.attractionId}"`
 		)
-		res.send(`succesfully removed`)
+		res.send(`Succesfully removed from favorites`)
 	} catch (err) {
 		res.send(err)
 	}
@@ -165,7 +165,7 @@ router.post('/invitee', async function (req, res) {
 	try {
 		console.log(req.body.inviteeData)
 		let invitee = req.body.inviteeData
-		await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
+		await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}',0,'${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
 		res.send(`${invitee.name} has been added to your guest list!`)
 	} catch (err) {
 		console.log(err)
@@ -206,7 +206,7 @@ router.put('/invitee/addtotable', async (req, res) => {
 		await db.query(`UPDATE tables SET seated = "${inviteeOldTable.seated-addSeatsNum}" where id="${inviteeOldTable.id}"`)
 		await db.query(`UPDATE invitee SET table_id = "${newTable.id}" WHERE id = "${inviteeId}"`)
 		await db.query(`UPDATE tables SET seated = "${newTable.seated+addSeatsNum}" where id="${newTable.id}"`)
-		res.send(`Invitee added to table`)
+		res.send(`Your guest has succesfully added to this table`)
 	} catch (err) {
 		res.status(400).json({ message: err.message })
 	}
@@ -218,7 +218,7 @@ router.put('/invitee/removeFromTable', async (req, res) => {
 		let addSeatsNum = req.body.invitee.num_invitees
 		await db.query(`UPDATE tables SET seated = "${removeTable.seated-addSeatsNum}" where id="${removeTable.id}"`)
 		await db.query(`UPDATE invitee SET table_id = null WHERE id = "${inviteeId}"`)
-		res.send(`Invitee removed from table`)
+		res.send(`Your guest has succesfully removed from table`)
 	} catch (err) {
 		res.status(400).json({ message: err.message })
 	}

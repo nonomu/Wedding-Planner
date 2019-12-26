@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import {toast as popup} from 'react-toastify'
-import { Button } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 @inject('manage_seats')
@@ -56,5 +55,4 @@ class Invitee extends Component {
         );
     }
 }
-{/* <Button variant="contained" color="primary" onClick={this.addInviteeToTable}>+</Button> */}
 export default Invitee;
