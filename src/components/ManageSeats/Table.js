@@ -7,11 +7,10 @@ import { Button } from '@material-ui/core'
 @observer
 
 class Table extends Component {
-	constructor()
-	{
+	constructor() {
 		super()
-		this.state={
-			render:false
+		this.state = {
+			render: false
 		}
 	}
 	selectTable = () => {
@@ -22,33 +21,33 @@ class Table extends Component {
 		this.props.manage_seats.getAvailableSeats()
 	}
 	render() {
-		 let invitees=this.props.manage_seats.invitees
+		let invitees = this.props.manage_seats.invitees
 		return (
 			<div>
-	<Button
-		onClick={this.selectTable}
-		component={Link}
-		to={`/addtotable/${this.props.t.id}`} >
-			<table className='table'>
-				<thead>
-					<tr>
-						<td>
-							<div className="tableName">	{this.props.t.table_name} - {this.props.t.seated}/{this.props.t.num_seats}</div>
-						</td>
-					</tr>
-				</thead>
-				<tbody>
-					{invitees
-						.filter(i => i.table_id === this.props.t.id)
-						.map(i => (
-							<tr key={i.name}>
-								<td key={i.name} ><span>{i.name}</span>  <span className="numOfinvitees">({i.num_invitees})</span></td>
+				<Button
+					onClick={this.selectTable}
+					component={Link}
+					to={`/addtotable/${this.props.t.id}`} >
+					<table className='table'>
+						<thead>
+							<tr>
+								<td>
+									<div className="tableName">	{this.props.t.table_name} - {this.props.t.seated}/{this.props.t.num_seats}</div>
+								</td>
 							</tr>
-						))}
-				</tbody>
-			</table>
-						</Button>
-		</div>
+						</thead>
+						<tbody>
+							{invitees
+								.filter(i => i.table_id === this.props.t.id)
+								.map(i => (
+									<tr key={i.name}>
+										<td key={i.name} ><span>{i.name}</span>  <span className="numOfinvitees">({i.num_invitees})</span></td>
+									</tr>
+								))}
+						</tbody>
+					</table>
+				</Button>
+			</div>
 		)
 	}
 }

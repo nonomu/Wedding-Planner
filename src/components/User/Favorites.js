@@ -20,7 +20,7 @@ class Favorites extends Component {
 				{categories.map((c, i) => {
 					return userFavorites.some(u => u.category === c) ? (
 						<div key={Math.random() * 1000000} className='favorite'>
-							<p className='categoryName'>{c}</p>
+							<h4 className='categoryName'>{c}</h4>
 							<div className='favoritesCategory'>
 								{userFavorites.map(uf =>
 									uf.category === c ? (

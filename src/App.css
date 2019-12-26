@@ -5,8 +5,6 @@
   font-family: 'Raleway', sans-serif;
 }
 
-
-
 a {
   text-decoration: none;
   color: black;
@@ -89,11 +87,11 @@ select {
 }
 
 /* scroll design */
-::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
-	border-radius: 10px;
-	background-color: #cac1c1;
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  background-color: #cac1c1;
 }
 
 ::-webkit-scrollbar {
@@ -106,18 +104,21 @@ select {
   background-color: #4046a5;
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
-#logo{
+
+#logo {
   width: 170px;
 }
-#welcomeTemp2{
+
+#welcomeTemp2 {
   width: 100%;
 }
 
+@media only screen and (max-width: 768px) {}
 
-@media only screen and (max-width: 768px) {
-  
+.moses {
+  max-height: 1px!important;
 }
 
-.moses{
-  max-height: 1px!important;
+a#Logout-tab {
+  background-color: rgba(211, 29, 29, 0.3);
 }

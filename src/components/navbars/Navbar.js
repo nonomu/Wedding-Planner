@@ -34,11 +34,11 @@ export default function CenteredTabs(props) {
         variant='fullWidth'
         indicatorColor="primary"
         textColor="primary"
-        centered
-      >
+        centered>
         {props.tabs.map(t => (
-          <Tab key={t.name} label={t.name} component={Link} to={t.link} />
-          ))}
+          <Tab key={t.name} label={t.name} id={t.name + '-tab'}
+          component={Link} to={t.link} />
+        ))}
       </Tabs>
     </Paper>
   );
