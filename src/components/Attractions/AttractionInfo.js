@@ -28,13 +28,13 @@ class AttractionInfo extends Component {
                     <h4><i>{a.category}</i></h4>
                 </div>
                 <img src={a.image} title={a.attr_name} alt={a.attr_name} width='600px' height='400px'/>
-                <Typography className="attraction-info-bottom" component="p">
+                <Typography className="attraction-info-bottom">
                 <strong><PhoneIcon /> {a.contact_name}  {a.contact_phone}</strong><br/>
                 <strong><AlternateEmailSharpIcon /> {a.contact_email}</strong><br/>
                 <strong><LocationOnIcon /> {a.location}</strong><br />
                 <Rating value={a.rating} readOnly/> <br />
-                <h5>notes: {a.small_prints}</h5>
                 </Typography>
+                <h5>notes: {a.small_prints}</h5>
             </div>
         )
     }
