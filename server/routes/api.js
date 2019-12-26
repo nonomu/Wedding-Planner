@@ -211,6 +211,18 @@ router.put('/invitee/addtotable', async (req, res) => {
 		res.status(400).json({ message: err.message })
 	}
 })
+router.put('/invitee/removeFromTable', async (req, res) => {
+	try {
+		let inviteeId = req.body.invitee.id
+		let removeTable = req.body.currenTable
+		let addSeatsNum = req.body.invitee.num_invitees
+		await db.query(`UPDATE tables SET seated = "${removeTable.seated-addSeatsNum}" where id="${removeTable.id}"`)
+		await db.query(`UPDATE invitee SET table_id = null WHERE id = "${inviteeId}"`)
+		res.send(`Invitee removed from table`)
+	} catch (err) {
+		res.status(400).json({ message: err.message })
+	}
+})
 
 router.get('/tables/availableseats/:tableId', async (req, res) => {
 	try {
