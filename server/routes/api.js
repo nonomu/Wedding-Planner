@@ -67,7 +67,7 @@ router.post('/attractions/favorite', async function (req, res) {
 			await db.query(
 				`INSERT INTO favorites VALUES("${favorite.userId}", "${favorite.attractionId}")`
 			)
-		res.send('succesfully added')
+		res.send('succesfully added to favorites')
 	} catch (err) {
 		console.log(err)
 		res.send(err)
@@ -155,7 +155,7 @@ router.delete('/favorite', async function (req, res) {
 		await db.query(
 			`DELETE FROM favorites WHERE user_id = "${favorite.userId}" AND attraction_id = "${favorite.attractionId}"`
 		)
-		res.send(`Succesfully removed`)
+		res.send(`Succesfully removed from favorites`)
 	} catch (err) {
 		res.send(err)
 	}
