@@ -166,7 +166,7 @@ router.post('/invitee', async function (req, res) {
 		console.log(req.body.inviteeData)
 		let invitee = req.body.inviteeData
 		await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
-		res.send(`${invitee.name} Succesfully added`)
+		res.send(`${invitee.name} has been added to your guest list!`)
 	} catch (err) {
 		console.log(err)
 		res.status(400).json({ message: err.message })
@@ -198,13 +198,10 @@ router.post('/table', async function (req, res) {
 
 router.put('/invitee/addtotable', async (req, res) => {
 	try {
-		console.log(req.body)
 		let inviteeId = req.body.invitee.id
 		let newTable = req.body.currenTable
 		let addSeatsNum = req.body.invitee.num_invitees
 		let inviteeOldTable = req.body.oldTable || 0		
-		console.log("oldTable"+inviteeOldTable)
-		console.log(req.body)
 		if(inviteeOldTable)
 		await db.query(`UPDATE tables SET seated = "${inviteeOldTable.seated-addSeatsNum}" where id="${inviteeOldTable.id}"`)
 		await db.query(`UPDATE invitee SET table_id = "${newTable.id}" WHERE id = "${inviteeId}"`)

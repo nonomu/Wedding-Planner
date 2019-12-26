@@ -56,16 +56,15 @@ class Profile extends Component {
       <div id="profile-container">
           <h1>User Profile</h1>
           <p className="upperText">
-            Please make sure that the information below is correct and up to date so we
-            would be able to help you plan your wedding easily.
+          Please keep the information here up to date so your wedding planning will stay on-course.
         </p>
           <hr />
           <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
 
           <h3>Personal Details:</h3>
             <div className="names">
-            <TextField name="brideName" label="Bride" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
-            <TextField name="groomName" label="Groom" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+            <TextField name="brideName" label="Partner 1" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+            <TextField name="groomName" label="Partner 2" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
             </div>
           <h3>Wedding Details:</h3>
             <div className="details">

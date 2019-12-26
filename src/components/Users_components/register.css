@@ -27,4 +27,12 @@
     margin-top: 20px;
 }
 
-
+.location {
+	margin: 0;
+	width: 220px;
+	height: 53px;
+	font-size: 16px;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 4px;
+	border-color: rgba(0, 0, 0, 0.3);
+}

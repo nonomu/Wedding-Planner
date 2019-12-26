@@ -107,7 +107,7 @@ select {
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
 #logo{
-  width: 200px;
+  width: 170px;
 }
 #welcomeTemp2{
   width: 100%;
@@ -116,4 +116,8 @@ select {
 
 @media only screen and (max-width: 768px) {
   
+}
+
+.moses{
+  max-height: 1px!important;
 }

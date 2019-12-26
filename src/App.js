@@ -29,13 +29,13 @@ class App extends Component {
 				{ name: <img id="logo" src="/logo3.png" alt="logo"/>, link: '/' },
 				{ name: 'Vendors', link: '/vendors' },
 				{ name: 'Favorites', link: '/favorites' },
-				{ name: 'Overview', link: '/overview' },
-				{ name: 'Manage Seats', link: '/manage_seats' },
+				{ name: 'Budget Tracker', link: '/overview' },
+				{ name: 'Guest Management', link: '/manage_seats' },
 				{ name: 'Profile', link: '/profile' },
 				{ name: 'Logout', link: '/logout' }
 			],
 			guestsTabs: [
-				{ name: 'Home', link: '/' },
+				{ name: <img id="logo" src="/logo3.png" alt="logo"/>, link: '/' },
 				{ name: 'Login', link: '/login' },
 				{ name: 'Register', link: '/register' }
 			]
@@ -122,7 +122,7 @@ class App extends Component {
 					exact
 					path='/attractionInfo/:id'
 					render={({ match, history }) => (
-						<Grid container justify='center' alignContent='center'>
+						<Grid className='attr-info' container justify='center' alignContent='center'>
 							{this.openDialog()}
 							<Dialog
 								open={this.props.attractions.open}

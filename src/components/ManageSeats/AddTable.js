@@ -51,7 +51,6 @@ class AddTable extends Component {
         <div className="user_box">
         <Fab className="close" component={Link} to={'/manage_seats'}><CloseIcon /></Fab>
           <h1>Add Table</h1>
-          <h4>Short Explanation</h4>
           <div>
             <TextField
               name="tableName"
@@ -68,8 +67,8 @@ class AddTable extends Component {
               type="number"
               onChange={this.handleInputs}
             />
-          </div>
-          <div>
+          </div><br></br>
+          <div className>
             <Button variant="contained" color="primary" onClick={this.addTable} component={Link} to='/manage_seats'>
               Add Table
             </Button>

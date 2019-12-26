@@ -4,19 +4,19 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 100px;
   margin: 20px 20px 20px 20px;
- 
 }
 
 .attraction-title {
   text-transform: uppercase;
   text-align: center;
- margin-top: 0 auto;
- margin-bottom: 60px;
-
+  margin-top: 0 auto;
+  margin-bottom: 60px;
 }
-.makeStyles-toolbar-343{
+
+.makeStyles-toolbar-343 {
   display: none;
 }
+
 .close {
   justify-self: start;
 }
@@ -24,16 +24,31 @@
 .attraction-info {
   display: grid;
   justify-items: center;
-  text-align: center;
-  padding: 20px;
 }
-.attraction{
+
+.book-attraction {
+  display: grid;
+  justify-items: center;
+  padding: 20px;
+
+}
+
+.attraction {
   width: 100%;
   max-width: 250px;
 }
 
 .submit-price {
-    justify-items: bottom;
+  justify-self: right;
+  color: green;
+}
+
+.MuiFab-colorInherit {
+  background-color: green;
+}
+
+.attraction-info-bottom {
+  justify-self: center;
 }
 
 @media only screen and (max-width: 600px) {
@@ -46,6 +61,31 @@
     margin: 20px 20px 20px 20px;
   }
 }
-.MuiDrawer{
+
+.MuiDrawer {
   top: 200px;
+}
+
+.MuiDialog-root {
+  width: 750px!important;
+  height: auto!important;
+  left: 33.3%!important;
+}
+
+.MuiDialog-root .attraction-info-title{
+  font-size:120%;
+  margin: 0;
+}
+
+h3{
+  margin: 0;
+}
+
+h4{
+  margin: 15px
+}
+
+img{
+  justify-self: center;
+  border-radius: 5px;
 }
