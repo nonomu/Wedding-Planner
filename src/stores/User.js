@@ -13,10 +13,11 @@ class User {
 			let user = await Axios.post(`${API_URL}/api/register`, { userData })
 			let userId=user.data.newUser[0]
 			this.userInfo.id =userId
-	 	    sessionStorage.setItem('id', userId)
 			this.userLogedIn = true
-      return user.data.message
-		} catch (err) {
+	 	    sessionStorage.setItem('id', userId)
+			  return user.data.message
+		} 
+		catch (err) {
 			throw new Error(err.response.data.message)
 		}
 	}
