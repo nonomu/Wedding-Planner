@@ -1,73 +1,89 @@
-#manage_seats{
+#manage_seats {
     display: grid;
     align-items: center;
     text-align: center;
 }
 
-/* .user_box Button{
-    margin-top: 30px;
-} */
-.tables{
+.user-table {
+    background-color: #fff;
+    width: 500px;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    padding: 20px;
+    /* text-align: center; */
+}
+
+.tables {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
     justify-content: center;
     align-content: center;
 }
-#TextField{
+
+#TextField {
     margin: 0 20px;
 }
 
-hr{
+hr {
     width: 95%;
 }
- #insert_invitees{
-margin-top: 45px;
+
+#insert_invitees {
+    margin-top: 45px;
 }
 
-#check{
+#check {
     width: 250px;
     height: 500px;
     background-color: rebeccapurple;
     align-self: baseline;
-} 
-
-#addIcon{
-position: absolute;
-right: 40px;
-bottom: 40px;
 }
-#inv-btn{
+
+#addIcon {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+}
+
+#inv-btn {
     margin: 20px;
 }
 
 .close {
-    justify-self: start;
-  }
+    justify-self: left!important;
+}
 
-.table{
+.table {
     /* display: grid; */
-    margin : 40px auto;
-    border: 1px solid black; 
-    justify-content: start;   
+    margin: 40px auto;
+    border: 1px solid black;
+    justify-content: start;
     text-align: center;
     min-width: 200px;
     margin: 0 auto;
     /* margin-right: 250px; */
     border-radius: 15px;
-    
 }
+
 .table:hover {
     background-color: #0675B2;
-  }
-.tableName{
-    font-size:calc(100% + 10px);
+}
+
+.tableName {
+    font-size: calc(100% + 10px);
     text-align: center;
-    
 }
-.numOfinvitees{
-    font-size:calc(100% - 4px);
+
+.numOfinvitees {
+    font-size: calc(100% - 4px);
 }
+
 .listOfInvitees{
    
 }
+.numOfTable{
+    font-size:calc(100% - 10px);
+}
+

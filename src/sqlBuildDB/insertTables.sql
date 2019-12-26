@@ -139,7 +139,7 @@ INSERT INTO attractions
 
 INSERT INTO attractions
  VALUES (null,
-     "Wedding Photographer",
+     "Photographer",
      "Shaka",
      "Guy",
      "https://overthemoon.com/wp-content/uploads/2018/10/alexandra-sisto-jarrett-daniel-37.jpg",
@@ -152,7 +152,7 @@ INSERT INTO attractions
 
 INSERT INTO attractions
  VALUES (null,
-     "Wedding Photographer",
+     "Photographer",
      "Photoshoot",
      "Michael",
      "https://engaged.co.il/images/stories/deals/662/images/%D7%98%D7%9C_%D7%A1%D7%98%D7%99%D7%9C%D7%A1_3.JPG",
@@ -167,7 +167,7 @@ INSERT INTO attractions
  INSERT INTO attractions
  VALUES (
      NULL,
-     "Wedding Photographer",
+     "Photographer",
      "Bereshit Photo",
      "Nadav",
      "https://engaged.co.il/images/stories/deals/662/images/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%97%D7%AA%D7%95%D7%A0%D7%94_1.JPG",
@@ -182,7 +182,7 @@ INSERT INTO attractions
  INSERT INTO attractions
  VALUES (
      NULL,
-     "Wedding Photographer",
+     "Photographer",
      "Diamonds",
      "Alex",
      "http://thestyleinspiration.com/wp-content/uploads/2019/11/surprising-weddings.jpg",
@@ -197,7 +197,7 @@ INSERT INTO attractions
 INSERT INTO attractions
  VALUES (
      NULL,
-     "Wedding Photographer",
+     "Photographer",
      "Idan Gil Photo",
      "Idan",
      "https://engaged.co.il/images/stories/deals/662/images/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%97%D7%AA%D7%95%D7%A0%D7%94_6.JPG",
@@ -212,7 +212,7 @@ INSERT INTO attractions
 INSERT INTO attractions
  VALUES (
      NULL,
-     "Wedding Photographer",
+     "Photographer",
      "Giraffe",
      "Amit",
      "https://engaged.co.il/images/stories/deals/662/images/%D7%98%D7%9C_%D7%A6%D7%9C%D7%9E%D7%99%D7%9D_3.JPG",
