@@ -13,21 +13,21 @@ class Table extends Component {
 		this.props.manage_seats.selectedTableMaxSeats = this.props.t.num_seats
 		this.props.manage_seats.selectedTableNumber = this.props.t.table_number
 		this.props.manage_seats.getAvailableSeats()
-		
 	}
 	render() {
-		console.log(this.props.manage_seats.invitees)
+		//  this.props.manage_seats.tables
+		console.log(this.props)
 		return (
 			<div>
 	<Button
 		onClick={this.selectTable}
 		component={Link}
-		to='/addtotable' >
+		to={`/addtotable/${this.props.t.id}`} >
 			<table className='table'>
 				<thead>
 					<tr>
 						<td>
-							<div className="tableName">	{this.props.t.table_name} - {this.props.t.num_seats}</div>
+							<div className="tableName">	{this.props.t.table_name} - {this.props.t.seated}/{this.props.t.num_seats}</div>
 						</td>
 					</tr>
 				</thead>

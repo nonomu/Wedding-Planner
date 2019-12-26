@@ -13,6 +13,7 @@ class RelationList extends Component {
     return this.props.manage_seats.getRelatedInvitees(this.props.relation)
     }    
     render() {
+        
         let related = this.getRelatedInvitees()
         return (
             <div>
@@ -24,7 +25,7 @@ class RelationList extends Component {
                     <th>Table Num</th>
                     <th></th>
                 </tr>
-            {related.map(i => <Invitee key={i.id} details={i} />)}
+            {related.map(i => <Invitee currenTableId={this.props.currenTableId.params.currenTableID} key={i.id} details={i} />)}
             </Table>
             </div>
         );
