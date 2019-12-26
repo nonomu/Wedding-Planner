@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom'
 class InviteesSideBar extends Component {
     
     render() {
+		let tables=this.props.manage_seats.tables
 		let tableName = this.props.manage_seats.selectedTableName
 		let tableNumber = this.props.manage_seats.selectedTableNumber
 		return (

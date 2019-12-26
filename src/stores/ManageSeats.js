@@ -51,7 +51,7 @@ class ManageSeats {
 		//should decide what will be the table number according to the computed length of the tables array.
 		// should send the data to the route with POST and there it will insert to DB.
 	}
-
+	
 	@action async getTables(weddingDetailsId) {
 		try {
 			let tables = await Axios.get(`${API_URL}/tables/${weddingDetailsId}`)
@@ -61,26 +61,40 @@ class ManageSeats {
 			console.log(err.message)
 		}
 	}
-
+	
 	@action async getTableInvitees(tableId) {
 		//get invitees for this table id from DB
 	}
-
+	
 	@action getAvailableSeats = async () => {
 		let seats = await Axios.get(`${API_URL}/tables/availableseats/${this.selectedTable}`)
 		this.currentSeats = seats.data.seated
 	}
-
+	
 	@action addInviteeToTable = async (invitee,currenTable) => {
 		try {
-			console.log(invitee)
-			console.log(currenTable)
+	
 			let oldTable = this.tables.find(t => t.id === invitee.table_id)
 			
 			let addInviteeToTable = await Axios.put(`${API_URL}/invitee/addtotable`, {
 				invitee,
 				currenTable,
 				oldTable
+			})
+			await this.getTables(currenTable.wedding_id)
+			await this.getInvitees(currenTable.wedding_id)
+			return addInviteeToTable.data
+		} 
+		catch (err) {
+			throw new Error(err.response.data.message)
+		}
+	}
+	@action async removeInviteeFromTable(invitee,currenTable)
+	{
+		try {
+			let addInviteeToTable = await Axios.put(`${API_URL}/invitee/removeFromTable`, {
+				invitee,
+				currenTable
 			})
 			await this.getTables(currenTable.wedding_id)
 			await this.getInvitees(currenTable.wedding_id)
