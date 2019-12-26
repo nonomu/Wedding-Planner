@@ -29,8 +29,8 @@ class App extends Component {
 				{ name: <img id="logo" src="/logo3.png" alt="logo"/>, link: '/' },
 				{ name: 'Vendors', link: '/vendors' },
 				{ name: 'Favorites', link: '/favorites' },
-				{ name: 'Overview', link: '/overview' },
-				{ name: 'Manage Seats', link: '/manage_seats' },
+				{ name: 'Budget Tracker', link: '/overview' },
+				{ name: 'Guest Management', link: '/manage_seats' },
 				{ name: 'Profile', link: '/profile' },
 				{ name: 'Logout', link: '/logout' }
 			],

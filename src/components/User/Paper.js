@@ -27,7 +27,6 @@ export default function PaperSheet(props) {
         id="Paper">
         <Typography variant="h4" component="h3">
           Your {props.attr.category}</Typography>
-           {/* <br /> */}
           <i>{props.attr.attr_name}</i>
         
 
@@ -42,7 +41,7 @@ export default function PaperSheet(props) {
               <PaymentSharpIcon /> Price: {props.attr.price}₪
       </Typography>
             <Typography component="p">
-              Please Notice: {props.attr.small_prints}
+              Notes: {props.attr.small_prints}
             </Typography>
           </div>
         </div>

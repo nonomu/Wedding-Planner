@@ -90,14 +90,14 @@ class Register extends Component {
             <span id="TextField">
               <TextField
                 name="gName"
-                label="Groom Full Name"
+                label="Partner 1"
                 onChange={this.handleInputs}
               />
             </span>
             <span id="TextField">
               <TextField
                 name="bName"
-                label="Bride Full Name"
+                label="Partner 2"
                 onChange={this.handleInputs}
               />
             </span>
@@ -107,7 +107,7 @@ class Register extends Component {
               <TextField
                 type="date"
                 name="weddingDate"
-                label="WeddingDate"
+                label="Wedding Date"
                 defaultValue={this.state.weddingDate}
                 onChange={this.handleInputs}
               />
@@ -133,10 +133,10 @@ class Register extends Component {
             </span>
           </div>
           <div>
-            {/* Noam will make it autocomplete ?  */}
+            
             <span id="TextField">
-            <Autocomplete value={this.state.weddingArea} label="Wedding Area" name="weddingArea" id="autoCompleteField"
-              style={{ width: '220px',marginTop:'15px', backgroundColor: "rgba( 255,255 ,255,0 )", height: 40, borderRadius: 20, borderColor: 'rgba(0,0,0,0.3)' }}
+            <Autocomplete value={this.state.weddingArea} placeholder="Location" name="weddingArea" id="autoCompleteField"
+              className="location"
               onChange={this.handleInputs}
               onPlaceSelected={(city) => {
                 let cityName = city.formatted_address
