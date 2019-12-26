@@ -17,7 +17,7 @@ class InviteesSideBar extends Component {
 		console.log(table)
 		return (
 			<div className='box_bg'>
-				<div className='user_box'>
+				<div className='user-table'>
 					<Fab className='close' component={Link} to={'/manage_seats'}>
 						<CloseIcon />
 					</Fab>
