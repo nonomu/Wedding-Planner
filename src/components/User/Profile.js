@@ -24,6 +24,9 @@ class Profile extends Component {
       musicStyle: 0
     };
   }
+
+  
+
   componentDidMount = async () => {
     await this.props.user.getWeddingDetails()
     let userInfo = this.props.user.userInfo.weddingData
@@ -69,8 +72,8 @@ class Profile extends Component {
           <h3>Wedding Details:</h3>
             <div className="details">
             <TextField name="weddingDate" label="Wedding Date" variant="outlined" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
-            <TextField name="estInvitees" label="Estimated Invitees" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
-            <TextField name="estBudget" id="estBudget" label="Estimated Budget" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
+            <TextField name="estInvitees" label="Estimated Guests" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
+            <TextField name="estBudget" id="estBudget" label="Estimated Budget(₪)" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
             <Autocomplete className="location" value={this.state.weddingArea} name="weddingArea" id="autoCompleteField"
               onChange={this.handleInputs}
               onPlaceSelected={(city) => {
