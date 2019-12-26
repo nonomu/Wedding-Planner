@@ -15,16 +15,17 @@ class AddInvitee extends Component {
         this.state={
             name:"",
             num_invitees:0,
-            // est_gift:0,
             relation:"",
             phone:"",
             email:""
         }
+        this.baseState = this.state
     }
     async componentDidMount(){
       await this.props.user.getWeddingDetails()
       this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
     }
+
 
 
     handleInputs = (e) =>{
@@ -37,12 +38,17 @@ class AddInvitee extends Component {
 		if (this.invalidInput(input)) {
 			throw new Error('All fields are required')
 		}
-	}
+  }
+  
+  resetForm = () => {
+    this.setState(this.baseState)
+  }
     
     AddInvitee = async () => {
       try {
         this.handleError(this.state)
         let addInvitee = await this.props.manage_seats.addInvitee(this.state,this.props.user.userInfo.weddingData.id)
+        this.resetForm()
         popup.success(addInvitee)
       } catch(err) {
         popup.error(err.message)
@@ -68,14 +74,6 @@ render() {
               onChange={this.handleInputs}
             />
               </span>
-              {/* <span id="TextField">
-            <TextField
-              name="est_gift"
-              type="number"
-              label="Estimated gift"
-              onChange={this.handleInputs}
-            />
-              </span> */}
               <span id="TextField">
             <TextField
               name="relation"

@@ -21,7 +21,7 @@ class RelationList extends Component {
                 <tr className="listOfInvitees">
                     <th>Name</th>
                     <th>Guests</th>
-                    <th>Table Num</th>
+                    <th>Table #</th>
                     <th></th>
                 </tr>
             {related.map(i => <Invitee currenTableId={this.props.currenTableId.params.currenTableID} key={i.id} details={i} />)}
