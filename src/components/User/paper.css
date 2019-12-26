@@ -32,6 +32,7 @@ p {
     left: 0;
     position: relative;
     background-color: rgb(22,0,0, 0.5);
+    border-radius: 5px;
     width: 15vw;
 }
 .paper-title {
