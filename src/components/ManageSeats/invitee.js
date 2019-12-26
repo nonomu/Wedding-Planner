@@ -43,8 +43,7 @@ class Invitee extends Component {
         let userTableIdNew= this.props.manage_seats.invitees.find(i => i.id === this.props.details.id).table_id
         let userTableId=this.props.details.table_id
         let tables=this.props.manage_seats.tables
-        let tableNum= tables.findIndex(t => t.id === userTableId)+1
-        
+        let tableNum= tables.findIndex(t => t.id === userTableIdNew)+1
         let tablePopId= parseInt(this.props.currenTableId)
         return (
             <tr>
@@ -52,7 +51,7 @@ class Invitee extends Component {
          {this.props.details.name}
          </td>
          <td>{this.props.details.num_invitees}</td> <td>{tableNum}</td> 
-                <td>{userTableIdNew!=tablePopId?<Icon  onClick={this.addInviteeToTable} style={{ color: "green" }}>add_circle</Icon>:<Icon onClick={this.removeInviteeFromTable} style={{ color: "red" }}>remove_circle</Icon>}</td> 
+                <td>{userTableIdNew!=tablePopId?<Icon onClick={this.addInviteeToTable} style={{ color: "green" }}>add_circle</Icon>:<Icon onClick={this.removeInviteeFromTable} style={{ color: "red" }}>remove_circle</Icon>}</td> 
             </tr>
         );
     }
