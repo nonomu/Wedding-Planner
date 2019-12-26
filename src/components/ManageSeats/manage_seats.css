@@ -71,3 +71,6 @@ bottom: 40px;
 .listOfInvitees{
    
 }
+.numOfTable{
+    font-size:calc(100% - 10px);
+}
