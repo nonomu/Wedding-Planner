@@ -63,11 +63,13 @@ render() {
             <TextField
               name="name"
               label="Guest Name"
+              value={this.state.name}
               onChange={this.handleInputs}
             />
               </span>
               <span id="TextField">
             <TextField
+             value={this.state.num_invitees}
               name="num_invitees"
               type="number"
               label="Party Size"
@@ -76,6 +78,7 @@ render() {
               </span>
               <span id="TextField">
             <TextField
+              value={this.state.relation}
               name="relation"
               label="Relation"
               onChange={this.handleInputs}
@@ -84,6 +87,7 @@ render() {
               </span>
               <span id="TextField">
             <TextField
+            value={this.state.phone}
               name="phone"
               label="Phone number"
               onChange={this.handleInputs}
@@ -91,6 +95,7 @@ render() {
               </span>
               <span id="TextField">
             <TextField
+            value={this.state.email}
               name="email"
               label="Email"
               onChange={this.handleInputs}

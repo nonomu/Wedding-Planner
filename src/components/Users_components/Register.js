@@ -49,7 +49,7 @@ class Register extends Component {
     try{
       this.handleError(this.state)
       let register = await this.props.user.userRegister(this.state)
-     popup.success(register.data.message)
+      popup.success(register)
     }
     catch(err){
       popup.error(err.message)
