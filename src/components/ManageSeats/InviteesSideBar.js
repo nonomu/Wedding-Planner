@@ -15,7 +15,7 @@ class InviteesSideBar extends Component {
 		let tableNumber = this.props.manage_seats.selectedTableNumber
 		return (
 			<div className='box_bg'>
-				<div className='user_box'>
+				<div className='user-table'>
 					<Fab className='close' component={Link} to={'/manage_seats'}>
 						<CloseIcon />
 					</Fab>
