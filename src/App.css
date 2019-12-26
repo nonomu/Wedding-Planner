@@ -122,3 +122,8 @@ select {
 a#Logout-tab {
   background-color: rgba(211, 29, 29, 0.3);
 }
+
+.MuiFab-secondary {
+  color: #fff;
+  background-color: green!important;
+}
