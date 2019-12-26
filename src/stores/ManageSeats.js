@@ -3,13 +3,14 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
 class ManageSeats {
+	@observable weddingDetailsId
 	@observable invitees = []
 	@observable tables = []
 	@observable selectedTable
 	@observable selectedTableName
 	@observable selectedTableNumber
-  @observable currentSeats
-  @observable selectedTableMaxSeats
+	@observable currentSeats
+	@observable selectedTableMaxSeats
 	@observable openSideBar = false
 
 	@computed get numTables() {
@@ -26,8 +27,8 @@ class ManageSeats {
 
 	@action async addInvitee(inviteeData, weddingDataId) {
 		let invitee = await Axios.post(`${API_URL}/invitee`, { inviteeData, weddingDataId })
-    this.getInvitees(weddingDataId)
-    return invitee.data
+		this.getInvitees(weddingDataId)
+		return invitee.data
 		//needs to send weddingDATA ID of the user instead of USERID, Where is it ???
 	}
 
@@ -67,20 +68,25 @@ class ManageSeats {
 
 	@action getAvailableSeats = async () => {
 		let seats = await Axios.get(`${API_URL}/tables/availableseats/${this.selectedTable}`)
-    this.currentSeats = seats.data.seated
+		this.currentSeats = seats.data.seated
 	}
 
-	@action addInviteeToTable = async (inviteeId) => {
+	@action addInviteeToTable = async (invitee,currenTable) => {
 		try {
-      let selectedTable = this.selectedTable
-      let seats = this.currentSeats
+			console.log(invitee)
+			console.log(currenTable)
+			let oldTable = this.tables.find(t => t.id === invitee.table_id)
+			
 			let addInviteeToTable = await Axios.put(`${API_URL}/invitee/addtotable`, {
-				inviteeId,
-        selectedTable,
-        seats
+				invitee,
+				currenTable,
+				oldTable
 			})
+			await this.getTables(currenTable.wedding_id)
+			await this.getInvitees(currenTable.wedding_id)
 			return addInviteeToTable.data
-		} catch (err) {
+		} 
+		catch (err) {
 			throw new Error(err.response.data.message)
 		}
 	}

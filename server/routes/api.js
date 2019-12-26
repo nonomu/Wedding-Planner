@@ -197,15 +197,17 @@ router.post('/table', async function (req, res) {
 })
 
 router.put('/invitee/addtotable', async (req, res) => {
-	try{
-		let inviteeId = req.body.inviteeId
-		let tableId = req.body.selectedTable
-		let seats = req.body.seats
-		
-		await db.query(`UPDATE invitee SET table_id = "${tableId}" WHERE id = "${inviteeId}"`)
-		await db.query(`UPDATE tables SET seated = "${seats}" WHERE tables.id = "${tableId}"`)
+	try {
+		let inviteeId = req.body.invitee.id
+		let newTable = req.body.currenTable
+		let addSeatsNum = req.body.invitee.num_invitees
+		let inviteeOldTable = req.body.oldTable || 0		
+		if(inviteeOldTable)
+		await db.query(`UPDATE tables SET seated = "${inviteeOldTable.seated-addSeatsNum}" where id="${inviteeOldTable.id}"`)
+		await db.query(`UPDATE invitee SET table_id = "${newTable.id}" WHERE id = "${inviteeId}"`)
+		await db.query(`UPDATE tables SET seated = "${newTable.seated+addSeatsNum}" where id="${newTable.id}"`)
 		res.send(`Invitee added to table`)
-	} catch(err) {
+	} catch (err) {
 		res.status(400).json({ message: err.message })
 	}
 })
@@ -213,13 +215,13 @@ router.put('/invitee/addtotable', async (req, res) => {
 router.get('/tables/availableseats/:tableId', async (req, res) => {
 	try {
 		let tableId = req.params.tableId
-			let seats = await db.query(`SELECT seated FROM tables WHERE id = "${tableId}"`)
-			res.send(seats[0][0])
+		let seats = await db.query(`SELECT seated FROM tables WHERE id = "${tableId}"`)
+		res.send(seats[0][0])
 
-	} catch(err) {
+	} catch (err) {
 		console.log(err)
 		res.send(err.message)
-	}	
+	}
 })
 
 router.get('/tables/:weddingDetailsId', async function (req, res) {

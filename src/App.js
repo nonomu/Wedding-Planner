@@ -155,8 +155,8 @@ class App extends Component {
 
 				<Route
 					exact
-					path='/addtotable'
-					render={() => (
+					path='/addtotable/:currenTableID'
+					render={({match}) => (
 						<Grid container justify='center' alignContent='center'>
 							{this.openDialog()}
 							<Dialog
@@ -164,7 +164,7 @@ class App extends Component {
 								onClose={() => this.closeDialog()}
 								maxWidth='xl'
 								component={Paper}>
-								<InviteesSideBar />
+								<InviteesSideBar currenTableID={match} />
 							</Dialog>
 						</Grid>
 					)}

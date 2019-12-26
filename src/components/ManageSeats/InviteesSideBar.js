@@ -20,7 +20,7 @@ class InviteesSideBar extends Component {
 					</Fab>
 					<h1>Add To Table #{tableNumber} - {tableName}</h1>
 					{this.props.manage_seats.relations.map(n => (
-						<RelationList relation={n} key={n} />
+						<RelationList currenTableId={this.props.currenTableID} relation={n} key={n} />
 					))}
 				</div>
 			</div>
