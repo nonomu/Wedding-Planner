@@ -46,5 +46,4 @@ class Invitee extends Component {
         );
     }
 }
-{/* <Button variant="contained" color="primary" onClick={this.addInviteeToTable}>+</Button> */}
 export default Invitee;
