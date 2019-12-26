@@ -46,7 +46,7 @@ class BookAttraction extends Component {
 						<h2>Wohooooo You've got a {attractionData.category}!</h2>
 						<img
 							src='https://www.vippng.com/png/detail/5-50383_emojis-transparent-png-party-emoji-png.png'
-							style={{ width: '250px' }}
+							style={{ width: '150px' }}
 							alt='happyEmoji'
 						/>
 						<h4>Another item crossed off the to-do list.</h4>
