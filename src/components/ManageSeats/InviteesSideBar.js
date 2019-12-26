@@ -4,7 +4,7 @@ import RelationList from './RelationList'
 import CloseIcon from '@material-ui/icons/Close';
 import { Fab } from '@material-ui/core';
 import {Link} from 'react-router-dom'
-
+import './manage_seats.css'
 @inject('manage_seats')
 @observer
 class InviteesSideBar extends Component {
@@ -13,13 +13,15 @@ class InviteesSideBar extends Component {
 		let tables=this.props.manage_seats.tables
 		let tableName = this.props.manage_seats.selectedTableName
 		let tableNumber = this.props.manage_seats.selectedTableNumber
+		let table =this.props.manage_seats.tables.find(t => t.id===parseInt(this.props.currenTableID.params.currenTableID))
+		console.log(table)
 		return (
 			<div className='box_bg'>
 				<div className='user-table'>
 					<Fab className='close' component={Link} to={'/manage_seats'}>
 						<CloseIcon />
 					</Fab>
-					<h1>Add To Table #{tableNumber} - {tableName}</h1>
+		<h1>Add To Table #{table? `${table.table_number} `:null} <br></br>(<span className="numOfTable"> {table? `${table.table_name} ${table.seated}/${table.num_seats}`:null }</span>)</h1>
 					{this.props.manage_seats.relations.map(n => (
 						<RelationList currenTableId={this.props.currenTableID} relation={n} key={n} />
 					))}
