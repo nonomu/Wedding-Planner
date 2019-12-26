@@ -23,7 +23,14 @@
 
 .attraction-info {
   display: grid;
-  justify-items: left;
+  justify-items: center;
+}
+
+.book-attraction {
+  display: grid;
+  justify-items: center;
+  padding: 20px;
+
 }
 
 .attraction {
@@ -32,7 +39,16 @@
 }
 
 .submit-price {
-  justify-items: bottom;
+  justify-self: right;
+  color: green;
+}
+
+.MuiFab-colorInherit {
+  background-color: green;
+}
+
+.attraction-info-bottom {
+  justify-self: center;
 }
 
 @media only screen and (max-width: 600px) {

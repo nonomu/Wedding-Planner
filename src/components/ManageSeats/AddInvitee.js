@@ -15,7 +15,7 @@ class AddInvitee extends Component {
         this.state={
             name:"",
             num_invitees:0,
-            est_gift:0,
+            // est_gift:0,
             relation:"",
             phone:"",
             email:""
@@ -52,11 +52,11 @@ class AddInvitee extends Component {
 render() {
     return (
           <div id="insert_invitees">
-              <h3>Add Your Invitees</h3>
+              <h3>Add Guest</h3>
               <span id="TextField">
             <TextField
               name="name"
-              label="Invitee\Family Name"
+              label="Guest Name"
               onChange={this.handleInputs}
             />
               </span>
@@ -64,18 +64,18 @@ render() {
             <TextField
               name="num_invitees"
               type="number"
-              label="How many guests?"
+              label="Party Size"
               onChange={this.handleInputs}
             />
               </span>
-              <span id="TextField">
+              {/* <span id="TextField">
             <TextField
               name="est_gift"
               type="number"
               label="Estimated gift"
               onChange={this.handleInputs}
             />
-              </span>
+              </span> */}
               <span id="TextField">
             <TextField
               name="relation"
@@ -87,20 +87,20 @@ render() {
               <span id="TextField">
             <TextField
               name="phone"
-              label="Phone Number"
+              label="Phone number"
               onChange={this.handleInputs}
             />
               </span>
               <span id="TextField">
             <TextField
               name="email"
-              label="E-Mail"
+              label="Email"
               onChange={this.handleInputs}
             />
               </span>
           <div>
           <Button id='inv-btn' variant="contained" color="primary" onClick={this.AddInvitee}>
-              Add Invitee
+              Add Guest
             </Button>
           </div>
           <hr/>

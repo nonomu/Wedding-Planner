@@ -166,7 +166,7 @@ router.post('/invitee', async function (req, res) {
 		console.log(req.body.inviteeData)
 		let invitee = req.body.inviteeData
 		await db.query(`INSERT INTO invitee VALUES(null,'${invitee.name}','${invitee.num_invitees}','${invitee.est_gift}','${invitee.relation}','${invitee.phone}','${invitee.email}','${req.body.weddingDataId}',null)`)
-		res.send(`${invitee.name} Succesfully added`)
+		res.send(`${invitee.name} has been added to your guest list!`)
 	} catch (err) {
 		console.log(err)
 		res.status(400).json({ message: err.message })
@@ -203,7 +203,7 @@ router.put('/invitee/addtotable', async (req, res) => {
 		let seats = req.body.seats
 		
 		await db.query(`UPDATE invitee SET table_id = "${tableId}" WHERE id = "${inviteeId}"`)
-		await db.query(`UPDATE tables SET seated = "${seats}"`)
+		await db.query(`UPDATE tables SET seated = "${seats}" WHERE tables.id = "${tableId}"`)
 		res.send(`Invitee added to table`)
 	} catch(err) {
 		res.status(400).json({ message: err.message })
