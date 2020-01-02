@@ -5,7 +5,7 @@ import { observer, inject } from "mobx-react";
 import { Link } from 'react-router-dom'
 import {Fab} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
-import './manage_seats.css'
+import './guest-management.css'
 import {toast as popup} from 'react-toastify'
 @inject('user','manage_seats')
 
@@ -43,7 +43,7 @@ class AddTable extends Component {
     return (
       <div className="box_bg">
         <div className="user-table">
-        <Fab className="close" component={Link} to={'/manage_seats'}><CloseIcon /></Fab>
+        <Fab className="close" onClick={this.props.history.goBack}><CloseIcon /></Fab>
           <h1>Add Table</h1>
           <div>
             <TextField

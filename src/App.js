@@ -7,16 +7,16 @@ import Home from './components/Home'
 import Profile from './components/User/Profile'
 import Favorites from './components/User/Favorites'
 import Overview from './components/User/Overview'
-import BookAttraction from './components/Vendors/BookVendor'
-import AttractionInfo from './components/Vendors/VendorInfo'
+import BookVendor from './components/Vendors/BookVendor'
+import VendorInfo from './components/Vendors/VendorInfo'
 import { ToastContainer } from 'react-toastify'
 import { Paper, Dialog, Grid } from '@material-ui/core'
 import Login from './components/Users_components/Login'
 import Register from './components/Users_components/Register'
-import ManageSeats from './components/ManageSeats/ManageSeats'
+import GuestManagement from './components/GuestManagement/GuestManagement'
 import ClippedDrawer from './components/Vendors/ClippedDrawer'
-import AddTable from './components/ManageSeats/AddTable'
-import InviteesSideBar from './components/ManageSeats/InviteesSideBar'
+import AddTable from './components/GuestManagement/AddTable'
+import TableManager from './components/GuestManagement/TableManager'
 
 @inject('attractions', 'manage_seats', 'user')
 @observer
@@ -30,7 +30,7 @@ class App extends Component {
 				{ name: 'Vendors', link: '/vendors' },
 				{ name: 'Favorites', link: '/favorites' },
 				{ name: 'Budget Tracker', link: '/overview' },
-				{ name: 'Guest Management', link: '/manage_seats' },
+				{ name: 'Guest Management', link: '/guest-management' },
 				{ name: 'Profile', link: '/profile' },
 				{ name: 'Logout', link: '/logout' }
 			],
@@ -85,7 +85,7 @@ class App extends Component {
 				<Route exact path='/login' component={Login} />
 				<Route exact path='/logout' render={this.logout} />
 				<Route exact path='/register' component={Register} />
-				<Route exact path='/manage_seats' component={ManageSeats} />
+				<Route exact path='/guest-management' component={GuestManagement} />
 
 				<Route
 					exact
@@ -114,7 +114,7 @@ class App extends Component {
 								fullWidth
 								maxWidth='xl'
 								component={Paper}>
-								<BookAttraction
+								<BookVendor
 									category={match.params.category}
 									id={match.params.id}
 									history={history}
@@ -135,7 +135,7 @@ class App extends Component {
 								fullWidth
 								maxWidth='xl'
 								component={Paper}>
-								<AttractionInfo id={match.params.id} history={history} />
+								<VendorInfo id={match.params.id} history={history} />
 							</Dialog>
 						</Grid>
 					)}
@@ -144,7 +144,7 @@ class App extends Component {
 				<Route
 					exact
 					path='/addtable'
-					render={() => (
+					render={({history}) => (
 						<Grid container justify='center' alignContent='center'>
 							{this.openDialog()}
 							<Dialog
@@ -152,7 +152,7 @@ class App extends Component {
 								onClose={() => this.closeDialog()}
 								maxWidth='xl'
 								component={Paper}>
-								<AddTable />
+								<AddTable history={history}/>
 							</Dialog>
 						</Grid>
 					)}
@@ -161,7 +161,7 @@ class App extends Component {
 				<Route
 					exact
 					path='/addtotable/:currenTableID'
-					render={({match}) => (
+					render={({match, history}) => (
 						<Grid container justify='center' alignContent='center'>
 							{this.openDialog()}
 							<Dialog
@@ -169,13 +169,13 @@ class App extends Component {
 								onClose={() => this.closeDialog()}
 								maxWidth='xl'
 								component={Paper}>
-								<InviteesSideBar currenTableID={match} />
+								<TableManager currenTableID={match} history={history} />
 							</Dialog>
 						</Grid>
 					)}
 				/>
 
-				<ToastContainer position='bottom-left' />
+				<ToastContainer position='bottom-left' autoClose={2500} />
 			</Router>
 		)
 	}

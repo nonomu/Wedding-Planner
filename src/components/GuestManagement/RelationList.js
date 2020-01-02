@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import Invitee from './invitee';
+import Guest from './Guest';
 import { Table } from '@material-ui/core';
-import './manage_seats.css'
+import './guest-management.css'
 
 @inject('manage_seats')
 
@@ -24,7 +24,7 @@ class RelationList extends Component {
                     <th>Table #</th>
                     <th></th>
                 </tr>
-            {related.map(i => <Invitee currenTableId={this.props.currenTableId.params.currenTableID} key={i.id} details={i} />)}
+            {related.map(i => <Guest currenTableId={this.props.currenTableId.params.currenTableID} key={i.id} details={i} />)}
             </Table>
             </div>
         );
