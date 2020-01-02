@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarIcon from '@material-ui/icons/Star';
-import Attractions from './Attractions';
+import Vendors from './Vendors';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 230;
@@ -46,7 +46,6 @@ export default function ClippedDrawer(props) {
           paper: classes.drawerPaper,
         }}
       >
-        {/* <div className={classes.toolbar} /> */}
         <List>
           {props.categories.map((text, index) => (
             <ListItem button component={Link} to={`/vendors/${text}`} key={text}>
@@ -58,7 +57,7 @@ export default function ClippedDrawer(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar}>
-          {props.category ? <Attractions category={props.category} /> : null}
+          {props.category ? <Vendors category={props.category} /> : null}
         </div>
       </main>
     </div>

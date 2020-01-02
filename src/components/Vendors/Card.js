@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function AttractionCard(props) {
+export default function VendorCard(props) {
   const classes = useStyles();
  let attraction=props.attraction
 
@@ -53,7 +53,7 @@ export default function AttractionCard(props) {
           Book
         </Button>
         </Link>)}
-        {props.bool ? (
+        {props.isFavorite ? (
           <Button  onClick={props.removeFavorite} size="small" color="primary">
             remove Favorite
           </Button>

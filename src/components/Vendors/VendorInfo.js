@@ -9,7 +9,7 @@ import Rating from '@material-ui/lab/Rating';
 @inject('user', 'attractions')
 
 @observer
-class AttractionInfo extends Component {
+class VendorInfo extends Component {
     openDialog = () => {
         this.props.attractions.openDialog()
     }
@@ -42,4 +42,4 @@ class AttractionInfo extends Component {
 
 
 
-export default AttractionInfo
+export default VendorInfo

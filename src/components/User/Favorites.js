@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import Attraction from '../Attractions/Attraction'
+import Attraction from '../Vendors/Vendor'
 import './favorites.css'
 @inject('user', 'attractions')
 @observer
