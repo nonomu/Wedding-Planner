@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import brideAndGroom from './brideAndGroom.png'
 import './profile.css'
 import {toast as popup} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+
 
 @inject('user')
 @observer

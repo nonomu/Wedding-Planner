@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import Attraction from '../Vendors/Vendor'
+import Vendor from '../Vendors/Vendor'
 import './favorites.css'
 @inject('user', 'attractions')
 @observer
@@ -19,7 +19,7 @@ class Favorites extends Component {
 							<div className='favoritesCategory'>
 								{userFavorites.map(uf =>
 									uf.category === c ? (
-										<Attraction
+										<Vendor
 											category={c}
 											attr={uf}
 											key={Math.random() * 1000000}
