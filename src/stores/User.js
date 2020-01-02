@@ -3,37 +3,41 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200`
 
 class User {
-	@observable userInfo = { id: sessionStorage.getItem('id') || 0 ,
-	weddingData:{
-		groom_name:"",bride_name:"",wedding_date:"",est_invitees:0,est_budget:0,estGifts:0,wedding_area:"",musicStyle:0}
+	@observable userInfo = {
+		id: sessionStorage.getItem('id') || 0,
+		weddingData: {
+			groom_name: '',
+			bride_name: '',
+			wedding_date: '',
+			est_invitees: 0,
+			est_budget: 0,
+			wedding_area: ''
 		}
+	}
 	@observable _userFavorites = []
 	@observable bookedAttractions = []
 	@observable userLogedIn = false
-
 
 	@action handleInput = (name, value) => {
 		this.userInfo.weddingData[name] = value
 	}
 
-
 	@action userRegister = async userData => {
 		try {
 			let user = await Axios.post(`${API_URL}/api/register`, { userData })
-			let userId=user.data.newUser[0]
-			this.userInfo.id =userId
+			let userId = user.data.newUser[0]
+			this.userInfo.id = userId
 			this.userLogedIn = true
-	 	    sessionStorage.setItem('id', userId)
-			  return user.data.message
-		} 
-		catch (err) {
+			sessionStorage.setItem('id', userId)
+			return user.data.message
+		} catch (err) {
 			throw new Error(err.response.data.message)
 		}
 	}
 
 	@action userLogin = async (email, password) => {
 		try {
-      let user = await Axios.post(`${API_URL}/api/login`, { email, password })
+			let user = await Axios.post(`${API_URL}/api/login`, { email, password })
 			this.userInfo.id = user.data.id
 			sessionStorage.setItem('id', user.data.id)
 			sessionStorage.setItem('loggedIn', true)
@@ -44,11 +48,14 @@ class User {
 	}
 	@action updateUserInfo = async () => {
 		try {
-			let update = await Axios.put(`${API_URL}/api/update/UserInfo`, this.userInfo.weddingData)
+			let update = await Axios.put(
+				`${API_URL}/api/update/UserInfo`,
+				this.userInfo.weddingData
+			)
 			return update.data
 		} catch (err) {
 			console.log(err)
-			return err.message
+			throw new Error(err.response.data.message)
 		}
 	}
 
