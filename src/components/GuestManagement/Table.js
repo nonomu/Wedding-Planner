@@ -7,14 +7,9 @@ import { Button } from '@material-ui/core'
 @observer
 
 class Table extends Component {
-	constructor() {
-		super()
-		this.state = {
-			render: false
-		}
-	}
 	render() {
 		let invitees = this.props.manage_seats.invitees
+		let sameTableGuests = invitees.filter(i => i.table_id === this.props.t.id)
 		return (
 			<div>
 				<Button
@@ -29,13 +24,11 @@ class Table extends Component {
 							</tr>
 						</thead>
 						<tbody>
-							{invitees
-								.filter(i => i.table_id === this.props.t.id)
-								.map(i => (
-									<tr key={i.name}>
-										<td key={i.name} ><span>{i.name}</span>  <span className="numOfinvitees">({i.num_invitees})</span></td>
-									</tr>
-								))}
+							{sameTableGuests.map(i => (
+								<tr key={i.name}>
+									<td key={i.name} ><span>{i.name}</span>  <span className="numOfinvitees">({i.num_invitees})</span></td>
+								</tr>
+							))}
 						</tbody>
 					</table>
 				</Button>

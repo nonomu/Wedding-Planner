@@ -160,7 +160,7 @@ class App extends Component {
 
 				<Route
 					exact
-					path='/addtotable/:currenTableID'
+					path='/addtotable/:manageTableId'
 					render={({match, history}) => (
 						<Grid container justify='center' alignContent='center'>
 							{this.openDialog()}
@@ -169,7 +169,7 @@ class App extends Component {
 								onClose={() => this.closeDialog()}
 								maxWidth='xl'
 								component={Paper}>
-								<TableManager currenTableID={match} history={history} />
+								<TableManager manageTableId={match} history={history} />
 							</Dialog>
 						</Grid>
 					)}
