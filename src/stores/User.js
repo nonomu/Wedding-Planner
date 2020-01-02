@@ -71,8 +71,7 @@ class User {
 	}
 
 	@action isFavorite(attr_id) {
-		let bool = this._userFavorites.some(a => a.id === attr_id)
-		return bool
+		return this._userFavorites.some(a => a.id === attr_id)
 	}
 
 	@action getUserFavorites = async () => {

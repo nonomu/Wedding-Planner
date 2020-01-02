@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import DoneIcon from '@material-ui/icons/Done'
 @inject('attractions', 'user')
 @observer
-class BookAttraction extends Component {
+class BookVendor extends Component {
 	bookButton = () => {
 		let attractionData = this.props.attractions.getAttractionData(this.props.category,this.props.id)
 		let price=document.getElementById('price').value ?parseInt(document.getElementById('price').value): 0
@@ -70,4 +70,4 @@ class BookAttraction extends Component {
 	}
 }
 
-export default BookAttraction
+export default BookVendor
