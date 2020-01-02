@@ -10,7 +10,7 @@ class TableManager extends Component {
 	render() {
 		let tables = this.props.manage_seats.tables
 		let table = tables.find(
-			t => t.id === parseInt(this.props.currenTableID.params.currenTableID)
+			t => t.id === parseInt(this.props.manageTableId.params.manageTableId)
 		)
 		return (
 			<div className='box_bg'>
@@ -30,7 +30,7 @@ class TableManager extends Component {
 					</h1>
 					{this.props.manage_seats.relations.map(n => (
 						<RelationList
-							currenTableId={this.props.currenTableID}
+						manageTableId={this.props.manageTableId}
 							relation={n}
 							key={n}
 						/>
