@@ -12,12 +12,6 @@ import './manage_seats.css'
 @inject('manage_seats', 'user')
 @observer
 class ManageSeats extends Component {
-	async componentDidMount() {
-		await this.props.user.getWeddingDetails()
-		this.props.manage_seats.getTables(this.props.user.userInfo.weddingData.id)
-	}
-
-
 	render() {
 		return (
 			<div id='manage_seats'>

@@ -11,10 +11,7 @@ class InviteesSideBar extends Component {
     
     render() {
 		let tables=this.props.manage_seats.tables
-		let tableName = this.props.manage_seats.selectedTableName
-		let tableNumber = this.props.manage_seats.selectedTableNumber
-		let table =this.props.manage_seats.tables.find(t => t.id===parseInt(this.props.currenTableID.params.currenTableID))
-		console.log(table)
+		let table =tables.find(t => t.id===parseInt(this.props.currenTableID.params.currenTableID))
 		return (
 			<div className='box_bg'>
 				<div className='user-table'>

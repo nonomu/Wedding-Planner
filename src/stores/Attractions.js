@@ -4,8 +4,8 @@ let API_URL = `http://localhost:4200/api`
 
 class Attractions {
     @observable _attractions = []
-    @observable category = ''
     @observable open = false
+
     @computed get attractions() {
         return this.category ? this.attractionsByCategory
         : this._attractions
@@ -18,9 +18,9 @@ class Attractions {
         this.open = true
     }
 
-    @computed get attractionsByCategory() {
+    @action  attractionsByCategory(category) {
         return this._attractions.length ? 
-        this._attractions.filter(a => a.category === this.category) : []
+        this._attractions.filter(a => a.category === category) : []
     }
 
     @computed get categories(){

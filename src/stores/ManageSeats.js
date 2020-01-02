@@ -3,15 +3,8 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
 class ManageSeats {
-	@observable weddingDetailsId
 	@observable invitees = []
 	@observable tables = []
-	@observable selectedTable
-	@observable selectedTableName
-	@observable selectedTableNumber
-	@observable currentSeats
-	@observable selectedTableMaxSeats
-	@observable openSideBar = false
 
 	@computed get numTables() {
 		return this.tables.length
@@ -20,7 +13,7 @@ class ManageSeats {
 	@computed get relations() {
 		return [...new Set(this.invitees.map(i => i.relation))]
 	}
-
+	
 	@action getRelatedInvitees = relation => {
 		return this.invitees.filter(i => i.relation === relation)
 	}

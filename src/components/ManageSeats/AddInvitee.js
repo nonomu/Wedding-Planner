@@ -21,13 +21,6 @@ class AddInvitee extends Component {
         }
         this.baseState = this.state
     }
-    async componentDidMount(){
-      await this.props.user.getWeddingDetails()
-      this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
-    }
-
-
-
     handleInputs = (e) =>{
         this.setState({[e.target.name]:e.target.value})
     }

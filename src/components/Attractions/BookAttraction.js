@@ -7,35 +7,20 @@ import DoneIcon from '@material-ui/icons/Done'
 @inject('attractions', 'user')
 @observer
 class BookAttraction extends Component {
-	constructor() {
-		super()
-		this.state = {
-			attractionData: [],
-			price: 0
-		}
-	}
-
-	handleInput = e => {
-		this.setState({ price: e.target.value })
-	}
 	bookButton = () => {
+		let attractionData = this.props.attractions.getAttractionData(this.props.category,this.props.id)
+		let price=document.getElementById('price').value ?parseInt(document.getElementById('price').value): 0
 		this.props.user.bookAttraction(
 			this.props.user.userInfo.id,
-			this.state.attractionData.id,
-			this.state.price
+			attractionData.id,
+			price
 		)
 	}
-
-	componentDidMount = () => {
+	render() {
 		let attractionData = this.props.attractions.getAttractionData(
 			this.props.category,
 			this.props.id
 		)
-		this.setState({ attractionData })
-	}
-
-	render() {
-		let attractionData = this.state.attractionData
 		return (
 			<div>
 				{!attractionData ? null : (
@@ -60,7 +45,6 @@ class BookAttraction extends Component {
 							type='number'
 							label='Price'
 							placeholder='Enter Price'
-							onChange={this.handleInput}
 						/>
 
 						<h5>

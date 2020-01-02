@@ -17,11 +17,6 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
 @inject('user')
 @observer
 class Overview extends Component {
-	componentDidMount = () => {
-		this.props.user.getBookedAttractions()
-		this.props.user.getWeddingDetails()
-	}
-
 	render() {
 		let bookedAttractions = this.props.user.bookedAttractions
 		let totalPrice = bookedAttractions.reduce((a, b) => a + b.price, 0)
