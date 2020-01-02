@@ -5,14 +5,9 @@ import './favorites.css'
 @inject('user', 'attractions')
 @observer
 class Favorites extends Component {
-	componentDidMount() {
-		this.props.user.getUserFavorites()
-	}
-
 	render() {
 		let userFavorites = this.props.user._userFavorites
 		let categories = this.props.attractions.categories
-
 		return (
 			<div className='favorites'>
 				<h1 className='attraction-title'>Favorites</h1>

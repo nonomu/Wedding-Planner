@@ -3,10 +3,19 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200`
 
 class User {
-	@observable userInfo = { id: sessionStorage.getItem('id') || 0 }
+	@observable userInfo = { id: sessionStorage.getItem('id') || 0 ,
+	weddingData:{
+		groom_name:"",bride_name:"",wedding_date:"",est_invitees:0,est_budget:0,estGifts:0,wedding_area:"",musicStyle:0}
+		}
 	@observable _userFavorites = []
 	@observable bookedAttractions = []
 	@observable userLogedIn = false
+
+
+	@action handleInput = (name, value) => {
+		this.userInfo.weddingData[name] = value
+	}
+
 
 	@action userRegister = async userData => {
 		try {
@@ -33,10 +42,9 @@ class User {
 			throw new Error(err.response.data.message)
 		}
 	}
-	@action updateUserInfo = async profile => {
-		profile.id = this.userInfo.id
+	@action updateUserInfo = async () => {
 		try {
-			let update = await Axios.put(`${API_URL}/api/update/UserInfo`, profile)
+			let update = await Axios.put(`${API_URL}/api/update/UserInfo`, this.userInfo.weddingData)
 			return update.data
 		} catch (err) {
 			console.log(err)

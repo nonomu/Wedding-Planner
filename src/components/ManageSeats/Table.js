@@ -13,19 +13,11 @@ class Table extends Component {
 			render: false
 		}
 	}
-	selectTable = () => {
-		this.props.manage_seats.selectedTable = this.props.t.id
-		this.props.manage_seats.selectedTableName = this.props.t.table_name
-		this.props.manage_seats.selectedTableMaxSeats = this.props.t.num_seats
-		this.props.manage_seats.selectedTableNumber = this.props.t.table_number
-		this.props.manage_seats.getAvailableSeats()
-	}
 	render() {
 		let invitees = this.props.manage_seats.invitees
 		return (
 			<div>
 				<Button
-					onClick={this.selectTable}
 					component={Link}
 					to={`/addtotable/${this.props.t.id}`} >
 					<table className='table'>

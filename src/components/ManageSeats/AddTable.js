@@ -18,12 +18,6 @@ class AddTable extends Component {
       numSeats: 0
     };
   }
-
-  componentDidMount= async () =>{
-    await this.props.user.getWeddingDetails()
-    this.props.manage_seats.getTables(this.props.user.userInfo.weddingData.id)
-  }
-
   invalidInput = user => Object.keys(user).some(i => !user[i])
 
   handleError = input => {

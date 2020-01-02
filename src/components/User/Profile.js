@@ -11,42 +11,15 @@ import 'react-toastify/dist/ReactToastify.css'
 @inject('user')
 @observer
 class Profile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      groomName: "",
-      brideName: "",
-      weddingDate: "",
-      estInvitees: 0,
-      estBudget: 0,
-      estGifts: 0,
-      weddingArea: "",
-      musicStyle: 0
-    };
-  }
-
-  
-
-  componentDidMount = async () => {
-    await this.props.user.getWeddingDetails()
-    let userInfo = this.props.user.userInfo.weddingData
-    this.setState({
-      groomName: userInfo.groom_name,
-      brideName: userInfo.bride_name,
-      weddingDate: userInfo.wedding_date,
-      estInvitees: userInfo.est_invitees,
-      estBudget: userInfo.est_budget,
-      estGifts: userInfo.est_cash_gifts,
-      weddingArea: userInfo.wedding_area
-    })
-  }
-
   handleInputs = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    const target = e.target
+    let value = target.value
+    const name = target.name
+    this.props.user.handleInput(name, value)
   }
   updateUserInfo = async () => {
   try {
-    let update = await this.props.user.updateUserInfo(this.state)
+    let update = await this.props.user.updateUserInfo()
     popup.success(update)
   }
     catch(err) {
@@ -54,7 +27,8 @@ class Profile extends Component {
     }
   }
   render() {
-    
+    let weddingData=this.props.user.userInfo.weddingData
+    console.log(weddingData)
     return (
       <div id="profile-container">
           <h1>User Profile</h1>
@@ -66,15 +40,15 @@ class Profile extends Component {
 
           <h3>Personal Details:</h3>
             <div className="names">
-            <TextField name="brideName" label="Partner 1" variant="outlined" value={this.state.brideName} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
-            <TextField name="groomName" label="Partner 2" variant="outlined" value={this.state.groomName} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+            <TextField name="bride_name" label="Partner 1" variant="outlined" value={weddingData.bride_name} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+            <TextField name="groom_name" label="Partner 2" variant="outlined" value={weddingData.groom_name} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
             </div>
           <h3>Wedding Details:</h3>
             <div className="details">
-            <TextField name="weddingDate" label="Wedding Date" variant="outlined" value={this.state.weddingDate} type="date" onChange={this.handleInputs} />
-            <TextField name="estInvitees" label="Estimated Guests" variant="outlined" value={this.state.estInvitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
-            <TextField name="estBudget" id="estBudget" label="Estimated Budget(₪)" variant="outlined" value={this.state.estBudget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
-            <Autocomplete className="location" value={this.state.weddingArea} name="weddingArea" id="autoCompleteField"
+            <TextField name="wedding_date" label="Wedding Date" variant="outlined" value={weddingData.wedding_date} type="date" onChange={this.handleInputs} />
+            <TextField name="est_invitees" label="Estimated Guests" variant="outlined" value={weddingData.est_invitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
+            <TextField name="est_budget" id="estBudget" label="Estimated Budget(₪)" variant="outlined" value={weddingData.est_budget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
+            <Autocomplete className="location" value={weddingData.wedding_area} name="wedding_area" id="autoCompleteField"
               onChange={this.handleInputs}
               onPlaceSelected={(city) => {
                 let cityName = city.formatted_address

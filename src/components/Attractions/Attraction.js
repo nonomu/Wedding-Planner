@@ -19,11 +19,8 @@ class Attraction extends Component {
     isFavorite = () =>{
         return this.props.user.isFavorite(this.props.attr.id)
     }
-    componentDidMount(){
-        this.props.user.getBookedAttractions()
-    }
     render() {
-
+        //rewrite new code
         let bookedAttractions=this.props.user.bookedAttractions
         let isBooked=bookedAttractions.some(f => f.category === this.props.attr.category)
         let favorites=this.props.user._userFavorites

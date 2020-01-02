@@ -42,10 +42,15 @@ class App extends Component {
 		}
 	}
 	async componentDidMount() {
-		await this.props.attractions.getAttractions()
-		this.props.user.getWeddingDetails()
-	}
+		this.props.attractions.getAttractions()
+		await this.props.user.getWeddingDetails()
+		this.props.user.getBookedAttractions()
+		this.props.user.getUserFavorites()
+		this.props.manage_seats.getInvitees(this.props.user.userInfo.weddingData.id)
+		this.props.manage_seats.getTables(this.props.user.userInfo.weddingData.id)
 
+	}
+	
 	closeDialog = () => {
 		this.props.attractions.closeDialog()
 	}
