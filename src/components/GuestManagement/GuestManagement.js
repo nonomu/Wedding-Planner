@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router-dom'
-
-import AddInvitee from "./AddInvitee";
+import AddGuestForm from "./AddGuestForm";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Table from "./Table";
-import './manage_seats.css'
+import './guest-management.css'
 
 
 @inject('manage_seats', 'user')
 @observer
-class ManageSeats extends Component {
+class GuestManagement extends Component {
 	render() {
 		return (
 			<div id='manage_seats'>
-				<AddInvitee />
+				<AddGuestForm />
 				<div className="tables">
 					{this.props.manage_seats.tables.map(t => (
 						<Table key={t.id} t={t} />
@@ -36,4 +35,4 @@ class ManageSeats extends Component {
 
 }
 
-export default ManageSeats
+export default GuestManagement
