@@ -10,13 +10,13 @@ import {
 } from '@material-ui/core'
 import Paper from './Paper'
 
-import './Overview.css'
+import './budget-tracker.css'
 import CreditCardIcon from '@material-ui/icons/CreditCard'
 import LocalAtmIcon from '@material-ui/icons/LocalAtm'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
 @inject('user')
 @observer
-class Overview extends Component {
+class BudgetTracker extends Component {
 	render() {
 		let bookedAttractions = this.props.user.bookedAttractions
 		let totalPrice = bookedAttractions.reduce((a, b) => a + b.price, 0)
@@ -76,4 +76,4 @@ class Overview extends Component {
 	}
 }
 
-export default Overview
+export default BudgetTracker

@@ -3,16 +3,17 @@ import './App.css'
 import { observer, inject } from 'mobx-react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Navbar from './components/navbars/Navbar'
-import Home from './components/Home'
-import Profile from './components/User/Profile'
-import Favorites from './components/User/Favorites'
-import Overview from './components/User/Overview'
+import Home from './components/Home/Home'
+import Profile from './components/Profile/Profile'
+import Favorites from './components/Favorites/Favorites'
+import BudgetTracker from './components/BudgetTracker/BudgetTracker'
 import BookVendor from './components/Vendors/BookVendor'
 import VendorInfo from './components/Vendors/VendorInfo'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Paper, Dialog, Grid } from '@material-ui/core'
-import Login from './components/Users_components/Login'
-import Register from './components/Users_components/Register'
+import Login from './components/Login/Login'
+import Register from './components/Register/Register'
 import GuestManagement from './components/GuestManagement/GuestManagement'
 import ClippedDrawer from './components/Vendors/ClippedDrawer'
 import AddTable from './components/GuestManagement/AddTable'
@@ -29,7 +30,7 @@ class App extends Component {
 				{ name: <img id="logo" src="/logo3.png" alt="logo"/>, link: '/' },
 				{ name: 'Vendors', link: '/vendors' },
 				{ name: 'Favorites', link: '/favorites' },
-				{ name: 'Budget Tracker', link: '/overview' },
+				{ name: 'Budget Tracker', link: '/budget-tracker' },
 				{ name: 'Guest Management', link: '/guest-management' },
 				{ name: 'Profile', link: '/profile' },
 				{ name: 'Logout', link: '/logout' }
@@ -81,7 +82,7 @@ class App extends Component {
 				<Route exact path='/' component={Home} />
 				<Route exact path='/profile' component={Profile} />
 				<Route exact path='/favorites' component={Favorites} />
-				<Route exact path='/overview' component={Overview} />
+				<Route exact path='/budget-tracker' component={BudgetTracker} />
 				<Route exact path='/login' component={Login} />
 				<Route exact path='/logout' render={this.logout} />
 				<Route exact path='/register' component={Register} />
