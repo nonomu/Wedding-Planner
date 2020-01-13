@@ -31,7 +31,7 @@ class Profile extends Component {
     console.log(weddingData)
     return (
       <div id="profile-container">
-          <h1>User Profile</h1>
+          <h1>Profile</h1>
           <p className="upperText">
           Please keep the information here up to date so your wedding planning will stay on-course.
         </p>
