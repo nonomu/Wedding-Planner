@@ -3,10 +3,11 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { toast as popup } from 'react-toastify'
 import { inject, observer } from 'mobx-react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './login.css'
+import Dialog from '../UI/Dialog/Dialog'
 
-@inject('user')
+@inject('auth')
 @observer
 class Login extends Component {
 	constructor() {
@@ -32,7 +33,7 @@ class Login extends Component {
 	userLogin = async () => {
 		try {
 			this.handleError(this.state)
-			let login = await this.props.user.userLogin(
+			let login = await this.props.auth.userLogin(
 				this.state.email,
 				this.state.password
 			)
@@ -44,8 +45,7 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div className='login_box'>
-				<div className='user_box'>
+			<Dialog>
 					<h1>Login</h1>
 					<div>
 						<TextField
@@ -73,15 +73,11 @@ class Login extends Component {
 							</Link>
 						</p>
 					</div>
-						<Button
-							variant='contained'
-							color='primary'
-							onClick={this.userLogin}>
-							LOGIN
-						</Button>
-						{this.props.user.userLogedIn ? (window.location = '/') : null}
-				</div>
-			</div>
+					<Button variant='contained' color='primary' onClick={this.userLogin}>
+						LOGIN
+					</Button>
+					{this.props.auth.loggedIn ? (<Redirect to='/' />) : null}
+			</Dialog>
 		)
 	}
 }

@@ -1,4 +1,4 @@
-.attractions {
+.Vendors {
   display: grid;
   overflow: -moz-hidden-unscrollable;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -52,7 +52,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .attractions {
+  .Vendors {
     display: grid;
     overflow: -moz-hidden-unscrollable;
     justify-items: center;
@@ -62,30 +62,3 @@
   }
 }
 
-.MuiDrawer {
-  top: 200px;
-}
-
-.MuiDialog-root {
-  width: 750px!important;
-  height: auto!important;
-  left: 33.3%!important;
-}
-
-.MuiDialog-root .attraction-info-title{
-  font-size:120%;
-  margin: 0;
-}
-
-h3{
-  margin: 0;
-}
-
-h4{
-  margin: 15px
-}
-
-img{
-  justify-self: center;
-  border-radius: 5px;
-}

@@ -22,43 +22,42 @@ const useStyles = makeStyles({
 
 export default function VendorCard(props) {
   const classes = useStyles();
- let attraction=props.attraction
-
+  let vendor=props.vendor
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={attraction.image}
+          image={vendor.image}
           title={classes.media}
-          component={Link} to={`/attractionInfo/${attraction.id}`}
+          component={Link} to={`/vendorInfo/${vendor.id}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {attraction.attr_name}
+            {vendor.attr_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          {attraction.title}
-            {attraction.location}
+          {vendor.title}
+            {vendor.location}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <Rating value={attraction.rating} readOnly/>
+            <Rating value={vendor.rating} readOnly/>
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {props.isBookedCategory===attraction.category?"":(
-        <Link to={`/book/${attraction.category}/${attraction.id}`}>
+        {!props.isBookedCategory && (
+        <Link to={`/book/${vendor.category}/${vendor.id}`}>
         <Button size="small" color="primary">
           Book
         </Button>
         </Link>)}
         {props.isFavorite ? (
-          <Button  onClick={props.removeFavorite} size="small" color="primary">
-            remove Favorite
+          <Button onClick={props.removeFavorite} size="small" color="primary">
+            Remove Favorite
           </Button>
         ) : (
-          <Button  onClick={props.addToFavorites} size="small" color="primary">
+          <Button onClick={props.addToFavorites} size="small" color="primary">
             Add To Favorites
           </Button>
         )}

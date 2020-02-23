@@ -1,26 +1,14 @@
-.App {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr 10fr;
-  font-family: 'Raleway', sans-serif;
-}
-
 a {
   text-decoration: none;
   color: black;
 }
 
 #background {
-  background-image: url('/background.jpg');
   height: 100vh;
+  width: 100vw;
   background-size: cover;
   background-repeat: repeat-y;
-  background-position: center;
   background-attachment: fixed;
-  top: 6vh;
-  left: 0;
-  bottom: 0;
-  right: 0;
   position: fixed;
   z-index: -1;
   opacity: 0.3;
@@ -65,7 +53,6 @@ select {
   height: 200px;
 }
 
-/* Yanivs needs to refactor ! */
 
 #Paper {
   width: 1000px;
@@ -77,16 +64,6 @@ select {
   margin: 20px auto;
 }
 
-#welcomeTemp {
-  max-width: 700px;
-  width: 80%;
-  display: block;
-  margin-top: 75px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* scroll design */
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
@@ -105,23 +82,13 @@ select {
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
 
-#logo {
-  width: 170px;
-}
-
-#welcomeTemp2 {
-  width: 100%;
-}
-
 @media only screen and (max-width: 768px) {}
 
 .moses {
   max-height: 1px!important;
 }
 
-a#Logout-tab {
-  background-color: rgba(211, 29, 29, 0.3);
-}
+
 
 .MuiFab-secondary {
   color: #fff;

@@ -1,23 +1,47 @@
 import React, { Component } from 'react'
 import Vendor from './Vendor'
 import { observer, inject } from 'mobx-react'
-import './vendors.css'
-@inject('attractions', 'user')
+import classes from './Vendors.module.css'
+import ClippedDrawer from '../UI/ClippedDrawer/ClippedDrawer'
+@inject('vendors', 'wedding', 'auth')
 @observer
 class Vendors extends Component {
+	componentDidMount() {
+		if (!this.props.vendors.vendors.length) {
+			this.props.vendors.getVendors()
+		}
+		if (!this.props.wedding.bookedVendors.length) {
+			this.props.wedding.getBookedVendors(this.props.auth.id)
+		}
+	}
+
+	isBookedCategory() {
+		const selectedCategory = this.props.match.params.category
+		const categories = this.props.wedding.bookedVendorCategories
+		return categories.some(c => c === selectedCategory)
+	}
+
 	render() {
-		let favorites=this.props.user._userFavorites
-		let attrArr = this.props.attractions.attractionsByCategory(this.props.category)
+		const favorites = this.props.wedding.favorites
+		const category = this.props.match.params.category
+		const vendors = this.props.vendors.vendorsByCategory(category)
+		const isBookedCategory = this.isBookedCategory()
 		return (
-			<div>
-				<h1 className="attraction-title">{this.props.category}</h1>
-				<div className='attractions'>
-					{attrArr.map(a => (
-						<Vendor name="attractions"favorites={favorites}key={a.id} attr={a} />
-					))}
+			<ClippedDrawer categories={this.props.vendors.categories}>
+				<div>
+					<h1 className={classes.VendorTitle}>{this.props.match.params.category}</h1>
+					<div className={classes.Vendors}>
+						{vendors.map(v => (
+							<Vendor
+								favorites={favorites}
+								key={v.id}
+								vendor={v}
+								isBookedCategory={isBookedCategory}
+							/>
+						))}
+					</div>
 				</div>
-				
-			</div>
+			</ClippedDrawer>
 		)
 	}
 }

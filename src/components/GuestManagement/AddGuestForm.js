@@ -5,7 +5,7 @@ import './guest-management.css'
 import { inject, observer } from 'mobx-react'
 import { toast as popup } from 'react-toastify'
 
-@inject('manage_seats', 'user')
+@inject('guestManagement', 'wedding')
 @observer
 class AddGuestForm extends Component {
 	constructor() {
@@ -35,15 +35,16 @@ class AddGuestForm extends Component {
 		this.setState(this.baseState)
 	}
 
-	AddInvitee = async () => {
+	AddGuest = async () => {
 		try {
+			console.log(this.props.weddingData)
 			this.handleError(this.state)
-			let addInvitee = await this.props.manage_seats.addInvitee(
+			let addGuest = await this.props.guestManagement.addGuest(
 				this.state,
-				this.props.user.userInfo.weddingData.id
+				this.props.wedding.weddingData.id
 			)
 			this.resetForm()
-			popup.success(addInvitee)
+			popup.success(addGuest)
 		} catch (err) {
 			popup.error(err.message)
 		}
@@ -76,7 +77,6 @@ class AddGuestForm extends Component {
 						label='Relation'
 						onChange={this.handleInputs}
 					/>
-					{/* This one will be select */}
 				</span>
 				<span id='TextField'>
 					<TextField
@@ -99,7 +99,7 @@ class AddGuestForm extends Component {
 						id='inv-btn'
 						variant='contained'
 						color='primary'
-						onClick={this.AddInvitee}>
+						onClick={this.AddGuest}>
 						Add Guest
 					</Button>
 				</div>

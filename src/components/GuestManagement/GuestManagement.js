@@ -8,15 +8,23 @@ import Table from "./Table";
 import './guest-management.css'
 
 
-@inject('manage_seats', 'user')
+@inject('guestManagement', 'wedding', 'auth')
 @observer
 class GuestManagement extends Component {
+	async componentDidMount() {
+		if (!this.props.wedding.weddingData.id) {
+			await this.props.wedding.getWeddingDetails(this.props.auth.id)
+		}
+		this.props.guestManagement.getGuests(this.props.auth.id)
+		this.props.guestManagement.getTables(this.props.auth.id)
+	}
+
 	render() {
 		return (
 			<div id='manage_seats'>
 				<AddGuestForm />
 				<div className="tables">
-					{this.props.manage_seats.tables.map(t => (
+					{this.props.guestManagement.tables.map(t => (
 						<Table key={t.id} t={t} />
 					))}
 				</div>

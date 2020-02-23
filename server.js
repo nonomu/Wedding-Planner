@@ -1,22 +1,26 @@
 require('dotenv').config()
 const express = require('express')
-const app = express()
-const api = require('./server/routes/api')
-const cors = require('cors')
-const morgan = require('morgan')
-const apigoogle = require('./server/routes/apigoogle.js')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const cors = require('cors')
+
+const app = express()
+const vendors = require('./server/routes/vendors')
+const wedding = require('./server/routes/wedding')
+const auth = require('./server/routes/auth')
+const guests = require('./server/routes/guestManagement')
 
 app.use(process.env.NODE_ENV === 'DEVELOPMENT' ? cors() : null)
+app.use(process.env.NODE_ENV === 'DEVELOPMENT' ? morgan("dev") : null)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(morgan("default"))
 
-app.use('/api', api)
-app.use('/apigoogle', apigoogle)
+app.use('/api/vendors', vendors)
+app.use('/api/wedding-details', wedding)
+app.use('/api', guests)
+app.use('/api', auth)
 
-const port = process.env.PORT || 4200
-app.listen(port, function() {
-	console.log(`Running on port ${port}`)
-})
+
+const PORT = process.env.PORT || 4200
+app.listen(PORT, () => console.log(`Running on port ${4200}`))

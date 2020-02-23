@@ -1,36 +1,45 @@
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import Guest from './Guest';
-import { Table } from '@material-ui/core';
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
+import Guest from './Guest'
+import {
+	Table,
+	TableHead,
+	TableRow,
+	TableCell,
+	TableBody
+} from '@material-ui/core'
 import './guest-management.css'
 
-@inject('manage_seats')
-
+@inject('guestManagement')
 @observer
 class RelationList extends Component {
-    
-    getRelatedInvitees() {
-    return this.props.manage_seats.getRelatedInvitees(this.props.relation)
-    }    
-    render() {
-        let related = this.getRelatedInvitees()
-        console.log(this.props)
-        let manageTableId=parseInt(this.props.manageTableId.params.manageTableId)
-        return (
-            <div>
-            <h2>{this.props.relation}</h2>
-            <Table striped bordered hover>
-                <tr className="listOfInvitees">
-                    <th>Name</th>
-                    <th>Guests</th>
-                    <th>Table #</th>
-                    <th></th>
-                </tr>
-            {related.map(i => <Guest manageTableId={manageTableId} key={i.id} details={i} />)}
-            </Table>
-            </div>
-        );
-    }
+	getRelatedGuests() {
+		return this.props.guestManagement.getRelatedGuests(this.props.relation)
+	}
+
+	render() {
+		let related = this.getRelatedGuests()
+		let manageTableId = parseInt(this.props.manageTableId.params.manageTableId)
+		return (
+			<div>
+				<h2>{this.props.relation}</h2>
+				<Table>
+					<TableHead>
+						<TableRow className='listOfInvitees'>
+							<TableCell>Name</TableCell>
+							<TableCell>Guests</TableCell>
+							<TableCell>Table #</TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{related.map(i => (
+							<Guest manageTableId={manageTableId} key={i.id} details={i} />
+						))}
+					</TableBody>
+				</Table>
+			</div>
+		)
+	}
 }
 
-export default RelationList;
+export default RelationList

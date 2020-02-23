@@ -3,32 +3,38 @@ import { inject, observer } from "mobx-react";
 import Autocomplete from 'react-google-autocomplete';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import brideAndGroom from './brideAndGroom.png'
+import brideAndGroom from '../../assets/brideAndGroom.png'
 import './profile.css'
 import {toast as popup} from 'react-toastify'
 
 
-@inject('user')
+@inject('wedding', 'auth')
 @observer
 class Profile extends Component {
   handleInputs = e => {
     const target = e.target
     let value = target.value
     const name = target.name
-    this.props.user.handleInput(name, value)
+    this.props.wedding.handleInput(name, value)
   }
   updateUserInfo = async () => {
   try {
-    let update = await this.props.user.updateUserInfo()
+    let update = await this.props.wedding.updateUserInfo()
     popup.success(update)
   }
     catch(err) {
       popup.error(err.message)
     }
   }
+
+  componentDidMount() {
+    this.props.wedding.getWeddingDetails(this.props.auth.id)
+  }
+
+
+
   render() {
-    let weddingData=this.props.user.userInfo.weddingData
-    console.log(weddingData)
+    let weddingData = this.props.wedding.weddingData
     return (
       <div id="profile-container">
           <h1>Profile</h1>

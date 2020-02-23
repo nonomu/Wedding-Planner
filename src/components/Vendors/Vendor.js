@@ -1,38 +1,43 @@
-import React, { Component } from 'react';
-import { observer, inject } from "mobx-react";
-import {toast as popup} from 'react-toastify'
-import VendorCard from './Card';
+import React, { Component } from 'react'
+import { observer, inject } from 'mobx-react'
+import { toast as popup } from 'react-toastify'
+import VendorCard from './Card'
 
-@inject("attractions", "user")
-
+@inject('vendors', 'wedding', 'auth')
 @observer
 class Vendor extends Component {
-    removeFavorite = async ()  =>{
-      let remove = await this.props.user.removeFavorite(this.props.user.userInfo.id,this.props.attr.id)
-      popup.success(remove)
-    }
-    addToFavorites = async () => {
-        let add = await this.props.user.addToFavorites(this.props.user.userInfo.id, this.props.attr.id)
-        popup.success(add)
-    }
+	removeFavorite = async () => {
+		let remove = await this.props.wedding.removeFavorite(
+			this.props.auth.id,
+			this.props.vendor.id
+		)
+		popup.success(remove)
+	}
+	addToFavorites = async () => {
+		let add = await this.props.wedding.addToFavorites(
+			this.props.auth.id,
+			this.props.vendor.id
+		)
+		popup.success(add)
+	}
 
-    isFavorite = () => {
-        return this.props.user.isFavorite(this.props.attr.id)
-    }
-    render() {
-        //rewrite new code
-        let bookedAttractions=this.props.user.bookedAttractions
-        let isBooked=bookedAttractions.some(f => f.category === this.props.attr.category)
-        let isFavorite=this.isFavorite()
-        let attraction = this.props.attr
-        return (
-            <div className="attraction">
-            {attraction ?<VendorCard isBookedCategory={isBooked?this.props.attr.category:"null"}
-             isFavorite={isFavorite} attraction={attraction} removeFavorite={this.removeFavorite} 
-             addToFavorites={this.addToFavorites} changeFavoriteState={this.changeFavoriteState}/>:""}
-            </div>
-        )
-    }
+	isFavorite = () => {
+		return this.props.wedding.isFavorite(this.props.vendor.id)
+	}
+
+	render() {
+		const isFavorite = this.props.vendor ? this.isFavorite() : false
+		return (
+				<VendorCard
+					isBookedCategory={this.props.isBookedCategory}
+					isFavorite={isFavorite}
+					vendor={this.props.vendor}
+					removeFavorite={this.removeFavorite}
+					addToFavorites={this.addToFavorites}
+					changeFavoriteState={this.changeFavoriteState}
+				/>
+		)
+	}
 }
 
 export default Vendor

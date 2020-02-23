@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 		width: '60%'
 	}
 }))
-export default function PaperSheet(props) {
+export default function BookedVendor(props) {
 	const classes = useStyles()
 	return (
 		<CardMedia

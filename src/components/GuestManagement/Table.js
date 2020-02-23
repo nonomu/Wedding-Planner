@@ -3,13 +3,13 @@ import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 
-@inject('manage_seats')
+@inject('guestManagement')
 @observer
 
 class Table extends Component {
 	render() {
-		let invitees = this.props.manage_seats.invitees
-		let sameTableGuests = invitees.filter(i => i.table_id === this.props.t.id)
+		let guests = this.props.guestManagement.guests
+		let sameTableGuests = guests.filter(i => i.table_id === this.props.t.id)
 		return (
 			<div>
 				<Button

@@ -8,24 +8,31 @@ import {
 	Avatar,
 	Card
 } from '@material-ui/core'
-import Paper from './Paper'
+import BookedVendor from './BookedVendor'
 
-import './budget-tracker.css'
+import classes from './budget-tracker.module.css'
 import CreditCardIcon from '@material-ui/icons/CreditCard'
 import LocalAtmIcon from '@material-ui/icons/LocalAtm'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
-@inject('user')
+@inject('wedding', 'auth')
 @observer
 class BudgetTracker extends Component {
+	componentDidMount() {
+		this.props.wedding.getBookedVendors(this.props.auth.id)
+		if (!this.props.wedding.weddingData.est_budget) {
+			this.props.wedding.getWeddingDetails(this.props.auth.id)
+		}
+	}
+	
 	render() {
-		let bookedAttractions = this.props.user.bookedAttractions
-		let totalPrice = bookedAttractions.reduce((a, b) => a + b.price, 0)
-		let weddingDetailes = this.props.user.userInfo.weddingData
-			? this.props.user.userInfo.weddingData
+		let bookedVendors = this.props.wedding.bookedVendors
+		let totalPrice = bookedVendors.reduce((a, b) => a + b.price, 0)
+		let weddingDetails = this.props.wedding.weddingData
+			? this.props.wedding.weddingData
 			: ''
 		return (
-			<div className='overview-container'>
-				<div className='budget'>
+			<div className={classes.BudgetTracker}>
+				<div className={classes.Budget}>
 					<Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
 						<List id='budg-list'>
 							<ListItem>
@@ -37,7 +44,7 @@ class BudgetTracker extends Component {
 								<ListItemText
 									primary='Total Budget'
 									secondary={
-										weddingDetailes ? weddingDetailes.est_budget + '₪' : ''
+										weddingDetails ? weddingDetails.est_budget + '₪' : ''
 									}
 								/>
 							</ListItem>
@@ -60,15 +67,15 @@ class BudgetTracker extends Component {
 								</ListItemAvatar>
 								<ListItemText
 									primary='Remaining Budget'
-									secondary={weddingDetailes.est_budget - totalPrice + '₪'}
+									secondary={weddingDetails.est_budget - totalPrice + '₪'}
 								/>
 							</ListItem>
 						</List>
 					</Card>
 				</div>
-				<div className='papers'>
-					{bookedAttractions.map(ba => (
-						<Paper key={ba.id} attr={ba} />
+				<div className={classes.Vendors}>
+					{bookedVendors.map(ba => (
+						<BookedVendor key={ba.id} attr={ba} />
 					))}
 				</div>
 			</div>

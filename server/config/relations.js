@@ -1,0 +1,20 @@
+const db = require('../config/database')
+const User = require('../models/user')
+const Wedding = require('../models/wedding')
+const Vendor = require('../models/vendor')
+const BookedVendor = require('../models/bookedVendor')
+const Favorite = require('../models/favorite')
+const Guest = require('../models/guest')
+const Table = require('../models/table')
+
+
+User.belongsTo(Wedding, {constraints: true, onDelete: 'CASCADE'})
+Wedding.hasOne(User)
+Vendor.belongsToMany(Wedding, { through: BookedVendor })
+Vendor.belongsToMany(User, { through: Favorite })
+Table.belongsTo(Wedding)
+Wedding.hasMany(Table)
+Table.hasMany(Guest)
+Guest.belongsTo(Table)
+
+return db.sync()

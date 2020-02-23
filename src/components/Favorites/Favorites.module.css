@@ -1,0 +1,60 @@
+.Favorites {
+	display: grid;
+	justify-items: center;
+	grid-template-rows: repeat(auto-fill, minmax(200px, 3fr));
+	grid-gap: 20px;
+}
+.NoFavorites {
+    font-size: 24px;
+}
+
+.Category {
+	text-transform: uppercase;
+	text-align: center;
+}
+.Title {
+	margin-top: 70px;
+}
+.Favorite {
+	display: grid;
+	grid-gap: 20px;
+	margin: 25px;
+}
+.FavoriteList {
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 30px;
+	justify-content: center;
+	justify-items: center;
+}
+.attraction-info {
+	display: grid;
+	justify-items: center;
+	text-align: center;
+	padding: 20px;
+}
+.attraction-title {
+	text-transform: uppercase;
+	text-align: center;
+	justify-content: start;
+	/* font-size: 0x; */
+}
+.MuiCardMedia-root {
+	width: 100%;
+}
+.categoryName {
+	font-size: 2vw;
+}
+@media only screen and (max-width: 600px) {
+	.categoryName {
+		font-size: 10vw;
+	}
+	.attraction-title {
+		font-size: 99px;
+	}
+}
+
+body {
+	padding-top: 3em;
+}

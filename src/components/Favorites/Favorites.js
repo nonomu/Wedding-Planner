@@ -1,35 +1,51 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import Vendor from '../Vendors/Vendor'
-import './favorites.css'
-@inject('user', 'attractions')
+import classes from './Favorites.module.css'
+@inject('wedding', 'vendors', 'auth')
 @observer
 class Favorites extends Component {
-	render() {
-		let userFavorites = this.props.user._userFavorites
-		let categories = this.props.attractions.categories
-		return (
-			<div className='favorites'>
-				<h1 className='attraction-title'>Favorites</h1>
+	async componentDidMount() {
+		if (!this.props.wedding.weddingData) {
+			await this.props.wedding.getWeddingDetails(this.props.auth.id)
+		}
+		if (!this.props.vendors._vendors.length) {
+			await this.props.vendors.getVendors()
+		}
+		this.props.wedding.getUserFavorites(this.props.auth.id)
+	}
 
-				{categories.map((c, i) => {
-					return userFavorites.some(u => u.category === c) ? (
-						<div key={Math.random() * 1000000} className='favorite'>
-							<h4 className='categoryName'>{c}</h4>
-							<div className='favoritesCategory'>
-								{userFavorites.map(uf =>
-									uf.category === c ? (
-										<Vendor
-											category={c}
-											attr={uf}
-											key={Math.random() * 1000000}
-										/>
-									) : null
-								)}
-							</div>
-						</div>
-					) : null
-				})}
+	favorites() {
+		const favorites = this.props.wedding.favorites
+		const categories = this.props.wedding.favoritesCategories
+		return favorites.length && categories.map(c => {
+			return (
+				<div key={c} className={classes.Favorite}>
+					<h4 className={classes.Category}>{c}</h4>
+					<div className={classes.FavoriteList}>
+						{favorites.map(f => {
+							return (
+								f.category === c && (
+									<Vendor category={c} vendor={f} key={f.id} />
+								)
+							)
+						})}
+					</div>
+				</div>
+			)
+		})
+	}
+
+	errorPhrase = () => (
+		<p className={classes.NoFavorites}>You have no favorites, yet!</p>
+	)
+
+	render() {
+		return (
+			<div className={classes.Favorites}>
+				<h1 className={classes.Title}>Favorites</h1>
+
+				{this.favorites() || this.errorPhrase() }
 			</div>
 		)
 	}
