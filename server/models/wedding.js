@@ -10,7 +10,7 @@ const Wedding = db.define('wedding', {
   },
   partner1: Sequelize.STRING,
   partner2: Sequelize.STRING,
-  date: Sequelize.DATE,
+  date: Sequelize.DATEONLY,
   num_of_guests: Sequelize.INTEGER,
   budget: Sequelize.INTEGER,
   preferred_location: Sequelize.STRING

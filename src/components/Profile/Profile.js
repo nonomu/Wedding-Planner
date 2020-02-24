@@ -16,9 +16,9 @@ class Profile extends Component {
     const name = target.name
     this.props.wedding.handleInput(name, value)
   }
-  updateUserInfo = async () => {
+  updateWeddingInfo = async () => {
   try {
-    let update = await this.props.wedding.updateUserInfo()
+    let update = await this.props.wedding.updateWeddingInfo()
     popup.success(update)
   }
     catch(err) {
@@ -33,7 +33,7 @@ class Profile extends Component {
 
 
   render() {
-    let weddingData = this.props.wedding.weddingData
+    const wedding = this.props.wedding.wedding
     return (
       <div className={classes.Profile}>
           <h1>Profile</h1>
@@ -45,26 +45,25 @@ class Profile extends Component {
 
           <h3>Personal Details:</h3>
             <div className={classes.Names}>
-            <TextField name="bride_name" label="Partner 1" variant="outlined" value={weddingData.bride_name} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
-            <TextField name="groom_name" label="Partner 2" variant="outlined" value={weddingData.groom_name} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+            <TextField name="partner1" label="Partner 1" variant="outlined" value={wedding.partner1} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+            <TextField name="partner2" label="Partner 2" variant="outlined" value={wedding.partner2} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
             </div>
           <h3>Wedding Details:</h3>
             <div className={classes.Details}>
-            <TextField name="wedding_date" label="Wedding Date" variant="outlined" value={weddingData.wedding_date} type="date" onChange={this.handleInputs} />
-            <TextField name="est_invitees" label="Estimated Guests" variant="outlined" value={weddingData.est_invitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
-            <TextField name="est_budget" id="estBudget" label="Estimated Budget(₪)" variant="outlined" value={weddingData.est_budget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
-            <Autocomplete className={classes.Location} value={weddingData.wedding_area} name="wedding_area" id="autoCompleteField"
+            <TextField name="date" label="Wedding Date" variant="outlined" value={wedding.date} type="date" onChange={this.handleInputs} />
+            <TextField name="num_of_guests" label="Estimated Guests" variant="outlined" value={wedding.num_of_guests} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
+            <TextField name="budget" label="Budget(₪)" variant="outlined" value={wedding.budget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
+            <Autocomplete className={classes.Location} value={wedding.preferred_location} name="preferred_location" id="autoCompleteField"
               onChange={this.handleInputs}
               onPlaceSelected={(city) => {
-                let cityName = city.formatted_address
-                this.setState({ weddingArea: cityName })
+                this.props.wedding.handleInput('preferred_location', city.formatted_address)
               }}
               types={['(cities)']}
               componentRestrictions={{ country: "IL" }}
             />
             </div>
           <div className={classes.Update}>
-          <Button variant="contained" className={classes.Update} color="secondary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
+          <Button variant="contained" className={classes.Update} color="secondary" onClick={this.updateWeddingInfo}>UPDATE PROFILE</Button>
           </div>
       </div>
     );

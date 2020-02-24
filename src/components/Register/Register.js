@@ -7,14 +7,8 @@ import Autocomplete from 'react-google-autocomplete'
 import classes from './register.module.css'
 import Dialog from '../UI/Dialog/Dialog'
 import { Redirect } from 'react-router-dom'
+import {handleError} from '../../helpers/validator'
 
-const invalidInput = fields => Object.keys(fields).some(i => !fields[i])
-
-const handleError = input => {
-	if (invalidInput(input)) {
-		throw new Error('All fields are required')
-	}
-}
 
 const Register = inject('auth')(
 	observer(props => {

@@ -1,43 +1,45 @@
 import { observable, action, computed } from 'mobx'
 import Axios from 'axios'
+import {handleError} from '../helpers/validator'
 const API_URL = `http://localhost:4200`
 
 class Wedding {
-	@observable weddingData = {
-		groom_name: '',
-		bride_name: '',
-		wedding_date: '',
-		est_invitees: 0,
-		est_budget: 0,
-		wedding_area: ''
+	@observable wedding = {
+		partner1: '',
+		partner2: '',
+		date: '',
+		num_of_guests: 0,
+		budget: 0,
+		preferred_location: ''
 	}
 
 	@observable _userFavorites = []
 	@observable bookedVendors = []
 
 	@action handleInput = (name, value) => {
-		this.weddingData[name] = value
+		this.wedding[name] = value
 	}
 
-	@action updateUserInfo = async () => {
+	@action updateWeddingInfo = async () => {
 		try {
+			handleError(this.wedding)
 			let update = await Axios.put(
-				`${API_URL}/api/wedding-details/user-profile`,
-				this.weddingData
+				`${API_URL}/api/wedding-details/profile`,
+				{wedding: this.wedding}
 			)
 			return update.data
 		} catch (err) {
-			console.log(err)
-			throw new Error(err.response.data.message)
+			throw new Error(err.message)
 		}
 	}
 
 	@action getWeddingDetails = async id => {
 		try {
-			let weddingData = await Axios.get(
+			let wedding = await Axios.get(
 				`${API_URL}/api/wedding-details/${id}`
 			)
-			this.weddingData = weddingData.data
+			console.log(wedding.data)
+			this.wedding = wedding.data
 		} catch (err) {
 			console.log(err)
 		}

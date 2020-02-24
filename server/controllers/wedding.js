@@ -1,39 +1,38 @@
-const Sequelize = require('sequelize')
-const db = new Sequelize(process.env.DB)
+const Wedding = require('../models/wedding')
+const User = require('../models/user')
 
 exports.getWeddingDetails = async (req, res) => {
 	try {
 		const userId = req.params.userId
-		const query = `
-		SELECT 
-			wd.* 
-		FROM 
-			user as u, 
-			weddingDetails AS wd 
-		WHERE u.id = "${userId}" 
-		AND u.id = wd.user_id`
-		const weddingDetails = await db.query(query)
-		res.send(weddingDetails[0][0])
+		const user = await User.findByPk(userId)
+		if (!user) {
+			throw new Error('User not found')
+		}
+		const wedding = await Wedding.findByPk(user.weddingId)
+		if (!wedding) {
+			throw new Error("Couldn't find wedding details")
+		}
+		res.send(wedding)
 	} catch (err) {
 		res.status(400).json({ message: err.message })
 	}
 }
 
-exports.putUserProfile = async (req, res) => {
+exports.putProfile = async (req, res) => {
 	try {
-		const userInfo = req.body
-		const query = `
-		UPDATE weddingdetails
-		SET 
-			groom_name = "${userInfo.groom_name}", 
-			bride_name = "${userInfo.bride_name}", 
-			wedding_date = "${userInfo.wedding_date}", 
-			est_invitees = "${userInfo.est_invitees}",
-			est_budget = "${userInfo.est_budget}",  
-			wedding_area = "${userInfo.wedding_area}" 
-		WHERE 
-			user_id="${userInfo.user_id}"`
-		await db.query(query)
+		const wedding = req.body.wedding
+		await Wedding.update(
+			{
+				partner1: wedding.partner1,
+				partner2: wedding.partner2,
+				date: wedding.date,
+				num_of_guests: wedding.num_of_guests,
+				budget: wedding.budget,
+				preferred_location: wedding.preferred_location
+			},
+			{ where: { id: wedding.id } }
+		)
+
 		res.send('Your info has been successfully updated!')
 	} catch (err) {
 		res.status(400).json({ message: err.message })
