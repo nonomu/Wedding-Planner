@@ -37,7 +37,7 @@ class Favorites extends Component {
 	}
 
 	errorPhrase = () => (
-		<p className={classes.NoFavorites}>You have no favorites, yet!</p>
+		<p className={classes.NoFavorites}>You have no favorites yet</p>
 	)
 
 	render() {

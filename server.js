@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const syncDb = require('./server/config/relations')
 
 const app = express()
 const vendors = require('./server/routes/vendors')
@@ -23,4 +24,6 @@ app.use('/api', auth)
 
 
 const PORT = process.env.PORT || 4200
-app.listen(PORT, () => console.log(`Running on port ${4200}`))
+syncDb().then(() => {
+  app.listen(PORT, () => console.log(`Running on port ${4200}`))
+})

@@ -1,8 +1,9 @@
 -- --CREATE DATABASE WeddingPlanner;
 -- DROPPER
 USE WeddingPlanner;
+-- DROP TABLE user, weddingDetails;
 -- DROP TABLE tables,booked_attractions,favorites,attractions,invitee,user,weddingDetails;
--- DROP TABLE weddingDetails,user;
+DROP TABLE user;
 -- DROP TABLE invitee,tables;
 
 -- CREATE TABLE user(

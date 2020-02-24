@@ -1,4 +1,4 @@
-#profile-container {
+.Profile {
 	text-align: center;
 	display: grid;
 	grid-gap: 10px;
@@ -8,35 +8,35 @@
 .sidePic {
 	display: grid;
 }
-.upperText {
+.Description {
 	text-align: center;
 }
-#groomAndBride {
+.Profile img {
 	height: 150px;
 	opacity: 0.5;
 }
 
-.names {
+.Names {
 	display: grid;
 	grid-gap: 10px;
 	grid-auto-flow: column;
 }
 
-.details {
+.Details {
 	display: grid;
 	grid-gap: 5px;
 	grid-auto-flow: column;
 }
 
-.update {
+.Update {
 	margin-top: 30px;
 }
 
 @media (max-width: 768px) {
-	.details {
+	.Details {
 		grid-auto-flow: row;
 	}
-	#profile-container {
+	.Profile {
 		height: 40vh;
 		text-align: center;
 		display: grid;
@@ -45,7 +45,7 @@
 	}
 }
 
-.location {
+.Location {
 	margin: 0;
 	width: 220px;
 	height: 53px;

@@ -7,14 +7,16 @@ const Favorite = require('../models/favorite')
 const Guest = require('../models/guest')
 const Table = require('../models/table')
 
-
-User.belongsTo(Wedding, {constraints: true, onDelete: 'CASCADE'})
-Wedding.hasOne(User)
-Vendor.belongsToMany(Wedding, { through: BookedVendor })
-Vendor.belongsToMany(User, { through: Favorite })
-Table.belongsTo(Wedding)
-Wedding.hasMany(Table)
-Table.hasMany(Guest)
-Guest.belongsTo(Table)
-
-return db.sync()
+module.exports = function syncDb() {
+  
+  User.belongsTo(Wedding, {constraints: true, onDelete: 'CASCADE'})
+  Wedding.hasMany(User)
+  Vendor.belongsToMany(Wedding, { through: BookedVendor })
+  Vendor.belongsToMany(User, { through: Favorite })
+  Table.belongsTo(Wedding)
+  Wedding.hasMany(Table)
+  Table.hasMany(Guest)
+  Guest.belongsTo(Table)
+  
+  return db.sync()
+}

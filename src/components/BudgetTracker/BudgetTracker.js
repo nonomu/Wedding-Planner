@@ -9,8 +9,7 @@ import {
 	Card
 } from '@material-ui/core'
 import BookedVendor from './BookedVendor'
-
-import classes from './budget-tracker.module.css'
+import classes from './BudgetTracker.module.css'
 import CreditCardIcon from '@material-ui/icons/CreditCard'
 import LocalAtmIcon from '@material-ui/icons/LocalAtm'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
