@@ -24,14 +24,14 @@ class Auth {
 		}
 	}
 
-	@action autoLogin = () => {
+	@action autoLogin = async () => {
 		try {
 			const token = sessionStorage.getItem('token')
 			if (!token) {
 				throw new Error('User not logged in')
 			}
-			const id = sessionStorage.getItem('id')
-			this.id = id
+			const autoLogin = await axios.post(API_URL + '/api/authenticate', { token })
+			this.id = autoLogin.data.id
 			this.token = token
 			this.loggedIn = true
 		} catch (err) {
