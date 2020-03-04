@@ -16,13 +16,13 @@ class BookVendor extends Component {
 		this.setState({ price: event.target.value })
 	}
 
-	bookVendor = vendorId => {
+	bookVendor = async vendorId => {
 		try {
 			const price = this.state.price
 		if (!price) {
 			throw new Error('Please enter a valid price')
 		}
-		this.props.wedding.bookVendor(this.props.auth.id, vendorId, price)
+		await this.props.wedding.bookVendor(vendorId, price)
 		this.props.history.push('/budget-tracker')
 		} catch (err) {
 			popup.error(err.message)

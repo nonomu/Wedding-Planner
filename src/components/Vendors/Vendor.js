@@ -7,17 +7,17 @@ import VendorCard from './Card'
 @observer
 class Vendor extends Component {
 	removeFavorite = async () => {
-		let remove = await this.props.wedding.removeFavorite(
-			this.props.auth.id,
-			this.props.vendor.id
-		)
+		const userId = this.props.auth.id
+		const vendorId = this.props.vendor.id  
+		const wedding = this.props.wedding
+		const remove = await wedding.removeFavorite(userId, vendorId)
 		popup.success(remove)
 	}
 	addToFavorites = async () => {
-		let add = await this.props.wedding.addToFavorites(
-			this.props.auth.id,
-			this.props.vendor.id
-		)
+		const userId = this.props.auth.id
+		const vendorId = this.props.vendor.id
+		const wedding = this.props.wedding
+		const add = await wedding.addToFavorites(userId, vendorId)
 		popup.success(add)
 	}
 
@@ -26,7 +26,7 @@ class Vendor extends Component {
 	}
 
 	render() {
-		const isFavorite = this.props.vendor ? this.isFavorite() : false
+		const isFavorite = this.props.vendor && this.isFavorite()
 		return (
 				<VendorCard
 					isBookedCategory={this.props.isBookedCategory}

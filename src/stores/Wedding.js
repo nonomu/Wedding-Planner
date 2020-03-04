@@ -23,10 +23,9 @@ class Wedding {
 	@action updateWeddingInfo = async () => {
 		try {
 			handleError(this.wedding)
-			let update = await Axios.put(
-				`${API_URL}/api/wedding-details/profile`,
-				{wedding: this.wedding}
-			)
+			const URL = API_URL + '/api/wedding-details/profile'
+			const payload = {wedding: this.wedding}
+			const update = await Axios.put(URL, payload)
 			return update.data
 		} catch (err) {
 			throw new Error(err.message)
@@ -35,24 +34,23 @@ class Wedding {
 
 	@action getWeddingDetails = async id => {
 		try {
-			const wedding = await Axios.get(
-				`${API_URL}/api/wedding-details/${id}`
-			)
+			const URL = API_URL + '/api/wedding-details/' + id
+			const wedding = await Axios.get(URL)
 			this.wedding = wedding.data
 		} catch (err) {
 			console.log(err)
 		}
 	}
 
-	@action isFavorite(attr_id) {
-		return this._userFavorites.some(a => a.id === attr_id)
+	@action isFavorite(vendorId) {
+		return this._userFavorites.some(v => v.id === vendorId)
 	}
 
 	@action getUserFavorites = async id => {
 		try {
-			const userFavorites = await Axios.get(
-				`${API_URL}/api/vendors/favorites/${id}`
-			)
+			const URL = API_URL + '/api/vendors/favorites/' + id
+			const userFavorites = await Axios.get(URL)
+			console.log(userFavorites.data)
 			this._userFavorites = userFavorites.data
 		} catch (err) {
 			console.log(err)
@@ -60,9 +58,9 @@ class Wedding {
 	}
 	@action removeFavorite = async (userId, attractionId) => {
 		try {
-			let remove = await Axios.delete(`${API_URL}/api/vendors/favorite/`, {
-				data: { userId, attractionId }
-			})
+			const URL = API_URL + '/api/vendors/favorite/'
+			const payload = {data: { userId, attractionId }}
+			const remove = await Axios.delete(URL, payload)
 			await this.getUserFavorites(userId)
 			return remove.data
 		} catch (err) {
@@ -72,23 +70,21 @@ class Wedding {
 
 	@action addToFavorites = async (userId, vendorId) => {
 		try {
-			let add = await Axios.post(`${API_URL}/api/vendors/favorite`, {
-				userId,
-				vendorId
-			})
+			const URL = API_URL + '/api/vendors/favorite'
+			const payload = {userId, vendorId}
+			const add = await Axios.post(URL, payload)
 			await this.getUserFavorites(userId)
 			return add.data
 		} catch (err) {
 			return err
 		}
 	}
-	@action bookVendor = async (userId, vendorId, price) => {
+	@action bookVendor = async (vendorId, price) => {
 		try {
-			await Axios.post(`${API_URL}/api/vendors/book`, {
-				userId,
-				vendorId,
-				price
-			})
+			const weddingId = this.wedding.id
+			const URL = API_URL + '/api/vendors/book'
+			const payload = {weddingId, vendorId, price}
+			await Axios.post(URL, payload)
 			await this.getBookedVendors()
 		} catch (err) {
 			console.log(err)
@@ -96,9 +92,8 @@ class Wedding {
 	}
 	@action getBookedVendors = async id => {
 		try {
-			let bookedVendors = await Axios.get(
-				`${API_URL}/api/vendors/booked/${id}`
-			)
+			const URL = API_URL + '/api/vendors/booked/' + id
+			const bookedVendors = await Axios.get(URL)
 			this.bookedVendors = bookedVendors.data
 		} catch (err) {
 			console.log(err)
@@ -106,7 +101,8 @@ class Wedding {
 	}
 
 	@computed get bookedVendorCategories() {
-		return this.bookedVendors.map(v => v.category)
+		const bookedVendors = this.bookedVendors.length || []
+		return bookedVendors.map(v => v.category)
 	}
 
 	@computed get favorites() {
