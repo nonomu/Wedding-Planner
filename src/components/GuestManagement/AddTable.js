@@ -7,7 +7,7 @@ import { toast as popup } from 'react-toastify'
 import Dialog from '../UI/Dialog/Dialog'
 import { handleError } from '../../helpers/validator'
 
-@inject('auth', 'guestManagement')
+@inject('auth', 'guestManagement', 'wedding')
 @observer
 class AddTable extends Component {
 	state = {
@@ -22,7 +22,9 @@ class AddTable extends Component {
 	addTable = () => {
 		try {
 			handleError(this.state)
-			this.props.guestManagement.addTable(this.state, this.props.auth.id)
+			const table = this.state
+			const weddingId = this.props.wedding.wedding.id
+			this.props.guestManagement.addTable(table, weddingId)
 		} catch (err) {
 			popup.error(err.message)
 		}

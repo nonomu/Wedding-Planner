@@ -77,7 +77,7 @@ exports.postTable = async (req, res) => {
 		const title = req.body.table.title
 		const number = req.body.numTables + 1
 		const capacity = req.body.table.capacity
-		const weddingId = req.body.weddingDetailsId
+		const weddingId = req.body.weddingId
 		const seated = 0
 		await Table.create({ title, number, capacity, seated, weddingId })
 		res.send(`${title} table created successfully`)

@@ -4,8 +4,8 @@ use weddingplanner;
 -- INSERT VENUES
 
 INSERT INTO attractions
- VALUES (
-     NULL,
+    VALUES (
+    NULL,
      "Venue",
      "Seven",
      "Shula",

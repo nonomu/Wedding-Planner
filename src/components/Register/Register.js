@@ -26,7 +26,6 @@ const Register = inject('auth')(
 		const register = async () => {
 			try {
 				const user = { email, password }
-				console.log(user)
 				handleError(user)
 				const wedding = {
 					partner1,

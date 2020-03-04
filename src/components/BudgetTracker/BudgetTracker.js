@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import {
-	List,
-	ListItem,
-	ListItemText,
-	ListItemAvatar,
-	Avatar,
-	Card
-} from '@material-ui/core'
+import BudgetCard from './BudgetCard'
 import BookedVendor from './BookedVendor'
 import classes from './BudgetTracker.module.css'
-import CreditCardIcon from '@material-ui/icons/CreditCard'
-import LocalAtmIcon from '@material-ui/icons/LocalAtm'
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
+
 @inject('wedding', 'auth')
 @observer
 class BudgetTracker extends Component {
@@ -22,56 +13,19 @@ class BudgetTracker extends Component {
 			this.props.wedding.getWeddingDetails(this.props.auth.id)
 		}
 	}
-	
+
+	bookedVendors(vendors) {
+		const vendor = v => <BookedVendor key={v.id} vendor={v} />
+		return vendors.map(vendor)
+	}
+
 	render() {
-		const bookedVendors = this.props.wedding.bookedVendors
-		const totalPrice = bookedVendors.length ? bookedVendors.reduce((a, b) => a + b.price, 0) : 0
-		const budget = this.props.wedding.wedding.budget
+		const vendors = this.props.wedding.bookedVendors
 		return (
 			<div className={classes.BudgetTracker}>
-				<div className={classes.Budget}>
-					<Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
-						<List id='budg-list'>
-							<ListItem>
-								<ListItemAvatar>
-									<Avatar>
-										<LocalAtmIcon />
-									</Avatar>
-								</ListItemAvatar>
-								<ListItemText
-									primary='Total Budget'
-									secondary={budget + '₪'}
-								/>
-							</ListItem>
-							<ListItem>
-								<ListItemAvatar>
-									<Avatar>
-										<CreditCardIcon />
-									</Avatar>
-								</ListItemAvatar>
-								<ListItemText
-									primary='Total spent'
-									secondary={totalPrice + '₪'}
-								/>
-							</ListItem>
-							<ListItem>
-								<ListItemAvatar>
-									<Avatar>
-										<AttachMoneyIcon />
-									</Avatar>
-								</ListItemAvatar>
-								<ListItemText
-									primary='Remaining Budget'
-									secondary={budget - totalPrice + '₪'}
-								/>
-							</ListItem>
-						</List>
-					</Card>
-				</div>
+				<BudgetCard />
 				<div className={classes.Vendors}>
-					{bookedVendors.length && bookedVendors.map(ba => (
-						<BookedVendor key={ba.id} attr={ba} />
-					))}
+				{vendors.length ? this.bookedVendors(vendors) : <h3>You didn't book any vendor yet.</h3>}
 				</div>
 			</div>
 		)

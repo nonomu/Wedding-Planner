@@ -33,15 +33,16 @@ class BookVendor extends Component {
 		if (!this.props.vendors._vendors.length) {
 			this.props.vendors.getVendors()
 		}
+		if (!this.props.wedding.wedding.id) {
+			this.props.wedding.getWeddingDetails(this.props.auth.id)
+		}
 	}
 
 	render() {
-		const vendor = this.props.vendors._vendors
-			? this.props.vendors.getVendorData(
-					this.props.match.params.category,
-					this.props.match.params.id
-			)
-			: {}
+		const category = this.props.match.params.category
+		const vendorId = this.props.match.params.id
+		const getVendorData = this.props.vendors.getVendorData
+		const vendor = this.props.vendors._vendors.length ? getVendorData(category, vendorId) : null
 		return (
 			<Dialog>
 				{vendor && (

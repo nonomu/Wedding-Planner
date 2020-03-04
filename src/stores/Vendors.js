@@ -3,35 +3,36 @@ import axios from 'axios'
 let API_URL = `http://localhost:4200/api`
 
 class Vendors {
-    @observable _vendors = []
+	@observable _vendors = []
 
-    @computed get vendors() {
-        return this.category ? this.vendorsByCategory
-        : this._vendors
-    }
+	@computed get vendors() {
+		return this._vendors
+	}
 
-    @action vendorsByCategory(category) {
-        return this._vendors.length ? 
-        this._vendors.filter(a => a.category === category) : []
-    }
+	@action vendorsByCategory(category) {
+		const callback = a => a.category === category
+		const vendors = this._vendors.length ? this._vendors.filter(callback) : []
+		return vendors
+	}
 
-    @computed get categories(){
-        return [...new Set(this._vendors.map(a => a.category))]
-    }
+	@computed get categories() {
+		return [...new Set(this._vendors.map(a => a.category))]
+	}
 
-    @action getVendors = async () => {
-        try {
-            let vendors = await axios.get(`${API_URL}/vendors`)
-            this._vendors = vendors.data
-        } catch (err) {
-            console.log(err)
-        }
-    }
+	@action getVendors = async () => {
+		try {
+			let vendors = await axios.get(`${API_URL}/vendors`)
+			this._vendors = vendors.data
+		} catch (err) {
+			console.log(err)
+		}
+	}
 
-    @action getVendorData(category, id) {
-        return this._vendors.find(a => a.category === category && a.id === parseInt(id))
-    }
-
+	@action getVendorData = (category, id) => {
+        const callback = v => v.category === category && v.id === parseInt(id)
+        const vendors = this.vendors
+		return vendors.length ? vendors.find(callback) : {}
+	}
 }
 
 export const vendors = new Vendors()

@@ -34,7 +34,7 @@ export default function VendorCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {vendor.attr_name}
+            {vendor.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
           {vendor.title}

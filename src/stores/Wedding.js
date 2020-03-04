@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx'
 import Axios from 'axios'
-import {handleError} from '../helpers/validator'
+import { handleError } from '../helpers/validator'
 const API_URL = `http://localhost:4200`
 
 class Wedding {
@@ -24,7 +24,7 @@ class Wedding {
 		try {
 			handleError(this.wedding)
 			const URL = API_URL + '/api/wedding-details/profile'
-			const payload = {wedding: this.wedding}
+			const payload = { wedding: this.wedding }
 			const update = await Axios.put(URL, payload)
 			return update.data
 		} catch (err) {
@@ -50,16 +50,15 @@ class Wedding {
 		try {
 			const URL = API_URL + '/api/vendors/favorites/' + id
 			const userFavorites = await Axios.get(URL)
-			console.log(userFavorites.data)
 			this._userFavorites = userFavorites.data
 		} catch (err) {
 			console.log(err)
 		}
 	}
-	@action removeFavorite = async (userId, attractionId) => {
+	@action removeFavorite = async (userId, vendorId) => {
 		try {
 			const URL = API_URL + '/api/vendors/favorite/'
-			const payload = {data: { userId, attractionId }}
+			const payload = { data: { userId, vendorId } }
 			const remove = await Axios.delete(URL, payload)
 			await this.getUserFavorites(userId)
 			return remove.data
@@ -71,7 +70,7 @@ class Wedding {
 	@action addToFavorites = async (userId, vendorId) => {
 		try {
 			const URL = API_URL + '/api/vendors/favorite'
-			const payload = {userId, vendorId}
+			const payload = { userId, vendorId }
 			const add = await Axios.post(URL, payload)
 			await this.getUserFavorites(userId)
 			return add.data
@@ -83,16 +82,16 @@ class Wedding {
 		try {
 			const weddingId = this.wedding.id
 			const URL = API_URL + '/api/vendors/book'
-			const payload = {weddingId, vendorId, price}
+			const payload = { weddingId, vendorId, price }
 			await Axios.post(URL, payload)
 			await this.getBookedVendors()
 		} catch (err) {
 			console.log(err)
 		}
 	}
-	@action getBookedVendors = async id => {
+	@action getBookedVendors = async weddingId => {
 		try {
-			const URL = API_URL + '/api/vendors/booked/' + id
+			const URL = API_URL + '/api/vendors/booked/' + weddingId
 			const bookedVendors = await Axios.get(URL)
 			this.bookedVendors = bookedVendors.data
 		} catch (err) {
@@ -101,7 +100,7 @@ class Wedding {
 	}
 
 	@computed get bookedVendorCategories() {
-		const bookedVendors = this.bookedVendors.length || []
+		const bookedVendors = this.bookedVendors
 		return bookedVendors.map(v => v.category)
 	}
 

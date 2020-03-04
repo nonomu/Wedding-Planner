@@ -17,32 +17,32 @@ const useStyles = makeStyles(theme => ({
 		width: '60%'
 	}
 }))
-export default function BookedVendor(props) {
+export default function BookedVendor({vendor}) {
 	const classes = useStyles()
 	return (
 		<CardMedia
 			id='cardMedia'
 			className={classes.media}
-			image={props.attr.image}
-			title={props.attr.attr_name}>
+			image={vendor.image}
+			title={vendor.name}>
 			<Paper className={`${classes.root} bookedAttraction`} id='Paper'>
 				<Typography variant='h4' component='h3'>
-					Your {props.attr.category}
+					Your {vendor.category}
 				</Typography>
-				<i>{props.attr.attr_name}</i>
+				<i>{vendor.name}</i>
 
 				<div id='detail-box'>
 					<div id='col1'>
 						<Typography id='col1' component='p'>
-							<PhoneIcon /> <strong>{props.attr.contact_name}</strong>:
-							{props.attr.contact_phone} <br />
-							<AlternateEmailSharpIcon /> {props.attr.contact_email}
+							<PhoneIcon /> <strong>{vendor.contact}</strong>:
+							{vendor.phone} <br />
+							<AlternateEmailSharpIcon /> {vendor.email}
 						</Typography>
 						<Typography component='p'>
-							<PaymentSharpIcon /> Price: {props.attr.price}₪
+							<PaymentSharpIcon /> Price: {vendor.bookedVendor.price}₪
 						</Typography>
 						<Typography component='p'>
-							Notes: {props.attr.small_prints}
+							Notes: {vendor.small_prints}
 						</Typography>
 					</div>
 				</div>

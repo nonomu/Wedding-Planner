@@ -1,0 +1,68 @@
+[
+  {
+    "category": "Venue",
+    "name": "Seven",
+    "location": "Tel-Aviv",
+    "image": "https://xanadu.mazaltov.walla.co.il/UploadImages/2/1475/737705_C680Cx510.jpg",
+    "rating": 4,
+    "contact": "Sarit",
+    "phone": "050-3339872",
+    "email": "SevenTLV@gmail.com",
+    "small_prints": "max capacity: 600 guests"
+  },
+  {
+    "category": "Venue",
+    "name": "PORT 15",
+    "location": "Tel-Aviv",
+    "image": "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+    "rating": 3,
+    "contact": "Reuven",
+    "phone": "050-4567783",
+    "email": "port_15@gmail.com",
+    "small_prints": "max capacity: 400 guests"
+  },
+  {
+    "category": "Venue",
+    "name": "Troya",
+    "location": "Ashdod",
+    "image": "http://myspecialdate.com/sites/default/files/styles/image_banner/public/troya02.jpg?itok=sYMvsf-z",
+    "rating": 5,
+    "contact": "Shir",
+    "phone": "050-9887632",
+    "email": "troya_events@gmail.com",
+    "small_prints": "max capacity: 500 guests"
+  },
+  {
+    "category": "Venue",
+    "name": "Lago",
+    "location": "Rehovot",
+    "image": "https://lago.mazaltov.walla.co.il/UploadImages/Template2015/347/Intro.jpg?rev=330",
+    "rating": 4,
+    "contact": "Eden",
+    "phone": "050-5988873",
+    "email": "LagoEvents@gmail.com",
+    "small_prints": "max capacity: 600 guests"
+  },
+  {
+    "category": "Photographer",
+    "name": "Shaka",
+    "location": "Rehovot",
+    "image": "https://overthemoon.com/wp-content/uploads/2018/10/alexandra-sisto-jarrett-daniel-37.jpg",
+    "rating": 5,
+    "contact": "Guy",
+    "phone": "050-3445883",
+    "email": "ShakaPhotogrphers@gmail.com",
+    "small_prints": "Free digital album."
+  },
+  {
+    "category": "Photographer",
+    "name": "Photoshoot",
+    "location": "Jerusalem",
+    "image": "https://engaged.co.il/images/stories/deals/662/images/%D7%98%D7%9C_%D7%A1%D7%98%D7%99%D7%9C%D7%A1_3.JPG",
+    "rating": 4,
+    "contact": "Ron",
+    "phone": "050-3889404",
+    "email": "photoshoot@gmail.com",
+    "small_prints": "Free digital album."
+  }
+]

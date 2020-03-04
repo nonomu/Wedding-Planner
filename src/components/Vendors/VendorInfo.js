@@ -24,13 +24,13 @@ class VendorInfo extends Component {
         return (
             <Dialog>
                 <div className='attraction-info-title'>
-                    <h3>{a.attr_name}</h3>
+                    <h3>{a.name}</h3>
                     <h4><i>{a.category}</i></h4>
                 </div>
-                <img src={a.image} title={a.attr_name} alt={a.attr_name} width='600px' height='400px'/>
+                <img src={a.image} alt={a.attr_name} width='500px' height='300px'/>
                 <Typography className="attraction-info-bottom">
-                <strong><PhoneIcon /> {a.contact_name}  {a.contact_phone}</strong><br/>
-                <strong><AlternateEmailSharpIcon /> {a.contact_email}</strong><br/>
+                <strong><PhoneIcon /> {a.contact}:  {a.phone}</strong><br/>
+                <strong><AlternateEmailSharpIcon /> {a.email}</strong><br/>
                 <strong><LocationOnIcon /> {a.location}</strong><br />
                 <Rating value={a.rating} readOnly/> <br />
                 </Typography>

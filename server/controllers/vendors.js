@@ -1,6 +1,8 @@
 const Vendor = require('../models/vendor')
 const Favorite = require('../models/favorite')
 const BookedVendor = require('../models/bookedVendor')
+const Wedding = require('../models/wedding')
+const User = require('../models/user')
 
 exports.getVendors = (req, res) => {
 	Vendor.findAll()
@@ -11,7 +13,8 @@ exports.getVendors = (req, res) => {
 exports.getFavoritesById = async (req, res) => {
 	try {
 		const userId = req.params.userId
-		const favorites = await Favorite.findAll({where: {userId}})
+		const user = await User.findByPk(userId)
+		const favorites = await user.getVendors()
 		res.send(favorites)
 	} catch (err) {
 		console.log(err)
@@ -34,7 +37,8 @@ exports.postFavorite = async (req, res) => {
 exports.getBookedVendors = async (req, res) => {
 	try {
 		const weddingId = req.params.weddingId
-		const bookedVendors = await BookedVendor.findAll({where: {weddingId}, include: ['vendors']})
+		const wedding = await Wedding.findByPk(weddingId)
+		const bookedVendors = await wedding.getVendors()
 		res.send(bookedVendors)
 	} catch (err) {
 		console.log(err)
@@ -47,7 +51,8 @@ exports.postBookVendor = async (req, res) => {
 		const weddingId = req.body.weddingId
 		const vendorId = req.body.vendorId
 		const price = req.body.price
-		await BookedVendor.create({weddingId, vendorId, price})
+		const values = {weddingId, price, vendorId}
+		await BookedVendor.create(values)
 		res.send('Vendor successfully booked')
 	} catch (err) {
 		console.log(err)
@@ -59,7 +64,10 @@ exports.deleteFavorite = async (req, res) => {
 	try {
 		const userId = req.body.userId
 		const vendorId = req.body.vendorId
-		Favorite.destroy({where: {userId, vendorId}})
+		const user = await User.findByPk(userId)
+		const vendors = await user.getVendors({where: vendorId})
+		const vendor = vendors[0]
+		await vendor.favorite.destroy()
 		res.send(`Vendor removed from favorites`)
 	} catch (err) {
 		res.send(err)

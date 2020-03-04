@@ -6,12 +6,14 @@ import ClippedDrawer from '../UI/ClippedDrawer/ClippedDrawer'
 @inject('vendors', 'wedding', 'auth')
 @observer
 class Vendors extends Component {
-	componentDidMount() {
+	async componentDidMount() {
 		if (!this.props.vendors.vendors.length) {
 			this.props.vendors.getVendors()
 		}
-		if (!this.props.wedding.bookedVendors.length) {
-			this.props.wedding.getBookedVendors(this.props.auth.id)
+		if (!this.props.wedding.wedding.id) {
+			await this.props.wedding.getWeddingDetails(this.props.auth.id)
+			const weddingId = this.props.wedding.wedding.id
+			this.props.wedding.getBookedVendors(weddingId)
 		}
 	}
 

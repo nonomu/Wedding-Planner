@@ -4,10 +4,17 @@ import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import classes from './GuestManagement.module.css'
 
-@inject('guestManagement')
+@inject('guestManagement', 'wedding', 'auth')
 @observer
 
 class Table extends Component {
+
+	componentDidMount() {
+		if (!this.props.wedding.wedding.id) {
+			this.props.wedding.getWeddingDetails(this.props.auth.id)
+		}
+	}
+
 	render() {
 		let guests = this.props.guestManagement.guests
 		let sameTableGuests = guests.filter(g => g.table_id === this.props.t.id)

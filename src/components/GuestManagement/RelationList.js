@@ -8,7 +8,6 @@ import {
 	TableCell,
 	TableBody
 } from '@material-ui/core'
-import classes from './GuestManagement.module.css'
 
 @inject('guestManagement')
 @observer
