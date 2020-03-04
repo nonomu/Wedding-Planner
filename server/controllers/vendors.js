@@ -1,5 +1,4 @@
-const Sequelize = require('sequelize')
-const db = new Sequelize(process.env.DB)
+
 
 exports.getVendors = async (req, res) => {
 	try {

@@ -15,6 +15,7 @@ module.exports = function syncDb() {
   Vendor.belongsToMany(User, { through: Favorite })
   Table.belongsTo(Wedding)
   Wedding.hasMany(Table)
+  Wedding.hasMany(Guest)
   Table.hasMany(Guest)
   Guest.belongsTo(Table)
   

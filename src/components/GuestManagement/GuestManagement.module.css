@@ -1,4 +1,4 @@
-#manage_seats {
+.GuestManagement {
     display: grid;
     align-items: center;
     text-align: center;
@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-.tables {
+.Tables {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
@@ -22,7 +22,7 @@
     align-content: center;
 }
 
-#TextField {
+.TextField {
     margin: 0 20px;
 }
 
@@ -30,7 +30,7 @@ hr {
     width: 95%;
 }
 
-#insert_invitees {
+.AddGuest {
     margin-top: 45px;
 }
 
@@ -41,48 +41,39 @@ hr {
     align-self: baseline;
 }
 
-#addIcon {
+.AddIcon {
     position: absolute;
     right: 40px;
     bottom: 40px;
 }
 
-#inv-btn {
+.btn {
     margin: 20px;
 }
 
-.close {
-    justify-self: left!important;
-}
-
-.table {
-    /* display: grid; */
+.Table {
     margin: 40px auto;
     border: 1px solid black;
     justify-content: start;
     text-align: center;
     min-width: 200px;
     margin: 0 auto;
-    /* margin-right: 250px; */
     border-radius: 15px;
 }
 
-.table:hover {
+.Table:hover {
     background-color: #0675B2;
 }
 
-.tableName {
+.Title {
     font-size: calc(100% + 10px);
     text-align: center;
 }
 
-.numOfinvitees {
+.NumOfGuests {
     font-size: calc(100% - 4px);
 }
 
-/* .listOfInvitees{
-   
-} */
 .numOfTable{
     font-size:calc(100% - 10px);
 }

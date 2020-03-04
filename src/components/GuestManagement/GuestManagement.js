@@ -5,14 +5,14 @@ import AddGuestForm from "./AddGuestForm";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Table from "./Table";
-import './guest-management.css'
+import classes from './GuestManagement.module.css'
 
 
 @inject('guestManagement', 'wedding', 'auth')
 @observer
 class GuestManagement extends Component {
 	async componentDidMount() {
-		if (!this.props.wedding.weddingData.id) {
+		if (!this.props.wedding.wedding.id) {
 			await this.props.wedding.getWeddingDetails(this.props.auth.id)
 		}
 		this.props.guestManagement.getGuests(this.props.auth.id)
@@ -21,22 +21,22 @@ class GuestManagement extends Component {
 
 	render() {
 		return (
-			<div id='manage_seats'>
+			<div className={classes.GuestManagement}>
 				<AddGuestForm />
-				<div className="tables">
+				<div className={classes.Tables}>
 					{this.props.guestManagement.tables.map(t => (
 						<Table key={t.id} t={t} />
 					))}
 				</div>
-
+				<div className={classes.AddIcon}>
 				<Fab
-					id='addIcon'
 					color='primary'
 					aria-label='add'
 					component={Link}
 					to='/addtable'>
 					<AddIcon />
 				</Fab>
+				</div>
 			</div>
 		)
 	}

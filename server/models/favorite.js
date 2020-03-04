@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+const {Sequelize} = require('sequelize')
 const db = require('../config/database')
 
 const Favorite = db.define('favorite', {

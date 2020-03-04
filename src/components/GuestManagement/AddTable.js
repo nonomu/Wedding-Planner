@@ -3,25 +3,16 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import './guest-management.css'
 import { toast as popup } from 'react-toastify'
 import Dialog from '../UI/Dialog/Dialog'
+import { handleError } from '../../helpers/validator'
+
 @inject('auth', 'guestManagement')
 @observer
 class AddTable extends Component {
-	constructor() {
-		super()
-		this.state = {
-			tableName: '',
-			numSeats: 0
-		}
-	}
-	invalidInput = user => Object.keys(user).some(i => !user[i])
-
-	handleError = input => {
-		if (this.invalidInput(input)) {
-			throw new Error('All fields are required')
-		}
+	state = {
+		title: '',
+		capacity: 0
 	}
 
 	handleInputs = e => {
@@ -30,11 +21,8 @@ class AddTable extends Component {
 
 	addTable = () => {
 		try {
-			this.handleError(this.state)
-			this.props.guestManagement.addTable(
-				this.state,
-				this.props.auth.id
-			)
+			handleError(this.state)
+			this.props.guestManagement.addTable(this.state, this.props.auth.id)
 		} catch (err) {
 			popup.error(err.message)
 		}
@@ -46,17 +34,17 @@ class AddTable extends Component {
 				<h1>Add Table</h1>
 				<div>
 					<TextField
-						name='tableName'
-						id='standard_basic'
-						label='Table Name'
+						name='title'
+						label='Title'
+						placeholder='eg. Family, Friends..'
 						onChange={this.handleInputs}
 					/>
 				</div>
 				<div>
 					<TextField
-						name='numSeats'
-						id='standard-number'
-						label='Table Seats'
+						name='capacity'
+						label='Capacity'
+						
 						type='number'
 						onChange={this.handleInputs}
 					/>

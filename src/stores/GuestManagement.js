@@ -18,72 +18,91 @@ class GuestManagement {
 		return this.guests.filter(i => i.relation === relation)
 	}
 
-	@action async addGuest(guestData, weddingDataId) {
-		let invitee = await Axios.post(`${API_URL}/api/guest`, { guestData, weddingDataId })
-		this.getGuests(weddingDataId)
-		return invitee.data
-		//needs to send weddingDATA ID of the user instead of USERID, Where is it ???
+	@action async addGuest(guest, weddingId) {
+		const URL = API_URL + '/api/guest'
+		const payload = { guest, weddingId }
+		const addGuest = await Axios.post(URL, payload)
+		this.getGuests(weddingId)
+		return addGuest.data
 	}
 
-	@action async getGuests(weddingDetailsId) {
+	@action async getGuests(weddingId) {
 		try {
-			let guests = await Axios.get(`${API_URL}/api/guests/${weddingDetailsId}`)
-			this.guests = guests.data[0]
+			const URL = API_URL + '/api/guests/' + weddingId
+			const guests = await Axios.get(URL)
+			this.guests = [...guests.data]
 		} catch (err) {
 			console.log(err.message)
 		}
 	}
 
-	@action async addTable(tableData, weddingDetailsId) {
-		await Axios.post(`${API_URL}/api/table`, {
-			tableData,
-			weddingDetailsId,
-			numTables: this.numTables
-		})
-		this.getTables(weddingDetailsId)
+	@action async addTable(table, weddingId) {
+		const URL = API_URL + '/api/table'
+		const numTables = this.numTables
+		const payload = {table, weddingId, numTables }
+		await Axios.post(URL, payload)
+		this.getTables(weddingId)
 	}
 	
-	@action async getTables(weddingDetailsId) {
+	@action async getTables(weddingId) {
 		try {
-			let tables = await Axios.get(`${API_URL}/api/tables/${weddingDetailsId}`)
-			this.tables = tables.data[0]
+			const URL = API_URL + '/api/tables/' + weddingId
+			let tables = await Axios.get(URL)
+			this.tables = [...tables.data]
 		} catch (err) {
 			console.log(err.message)
 		}
 	}
 	
 	@action getAvailableSeats = async () => {
-		let seats = await Axios.get(`${API_URL}/api/tables/capacity/${this.selectedTable}`)
+		const table = this.selectedTable
+		const URL = API_URL + '/api/tables/capacity/' + table
+		let seats = await Axios.get(URL)
 		this.currentSeats = seats.data.seated
 	}
+
+	@action aboveCapacity = (guest, table) => {
+		const requiredCapacity = guest.partySize + table.seated
+		return requiredCapacity > table.capacity
+	}
+
+	@action validateCapacity = (guest, table) => {
+		if (this.aboveCapacity(guest, table)) {
+			const error = `You have reached the maximum amount of seats for this table`
+			throw new Error(error)
+		}
+	}
+
+	@action getPrevTable = guest => {
+		return this.tables.find(t => t.id === guest.tableId)
+	}
 	
-	@action addGuestToTable = async (guest,currentTable) => {
+	@action addGuestToTable = async (guest, table) => {
 		try {
-	
-			let oldTable = this.tables.find(t => t.id === guest.table_id)
+			this.validateCapacity(guest, table) 
+			const prevTable = this.getPrevTable(guest)
+			const URL = API_URL + '/api/guest/addtotable'
+			const payload = {guest, table, prevTable}
+			const addGuestToTable = await Axios.put(URL, payload)
 			
-			let addGuestToTable = await Axios.put(`${API_URL}/api/guest/addtotable`, {
-				guest,
-				currentTable,
-				oldTable
-			})
-			await this.getTables(currentTable.wedding_id)
-			await this.getGuests(currentTable.wedding_id)
+			const weddingId = table.weddingId
+			await this.getTables(weddingId)
+			await this.getGuests(weddingId)
 			return addGuestToTable.data
 		} 
 		catch (err) {
-			throw new Error(err.response.data.message)
+			throw new Error(err.message)
 		}
 	}
-	@action async removeGuestFromTable(guest,currentTable)
-	{
+	@action async removeGuestFromTable(guest, table) {
 		try {
-			let removeGuestFromTable = await Axios.put(`${API_URL}/api/guest/removeFromTable`, {
-				guest,
-				currentTable
-			})
-			await this.getTables(currentTable.wedding_id)
-			await this.getGuests(currentTable.wedding_id)
+			const URL = API_URL + '/api/guest/removeFromTable'
+			const payload = {guest, table}
+			let removeGuestFromTable = await Axios.put(URL, payload)
+			
+			const weddingId = table.weddingId
+			await this.getTables(weddingId)
+			await this.getGuests(weddingId)
 			return removeGuestFromTable.data
 		} 
 		catch (err) {

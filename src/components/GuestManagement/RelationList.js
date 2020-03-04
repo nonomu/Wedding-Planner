@@ -8,7 +8,7 @@ import {
 	TableCell,
 	TableBody
 } from '@material-ui/core'
-import './guest-management.css'
+import classes from './GuestManagement.module.css'
 
 @inject('guestManagement')
 @observer
@@ -18,22 +18,22 @@ class RelationList extends Component {
 	}
 
 	render() {
-		let related = this.getRelatedGuests()
-		let manageTableId = parseInt(this.props.manageTableId.params.manageTableId)
+		const related = this.getRelatedGuests()
 		return (
 			<div>
-				<h2>{this.props.relation}</h2>
+				<p><strong>{this.props.relation}</strong></p>
 				<Table>
 					<TableHead>
 						<TableRow className='listOfInvitees'>
 							<TableCell>Name</TableCell>
-							<TableCell>Guests</TableCell>
+							<TableCell>Party Size</TableCell>
 							<TableCell>Table #</TableCell>
+							<TableCell>Action</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{related.map(i => (
-							<Guest manageTableId={manageTableId} key={i.id} details={i} />
+							<Guest key={i.id} guest={i} />
 						))}
 					</TableBody>
 				</Table>

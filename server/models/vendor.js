@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+const {Sequelize} = require('sequelize')
 const db = require('../config/database')
 
 const Vendor = db.define('vendor', {

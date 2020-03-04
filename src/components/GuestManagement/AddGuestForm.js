@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import './guest-management.css'
+import classes from './GuestManagement.module.css'
 import { inject, observer } from 'mobx-react'
 import { toast as popup } from 'react-toastify'
+import {handleError} from '../../helpers/validator'
 
 @inject('guestManagement', 'wedding')
 @observer
@@ -12,7 +13,7 @@ class AddGuestForm extends Component {
 		super()
 		this.state = {
 			name: '',
-			num_invitees: 0,
+			partySize: 0,
 			relation: '',
 			phone: '',
 			email: ''
@@ -23,13 +24,7 @@ class AddGuestForm extends Component {
 		this.setState({ [e.target.name]: e.target.value })
 	}
 
-	invalidInput = user => Object.keys(user).some(i => !user[i])
-
-	handleError = input => {
-		if (this.invalidInput(input)) {
-			throw new Error('All fields are required')
-		}
-	}
+	
 
 	resetForm = () => {
 		this.setState(this.baseState)
@@ -37,11 +32,11 @@ class AddGuestForm extends Component {
 
 	AddGuest = async () => {
 		try {
-			console.log(this.props.weddingData)
-			this.handleError(this.state)
+			const guest = this.state
+			handleError(guest)
 			let addGuest = await this.props.guestManagement.addGuest(
-				this.state,
-				this.props.wedding.weddingData.id
+				guest,
+				this.props.wedding.wedding.id
 			)
 			this.resetForm()
 			popup.success(addGuest)
@@ -51,9 +46,9 @@ class AddGuestForm extends Component {
 	}
 	render() {
 		return (
-			<div id='insert_invitees'>
+			<div className={classes.AddGuest}>
 				<h3>Add Guest</h3>
-				<span id='TextField'>
+				<span className={classes.TextField}>
 					<TextField
 						name='name'
 						label='Guest Name'
@@ -61,16 +56,16 @@ class AddGuestForm extends Component {
 						onChange={this.handleInputs}
 					/>
 				</span>
-				<span id='TextField'>
+				<span className={classes.TextField}>
 					<TextField
 						value={this.state.num_invitees}
-						name='num_invitees'
+						name='partySize'
 						type='number'
 						label='Party Size'
 						onChange={this.handleInputs}
 					/>
 				</span>
-				<span id='TextField'>
+				<span className={classes.TextField}>
 					<TextField
 						value={this.state.relation}
 						name='relation'
@@ -78,7 +73,7 @@ class AddGuestForm extends Component {
 						onChange={this.handleInputs}
 					/>
 				</span>
-				<span id='TextField'>
+				<span className={classes.TextField}>
 					<TextField
 						value={this.state.phone}
 						name='phone'
@@ -86,7 +81,7 @@ class AddGuestForm extends Component {
 						onChange={this.handleInputs}
 					/>
 				</span>
-				<span id='TextField'>
+				<span className={classes.TextField}>
 					<TextField
 						value={this.state.email}
 						name='email'
@@ -94,12 +89,8 @@ class AddGuestForm extends Component {
 						onChange={this.handleInputs}
 					/>
 				</span>
-				<div>
-					<Button
-						id='inv-btn'
-						variant='contained'
-						color='primary'
-						onClick={this.AddGuest}>
+				<div className={classes.btn}>
+					<Button variant='contained' color='primary' onClick={this.AddGuest}>
 						Add Guest
 					</Button>
 				</div>

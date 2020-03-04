@@ -35,10 +35,9 @@ class Wedding {
 
 	@action getWeddingDetails = async id => {
 		try {
-			let wedding = await Axios.get(
+			const wedding = await Axios.get(
 				`${API_URL}/api/wedding-details/${id}`
 			)
-			console.log(wedding.data)
 			this.wedding = wedding.data
 		} catch (err) {
 			console.log(err)

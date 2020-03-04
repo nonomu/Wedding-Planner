@@ -35,7 +35,7 @@ const authRoutes = (
 		<Route exact path='/vendorInfo/:id' component={VendorInfo} />
 		<Route path='/book/:category/:id' component={BookVendor} />
 		<Route exact path='/addtable' component={AddTable} />
-		<Route exact path='/addtotable/:manageTableId' component={TableManager} />
+		<Route exact path='/table-manager/:tableId' component={TableManager} />
 		<Route exact path='/' component={Home} />
 		<Redirect from='/vendors' to='/vendors/Venue' />
 	</Switch>
