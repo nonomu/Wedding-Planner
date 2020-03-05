@@ -3,63 +3,69 @@ import { inject, observer } from "mobx-react";
 import Autocomplete from 'react-google-autocomplete';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import brideAndGroom from './brideAndGroom.png'
-import './profile.css'
+import brideAndGroom from '../../assets/brideAndGroom.png'
+import classes from './profile.module.css'
 import {toast as popup} from 'react-toastify'
 
-
-@inject('user')
+@inject('wedding', 'auth')
 @observer
 class Profile extends Component {
   handleInputs = e => {
     const target = e.target
     let value = target.value
     const name = target.name
-    this.props.user.handleInput(name, value)
+    this.props.wedding.handleInput(name, value)
   }
-  updateUserInfo = async () => {
+  updateWeddingInfo = async () => {
   try {
-    let update = await this.props.user.updateUserInfo()
+    let update = await this.props.wedding.updateWeddingInfo()
     popup.success(update)
   }
     catch(err) {
       popup.error(err.message)
     }
   }
+
+  componentDidMount() {
+    const url = this.props.match.url
+		this.props.auth.setURL(url)
+    this.props.wedding.getWeddingDetails(this.props.auth.id)
+  }
+
+
+
   render() {
-    let weddingData=this.props.user.userInfo.weddingData
-    console.log(weddingData)
+    const wedding = this.props.wedding.wedding
     return (
-      <div id="profile-container">
+      <div className={classes.Profile}>
           <h1>Profile</h1>
-          <p className="upperText">
+          <p className={classes.Description}>
           Please keep the information here up to date so your wedding planning will stay on-course.
         </p>
           <hr />
-          <img src={brideAndGroom} id="groomAndBride" alt="Logo" />
+          <img src={brideAndGroom} alt="Logo" />
 
           <h3>Personal Details:</h3>
-            <div className="names">
-            <TextField name="bride_name" label="Partner 1" variant="outlined" value={weddingData.bride_name} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
-            <TextField name="groom_name" label="Partner 2" variant="outlined" value={weddingData.groom_name} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
+            <div className={classes.Names}>
+            <TextField name="partner1" label="Partner 1" variant="outlined" value={wedding.partner1} type="text" placeholder="Bride Full Name" onChange={this.handleInputs} />
+            <TextField name="partner2" label="Partner 2" variant="outlined" value={wedding.partner2} type="text" placeholder="Groom Full Name" onChange={this.handleInputs} />
             </div>
           <h3>Wedding Details:</h3>
-            <div className="details">
-            <TextField name="wedding_date" label="Wedding Date" variant="outlined" value={weddingData.wedding_date} type="date" onChange={this.handleInputs} />
-            <TextField name="est_invitees" label="Estimated Guests" variant="outlined" value={weddingData.est_invitees} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
-            <TextField name="est_budget" id="estBudget" label="Estimated Budget(₪)" variant="outlined" value={weddingData.est_budget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
-            <Autocomplete className="location" value={weddingData.wedding_area} name="wedding_area" id="autoCompleteField"
+            <div className={classes.Details}>
+            <TextField name="date" label="Wedding Date" variant="outlined" value={wedding.date} type="date" onChange={this.handleInputs} />
+            <TextField name="num_of_guests" label="Estimated Guests" variant="outlined" value={wedding.num_of_guests} type="number" placeholder="Estimated Invitees" onChange={this.handleInputs} />
+            <TextField name="budget" label="Budget(₪)" variant="outlined" value={wedding.budget} type="number" placeholder="Estimated Budget" onChange={this.handleInputs} />
+            <Autocomplete className={classes.Location} value={wedding.preferred_location} name="preferred_location" id="autoCompleteField"
               onChange={this.handleInputs}
               onPlaceSelected={(city) => {
-                let cityName = city.formatted_address
-                this.setState({ weddingArea: cityName })
+                this.props.wedding.handleInput('preferred_location', city.formatted_address)
               }}
               types={['(cities)']}
               componentRestrictions={{ country: "IL" }}
             />
             </div>
-          <div className='update'>
-          <Button variant="contained" className="update" color="secondary" onClick={this.updateUserInfo}>UPDATE PROFILE</Button>
+          <div className={classes.Update}>
+          <Button variant="contained" className={classes.Update} color="secondary" onClick={this.updateWeddingInfo}>UPDATE PROFILE</Button>
           </div>
       </div>
     );

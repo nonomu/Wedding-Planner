@@ -1,0 +1,58 @@
+.Profile {
+	text-align: center;
+	display: grid;
+	grid-gap: 10px;
+	height: 55vh;
+	justify-items: center;
+}
+.sidePic {
+	display: grid;
+}
+.Description {
+	text-align: center;
+}
+.Profile img {
+	height: 150px;
+	opacity: 0.5;
+}
+
+.Names {
+	display: grid;
+	grid-gap: 10px;
+	grid-auto-flow: column;
+}
+
+.Details {
+	display: grid;
+	grid-gap: 5px;
+	grid-auto-flow: column;
+}
+
+.Update {
+	margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+	.Details {
+		grid-auto-flow: row;
+	}
+	.Profile {
+		height: 40vh;
+		text-align: center;
+		display: grid;
+		height: 55vh;
+		justify-items: center;
+	}
+}
+
+.Location {
+	margin: 0;
+	width: 220px;
+	height: 53px;
+	font-size: 16px;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 4px;
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+

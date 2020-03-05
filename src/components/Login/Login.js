@@ -5,16 +5,14 @@ import { toast as popup } from 'react-toastify'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import './login.css'
+import Dialog from '../UI/Dialog/Dialog'
 
-@inject('user')
+@inject('auth')
 @observer
 class Login extends Component {
-	constructor() {
-		super()
-		this.state = {
-			email: '',
-			password: ''
-		}
+	state = {
+		email: '',
+		password: ''
 	}
 
 	handleInputs = e => {
@@ -32,56 +30,56 @@ class Login extends Component {
 	userLogin = async () => {
 		try {
 			this.handleError(this.state)
-			let login = await this.props.user.userLogin(
+			let login = await this.props.auth.userLogin(
 				this.state.email,
 				this.state.password
 			)
 			popup.success(login)
+			this.props.history.push('/')
 		} catch (err) {
 			popup.error(err.message)
 		}
 	}
 
+	componentDidMount() {
+		const url = this.props.match.url
+		this.props.auth.setURL(url)
+	}
+
 	render() {
 		return (
-			<div className='login_box'>
-				<div className='user_box'>
-					<h1>Login</h1>
-					<div>
-						<TextField
-							name='email'
-							id='standard_basic'
-							label='Email'
-							onChange={this.handleInputs}
-						/>
-					</div>
-					<div>
-						<TextField
-							name='password'
-							id='standard-password-input'
-							label='Password'
-							type='password'
-							autoComplete='current-password'
-							onChange={this.handleInputs}
-						/>
-					</div>
-					<div className='login-bottom'>
-						<p className='create-account'>
-							Don't have an account yet?
-							<Link to='/register'>
-								<span id='register_link'> Create one here!</span>
-							</Link>
-						</p>
-					</div>
-						<Button
-							variant='contained'
-							color='primary'
-							onClick={this.userLogin}>
-							LOGIN
-						</Button>
-						{this.props.user.userLogedIn ? (window.location = '/') : null}
+			<Dialog>
+				<h1>Login</h1>
+				<div>
+					<TextField
+						name='email'
+						id='standard_basic'
+						label='Email'
+						onChange={this.handleInputs}
+					/>
 				</div>
-			</div>
+				<div>
+					<TextField
+						name='password'
+						id='standard-password-input'
+						label='Password'
+						type='password'
+						autoComplete='current-password'
+						onChange={this.handleInputs}
+					/>
+				</div>
+				<div className='login-bottom'>
+					<p className='create-account'>
+						Don't have an account yet?
+						<Link to='/register'>
+							<span id='register_link'> Create one here!</span>
+						</Link>
+					</p>
+				</div>
+				<Button variant='contained' color='primary' onClick={this.userLogin}>
+					LOGIN
+				</Button>
+			</Dialog>
 		)
 	}
 }

@@ -1,0 +1,19 @@
+.Welcome {
+  height: 100vh;
+  width: 100%;
+}
+
+.Welcome img {
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+  .Welcome {
+    display: grid;
+    align-content: center;
+  }
+
+  .Welcome img {
+    height: 50vh;
+  }
+}

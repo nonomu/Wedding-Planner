@@ -1,0 +1,53 @@
+.Favorites {
+	display: grid;
+	justify-items: center;
+	grid-template-rows: repeat(auto-fill, minmax(100px, 3fr));
+}
+.NoFavorites {
+    font-size: 24px;
+}
+
+.Category {
+	text-transform: uppercase;
+	font-size: 24px;
+}
+
+.Favorite {
+
+}
+.FavoriteList {
+	display: flex;
+	width: 100%;
+	flex-flow: wrap;
+	justify-content: space-between;
+
+}
+.attraction-info {
+	display: grid;
+	justify-items: center;
+	text-align: center;
+	padding: 20px;
+}
+.attraction-title {
+	text-transform: uppercase;
+	text-align: center;
+	justify-content: start;
+}
+.MuiCardMedia-root {
+	width: 100%;
+}
+.categoryName {
+	font-size: 2vw;
+}
+@media only screen and (max-width: 600px) {
+	.categoryName {
+		font-size: 10vw;
+	}
+	.attraction-title {
+		font-size: 99px;
+	}
+}
+
+body {
+	padding-top: 3em;
+}

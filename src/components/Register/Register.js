@@ -1,162 +1,159 @@
-import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import {toast as popup} from 'react-toastify'
-import { inject, observer } from "mobx-react";
-import Autocomplete from 'react-google-autocomplete';
-import "./register.css";
+import React, { useState } from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { toast as popup } from 'react-toastify'
+import { inject, observer } from 'mobx-react'
+import Autocomplete from 'react-google-autocomplete'
+import classes from './register.module.css'
+import Dialog from '../UI/Dialog/Dialog'
+import { handleError, validatePassword } from '../../helpers/validator'
+import { useEffect } from 'react'
 
-// import DateFnsUtils from "@date-io/date-fns";
-// import Grid from "@material-ui/core/Grid";
-// import "date-fns";
-// import {
-//   MuiPickersUtilsProvider,
-//   KeyboardTimePicker,
-//   KeyboardDatePicker
-// } from "@material-ui/pickers";
+const Register = inject('auth')(
+	observer(({ auth, match, history }) => {
+		const [email, setEmail] = useState('')
+		const [password, setPassword] = useState('')
+		const [confirmPassword, setConfirmPassword] = useState('')
 
-@inject('user')
-@observer
-class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      fPassword: "",
-      vPassword: "",
-      gName: "",
-      bName: "",
-      weddingDate: "2020-01-01",
-      weddingBudget: 0,
-      estInvitees: 0,
-      weddingArea: "",
-    };
-  }
+		const [partner1, setPartner1] = useState('')
+		const [partner2, setPartner2] = useState('')
+		const [date, setDate] = useState('2020-01-01')
+		const [num_of_guests, setNumOfGuests] = useState(0)
+		const [budget, setBudget] = useState(0)
+		const [preferred_location, setLocation] = useState('')
+		
+		const {setURL} = auth
+		const {url} = match
+		
+		useEffect(() => {
+			setURL(url)
+			return setURL('/')
+		}, [setURL, url, auth.loggedIn])
 
-  handleInputs = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  invalidInput = user => Object.keys(user).some(i => !user[i])
-
-  handleError = input => {
-		if (this.invalidInput(input)) {
-			throw new Error('All fields are required')
+		const getFormData = () => {
+			return {
+				partner1,
+				partner2,
+				date,
+				num_of_guests,
+				budget,
+				preferred_location
+			}
 		}
-	}
 
-  userRegister = async () => {
-    try{
-      this.handleError(this.state)
-      let register = await this.props.user.userRegister(this.state)
-      popup.success(register)
-    }
-    catch(err){
-      popup.error(err.message)
-    }
-  }
-  render() {
-    return (
-      <div className="register">
-        <div className="register_box">
-          <h1>Register</h1>
-          <div>
-            <TextField
-              name="email"
-              label="Email"
-              onChange={this.handleInputs}
-            />
-          </div>
-          <div>
-            <TextField
-              name="fPassword"
-              label="Password"
-              type="password"
-              onChange={this.handleInputs}
-            />
-          </div>
-          <div>
-            {" "}
-            <TextField
-              name="vPassword"
-              label="Validate Password"
-              type="password"
-              onChange={this.handleInputs}
-            />
-          </div>
-          <hr />
-          <h3>Wedding Details</h3>
-          <div>
-            <span id="TextField">
-              <TextField
-                name="gName"
-                label="Partner 1"
-                onChange={this.handleInputs}
-              />
-            </span>
-            <span id="TextField">
-              <TextField
-                name="bName"
-                label="Partner 2"
-                onChange={this.handleInputs}
-              />
-            </span>
-          </div>
-          <div className="inputs_section">
-            <span id="TextField">
-              <TextField
-                type="date"
-                name="weddingDate"
-                label="Wedding Date"
-                defaultValue={this.state.weddingDate}
-                onChange={this.handleInputs}
-              />
-            </span>
-            {/* There will be DATE PICKER here, leave it to yaniv */}
-          </div>
-          <div>
-            <span id="TextField">
-              <TextField
-                type="number"
-                name="weddingBudget"
-                label="Wedding Budget(₪)"
-                onChange={this.handleInputs}
-              />
-            </span>
-            <span id="TextField">
-              <TextField
-                type="number"
-                name="estInvitees"
-                label="Estimated Invitees"
-                onChange={this.handleInputs}
-              />
-            </span>
-          </div>
-          <div>
-            
-            <span id="TextField">
-            <Autocomplete value={this.state.weddingArea} placeholder="Location" name="weddingArea" id="autoCompleteField"
-              className="location"
-              onChange={this.handleInputs}
-              onPlaceSelected={(city) => {
-                let cityName = city.formatted_address
-                this.setState({ weddingArea: cityName })
-              }}
-              types={['(cities)']}
-              componentRestrictions={{ country: "IL" }}
-            />
-            </span>
-          </div>
-          <div>
-            <Button  style={{marginTop:'5px'}} variant="contained" color="primary" onClick={this.userRegister}>
-              Register
-            </Button>
-            {this.props.user.userLogedIn ? window.location="/" : null}
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+		const register = async () => {
+			try {
+				const user = { email, password }
+				handleError(user)
 
-export default Register;
+				const wedding = getFormData()
+				handleError(wedding)
+				
+				validatePassword(password, confirmPassword)
+				let register = await auth.register(user, wedding)
+				popup.success(register)
+				history.push('/')
+			} catch (err) {
+				popup.error(err.message)
+			}
+		}
+
+		return (
+			<Dialog>
+				<div className={classes.Register}>
+					<h1>Register</h1>
+					<span className={classes.TextField}>
+						<TextField
+							name='email'
+							label='Email'
+							onChange={({target}) => setEmail(target.value)}
+						/>
+					</span>
+					<span className={classes.TextField}>
+						<TextField
+							name='password'
+							label='Password'
+							type='password'
+							onChange={({target}) => setPassword(target.value)}
+						/>
+					</span>
+					<span className={classes.TextField}>
+						<TextField
+							name='confirmPassword'
+							label='Confirm Password'
+							type='password'
+							onChange={({target}) => setConfirmPassword(target.value)}
+						/>
+					</span>
+					<hr />
+					<h3>Wedding Details</h3>
+					<span className={classes.TextField}>
+						<TextField
+							name='partner1'
+							label='Partner 1'
+							onChange={({target}) => setPartner1(target.value)}
+						/>
+						<span className={classes.TextField}>
+							<TextField
+								name='partner2'
+								label='Partner 2'
+								onChange={({target}) => setPartner2(target.value)}
+							/>
+						</span>
+						<div className={classes.WeddingInputs}>
+							<span className={classes.TextField}>
+								<TextField
+									type='date'
+									name='date'
+									label='Wedding Date'
+									value={date}
+									onChange={({target}) => setDate(target.value)}
+								/>
+							</span>
+						</div>
+						<span className={classes.TextField}>
+							<TextField
+								type='number'
+								name='budget'
+								label='Budget(₪)'
+								onChange={({target}) => setBudget(target.value)}
+							/>
+						</span>
+						<span className={classes.TextField}>
+							<TextField
+								type='number'
+								name='num_of_guests'
+								label='Estimated Guests'
+								onChange={({target}) => setNumOfGuests(target.value)}
+							/>
+						</span>
+						<span className={classes.TextField}>
+							<Autocomplete
+								value={preferred_location}
+								placeholder='Location'
+								name='preferred_location'
+								id='autoCompleteField'
+								className={classes.Location}
+								onChange={e => setLocation(e.target.value)}
+								onPlaceSelected={({formatted_address}) => {
+									setLocation(formatted_address)
+								}}
+								types={['(cities)']}
+								componentRestrictions={{ country: 'IL' }}
+							/>
+						</span>
+					</span>
+					<Button
+						style={{ marginTop: '5px' }}
+						variant='contained'
+						color='primary'
+						onClick={register}>
+						Register
+					</Button>
+				</div>
+			</Dialog>
+		)
+	})
+)
+
+export default Register

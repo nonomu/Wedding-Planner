@@ -2,31 +2,39 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
+import classes from './GuestManagement.module.css'
 
-@inject('manage_seats')
+@inject('guestManagement', 'wedding', 'auth')
 @observer
 
 class Table extends Component {
+
+	componentDidMount() {
+		if (!this.props.wedding.wedding.id) {
+			this.props.wedding.getWeddingDetails(this.props.auth.id)
+		}
+	}
+
 	render() {
-		let invitees = this.props.manage_seats.invitees
-		let sameTableGuests = invitees.filter(i => i.table_id === this.props.t.id)
+		let guests = this.props.guestManagement.guests
+		let sameTableGuests = guests.filter(g => g.table_id === this.props.t.id)
 		return (
 			<div>
 				<Button
 					component={Link}
-					to={`/addtotable/${this.props.t.id}`} >
-					<table className='table'>
+					to={`/table-manager/${this.props.t.id}`} >
+					<table className={classes.Table}>
 						<thead>
 							<tr>
 								<td>
-									<div className="tableName">	{this.props.t.table_name} - {this.props.t.seated}/{this.props.t.num_seats}</div>
+									<div className={classes.Title}>	{this.props.t.title} - {this.props.t.seated}/{this.props.t.capacity}</div>
 								</td>
 							</tr>
 						</thead>
 						<tbody>
-							{sameTableGuests.map(i => (
-								<tr key={i.name}>
-									<td key={i.name} ><span>{i.name}</span>  <span className="numOfinvitees">({i.num_invitees})</span></td>
+							{sameTableGuests.map(g => (
+								<tr key={g.title}>
+									<td key={g.name} ><span>{g.name}</span>  <span className={classes.NumOfGuests}>({g.partySize})</span></td>
 								</tr>
 							))}
 						</tbody>

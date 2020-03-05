@@ -1,0 +1,80 @@
+.GuestManagement {
+    display: grid;
+    align-items: center;
+    text-align: center;
+}
+
+.user-table {
+    background-color: #fff;
+    width: 500px;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.Tables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    justify-content: center;
+    align-content: center;
+}
+
+.TextField {
+    margin: 0 20px;
+}
+
+hr {
+    width: 95%;
+}
+
+.AddGuest {
+    margin-top: 45px;
+}
+
+#check {
+    width: 250px;
+    height: 500px;
+    background-color: rebeccapurple;
+    align-self: baseline;
+}
+
+.AddIcon {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+}
+
+.btn {
+    margin: 20px;
+}
+
+.Table {
+    margin: 40px auto;
+    border: 1px solid black;
+    justify-content: start;
+    text-align: center;
+    min-width: 200px;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.Table:hover {
+    background-color: #0675B2;
+}
+
+.Title {
+    font-size: calc(100% + 10px);
+    text-align: center;
+}
+
+.NumOfGuests {
+    font-size: calc(100% - 4px);
+}
+
+.numOfTable{
+    font-size:calc(100% - 10px);
+}
+

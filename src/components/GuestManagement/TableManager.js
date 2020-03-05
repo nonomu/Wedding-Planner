@@ -1,42 +1,51 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import RelationList from './RelationList'
-import CloseIcon from '@material-ui/icons/Close'
-import { Fab } from '@material-ui/core'
-import './guest-management.css'
-@inject('manage_seats')
+import Dialog from '../UI/Dialog/Dialog'
+import { Fragment } from 'react'
+@inject('guestManagement', 'wedding', 'auth')
 @observer
 class TableManager extends Component {
-	render() {
-		let tables = this.props.manage_seats.tables
-		let table = tables.find(
-			t => t.id === parseInt(this.props.manageTableId.params.manageTableId)
-		)
+	async componentDidMount() {
+		if (!this.props.wedding.wedding.id) {
+			const userId = this.props.auth.id
+			await this.props.wedding.getWeddingDetails(userId)
+		}
+		if (!this.props.guestManagement.tables.length) {
+			const weddingId = this.props.wedding.wedding.id
+			this.props.guestManagement.getGuests(weddingId)
+			this.props.guestManagement.getTables(weddingId)
+		}
+	}
+
+	getRelatedGuests(relation) {
+		return this.props.guestManagement.getRelatedGuests(relation)
+	}
+
+	table(table) {
+		const relations = this.props.guestManagement.relations
+		const list = n => {
+			const guests = this.getRelatedGuests(n)
+			return (
+			<RelationList guests={guests} relation={n} key={n} />
+			)}
 		return (
-			<div className='box_bg'>
-				<div className='user-table'>
-					<Fab className='close' onClick={this.props.history.goBack}>
-						<CloseIcon />
-					</Fab>
-					<h1>
-						Table #{table ? `${table.table_number} ` : null} <br></br>(
-						<span className='numOfTable'>
-							{' '}
-							{table
-								? `${table.table_name} ${table.seated}/${table.num_seats}`
-								: null}
-						</span>
-						)
-					</h1>
-					{this.props.manage_seats.relations.map(n => (
-						<RelationList
-						manageTableId={this.props.manageTableId}
-							relation={n}
-							key={n}
-						/>
-					))}
-				</div>
-			</div>
+			<Fragment>
+				<h1>Table #{table.number}</h1>
+				<h3>{`${table.title} ${table.seated}/${table.capacity}`}</h3>
+				{relations.map(list)}
+			</Fragment>
+		)
+	}
+
+	render() {
+		const tableId = this.props.match.params.tableId
+		const tables = this.props.guestManagement.tables
+		const table = tables.find(t => t.id === parseInt(tableId))
+		return (
+			<Dialog>
+				{table ? this.table(table) : <h1>Table Not Found!</h1>}		
+			</Dialog>
 		)
 	}
 }

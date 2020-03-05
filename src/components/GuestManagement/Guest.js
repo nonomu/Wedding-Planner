@@ -1,52 +1,82 @@
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
 import { toast as popup } from 'react-toastify'
-import Icon from '@material-ui/core/Icon';
+import { TableRow, TableCell } from '@material-ui/core'
+import Icon from '@material-ui/core/Icon'
+import { withRouter } from 'react-router-dom'
 
-@inject('manage_seats')
+@inject('guestManagement')
 @observer
 class Guest extends Component {
-    addInviteeToTable = async () => {
-        try {
-            let manageTableId = this.props.manageTableId
-            let currenTable = this.props.manage_seats.tables.find(t => t.id === manageTableId)
-            if (this.props.details.num_invitees + currenTable.seated > currenTable.num_seats)
-                throw new Error(`You have reached the maximum amount of seats for this table`)
-            let addToTable = await this.props.manage_seats.addInviteeToTable(this.props.details, currenTable)
-            popup.success(addToTable)
-        } catch (err) {
-            popup.error(err.message)
-        }
-    }
-    removeInviteeFromTable = async () => {
-        try {
-            let manageTableId =this.props.manageTableId
-            let currenTable = this.props.manage_seats.tables.find(t => t.id === manageTableId)
-            let invitee = this.props.manage_seats.invitees.find(i => i.id === this.props.details.id)
-            let removeFromTable = await this.props.manage_seats.removeInviteeFromTable(invitee, currenTable)
-            popup.success(removeFromTable)
-        }
-        catch (err) {
-            popup.error(err.message)
-        }
-    }
-    render() {
-        let tables = this.props.manage_seats.tables
-        let guests=this.props.manage_seats.invitees
-        let guest=guests.find(i => i.id === this.props.details.id)
-        let tableNum = tables.findIndex(t => t.id === guest.table_id) + 1
-        let tablePopId =this.props.manageTableId
-        let guestDetails= this.props.details
-        return (
-            <tr>
-                <td>{guestDetails.name} </td>
-                <td>{guestDetails.num_invitees}</td>
-                <td>{tableNum}</td>
-                <td>{guest.table_id !== tablePopId 
-                ? <Icon onClick={this.addInviteeToTable} style={{ color: "green" }}>add_circle</Icon> 
-                : <Icon onClick={this.removeInviteeFromTable} style={{ color: "red" }}>remove_circle</Icon>}</td>
-            </tr>
-        );
-    }
+	onClick = belongsToTable => {
+		const guest = this.props.guest
+		const tableId = parseInt(this.props.match.params.tableId)
+		const tables = this.props.guestManagement.tables
+		const table = tables.find(t => t.id === tableId)
+		if (belongsToTable) {
+			return this.removeGuestFromTable(guest, table)
+		}
+		return this.addGuestToTable(guest, table)
+	}
+
+	belongsToTable = () => {
+		const guest = this.props.guest
+		const tableId = parseInt(this.props.match.params.tableId)
+		return guest.tableId === tableId
+	}
+
+	getAction = belongsToTable => {
+		return belongsToTable ? 'remove_circle' : 'add_circle'
+	}
+
+	getIconColor = belongsToTable => {
+		return { color: belongsToTable ? 'red' : 'green' }
+	}
+
+	getActionIcon(belongsToTable) {
+		const onClick = () => this.onClick(belongsToTable) 
+		const style = this.getIconColor(belongsToTable)
+		const action = this.getAction(belongsToTable)
+		return (
+			<Icon onClick={onClick} style={style}>
+				{action}
+			</Icon>
+		)
+	}
+
+	addGuestToTable = async (guest, table) => {
+		try {
+			const manager = this.props.guestManagement
+			const addToTable = await manager.addGuestToTable(guest, table)
+			popup.success(addToTable)
+		} catch (err) {
+			popup.error(err.message)
+		}
+	}
+
+	removeGuestFromTable = async (guest, table) => {
+		try {
+			const manager = this.props.guestManagement
+			const removeFromTable = await manager.removeGuestFromTable(guest, table)
+			popup.success(removeFromTable)
+		} catch (err) {
+			popup.error(err.message)
+		}
+	}
+	
+	render() {
+		const guest = this.props.guest
+		const tables = this.props.guestManagement.tables
+		const tableNum = tables.findIndex(t => t.id === guest.tableId) + 1
+		const belongsToTable = this.belongsToTable()
+		return (
+			<TableRow>
+				<TableCell>{guest.name} </TableCell>
+				<TableCell>{guest.partySize}</TableCell>
+				<TableCell>{tableNum || 'N/A'}</TableCell>
+				<TableCell>{this.getActionIcon(belongsToTable)}</TableCell>
+			</TableRow>
+		)
+	}
 }
-export default Guest;
+export default withRouter(Guest)

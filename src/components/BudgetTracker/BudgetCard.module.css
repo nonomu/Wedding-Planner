@@ -1,0 +1,7 @@
+.Budget {
+  padding-top: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  grid-area: 'budget';
+  position: fixed;
+}

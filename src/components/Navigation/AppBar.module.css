@@ -1,0 +1,11 @@
+.Root {
+  flex-grow: 1,
+}
+
+.MenuButton {
+  margin-right: theme-spacing(2);
+}
+
+Title {
+  flex-grow: 1,
+}

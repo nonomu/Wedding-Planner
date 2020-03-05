@@ -1,76 +1,70 @@
-import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { observer, inject } from "mobx-react";
+import React, { Component } from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import {Fab} from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close';
-import './guest-management.css'
-import {toast as popup} from 'react-toastify'
-@inject('user','manage_seats')
+import { toast as popup } from 'react-toastify'
+import Dialog from '../UI/Dialog/Dialog'
+import { handleError } from '../../helpers/validator'
 
+@inject('auth', 'guestManagement', 'wedding')
 @observer
 class AddTable extends Component {
-  constructor() {
-    super();
-    this.state = {
-      tableName: "",
-      numSeats: 0
-    };
-  }
-  invalidInput = user => Object.keys(user).some(i => !user[i])
+	state = {
+		title: '',
+		capacity: 0
+	}
 
-  handleError = input => {
-		if (this.invalidInput(input)) {
-			throw new Error('All fields are required')
+	handleInputs = e => {
+		this.setState({ [e.target.name]: e.target.value })
+	}
+
+	addTable = () => {
+		try {
+			handleError(this.state)
+			const table = this.state
+			const weddingId = this.props.wedding.wedding.id
+			this.props.guestManagement.addTable(table, weddingId)
+		} catch (err) {
+			popup.error(err.message)
 		}
 	}
 
-  handleInputs = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  addTable = () => {
-    try {
-      this.handleError(this.state)
-      this.props.manage_seats.addTable(this.state,this.props.user.userInfo.weddingData.id)
-    } catch(err) {
-      popup.error(err.message)
-    }
-  };
-
-  render() {
-    return (
-      <div className="box_bg">
-        <div className="user-table">
-        <Fab className="close" onClick={this.props.history.goBack}><CloseIcon /></Fab>
-          <h1>Add Table</h1>
-          <div>
-            <TextField
-              name="tableName"
-              id="standard_basic"
-              label="Table Name"
-              onChange={this.handleInputs}
-            />
-          </div>
-          <div>
-            <TextField
-              name="numSeats"
-              id="standard-number"
-              label="Table Seats"
-              type="number"
-              onChange={this.handleInputs}
-            />
-          </div><br></br>
-          <div className>
-            <Button variant="contained" color="primary" onClick={this.addTable} component={Link} to='/manage_seats'>
-              Add Table
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<Dialog>
+				<h1>Add Table</h1>
+				<div>
+					<TextField
+						name='title'
+						label='Title'
+						placeholder='eg. Family, Friends..'
+						onChange={this.handleInputs}
+					/>
+				</div>
+				<div>
+					<TextField
+						name='capacity'
+						label='Capacity'
+						
+						type='number'
+						onChange={this.handleInputs}
+					/>
+				</div>
+				<br></br>
+				<div>
+					<Button
+						variant='contained'
+						color='primary'
+						onClick={this.addTable}
+						component={Link}
+						to='/guest-management'>
+						Add Table
+					</Button>
+				</div>
+			</Dialog>
+		)
+	}
 }
 
-export default AddTable;
+export default AddTable

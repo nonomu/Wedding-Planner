@@ -1,34 +1,53 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import CloseIcon from '@material-ui/icons/Close'
 import { Fab, TextField } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+import Dialog from '../UI/Dialog/Dialog'
 import DoneIcon from '@material-ui/icons/Done'
-@inject('attractions', 'user')
+import { toast as popup } from 'react-toastify'
+import classes from './BookVendor.module.css'
+@inject('vendors', 'wedding', 'auth')
 @observer
 class BookVendor extends Component {
-	bookButton = () => {
-		let attractionData = this.props.attractions.getAttractionData(this.props.category,this.props.id)
-		let price=document.getElementById('price').value ?parseInt(document.getElementById('price').value): 0
-		this.props.user.bookAttraction(
-			this.props.user.userInfo.id,
-			attractionData.id,
-			price
-		)
+	state = {
+		price: ''
 	}
+
+	handleInput = event => {
+		this.setState({ price: event.target.value })
+	}
+
+	bookVendor = async vendorId => {
+		try {
+			const price = this.state.price
+		if (!price) {
+			throw new Error('Please enter a valid price')
+		}
+		await this.props.wedding.bookVendor(vendorId, price)
+		this.props.history.push('/budget-tracker')
+		} catch (err) {
+			popup.error(err.message)
+		}
+	}
+
+	componentDidMount() {
+		if (!this.props.vendors._vendors.length) {
+			this.props.vendors.getVendors()
+		}
+		if (!this.props.wedding.wedding.id) {
+			this.props.wedding.getWeddingDetails(this.props.auth.id)
+		}
+	}
+
 	render() {
-		let attractionData = this.props.attractions.getAttractionData(
-			this.props.category,
-			this.props.id
-		)
+		const category = this.props.match.params.category
+		const vendorId = this.props.match.params.id
+		const getVendorData = this.props.vendors.getVendorData
+		const vendor = this.props.vendors._vendors.length ? getVendorData(category, vendorId) : null
 		return (
-			<div>
-				{!attractionData ? null : (
-					<div className='book-attraction'>
-						<Fab className='close' onClick={this.props.history.goBack}>
-							<CloseIcon />
-						</Fab>
-						<h2>Wohooooo You've got a {attractionData.category}!</h2>
+			<Dialog>
+				{vendor && (
+					<div className={classes.BookVendor}>
+						<h2>You've got a {vendor.category}!</h2>
 						<img
 							src='https://www.vippng.com/png/detail/5-50383_emojis-transparent-png-party-emoji-png.png'
 							style={{ width: '150px' }}
@@ -36,14 +55,16 @@ class BookVendor extends Component {
 						/>
 						<h4>Another item crossed off the to-do list.</h4>
 						<p>
-							Let’s log this in your budget. How much did your{' '}
-							{attractionData.category} cost?
+							Let’s log this in your budget. How much did your {vendor.category}{' '}
+							cost?
 						</p>
 
 						<TextField
-							id='price'
+							name='price'
 							type='number'
 							label='Price'
+							value={this.state.price}
+							onChange={this.handleInput}
 							placeholder='Enter Price'
 						/>
 
@@ -51,21 +72,21 @@ class BookVendor extends Component {
 							If you have any changes or additions, make those changes in your
 							Budget Tracker.
 							<br />
-							Once the wedding is over, we’ll remind you to leave a review<br/>
-                            but if you want, you can do that now.
+							Once the wedding is over, we’ll remind you to leave a review
+							<br />
+							but if you want, you can do that now.
 						</h5>
 
 						<Fab
 							color='secondary'
 							className='submit-price'
-							onClick={this.bookButton}
-							component={Link}
-							to='/overview'>
+							onClick={() => this.bookVendor(vendor.id)}
+							>
 							<DoneIcon />
 						</Fab>
 					</div>
 				)}
-			</div>
+			</Dialog>
 		)
 	}
 }
