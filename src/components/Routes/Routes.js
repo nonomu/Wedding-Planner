@@ -30,7 +30,7 @@ const authRoutes = (
 		<Route path='/budget-tracker' component={BudgetTracker} />
 		<Route path='/guest-management' component={GuestManagement} />
 		<Route path='/login' component={Login} />
-		<Route path='/logout' render={Logout} />
+		<Route path='/logout' component={Logout} />
 		<Route exact path='/vendors/:category' component={Vendors} />
 		<Route exact path='/vendorInfo/:id' component={VendorInfo} />
 		<Route path='/book/:category/:id' component={BookVendor} />

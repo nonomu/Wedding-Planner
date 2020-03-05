@@ -12,12 +12,10 @@ import {
 @inject('guestManagement')
 @observer
 class RelationList extends Component {
-	getRelatedGuests() {
-		return this.props.guestManagement.getRelatedGuests(this.props.relation)
-	}
+	
 
 	render() {
-		const related = this.getRelatedGuests()
+		const guests = this.props.guests
 		return (
 			<div>
 				<p><strong>{this.props.relation}</strong></p>
@@ -31,7 +29,7 @@ class RelationList extends Component {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{related.map(i => (
+						{guests.map(i => (
 							<Guest key={i.id} guest={i} />
 						))}
 					</TableBody>

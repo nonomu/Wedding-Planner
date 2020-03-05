@@ -5,7 +5,12 @@ const API_URL = `http://localhost:4200`
 class Auth {
 	@observable id = null
   @observable token = null
-  @observable loggedIn = false
+	@observable loggedIn = false
+	@observable url = '/'
+
+	@action setURL = (url) => {
+		this.url = url
+	}
 
 	@action register = async (user, wedding) => {
 		try {
@@ -13,7 +18,7 @@ class Auth {
       const id = register.data.id
       const token = register.data.token
       this.id = id
-      this.token = token
+			this.token = token
 			this.loggedIn = true
       sessionStorage.setItem('id', id)
       sessionStorage.setItem('token', token)
@@ -47,6 +52,7 @@ class Auth {
 			let login = await axios.post(`${API_URL}/api/login`, { email, password })
 			this.id = login.data.id
 			this.token = login.data.token
+			this.setURL('/')
 			this.loggedIn = true
 			sessionStorage.setItem('id', login.data.id)
 			sessionStorage.setItem('token', login.data.token)
@@ -55,6 +61,13 @@ class Auth {
 		} catch (err) {
 			throw new Error(err.response.data.message)
 		}
+	}
+
+	@action logOut = () => {
+		sessionStorage.clear()
+		this.id = null
+		this.token = null
+		this.loggedIn = false
 	}
 }
 

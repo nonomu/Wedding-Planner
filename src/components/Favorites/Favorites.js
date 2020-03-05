@@ -6,6 +6,8 @@ import classes from './Favorites.module.css'
 @observer
 class Favorites extends Component {
 	async componentDidMount() {
+		const url = this.props.match.url
+		this.props.auth.setURL(url)
 		if (!this.props.wedding.weddingData) {
 			await this.props.wedding.getWeddingDetails(this.props.auth.id)
 		}
@@ -13,6 +15,12 @@ class Favorites extends Component {
 			await this.props.vendors.getVendors()
 		}
 		this.props.wedding.getUserFavorites(this.props.auth.id)
+	}
+
+	isBookedCategory() {
+		const selectedCategory = this.props.match.params.category
+		const categories = this.props.wedding.bookedVendorCategories
+		return categories.some(c => c === selectedCategory)
 	}
 
 	favorites() {
@@ -26,7 +34,7 @@ class Favorites extends Component {
 						{favorites.map(f => {
 							return (
 								f.category === c && (
-									<Vendor category={c} vendor={f} key={f.id} />
+									<Vendor category={c} vendor={f} key={f.id} isBookedCategory={this.isBookedCategory} />
 								)
 							)
 						})}

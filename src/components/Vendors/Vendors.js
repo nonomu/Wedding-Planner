@@ -7,6 +7,7 @@ import ClippedDrawer from '../UI/ClippedDrawer/ClippedDrawer'
 @observer
 class Vendors extends Component {
 	async componentDidMount() {
+		this.props.auth.setURL('/vendors')
 		if (!this.props.vendors.vendors.length) {
 			this.props.vendors.getVendors()
 		}

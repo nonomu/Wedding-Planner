@@ -27,6 +27,8 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    const url = this.props.match.url
+		this.props.auth.setURL(url)
     this.props.wedding.getWeddingDetails(this.props.auth.id)
   }
 

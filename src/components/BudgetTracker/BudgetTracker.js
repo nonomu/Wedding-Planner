@@ -8,6 +8,8 @@ import classes from './BudgetTracker.module.css'
 @observer
 class BudgetTracker extends Component {
 	async componentDidMount() {
+		const url = this.props.match.url
+		this.props.auth.setURL(url)
 		await this.props.wedding.getBookedVendors(this.props.auth.id)
 		if (!this.props.wedding.budget) {
 			this.props.wedding.getWeddingDetails(this.props.auth.id)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -38,25 +38,19 @@ const useStyles = makeStyles({
 const Navbar = inject('auth')(
 	observer(props => {
 		const classes = useStyles()
-		const [value, setValue] = useState(0)
-
 		const tabs = props.auth.loggedIn ? loggedTabs : guestsTabs
 
-		const handleChange = (event, newValue) => {
-			setValue(newValue)
-		}
 		return (
 			<Paper className={classes.root}>
 				<Tabs
-					value={value}
-					onChange={handleChange}
+					value={props.auth.url}
 					variant='fullWidth'
 					indicatorColor='primary'
 					textColor='primary'
 					centered>
 					{tabs.map((t, i) => (
 						<Tab
-							value={i}
+							value={t.link}
 							key={t.name}
 							label={t.name}
 							id={t.name + '-tab'}

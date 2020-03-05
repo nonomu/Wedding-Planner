@@ -12,6 +12,8 @@ import classes from './GuestManagement.module.css'
 @observer
 class GuestManagement extends Component {
 	async componentDidMount() {
+		const url = this.props.match.url
+		this.props.auth.setURL(url)
 		if (!this.props.wedding.wedding.id) {
 			await this.props.wedding.getWeddingDetails(this.props.auth.id)
 		}

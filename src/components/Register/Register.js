@@ -6,12 +6,12 @@ import { inject, observer } from 'mobx-react'
 import Autocomplete from 'react-google-autocomplete'
 import classes from './register.module.css'
 import Dialog from '../UI/Dialog/Dialog'
-import { Redirect } from 'react-router-dom'
-import {handleError} from '../../helpers/validator'
-
+import { Redirect, withRouter } from 'react-router-dom'
+import { handleError } from '../../helpers/validator'
+import { useEffect } from 'react'
 
 const Register = inject('auth')(
-	observer(props => {
+	observer(({ auth, match }) => {
 		const [email, setEmail] = useState('')
 		const [password, setPassword] = useState('')
 		const [confirmPassword, setConfirmPassword] = useState('')
@@ -22,6 +22,11 @@ const Register = inject('auth')(
 		const [num_of_guests, setNumOfGuests] = useState(0)
 		const [budget, setBudget] = useState(0)
 		const [preferred_location, setLocation] = useState('')
+
+		useEffect(() => {
+			const url = match.url
+			auth.setURL(url)
+		}, [auth, match])
 
 		const register = async () => {
 			try {
@@ -39,7 +44,7 @@ const Register = inject('auth')(
 				if (password !== confirmPassword) {
 					throw new Error('Password confirmation does not match')
 				}
-				let register = await props.auth.register(user, wedding)
+				let register = await auth.register(user, wedding)
 				popup.success(register)
 			} catch (err) {
 				popup.error(err.message)
@@ -54,7 +59,7 @@ const Register = inject('auth')(
 						<TextField
 							name='email'
 							label='Email'
-							onChange={e => setEmail(e.target.value)}
+							onChange={({target}) => setEmail(target.value)}
 						/>
 					</span>
 					<span className={classes.TextField}>
@@ -62,7 +67,7 @@ const Register = inject('auth')(
 							name='password'
 							label='Password'
 							type='password'
-							onChange={e => setPassword(e.target.value)}
+							onChange={({target}) => setPassword(target.value)}
 						/>
 					</span>
 					<span className={classes.TextField}>
@@ -70,7 +75,7 @@ const Register = inject('auth')(
 							name='confirmPassword'
 							label='Confirm Password'
 							type='password'
-							onChange={e => setConfirmPassword(e.target.value)}
+							onChange={({target}) => setConfirmPassword(target.value)}
 						/>
 					</span>
 					<hr />
@@ -79,13 +84,13 @@ const Register = inject('auth')(
 						<TextField
 							name='partner1'
 							label='Partner 1'
-							onChange={e => setPartner1(e.target.value)}
+							onChange={({target}) => setPartner1(target.value)}
 						/>
 						<span className={classes.TextField}>
 							<TextField
 								name='partner2'
 								label='Partner 2'
-								onChange={e => setPartner2(e.target.value)}
+								onChange={({target}) => setPartner2(target.value)}
 							/>
 						</span>
 						<div className={classes.WeddingInputs}>
@@ -95,7 +100,7 @@ const Register = inject('auth')(
 									name='date'
 									label='Wedding Date'
 									value={date}
-									onChange={e => setDate(e.target.value)}
+									onChange={({target}) => setDate(target.value)}
 								/>
 							</span>
 						</div>
@@ -104,7 +109,7 @@ const Register = inject('auth')(
 								type='number'
 								name='budget'
 								label='Budget(₪)'
-								onChange={e => setBudget(e.target.value)}
+								onChange={({target}) => setBudget(target.value)}
 							/>
 						</span>
 						<span className={classes.TextField}>
@@ -112,7 +117,7 @@ const Register = inject('auth')(
 								type='number'
 								name='num_of_guests'
 								label='Estimated Guests'
-								onChange={e => setNumOfGuests(e.target.value)}
+								onChange={({target}) => setNumOfGuests(target.value)}
 							/>
 						</span>
 						<span className={classes.TextField}>
@@ -123,9 +128,8 @@ const Register = inject('auth')(
 								id='autoCompleteField'
 								className={classes.Location}
 								onChange={e => setLocation(e.target.value)}
-								onPlaceSelected={city => {
-									let cityName = city.formatted_address
-									setLocation(cityName)
+								onPlaceSelected={({formatted_address}) => {
+									setLocation(formatted_address)
 								}}
 								types={['(cities)']}
 								componentRestrictions={{ country: 'IL' }}
@@ -139,11 +143,11 @@ const Register = inject('auth')(
 						onClick={register}>
 						Register
 					</Button>
-					{props.auth.loggedIn ? <Redirect to='/' /> : null}
+					{auth.loggedIn ? <Redirect to='/' /> : null}
 				</div>
 			</Dialog>
 		)
 	})
 )
 
-export default Register
+export default withRouter(Register)

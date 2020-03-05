@@ -3,7 +3,7 @@ import Axios from 'axios'
 let API_URL = `http://localhost:4200`
 
 class GuestManagement {
-	@observable guests = []
+	@observable _guests = []
 	@observable tables = []
 
 	@computed get numTables() {
@@ -11,11 +11,15 @@ class GuestManagement {
 	}
 
 	@computed get relations() {
-		return [...new Set(this.guests.map(i => i.relation))]
+		return [...new Set(this._guests.map(i => i.relation))]
+	}
+
+	@computed get guests() {
+		return this._guests 
 	}
 	
 	@action getRelatedGuests = relation => {
-		return this.guests.filter(i => i.relation === relation)
+		return this._guests.filter(i => i.relation === relation)
 	}
 
 	@action async addGuest(guest, weddingId) {
@@ -30,7 +34,7 @@ class GuestManagement {
 		try {
 			const URL = API_URL + '/api/guests/' + weddingId
 			const guests = await Axios.get(URL)
-			this.guests = [...guests.data]
+			this._guests = [...guests.data]
 		} catch (err) {
 			console.log(err.message)
 		}

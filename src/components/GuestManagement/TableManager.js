@@ -18,11 +18,17 @@ class TableManager extends Component {
 		}
 	}
 
+	getRelatedGuests(relation) {
+		return this.props.guestManagement.getRelatedGuests(relation)
+	}
+
 	table(table) {
 		const relations = this.props.guestManagement.relations
-		const list = n => (
-			<RelationList tableId={table.id} relation={n} key={n} />
-		)
+		const list = n => {
+			const guests = this.getRelatedGuests(n)
+			return (
+			<RelationList guests={guests} relation={n} key={n} />
+			)}
 		return (
 			<Fragment>
 				<h1>Table #{table.number}</h1>
