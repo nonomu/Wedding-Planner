@@ -12,7 +12,9 @@ import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345
+    maxWidth: 345,
+    margin: "0 20px",
+    width: 250
   },
   media: {
     height: 200,
@@ -22,7 +24,7 @@ const useStyles = makeStyles({
 
 export default function VendorCard(props) {
   const classes = useStyles();
-  let vendor=props.vendor
+  const vendor = props.vendor
   return (
     <Card className={classes.card}>
       <CardActionArea>

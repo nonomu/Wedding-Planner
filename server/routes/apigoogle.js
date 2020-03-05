@@ -1,8 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const Sequelize = require('sequelize')
-const db = new Sequelize('mysql://root:@localhost/weddingPlanner')
-const requestPromise = require('request-promise')
 const apiKey = process.env.apiKey
 const axios = require('axios')
 let photoBasicUrl =

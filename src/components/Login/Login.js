@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { toast as popup } from 'react-toastify'
 import { inject, observer } from 'mobx-react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './login.css'
 import Dialog from '../UI/Dialog/Dialog'
 
@@ -35,7 +35,7 @@ class Login extends Component {
 				this.state.password
 			)
 			popup.success(login)
-			this.props.auth.setURL('/')
+			this.props.history.push('/')
 		} catch (err) {
 			popup.error(err.message)
 		}
@@ -79,7 +79,6 @@ class Login extends Component {
 				<Button variant='contained' color='primary' onClick={this.userLogin}>
 					LOGIN
 				</Button>
-				{this.props.auth.loggedIn && <Redirect to='/' />}
 			</Dialog>
 		)
 	}

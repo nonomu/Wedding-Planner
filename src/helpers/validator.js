@@ -5,3 +5,9 @@ export const handleError = input => {
 		throw new Error('All fields are required')
 	}
 }
+
+export const validatePassword = (password, confirmPassword) => {
+	if (password !== confirmPassword) {
+		throw new Error('Password confirmation does not match')
+	}
+}

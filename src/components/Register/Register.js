@@ -6,12 +6,11 @@ import { inject, observer } from 'mobx-react'
 import Autocomplete from 'react-google-autocomplete'
 import classes from './register.module.css'
 import Dialog from '../UI/Dialog/Dialog'
-import { Redirect, withRouter } from 'react-router-dom'
-import { handleError } from '../../helpers/validator'
+import { handleError, validatePassword } from '../../helpers/validator'
 import { useEffect } from 'react'
 
 const Register = inject('auth')(
-	observer(({ auth, match }) => {
+	observer(({ auth, match, history }) => {
 		const [email, setEmail] = useState('')
 		const [password, setPassword] = useState('')
 		const [confirmPassword, setConfirmPassword] = useState('')
@@ -22,30 +21,38 @@ const Register = inject('auth')(
 		const [num_of_guests, setNumOfGuests] = useState(0)
 		const [budget, setBudget] = useState(0)
 		const [preferred_location, setLocation] = useState('')
-
+		
+		const {setURL} = auth
+		const {url} = match
+		
 		useEffect(() => {
-			const url = match.url
-			auth.setURL(url)
-		}, [auth, match])
+			setURL(url)
+			return setURL('/')
+		}, [setURL, url, auth.loggedIn])
+
+		const getFormData = () => {
+			return {
+				partner1,
+				partner2,
+				date,
+				num_of_guests,
+				budget,
+				preferred_location
+			}
+		}
 
 		const register = async () => {
 			try {
 				const user = { email, password }
 				handleError(user)
-				const wedding = {
-					partner1,
-					partner2,
-					date,
-					num_of_guests,
-					budget,
-					preferred_location
-				}
+
+				const wedding = getFormData()
 				handleError(wedding)
-				if (password !== confirmPassword) {
-					throw new Error('Password confirmation does not match')
-				}
+				
+				validatePassword(password, confirmPassword)
 				let register = await auth.register(user, wedding)
 				popup.success(register)
+				history.push('/')
 			} catch (err) {
 				popup.error(err.message)
 			}
@@ -143,11 +150,10 @@ const Register = inject('auth')(
 						onClick={register}>
 						Register
 					</Button>
-					{auth.loggedIn ? <Redirect to='/' /> : null}
 				</div>
 			</Dialog>
 		)
 	})
 )
 
-export default withRouter(Register)
+export default Register

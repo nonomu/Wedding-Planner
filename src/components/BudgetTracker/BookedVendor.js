@@ -39,7 +39,7 @@ export default function BookedVendor({vendor}) {
 							<AlternateEmailSharpIcon /> {vendor.email}
 						</Typography>
 						<Typography component='p'>
-							<PaymentSharpIcon /> Price: {vendor.bookedVendor.price}₪
+							<PaymentSharpIcon /> {vendor.bookedVendor.price}₪
 						</Typography>
 						<Typography component='p'>
 							Notes: {vendor.small_prints}

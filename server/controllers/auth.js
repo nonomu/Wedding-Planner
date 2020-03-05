@@ -20,7 +20,8 @@ exports.postRegister = async (req, res, next) => {
 				throw new Error(err)
 			}
 			const message = 'Congrats! you have successfully registered.'
-			res.json({ id: newUser.id, token, message })
+			const id = newUser.id
+			res.json({ id, token, message })
 		})
 	} catch (err) {
 		res.status(422).json({ message: err.message })
@@ -42,7 +43,8 @@ exports.postLogin = async (req, res) => {
 			if (err) {
 				throw new Error(err)
 			}
-			res.json({ id, token, message: 'Welcome Back!' })
+			const message = 'Welcome Back!'
+			res.json({ id, token, message })
 		})
 	} catch (err) {
 		res.status(400).json({ message: err.message })

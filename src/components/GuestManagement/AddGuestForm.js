@@ -9,22 +9,18 @@ import {handleError} from '../../helpers/validator'
 @inject('guestManagement', 'wedding')
 @observer
 class AddGuestForm extends Component {
-	constructor() {
-		super()
-		this.state = {
+		state = {
 			name: '',
-			partySize: 0,
+			partySize: '',
 			relation: '',
 			phone: '',
 			email: ''
 		}
-		this.baseState = this.state
-	}
+		baseState = this.state
+
 	handleInputs = e => {
 		this.setState({ [e.target.name]: e.target.value })
 	}
-
-	
 
 	resetForm = () => {
 		this.setState(this.baseState)

@@ -35,7 +35,7 @@ exports.putGuestToTable = async (req, res) => {
 		const prevTable = req.body.prevTable
 		if (prevTable) {
 			const seated = prevTable.seated - partySize
-			await Table.update({seated}, {where: {id: table.id}})
+			await Table.update({seated}, {where: {id: prevTable.id}})
 		}
 		await Guest.update({tableId: table.id}, {where: {id: guest.id}})
 

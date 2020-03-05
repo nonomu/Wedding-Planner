@@ -20,10 +20,13 @@ class Auth {
       this.id = id
 			this.token = token
 			this.loggedIn = true
+			console.log(this.loggedIn)
       sessionStorage.setItem('id', id)
       sessionStorage.setItem('token', token)
-      sessionStorage.setItem('loggedIn', true)
-			return user.data.message
+			sessionStorage.setItem('loggedIn', true)
+			this.setURL('/')
+			
+			return register.data.message
 		} catch (err) {
 			throw new Error(err.response.data.message)
 		}

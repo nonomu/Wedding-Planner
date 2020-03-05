@@ -17,10 +17,9 @@ class Favorites extends Component {
 		this.props.wedding.getUserFavorites(this.props.auth.id)
 	}
 
-	isBookedCategory() {
-		const selectedCategory = this.props.match.params.category
+	isBookedCategory(category) {
 		const categories = this.props.wedding.bookedVendorCategories
-		return categories.some(c => c === selectedCategory)
+		return categories.some(c => c === category)
 	}
 
 	favorites() {
@@ -32,9 +31,10 @@ class Favorites extends Component {
 					<h4 className={classes.Category}>{c}</h4>
 					<div className={classes.FavoriteList}>
 						{favorites.map(f => {
+							const isBookedCategory = this.isBookedCategory(f.category)
 							return (
 								f.category === c && (
-									<Vendor category={c} vendor={f} key={f.id} isBookedCategory={this.isBookedCategory} />
+									<Vendor vendor={f} key={f.id} isBookedCategory={isBookedCategory} />
 								)
 							)
 						})}

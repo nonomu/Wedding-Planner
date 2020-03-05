@@ -64,10 +64,7 @@ exports.deleteFavorite = async (req, res) => {
 	try {
 		const userId = req.body.userId
 		const vendorId = req.body.vendorId
-		const user = await User.findByPk(userId)
-		const vendors = await user.getVendors({where: vendorId})
-		const vendor = vendors[0]
-		await vendor.favorite.destroy()
+		await Favorite.destroy({where: {userId, vendorId}})
 		res.send(`Vendor removed from favorites`)
 	} catch (err) {
 		res.send(err)
