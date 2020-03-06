@@ -1,5 +1,6 @@
 import { action, observable, computed } from 'mobx'
 import Axios from 'axios'
+import { createContext } from 'react'
 let API_URL = `http://localhost:4200`
 
 class GuestManagement {
@@ -115,4 +116,4 @@ class GuestManagement {
 	}
 }
 
-export const guestManagement = new GuestManagement()
+export const GuestManagementContext = createContext(new GuestManagement())

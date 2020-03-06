@@ -1,43 +1,38 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
+import React, { useContext } from 'react'
+import { observer } from 'mobx-react'
 import { toast as popup } from 'react-toastify'
 import VendorCard from './Card'
+import { AuthContext } from '../../stores/Auth'
+import { WeddingContext } from '../../stores/Wedding'
 
-@inject('vendors', 'wedding', 'auth')
-@observer
-class Vendor extends Component {
-	removeFavorite = async () => {
-		const userId = this.props.auth.id
-		const vendorId = this.props.vendor.id  
-		const wedding = this.props.wedding
-		const remove = await wedding.removeFavorite(userId, vendorId)
-		popup.success(remove)
-	}
-	addToFavorites = async () => {
-		const userId = this.props.auth.id
-		const vendorId = this.props.vendor.id
-		const wedding = this.props.wedding
-		const add = await wedding.addToFavorites(userId, vendorId)
-		popup.success(add)
-	}
+const Vendor = ({ vendor, isBookedCategory }) => {
+		const auth = useContext(AuthContext)
+		const wedding = useContext(WeddingContext)
 
-	isFavorite = () => {
-		return this.props.wedding.isFavorite(this.props.vendor.id)
-	}
+		const removeFavorite = async () => {
+			const userId = auth.id
+			const vendorId = vendor.id
+			const remove = await wedding.removeFavorite(userId, vendorId)
+			popup.success(remove)
+		}
+		const addToFavorites = async () => {
+			const userId = auth.id
+			const vendorId = vendor.id
+			const add = await wedding.addToFavorites(userId, vendorId)
+			popup.success(add)
+		}
 
-	render() {
-		const isFavorite = this.props.vendor && this.isFavorite()
+		const isFavorite = vendor && wedding.isFavorite(vendor.id)
+
 		return (
-				<VendorCard
-					isBookedCategory={this.props.isBookedCategory}
-					isFavorite={isFavorite}
-					vendor={this.props.vendor}
-					removeFavorite={this.removeFavorite}
-					addToFavorites={this.addToFavorites}
-					changeFavoriteState={this.changeFavoriteState}
-				/>
+			<VendorCard
+				isBookedCategory={isBookedCategory}
+				isFavorite={isFavorite}
+				vendor={vendor}
+				removeFavorite={removeFavorite}
+				addToFavorites={addToFavorites}
+			/>
 		)
 	}
-}
 
-export default Vendor
+export default observer(Vendor)

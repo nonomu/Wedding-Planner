@@ -1,5 +1,6 @@
 import { observable, action, computed } from 'mobx'
 import axios from 'axios'
+import { createContext } from 'react'
 let API_URL = `http://localhost:4200/api`
 
 class Vendors {
@@ -35,4 +36,4 @@ class Vendors {
 	}
 }
 
-export const vendors = new Vendors()
+export const VendorsContext = createContext(new Vendors())

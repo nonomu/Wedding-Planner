@@ -1,12 +1,13 @@
-import React from 'react'
-import { inject, observer } from 'mobx-react'
+import React, { useContext } from 'react'
+import { observer } from 'mobx-react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 import Logo from '../Logo/Logo'
+import { AuthContext } from '../../stores/Auth'
 
 const loggedTabs = [
 	{ name: <Logo />, link: '/' },
@@ -35,20 +36,20 @@ const useStyles = makeStyles({
 	}
 })
 
-const Navbar = inject('auth')(
-	observer(props => {
+const Navbar = () => {
+		const auth = useContext(AuthContext)
 		const classes = useStyles()
-		const tabs = props.auth.loggedIn ? loggedTabs : guestsTabs
+		const tabs = auth.loggedIn ? loggedTabs : guestsTabs
 
 		return (
 			<Paper className={classes.root}>
 				<Tabs
-					value={props.auth.url}
+					value={auth.url}
 					variant='fullWidth'
 					indicatorColor='primary'
 					textColor='primary'
 					centered>
-					{tabs.map((t, i) => (
+					{tabs.map(t => (
 						<Tab
 							value={t.link}
 							key={t.name}
@@ -62,7 +63,6 @@ const Navbar = inject('auth')(
 				</Tabs>
 			</Paper>
 		)
-	})
-)
+	}
 
-export default withRouter(Navbar)
+export default observer(Navbar)

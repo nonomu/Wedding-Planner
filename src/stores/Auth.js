@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import { createContext } from 'react'
 import axios from 'axios'
 const API_URL = `http://localhost:4200`
 
@@ -50,9 +51,9 @@ class Auth {
 		}
 	}
 
-	@action userLogin = async (email, password) => {
+	@action login = async (loginData) => {
 		try {
-			let login = await axios.post(`${API_URL}/api/login`, { email, password })
+			const login = await axios.post(`${API_URL}/api/login`, loginData)
 			this.id = login.data.id
 			this.token = login.data.token
 			this.setURL('/')
@@ -74,4 +75,4 @@ class Auth {
 	}
 }
 
-export const auth = new Auth()
+export const AuthContext = createContext(new Auth())

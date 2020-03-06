@@ -1,87 +1,68 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { toast as popup } from 'react-toastify'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
+import { handleError } from '../../helpers/validator'
 import { Link } from 'react-router-dom'
-import './login.css'
+import classes from './login.module.css'
 import Dialog from '../UI/Dialog/Dialog'
+import { AuthContext } from '../../stores/Auth'
 
-@inject('auth')
-@observer
-class Login extends Component {
-	state = {
-		email: '',
-		password: ''
-	}
+const Login = ({ history, match }) => {
+		const [email, setEmail] = useState('')
+		const [password, setPassword] = useState('')
+		const auth = useContext(AuthContext)
 
-	handleInputs = e => {
-		this.setState({ [e.target.name]: e.target.value })
-	}
-
-	invalidInput = user => Object.keys(user).some(i => !user[i])
-
-	handleError = input => {
-		if (this.invalidInput(input)) {
-			throw new Error('All fields are required')
+		const login = async () => {
+			try {
+				const loginData = { email, password }
+				handleError(loginData)
+				const login = await auth.login(loginData)
+				popup.success(login)
+				history.push('/')
+			} catch (err) {
+				popup.error(err.message)
+			}
 		}
-	}
 
-	userLogin = async () => {
-		try {
-			this.handleError(this.state)
-			let login = await this.props.auth.userLogin(
-				this.state.email,
-				this.state.password
-			)
-			popup.success(login)
-			this.props.history.push('/')
-		} catch (err) {
-			popup.error(err.message)
-		}
-	}
+		useEffect(() => {
+			const url = match.url
+			auth.setURL(url)
+		}, [auth, match.url])
 
-	componentDidMount() {
-		const url = this.props.match.url
-		this.props.auth.setURL(url)
-	}
-
-	render() {
 		return (
 			<Dialog>
 				<h1>Login</h1>
 				<div>
 					<TextField
 						name='email'
-						id='standard_basic'
 						label='Email'
-						onChange={this.handleInputs}
+						type='email'
+						onChange={({ target }) => setEmail(target.value)}
 					/>
 				</div>
 				<div>
 					<TextField
 						name='password'
-						id='standard-password-input'
 						label='Password'
 						type='password'
-						autoComplete='current-password'
-						onChange={this.handleInputs}
+						onChange={({ target }) => setPassword(target.value)}
 					/>
 				</div>
-				<div className='login-bottom'>
-					<p className='create-account'>
+				<div className={classes.LoginBottom}>
+					<p className={classes.CreateAccount}>
 						Don't have an account yet?
 						<Link to='/register'>
-							<span id='register_link'> Create one here!</span>
+							<span className={classes.Link}> Create one here!</span>
 						</Link>
 					</p>
 				</div>
-				<Button variant='contained' color='primary' onClick={this.userLogin}>
+				<Button variant='contained' color='primary' onClick={login}>
 					LOGIN
 				</Button>
 			</Dialog>
 		)
 	}
-}
 
-export default Login
+export default observer(Login)

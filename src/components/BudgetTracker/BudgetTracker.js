@@ -1,37 +1,37 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
+import React, { useEffect, useContext } from 'react'
+import { observer } from 'mobx-react'
 import BudgetCard from './BudgetCard'
 import BookedVendor from './BookedVendor'
+import { loadBudgetContent } from '../../helpers/budgetTracker'
 import classes from './BudgetTracker.module.css'
+import { AuthContext } from '../../stores/Auth'
+import { WeddingContext } from '../../stores/Wedding'
 
-@inject('wedding', 'auth')
-@observer
-class BudgetTracker extends Component {
-	async componentDidMount() {
-		const url = this.props.match.url
-		this.props.auth.setURL(url)
-		await this.props.wedding.getBookedVendors(this.props.auth.id)
-		if (!this.props.wedding.budget) {
-			this.props.wedding.getWeddingDetails(this.props.auth.id)
-		}
-	}
-
-	bookedVendors(vendors) {
-		const vendor = v => <BookedVendor key={v.id} vendor={v} />
-		return vendors.map(vendor)
-	}
-
-	render() {
-		const vendors = this.props.wedding.bookedVendors
-		return (
-			<div className={classes.BudgetTracker}>
-				<BudgetCard />
-				<div className={classes.Vendors}>
-				{vendors.length ? this.bookedVendors(vendors) : <h3>You didn't book any vendor yet.</h3>}
-				</div>
-			</div>
-		)
-	}
+const bookedVendors = vendors => {
+	const vendor = v => <BookedVendor key={v.id} vendor={v} />
+	return vendors.map(vendor)
 }
 
-export default BudgetTracker
+const catchPhrase = () => <h3>You didn't book any vendor yet.</h3>
+
+const BudgetTracker = ({ match }) => {
+	const auth = useContext(AuthContext)
+	const wedding = useContext(WeddingContext)
+	useEffect(() => {
+		const url = match.url
+		auth.setURL(url)
+		loadBudgetContent(wedding, auth)
+	})
+
+	const vendors = wedding.bookedVendors
+	return (
+		<div className={classes.BudgetTracker}>
+			<BudgetCard />
+			<div className={classes.Vendors}>
+				{vendors.length ? bookedVendors(vendors) : catchPhrase()}
+			</div>
+		</div>
+	)
+}
+
+export default observer(BudgetTracker)

@@ -1,52 +1,43 @@
-import React, { Component } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Vendor from './Vendor'
-import { observer, inject } from 'mobx-react'
+import { observer } from 'mobx-react'
+import { isBookedCategory, loadPageContent } from '../../helpers/vendors'
 import classes from './Vendors.module.css'
 import ClippedDrawer from '../UI/ClippedDrawer/ClippedDrawer'
-@inject('vendors', 'wedding', 'auth')
-@observer
-class Vendors extends Component {
-	async componentDidMount() {
-		this.props.auth.setURL('/vendors')
-		if (!this.props.vendors.vendors.length) {
-			this.props.vendors.getVendors()
-		}
-		if (!this.props.wedding.wedding.id) {
-			await this.props.wedding.getWeddingDetails(this.props.auth.id)
-			const weddingId = this.props.wedding.wedding.id
-			this.props.wedding.getBookedVendors(weddingId)
-		}
-	}
+import { AuthContext } from '../../stores/Auth'
+import { VendorsContext } from '../../stores/Vendors'
+import { WeddingContext } from '../../stores/Wedding'
 
-	isBookedCategory() {
-		const selectedCategory = this.props.match.params.category
-		const categories = this.props.wedding.bookedVendorCategories
-		return categories.some(c => c === selectedCategory)
-	}
+const Vendors = ({ match }) => {
+	const vendors = useContext(VendorsContext)
+	const wedding = useContext(WeddingContext)	
+	const auth = useContext(AuthContext)
+	
+		useEffect(() => {
+			auth.setURL('/vendors')
+			loadPageContent(auth, vendors, wedding)
+		}, [auth, vendors, wedding])
 
-	render() {
-		const favorites = this.props.wedding.favorites
-		const category = this.props.match.params.category
-		const vendors = this.props.vendors.vendorsByCategory(category)
-		const isBookedCategory = this.isBookedCategory()
+		const { favorites, bookedVendorCategories } = wedding
+		const category = match.params.category
+		const vendorsList = vendors.vendorsByCategory(category)
+		const isBooked = isBookedCategory(bookedVendorCategories, category)
+
 		return (
-			<ClippedDrawer categories={this.props.vendors.categories}>
-				<div>
-					<h1 className={classes.VendorTitle}>{this.props.match.params.category}</h1>
-					<div className={classes.Vendors}>
-						{vendors.map(v => (
-							<Vendor
-								favorites={favorites}
-								key={v.id}
-								vendor={v}
-								isBookedCategory={isBookedCategory}
-							/>
-						))}
-					</div>
+			<ClippedDrawer categories={vendors.categories}>
+				<h1 className={classes.VendorTitle}>{category}</h1>
+				<div className={classes.Vendors}>
+					{vendorsList.map(v => (
+						<Vendor
+							favorites={favorites}
+							key={v.id}
+							vendor={v}
+							isBookedCategory={isBooked}
+						/>
+					))}
 				</div>
 			</ClippedDrawer>
 		)
 	}
-}
 
-export default Vendors
+export default observer(Vendors)
