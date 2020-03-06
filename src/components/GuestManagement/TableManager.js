@@ -1,53 +1,47 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
+import React, { useEffect, useContext } from 'react'
+import { observer } from 'mobx-react'
 import RelationList from './RelationList'
 import Dialog from '../UI/Dialog/Dialog'
+import { loadTableContent, getRelatedGuests } from '../../helpers/guestManagement'
 import { Fragment } from 'react'
-@inject('guestManagement', 'wedding', 'auth')
-@observer
-class TableManager extends Component {
-	async componentDidMount() {
-		if (!this.props.wedding.wedding.id) {
-			const userId = this.props.auth.id
-			await this.props.wedding.getWeddingDetails(userId)
-		}
-		if (!this.props.guestManagement.tables.length) {
-			const weddingId = this.props.wedding.wedding.id
-			this.props.guestManagement.getGuests(weddingId)
-			this.props.guestManagement.getTables(weddingId)
-		}
-	}
+import { AuthContext } from '../../stores/Auth'
+import { GuestManagementContext } from '../../stores/GuestManagement'
+import { WeddingContext } from '../../stores/Wedding'
 
-	getRelatedGuests(relation) {
-		return this.props.guestManagement.getRelatedGuests(relation)
-	}
 
-	table(table) {
-		const relations = this.props.guestManagement.relations
-		const list = n => {
-			const guests = this.getRelatedGuests(n)
-			return (
-			<RelationList guests={guests} relation={n} key={n} />
-			)}
+const table = (relations, table, guestManagement) => {
+	const list = n => {
+		const guests = getRelatedGuests(guestManagement, n)
 		return (
-			<Fragment>
-				<h1>Table #{table.number}</h1>
-				<h3>{`${table.title} ${table.seated}/${table.capacity}`}</h3>
-				{relations.map(list)}
-			</Fragment>
-		)
-	}
+		<RelationList guests={guests} relation={n} key={n} />
+		)}
+	return (
+		<Fragment>
+			<h1>Table #{table.number}</h1>
+			<h3>{`${table.title} ${table.seated}/${table.capacity}`}</h3>
+			{relations.map(list)}
+		</Fragment>
+	)
+}
 
-	render() {
-		const tableId = this.props.match.params.tableId
-		const tables = this.props.guestManagement.tables
-		const table = tables.find(t => t.id === parseInt(tableId))
+const TableManager = ({match}) => {
+	const auth = useContext(AuthContext)
+		const guestManagement = useContext(GuestManagementContext)
+		const wedding = useContext(WeddingContext)
+		const relations = guestManagement.relations
+		const tableId = parseInt(match.params.tableId)
+		const tables = guestManagement.tables
+		const tableData = tables.find(t => t.id === tableId)
+
+		useEffect(() => {
+			loadTableContent(auth, wedding, guestManagement)
+		})
+
 		return (
 			<Dialog>
-				{table ? this.table(table) : <h1>Table Not Found!</h1>}		
+				{tableData ? table(relations, tableData, guestManagement) : <h1>Table Not Found!</h1>}		
 			</Dialog>
 		)
 	}
-}
 
-export default TableManager
+export default observer(TableManager)

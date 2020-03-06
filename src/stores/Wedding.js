@@ -1,6 +1,7 @@
 import { observable, action, computed } from 'mobx'
 import Axios from 'axios'
 import { handleError } from '../helpers/validator'
+import { createContext } from 'react'
 const API_URL = `http://localhost:4200`
 
 class Wedding {
@@ -108,9 +109,9 @@ class Wedding {
 		return this._userFavorites
 	}
 
-	@computed get favoritesCategories() {
+	@computed get categories() {
 		return [...new Set(this._userFavorites.map(a => a.category))]
 	}
 }
 
-export const wedding = new Wedding()
+export const WeddingContext = createContext(new Wedding())

@@ -1,42 +1,30 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
-import { toast as popup } from 'react-toastify'
+import React, { useContext } from 'react'
+import { observer } from 'mobx-react'
 import { TableRow, TableCell } from '@material-ui/core'
 import Icon from '@material-ui/core/Icon'
+import * as h from '../../helpers/guestManagement'
 import { withRouter } from 'react-router-dom'
+import { GuestManagementContext } from '../../stores/GuestManagement'
 
-@inject('guestManagement')
-@observer
-class Guest extends Component {
-	onClick = belongsToTable => {
-		const guest = this.props.guest
-		const tableId = parseInt(this.props.match.params.tableId)
-		const tables = this.props.guestManagement.tables
+const Guest = observer(({guest, match}) => {
+	const guestManagement = useContext(GuestManagementContext)
+	const {tables} = guestManagement	
+	const tableId = parseInt(match.params.tableId)
+	const belongsToTable = h.belongsToTable(guest, tableId)
+	const tableNum = tables.findIndex(t => t.id === guest.tableId) + 1
+
+	const clickHandler = belongsToTable => {
 		const table = tables.find(t => t.id === tableId)
 		if (belongsToTable) {
-			return this.removeGuestFromTable(guest, table)
+			return h.removeGuestFromTable(guest, table, guestManagement)
 		}
-		return this.addGuestToTable(guest, table)
+		return h.addGuestToTable(guest, table, guestManagement)
 	}
 
-	belongsToTable = () => {
-		const guest = this.props.guest
-		const tableId = parseInt(this.props.match.params.tableId)
-		return guest.tableId === tableId
-	}
-
-	getAction = belongsToTable => {
-		return belongsToTable ? 'remove_circle' : 'add_circle'
-	}
-
-	getIconColor = belongsToTable => {
-		return { color: belongsToTable ? 'red' : 'green' }
-	}
-
-	getActionIcon(belongsToTable) {
-		const onClick = () => this.onClick(belongsToTable) 
-		const style = this.getIconColor(belongsToTable)
-		const action = this.getAction(belongsToTable)
+	const getActionIcon = (belongsToTable) => {
+		const onClick = () => clickHandler(belongsToTable) 
+		const style = h.getIconColor(belongsToTable)
+		const action = h.getAction(belongsToTable)
 		return (
 			<Icon onClick={onClick} style={style}>
 				{action}
@@ -44,39 +32,14 @@ class Guest extends Component {
 		)
 	}
 
-	addGuestToTable = async (guest, table) => {
-		try {
-			const manager = this.props.guestManagement
-			const addToTable = await manager.addGuestToTable(guest, table)
-			popup.success(addToTable)
-		} catch (err) {
-			popup.error(err.message)
-		}
-	}
+	return (
+		<TableRow>
+			<TableCell>{guest.name} </TableCell>
+			<TableCell>{guest.partySize}</TableCell>
+			<TableCell>{tableNum || 'N/A'}</TableCell>
+			<TableCell>{getActionIcon(belongsToTable)}</TableCell>
+		</TableRow>
+	)
+})
 
-	removeGuestFromTable = async (guest, table) => {
-		try {
-			const manager = this.props.guestManagement
-			const removeFromTable = await manager.removeGuestFromTable(guest, table)
-			popup.success(removeFromTable)
-		} catch (err) {
-			popup.error(err.message)
-		}
-	}
-	
-	render() {
-		const guest = this.props.guest
-		const tables = this.props.guestManagement.tables
-		const tableNum = tables.findIndex(t => t.id === guest.tableId) + 1
-		const belongsToTable = this.belongsToTable()
-		return (
-			<TableRow>
-				<TableCell>{guest.name} </TableCell>
-				<TableCell>{guest.partySize}</TableCell>
-				<TableCell>{tableNum || 'N/A'}</TableCell>
-				<TableCell>{this.getActionIcon(belongsToTable)}</TableCell>
-			</TableRow>
-		)
-	}
-}
 export default withRouter(Guest)

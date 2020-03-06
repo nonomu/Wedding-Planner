@@ -2,6 +2,15 @@
   visibility: hidden;
 }
 
+.Root {
+  flex-grow: 1;
+  width: '100vw';
+  height: 'auto';
+  z-index: 20;
+  position: 'fixed';
+  top: 0;
+}
+
 @media (min-width: 768px) {
   .NavBar {
     flex-grow: 1;

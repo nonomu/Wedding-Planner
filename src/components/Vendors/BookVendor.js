@@ -1,48 +1,44 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
+import React, { useContext, useState, useEffect } from 'react'
+import { observer } from 'mobx-react'
 import { Fab, TextField } from '@material-ui/core'
 import Dialog from '../UI/Dialog/Dialog'
 import DoneIcon from '@material-ui/icons/Done'
 import { toast as popup } from 'react-toastify'
 import classes from './BookVendor.module.css'
-@inject('vendors', 'wedding', 'auth')
-@observer
-class BookVendor extends Component {
-	state = {
-		price: ''
-	}
+import { AuthContext } from '../../stores/Auth'
+import { loadBookVendorContent } from '../../helpers/vendors'
+import { VendorsContext } from '../../stores/Vendors'
+import { WeddingContext } from '../../stores/Wedding'
 
-	handleInput = event => {
-		this.setState({ price: event.target.value })
-	}
+const BookVendor = ({ history, match }) => {
+		const auth = useContext(AuthContext)
+		const vendors = useContext(VendorsContext)
+		const wedding = useContext(WeddingContext)
+		const [price, setPrice] = useState('')
 
-	bookVendor = async vendorId => {
-		try {
-			const price = this.state.price
-		if (!price) {
-			throw new Error('Please enter a valid price')
-		}
-		await this.props.wedding.bookVendor(vendorId, price)
-		this.props.history.push('/budget-tracker')
-		} catch (err) {
-			popup.error(err.message)
-		}
-	}
+		useEffect(() => {
+			loadBookVendorContent(vendors, auth, wedding)
+		}, [auth, vendors, wedding])
 
-	componentDidMount() {
-		if (!this.props.vendors._vendors.length) {
-			this.props.vendors.getVendors()
+		const Book = async vendorId => {
+			try {
+				if (!price) {
+					throw new Error('Please enter a valid price')
+				}
+				await wedding.bookVendor(vendorId, price)
+				history.push('/budget-tracker')
+			} catch (err) {
+				popup.error(err.message)
+			}
 		}
-		if (!this.props.wedding.wedding.id) {
-			this.props.wedding.getWeddingDetails(this.props.auth.id)
-		}
-	}
 
-	render() {
-		const category = this.props.match.params.category
-		const vendorId = this.props.match.params.id
-		const getVendorData = this.props.vendors.getVendorData
-		const vendor = this.props.vendors._vendors.length ? getVendorData(category, vendorId) : null
+		const category = match.params.category
+		const vendorId = match.params.id
+		const getVendorData = vendors.getVendorData
+		const vendor = vendors._vendors.length
+			? getVendorData(category, vendorId)
+			: null
+
 		return (
 			<Dialog>
 				{vendor && (
@@ -63,8 +59,7 @@ class BookVendor extends Component {
 							name='price'
 							type='number'
 							label='Price'
-							value={this.state.price}
-							onChange={this.handleInput}
+							onChange={e => setPrice(e.target.value)}
 							placeholder='Enter Price'
 						/>
 
@@ -80,8 +75,7 @@ class BookVendor extends Component {
 						<Fab
 							color='secondary'
 							className='submit-price'
-							onClick={() => this.bookVendor(vendor.id)}
-							>
+							onClick={() => Book(vendor.id)}>
 							<DoneIcon />
 						</Fab>
 					</div>
@@ -89,6 +83,5 @@ class BookVendor extends Component {
 			</Dialog>
 		)
 	}
-}
 
-export default BookVendor
+export default observer(BookVendor)

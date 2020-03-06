@@ -1,40 +1,26 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
+import React, { useEffect, useContext } from 'react'
+import { observer } from 'mobx-react'
+import { isBookedCategory, loadPageContent } from '../../helpers/vendors'
 import Vendor from '../Vendors/Vendor'
 import classes from './Favorites.module.css'
-@inject('wedding', 'vendors', 'auth')
-@observer
-class Favorites extends Component {
-	async componentDidMount() {
-		const url = this.props.match.url
-		this.props.auth.setURL(url)
-		if (!this.props.wedding.weddingData) {
-			await this.props.wedding.getWeddingDetails(this.props.auth.id)
-		}
-		if (!this.props.vendors._vendors.length) {
-			await this.props.vendors.getVendors()
-		}
-		this.props.wedding.getUserFavorites(this.props.auth.id)
-	}
+import { AuthContext } from '../../stores/Auth'
+import { WeddingContext } from '../../stores/Wedding'
+import { VendorsContext } from '../../stores/Vendors'
 
-	isBookedCategory(category) {
-		const categories = this.props.wedding.bookedVendorCategories
-		return categories.some(c => c === category)
-	}
+const favoritesList = wedding => {
+	const { favorites, categories } = wedding
 
-	favorites() {
-		const favorites = this.props.wedding.favorites
-		const categories = this.props.wedding.favoritesCategories
-		return favorites.length && categories.map(c => {
+	return (
+		favorites.length && categories.map(c => {
 			return (
 				<div key={c} className={classes.Favorite}>
 					<h4 className={classes.Category}>{c}</h4>
 					<div className={classes.FavoriteList}>
 						{favorites.map(f => {
-							const isBookedCategory = this.isBookedCategory(f.category)
+							const booked = isBookedCategory(categories, f.category)
 							return (
 								f.category === c && (
-									<Vendor vendor={f} key={f.id} isBookedCategory={isBookedCategory} />
+									<Vendor vendor={f} key={f.id} isBookedCategory={booked} />
 								)
 							)
 						})}
@@ -42,21 +28,29 @@ class Favorites extends Component {
 				</div>
 			)
 		})
-	}
-
-	errorPhrase = () => (
-		<p className={classes.NoFavorites}>You have no favorites yet</p>
 	)
+}
 
-	render() {
+const errorPhrase = () => (
+	<p className={classes.NoFavorites}>You have no favorites yet</p>
+)
+
+const Favorites = ({ match }) => {
+	const auth = useContext(AuthContext)	
+	const wedding = useContext(WeddingContext)
+	const vendors = useContext(VendorsContext)
+	useEffect(() => {
+			const url = match.url
+			auth.setURL(url)
+			loadPageContent(auth, vendors, wedding)
+		}, [auth, match.url, vendors, wedding])
+
 		return (
 			<div className={classes.Favorites}>
 				<h1 className={classes.Title}>Favorites</h1>
-
-				{this.favorites() || this.errorPhrase() }
+				{favoritesList(wedding) || errorPhrase()}
 			</div>
 		)
 	}
-}
 
-export default Favorites
+export default observer(Favorites)

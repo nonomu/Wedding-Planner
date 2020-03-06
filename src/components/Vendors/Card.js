@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 export default function VendorCard(props) {
   const classes = useStyles();
-  const vendor = props.vendor
+  const {vendor} = props
   return (
     <Card className={classes.card}>
       <CardActionArea>

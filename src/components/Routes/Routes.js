@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
@@ -12,8 +12,9 @@ import Register from '../Register/Register'
 import GuestManagement from '../GuestManagement/GuestManagement'
 import AddTable from '../GuestManagement/AddTable'
 import TableManager from '../GuestManagement/TableManager'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
 import Vendors from '../Vendors/Vendors'
+import { AuthContext } from '../../stores/Auth'
 
 const guestRoutes = (
 	<Switch>
@@ -41,8 +42,9 @@ const authRoutes = (
 	</Switch>
 )
 
-const Routes = inject('auth')(
-	observer(props => (props.auth.loggedIn ? authRoutes : guestRoutes))
-)
+const Routes = () => {
+	const auth = useContext(AuthContext)
+	return auth.loggedIn ? authRoutes : guestRoutes
+	}
 
-export default Routes
+export default observer(Routes)

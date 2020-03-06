@@ -1,0 +1,18 @@
+
+.inputs_section{
+    margin-top: 20px;
+}
+
+.Link{
+    font-size: 16px;
+    color: cornflowerblue;
+}
+
+.LoginBottom {
+    display: grid;
+    justify-self: center;
+}
+
+.CreateAccount {
+    justify-self: center;
+}

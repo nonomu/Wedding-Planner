@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 		width: '60%'
 	}
 }))
-export default function BookedVendor({vendor}) {
+export default function BookedVendor({ vendor }) {
 	const classes = useStyles()
 	return (
 		<CardMedia
@@ -34,16 +34,14 @@ export default function BookedVendor({vendor}) {
 				<div id='detail-box'>
 					<div id='col1'>
 						<Typography id='col1' component='p'>
-							<PhoneIcon /> <strong>{vendor.contact}</strong>:
-							{vendor.phone} <br />
+							<PhoneIcon /> <strong>{vendor.contact}</strong>:{vendor.phone}{' '}
+							<br />
 							<AlternateEmailSharpIcon /> {vendor.email}
 						</Typography>
 						<Typography component='p'>
 							<PaymentSharpIcon /> {vendor.bookedVendor.price}₪
 						</Typography>
-						<Typography component='p'>
-							Notes: {vendor.small_prints}
-						</Typography>
+						<Typography component='p'>Notes: {vendor.small_prints}</Typography>
 					</div>
 				</div>
 			</Paper>
